@@ -37,32 +37,54 @@ export function Header() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (exploreRef.current && !exploreRef.current.contains(event.target as Node)) {
-        setExploreOpen(false);
+      const target = event.target as HTMLElement;
+      
+      // Don't close if clicking on a link (let navigation happen first)
+      if (target.closest('a')) {
+        return;
       }
-      if (planRef.current && !planRef.current.contains(event.target as Node)) {
-        setPlanOpen(false);
+
+      // Check if click is outside the explore menu area (button + panel)
+      if (exploreOpen && exploreRef.current) {
+        const explorePanel = exploreRef.current.parentElement?.querySelector('[data-navigation-panel]');
+        const isInsideExplore = exploreRef.current.contains(target) || 
+                                (explorePanel && explorePanel.contains(target));
+        
+        if (!isInsideExplore) {
+          setExploreOpen(false);
+        }
+      }
+
+      // Check if click is outside the plan menu area (button + panel)
+      if (planOpen && planRef.current) {
+        const planPanel = planRef.current.parentElement?.querySelector('[data-navigation-panel]');
+        const isInsidePlan = planRef.current.contains(target) || 
+                             (planPanel && planPanel.contains(target));
+        
+        if (!isInsidePlan) {
+          setPlanOpen(false);
+        }
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [exploreOpen, planOpen]);
 
   return (
-    <header className="w-full mt-3 mb-0">
+    <header className="w-full mt-3 mb-0 relative z-50">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-lg bg-[#F9F7F7] border-b border-zinc-200 dark:border-zinc-800 relative">
-          <div className="relative flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
+        <div className="rounded-lg bg-[#F9F7F7] border-b border-zinc-200 dark:border-zinc-800 relative z-50">
+          <div className="relative flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8 z-10">
             {/* Navigation - Left */}
-            <nav className="hidden md:flex items-center space-x-6 flex-1">
+            <nav className="hidden md:flex items-center space-x-6 flex-1 relative z-20">
               {/* Explore Menu */}
-              <div className="relative" ref={exploreRef}>
+              <div className="relative z-30" ref={exploreRef}>
                 <button
                   onClick={() => {
                     setExploreOpen(!exploreOpen);
                     setPlanOpen(false);
                   }}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-300"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-300 relative z-30"
                 >
                   {t.header.explore}
                   <ChevronDown 
@@ -72,13 +94,13 @@ export function Header() {
               </div>
 
               {/* Plan Menu */}
-              <div className="relative" ref={planRef}>
+              <div className="relative z-30" ref={planRef}>
                 <button
                   onClick={() => {
                     setPlanOpen(!planOpen);
                     setExploreOpen(false);
                   }}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-300"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-300 relative z-30"
                 >
                   {t.header.plan}
                   <ChevronDown 
@@ -89,7 +111,7 @@ export function Header() {
             </nav>
             
             {/* Logo - Center */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
+            <div className="absolute left-1/2 transform -translate-x-1/2 z-10 pointer-events-auto">
               <Link href="/" className="flex items-center">
                 <Image
                   src={logoPath}
@@ -116,10 +138,14 @@ export function Header() {
             <NavigationPanel
               sections={exploreSections}
               featuredCard={t.header.featuredCard}
+              onClose={() => setExploreOpen(false)}
             />
           )}
           {planOpen && (
-            <NavigationPanel sections={planSections} />
+            <NavigationPanel 
+              sections={planSections}
+              onClose={() => setPlanOpen(false)}
+            />
           )}
         </div>
       </div>
