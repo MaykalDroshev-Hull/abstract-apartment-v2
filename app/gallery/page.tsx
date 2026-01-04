@@ -16,6 +16,7 @@ interface GalleryImage {
 interface GallerySection {
   id: string;
   title: string;
+  titleMobile?: string;
   images: GalleryImage[];
 }
 
