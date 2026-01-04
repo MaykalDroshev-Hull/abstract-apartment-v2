@@ -129,7 +129,8 @@ export default function GalleryPage() {
                         : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700'
                     }`}
                   >
-                    {section.title}
+                    <span className="hidden sm:inline">{section.title}</span>
+                    <span className="sm:hidden">{section.titleMobile || section.title}</span>
                   </button>
                 ))}
               </div>

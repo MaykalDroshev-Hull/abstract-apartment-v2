@@ -116,12 +116,6 @@ export const en: Translations = {
             icon: 'Mail',
           },
           {
-            label: 'Pre-booking form',
-            description: 'A few details to begin your stay.',
-            href: '/pre-booking',
-            icon: 'FileText',
-          },
-          {
             label: 'Facebook',
             description: 'Follow us on Facebook.',
             href: 'https://facebook.com',
@@ -409,8 +403,9 @@ export const en: Translations = {
     description: 'Explore our spaces through carefully curated images showcasing the comfort and elegance of Abstract Apartment and Abstract Studio.',
     sections: [
       {
-        id: 'apartment-rooms',
-        title: 'Abstract Apartment - Rooms',
+        id: 'apartment',
+        title: 'Abstract Apartment',
+        titleMobile: 'Apartment',
         images: [
           {
             src: '/Images/Gallery/Bedroom1.jpg',
@@ -451,12 +446,6 @@ export const en: Translations = {
             alt: 'Bathroom',
             caption: 'Private bathroom with modern amenities',
           },
-        ],
-      },
-      {
-        id: 'apartment-gallery',
-        title: 'Abstract Apartment - Living Spaces',
-        images: [
           {
             src: '/Images/Gallery/ApartmentFromOutside.jpg',
             alt: 'Apartment exterior',
@@ -556,20 +545,15 @@ export const en: Translations = {
         ],
       },
       {
-        id: 'studio-rooms',
-        title: 'Abstract Studio - Rooms',
+        id: 'studio',
+        title: 'Abstract Studio',
+        titleMobile: 'Studio',
         images: [
           {
             src: '/Images/Gallery/LivingArea1.jpg',
             alt: 'Studio living area',
             caption: 'Comfortable studio space',
           },
-        ],
-      },
-      {
-        id: 'studio-gallery',
-        title: 'Abstract Studio - Gallery',
-        images: [
           {
             src: '/Images/Gallery/LivingArea1.jpg',
             alt: 'Studio interior',
@@ -922,6 +906,263 @@ export const en: Translations = {
     extras: {
       title: 'Additional Information',
     },
+  },
+  reserve: {
+    title: 'Reserve Your Stay',
+    subtitle: 'Complete your reservation in a few simple steps',
+    steps: {
+      villa: 'Villa',
+      dates: 'Dates',
+      details: 'Details',
+      review: 'Review',
+    },
+    villa: {
+      title: 'Choose Your Villa',
+      apartment: {
+        name: 'Abstract Apartment',
+        description: 'Spacious apartment with modern amenities',
+        features: [
+          'Sleeps up to 6 guests',
+          '2 bedrooms + sofa bed',
+          '1 bathroom',
+          'Fully equipped kitchen',
+          'Sea view terrace',
+        ],
+      },
+      studio: {
+        name: 'Abstract Studio',
+        description: 'Cozy studio perfect for couples',
+        features: [
+          'Sleeps up to 2 guests',
+          '2 beds',
+          '1 bathroom',
+          'Kitchenette',
+          'Private balcony',
+        ],
+      },
+      perNight: '/ night',
+    },
+    dates: {
+      title: 'Select Dates & Guests',
+      datesLabel: 'Dates',
+      checkIn: 'Check-in',
+      checkOut: 'Check-out',
+      guestsLabel: 'Guests',
+      adults: 'Adults',
+      children: 'Children',
+      childrenOptional: 'Children (optional)',
+      adult: 'Adult',
+      child: 'Child',
+    },
+    details: {
+      title: 'Guest Details',
+      fullName: 'Full Name',
+      email: 'Email',
+      phone: 'Phone',
+      country: 'Country',
+      countryOptional: 'Country (optional)',
+      notes: 'Notes / Special Requests',
+      notesOptional: 'Notes / Special Requests (optional)',
+      note: 'After you submit, we\'ll contact you to confirm availability and arrange the deposit.',
+      required: '*',
+    },
+    review: {
+      title: 'Review & Reserve',
+      villa: 'Villa',
+      dates: 'Dates',
+      checkIn: 'Check-in:',
+      checkOut: 'Check-out:',
+      nights: 'nights',
+      night: 'night',
+      guests: 'Guests',
+      contactInfo: 'Contact Information',
+      name: 'Name:',
+      email: 'Email:',
+      phone: 'Phone:',
+      country: 'Country:',
+      notes: 'Notes:',
+      reserve: 'Reserve',
+      processing: 'Processing...',
+    },
+    summary: {
+      title: 'Reservation Summary',
+      dates: 'Dates',
+      guests: 'Guests',
+      total: 'Total',
+      deposit: 'Deposit (30%)',
+      depositNote: 'Due after confirmation (arranged by phone)',
+      perNight: '/ night',
+    },
+    success: {
+      title: 'Request Received',
+      message: 'We\'ll call you shortly to confirm your booking and arrange the deposit and remaining payment details.',
+      note: 'Your booking is confirmed only after we contact you and arrange the deposit payment.',
+      backHome: 'Back to Home',
+      contactUs: 'Contact Us',
+    },
+    validation: {
+      villaRequired: 'Please select a villa',
+      checkInRequired: 'Check-in date is required',
+      checkOutRequired: 'Check-out date is required',
+      checkOutAfterCheckIn: 'Check-out must be after check-in',
+      nameRequired: 'Full name is required',
+      emailRequired: 'Email is required',
+      emailInvalid: 'Please enter a valid email address',
+      phoneRequired: 'Phone number is required',
+    },
+    buttons: {
+      ok: 'OK',
+      goBack: 'Go Back',
+    },
+  },
+  details: {
+    hero: {
+      eyebrow: 'DETAILS',
+      title: 'Abstract',
+      subtitle: 'A home away from home in the heart of Paralia Ofriniou',
+      highlights: [
+        { text: '2 min to beach', icon: 'MapPin' },
+        { text: 'Near taverns', icon: 'Utensils' },
+        { text: 'Fast Wi-Fi', icon: 'Wifi' },
+      ],
+    },
+    general: {
+      welcome: 'Welcome',
+      paragraphs: [
+        'Summer and sea in Paralia Ofriniou',
+        '2 minutes walk to beach and taverns',
+        'Many taverns and local food options nearby',
+      ],
+    },
+    tabs: {
+      apartment: 'Apartment',
+      studio: 'Studio',
+    },
+    apartment: {
+      roomsTitle: 'Rooms',
+      amenitiesTitle: 'Comfort & Amenities',
+      rooms: [
+        { label: 'Room 1', details: 'Double bed, AC, terrace', icon: 'BedDouble' },
+        { label: 'Room 2', details: 'Double bed, AC, terrace', icon: 'BedDouble' },
+        { label: 'Room 3', details: 'Sofa bed', icon: 'Sofa' },
+        { label: 'Baby cot available', details: 'On request', icon: 'Baby' },
+      ],
+      amenities: [
+        { title: 'AC in every room', icon: 'Snowflake' },
+        { title: 'Bulgarian TV', icon: 'Tv' },
+        { title: 'Fully equipped kitchen', icon: 'CookingPot' },
+        { title: 'Large terrace + BBQ', icon: 'Flame' },
+        { title: 'Private parking', icon: 'Car' },
+        { title: 'Fast Wi-Fi', icon: 'Wifi' },
+      ],
+    },
+    studio: {
+      roomsTitle: 'Rooms',
+      amenitiesTitle: 'Comfort & Amenities',
+      rooms: [
+        { label: 'Main sleeping area', details: '2 beds, AC', icon: 'BedDouble' },
+        { label: 'Bathroom', details: '1 bathroom', icon: 'BedDouble' },
+        { label: 'Baby cot available', details: 'On request', icon: 'Baby' },
+      ],
+      amenities: [
+        { title: 'Fully equipped kitchenette', icon: 'CookingPot' },
+        { title: 'Wi-Fi', icon: 'Wifi' },
+        { title: 'AC', icon: 'Snowflake' },
+        { title: 'TV', icon: 'Tv' },
+        { title: 'Easy access to beach/taverns', icon: 'MapPin' },
+      ],
+      note: 'Studio details will be added soon.',
+    },
+    cta: {
+      reserve: 'Reserve',
+      gallery: 'Gallery',
+    },
+  },
+  faq: {
+    hero: {
+      eyebrow: 'FAQ',
+      title: 'Frequently Asked Questions',
+      subtitle: 'Quick answers about policies, reservations, and availability.',
+      ctaPrimary: 'Reserve',
+      ctaSecondary: 'Contact us',
+    },
+    policies: {
+      title: 'Policies and Terms',
+      items: [
+        {
+          q: 'Check-in',
+          a: 'After 3:00 PM.',
+        },
+        {
+          q: 'Check-out',
+          a: 'Until 10:00 AM.',
+        },
+        {
+          q: 'Smoking',
+          a: 'Prohibited in all rooms.',
+        },
+        {
+          q: 'Pets',
+          a: 'Upon prior inquiry.',
+        },
+        {
+          q: 'Minimum stay',
+          a: '3 nights.',
+        },
+        {
+          q: 'Discount for longer stay',
+          a: 'Book 7 nights and get the 8th night free.',
+        },
+        {
+          q: 'Deposit',
+          a: '30% of the stay value upon reservation.',
+        },
+      ],
+    },
+    booking: {
+      title: 'Booking & Availability',
+      items: [
+        {
+          q: 'How do I make a reservation?',
+          a: 'You can submit a reservation request through the "Reserve" page. After you submit your request, the owner will call you to confirm availability and arrange the deposit and remaining payment.',
+        },
+        {
+          q: 'How do I check availability?',
+          a: 'You can check availability through the "Reserve" page or contact us directly by phone or email.',
+        },
+        {
+          q: 'What is the deposit?',
+          a: 'The deposit is 30% of the stay value and is paid after reservation confirmation. The remaining amount is paid upon check-in or by agreement.',
+        },
+        {
+          q: 'Can I change the dates?',
+          a: 'Please contact us as soon as possible to check availability for new dates. Changes depend on availability and are handled individually.',
+        },
+        {
+          q: 'Is there a minimum stay?',
+          a: 'Yes, the minimum stay is 3 nights. For longer stays, we offer a discount - book 7 nights and get the 8th night free.',
+        },
+      ],
+    },
+    needHelp: {
+      title: 'Still have questions?',
+      description: 'Write to us or call — we\'ll help with availability and reservations.',
+      call: 'Call us',
+      email: 'Email us',
+    },
+  },
+  gettingHere: {
+    hero: {
+      caption: 'GETTING HERE',
+      title: 'How to get here',
+      subtitle: 'Simple directions for arriving by car from Bulgaria or by flight via Thessaloniki.',
+      cta: {
+        reserve: 'Reserve',
+        contact: 'Get in touch',
+      },
+    },
+    sectionTitle: 'Directions',
+    helperNote: 'We recommend saving the location in Google Maps in advance for a smooth arrival.',
   },
 };
 

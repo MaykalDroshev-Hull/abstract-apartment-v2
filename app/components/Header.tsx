@@ -3,16 +3,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu } from 'lucide-react';
 import { useTranslations, useLanguage } from '@/app/lib/translations';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { NavigationPanel } from './NavigationPanel';
+import { MobileNavPanel } from './MobileNavPanel';
 
 export function Header() {
   const t = useTranslations();
   const { language } = useLanguage();
   const [exploreOpen, setExploreOpen] = useState(false);
   const [planOpen, setPlanOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const exploreRef = useRef<HTMLDivElement>(null);
   const planRef = useRef<HTMLDivElement>(null);
 
@@ -75,8 +77,19 @@ export function Header() {
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-lg bg-[#F9F7F7] border-b border-zinc-200 dark:border-zinc-800 relative z-50">
           <div className="relative flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8 z-10">
-            {/* Navigation - Left */}
-            <nav className="hidden md:flex items-center space-x-6 flex-1 relative z-20">
+            {/* Mobile Hamburger - Left */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="lg:hidden p-2 rounded-lg hover:bg-zinc-200/50 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Open menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-panel"
+            >
+              <Menu className="w-6 h-6 text-zinc-900" />
+            </button>
+
+            {/* Navigation - Left (Desktop) */}
+            <nav className="hidden lg:flex items-center space-x-6 flex-1 relative z-20">
               {/* Explore Menu */}
               <div className="relative z-30" ref={exploreRef}>
                 <button
@@ -126,10 +139,17 @@ export function Header() {
 
             {/* Right Side - Reserve Button and Language Switcher */}
             <div className="flex items-center justify-end gap-4 flex-1">
-              <button className="rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47]">
+              {/* Reserve Button - Hidden on mobile/tablet (shown in menu) */}
+              <Link 
+                href="/reserve"
+                className="hidden lg:block rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47]"
+              >
                 {t.header.reserve}
-              </button>
-              <LanguageSwitcher />
+              </Link>
+              {/* Language Switcher - Hidden on mobile/tablet (shown in menu) */}
+              <div className="hidden lg:block">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
           
@@ -149,6 +169,14 @@ export function Header() {
           )}
         </div>
       </div>
+
+      {/* Mobile Navigation Panel */}
+      <MobileNavPanel
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        exploreSections={exploreSections}
+        planSections={planSections}
+      />
     </header>
   );
 }

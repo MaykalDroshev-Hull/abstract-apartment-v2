@@ -17,44 +17,46 @@ export function AvailabilitySearchBar() {
   };
 
   return (
-    <div className="mb-16 sm:mb-20 lg:mb-24 scroll-mt-24">
+    <div className="mb-16 sm:mb-20 lg:mb-24 scroll-mt-24 overflow-x-hidden">
       <form
         onSubmit={handleSearch}
-        className="bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-700 shadow-sm"
+        className="bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 border border-zinc-200 dark:border-zinc-700 shadow-sm overflow-x-hidden"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {/* Check-in */}
-          <div className="relative">
+          <div className="relative min-w-0">
             <label htmlFor="checkin" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
               {t.rates.search.checkIn}
             </label>
             <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 pointer-events-none z-10" />
               <input
                 type="date"
                 id="checkin"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
+                className="w-full max-w-full box-border pl-10 pr-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
+                style={{ WebkitAppearance: 'none', appearance: 'none' }}
                 required
               />
             </div>
           </div>
 
           {/* Check-out */}
-          <div className="relative">
+          <div className="relative min-w-0">
             <label htmlFor="checkout" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
               {t.rates.search.checkOut}
             </label>
             <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" />
+              <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 pointer-events-none z-10" />
               <input
                 type="date"
                 id="checkout"
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 min={checkIn || undefined}
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
+                className="w-full max-w-full box-border pl-10 pr-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
+                style={{ WebkitAppearance: 'none', appearance: 'none' }}
                 required
               />
             </div>

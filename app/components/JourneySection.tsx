@@ -58,8 +58,20 @@ function JourneyStepItem({ step, index }: { step: JourneyStep; index: number }) 
   );
 }
 
-export function JourneySection() {
+interface JourneySectionProps {
+  title?: string;
+  intro?: string;
+  sectionTitle?: string;
+  showHeader?: boolean;
+}
+
+export function JourneySection({ title, intro, sectionTitle, showHeader = true }: JourneySectionProps) {
   const t = useTranslations();
+
+  // Use provided props or fall back to translations
+  const displayTitle = title || t.home.journey.title;
+  const displayIntro = intro || t.home.journey.intro;
+  const displaySectionTitle = sectionTitle || t.home.journey.title;
 
   // Map steps from translations
   const steps: JourneyStep[] = t.home.journey.steps.map((step) => {
@@ -117,18 +129,31 @@ export function JourneySection() {
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED] dark:bg-zinc-900">
       <div className="mx-auto max-w-7xl">
-        {/* Header Area */}
-        <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
-          <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-6"
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            {t.home.journey.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">
-            {t.home.journey.intro}
-          </p>
-        </div>
+        {/* Header Area - Only show if showHeader is true */}
+        {showHeader && (
+          <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-6"
+              style={{ fontFamily: 'var(--font-serif)' }}
+            >
+              {displayTitle}
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">
+              {displayIntro}
+            </p>
+          </div>
+        )}
+
+        {/* Section Title - Show if provided and header is hidden */}
+        {!showHeader && displaySectionTitle && (
+          <div className="mb-8 sm:mb-12">
+            <h2
+              className="text-3xl sm:text-4xl font-serif text-zinc-900 dark:text-zinc-50 mb-4"
+            >
+              {displaySectionTitle}
+            </h2>
+          </div>
+        )}
 
         {/* Map Container */}
         <div className="mb-12 sm:mb-16 lg:mb-20">

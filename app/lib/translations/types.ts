@@ -201,6 +201,7 @@ export interface Translations {
     sections: Array<{
       id: string;
       title: string;
+      titleMobile?: string;
       images: Array<{
         src: string;
         alt: string;
@@ -363,6 +364,196 @@ export interface Translations {
     extras: {
       title: string;
     };
+  };
+  reserve: {
+    title: string;
+    subtitle: string;
+    steps: {
+      villa: string;
+      dates: string;
+      details: string;
+      review: string;
+    };
+    villa: {
+      title: string;
+      apartment: {
+        name: string;
+        description: string;
+        features: string[];
+      };
+      studio: {
+        name: string;
+        description: string;
+        features: string[];
+      };
+      perNight: string;
+    };
+    dates: {
+      title: string;
+      datesLabel: string;
+      checkIn: string;
+      checkOut: string;
+      guestsLabel: string;
+      adults: string;
+      children: string;
+      childrenOptional: string;
+      adult: string;
+      child: string;
+    };
+    details: {
+      title: string;
+      fullName: string;
+      email: string;
+      phone: string;
+      country: string;
+      countryOptional: string;
+      notes: string;
+      notesOptional: string;
+      note: string;
+      required: string;
+    };
+    review: {
+      title: string;
+      villa: string;
+      dates: string;
+      checkIn: string;
+      checkOut: string;
+      nights: string;
+      night: string;
+      guests: string;
+      contactInfo: string;
+      name: string;
+      email: string;
+      phone: string;
+      country: string;
+      notes: string;
+      reserve: string;
+      processing: string;
+    };
+    summary: {
+      title: string;
+      dates: string;
+      guests: string;
+      total: string;
+      deposit: string;
+      depositNote: string;
+      perNight: string;
+    };
+    success: {
+      title: string;
+      message: string;
+      note: string;
+      backHome: string;
+      contactUs: string;
+    };
+    validation: {
+      villaRequired: string;
+      checkInRequired: string;
+      checkOutRequired: string;
+      checkOutAfterCheckIn: string;
+      nameRequired: string;
+      emailRequired: string;
+      emailInvalid: string;
+      phoneRequired: string;
+    };
+    buttons: {
+      ok: string;
+      goBack: string;
+    };
+  };
+  details: {
+    hero: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      highlights: Array<{
+        text: string;
+        icon: string;
+      }>;
+    };
+    general: {
+      welcome: string;
+      paragraphs: string[];
+    };
+    tabs: {
+      apartment: string;
+      studio: string;
+    };
+    apartment: {
+      roomsTitle: string;
+      amenitiesTitle: string;
+      rooms: Array<{
+        label: string;
+        details: string;
+        icon: string;
+      }>;
+      amenities: Array<{
+        title: string;
+        description?: string;
+        icon: string;
+      }>;
+    };
+    studio: {
+      roomsTitle: string;
+      amenitiesTitle: string;
+      rooms: Array<{
+        label: string;
+        details: string;
+        icon: string;
+      }>;
+      amenities: Array<{
+        title: string;
+        description?: string;
+        icon: string;
+      }>;
+      note?: string;
+    };
+    cta: {
+      reserve: string;
+      gallery: string;
+    };
+  };
+  faq: {
+    hero: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      ctaPrimary: string;
+      ctaSecondary: string;
+    };
+    policies: {
+      title: string;
+      items: Array<{
+        q: string;
+        a: string;
+      }>;
+    };
+    booking: {
+      title: string;
+      items: Array<{
+        q: string;
+        a: string;
+      }>;
+    };
+    needHelp: {
+      title: string;
+      description: string;
+      call: string;
+      email: string;
+    };
+  };
+  gettingHere: {
+    hero: {
+      caption: string;
+      title: string;
+      subtitle: string;
+      cta: {
+        reserve: string;
+        contact: string;
+      };
+    };
+    sectionTitle: string;
+    helperNote: string;
   };
 }
 
