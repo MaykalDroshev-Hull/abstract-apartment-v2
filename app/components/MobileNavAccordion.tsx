@@ -24,33 +24,7 @@ export function MobileNavAccordion({ label, sections, isOpen, onToggle, onItemCl
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleReviewsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    
-    if (pathname === '/') {
-      const scrollToReviews = () => {
-        const reviewsSection = document.getElementById('reviews');
-        if (reviewsSection) {
-          const headerOffset = 100;
-          const elementPosition = reviewsSection.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-        }
-      };
-      
-      setTimeout(scrollToReviews, 50);
-    } else {
-      router.push('/#reviews');
-    }
-    
-    if (onItemClick) {
-      onItemClick();
-    }
-  };
+  // Reviews now link to dedicated page instead of home page section
 
   return (
     <div className="border-b border-zinc-200 last:border-b-0">
@@ -78,53 +52,30 @@ export function MobileNavAccordion({ label, sections, isOpen, onToggle, onItemCl
                 {section.items.map((item, itemIndex) => {
                   const Icon = getIcon(item.icon);
                   const isExternal = item.href.startsWith('http');
-                  const isReviewsLink = item.href === '/reviews';
-                  
+
                   return (
                     <li key={itemIndex}>
-                      {isReviewsLink ? (
-                        <a
-                          href="#reviews"
-                          onClick={handleReviewsClick}
-                          className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-zinc-50 active:bg-zinc-100 transition-colors group min-h-[44px]"
-                        >
-                          <div className="mt-0.5 flex-shrink-0">
-                            <Icon className="w-4 h-4 text-zinc-600 group-hover:text-[#9D7F5F] transition-colors" />
+                      <Link
+                        href={item.href}
+                        target={isExternal ? '_blank' : undefined}
+                        rel={isExternal ? 'noopener noreferrer' : undefined}
+                        onClick={onItemClick}
+                        className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-zinc-50 active:bg-zinc-100 transition-colors group min-h-[44px]"
+                      >
+                        <div className="mt-0.5 flex-shrink-0">
+                          <Icon className="w-4 h-4 text-zinc-600 group-hover:text-[#9D7F5F] transition-colors" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-sm text-zinc-900 group-hover:text-[#9D7F5F] transition-colors">
+                            {item.label}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-sm text-zinc-900 group-hover:text-[#9D7F5F] transition-colors">
-                              {item.label}
+                          {item.description && (
+                            <div className="text-xs text-zinc-600 mt-1 leading-relaxed">
+                              {item.description}
                             </div>
-                            {item.description && (
-                              <div className="text-xs text-zinc-600 mt-1 leading-relaxed">
-                                {item.description}
-                              </div>
-                            )}
-                          </div>
-                        </a>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          target={isExternal ? '_blank' : undefined}
-                          rel={isExternal ? 'noopener noreferrer' : undefined}
-                          onClick={onItemClick}
-                          className="flex items-start gap-3 px-4 py-3 rounded-lg hover:bg-zinc-50 active:bg-zinc-100 transition-colors group min-h-[44px]"
-                        >
-                          <div className="mt-0.5 flex-shrink-0">
-                            <Icon className="w-4 h-4 text-zinc-600 group-hover:text-[#9D7F5F] transition-colors" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-sm text-zinc-900 group-hover:text-[#9D7F5F] transition-colors">
-                              {item.label}
-                            </div>
-                            {item.description && (
-                              <div className="text-xs text-zinc-600 mt-1 leading-relaxed">
-                                {item.description}
-                              </div>
-                            )}
-                          </div>
-                        </Link>
-                      )}
+                          )}
+                        </div>
+                      </Link>
                     </li>
                   );
                 })}

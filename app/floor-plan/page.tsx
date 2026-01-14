@@ -2,6 +2,7 @@
 
 import { useTranslations } from '@/app/lib/translations';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function FloorPlanPage() {
   const t = useTranslations();
@@ -87,6 +88,33 @@ export default function FloorPlanPage() {
                   </div>
                 )}
               </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+            <h2
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-4"
+              style={{ fontFamily: 'var(--font-serif)' }}
+            >
+              {t.floorPlan.cta.title}
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 mb-8 max-w-3xl mx-auto">
+              {t.floorPlan.cta.description}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/reserve"
+                className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
+              >
+                {t.header.reserve}
+              </Link>
+              <Link
+                href="/gallery"
+                className="px-6 py-2 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 font-medium text-sm hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors text-center"
+              >
+                {t.gallery.title}
+              </Link>
             </div>
           </div>
         </div>

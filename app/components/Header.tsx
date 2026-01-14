@@ -142,6 +142,10 @@ export function Header() {
               {/* Reserve Button - Hidden on mobile/tablet (shown in menu) */}
               <Link 
                 href="/reserve"
+                onClick={() => {
+                  setExploreOpen(false);
+                  setPlanOpen(false);
+                }}
                 className="hidden lg:block rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47]"
               >
                 {t.header.reserve}

@@ -13,32 +13,7 @@ export function Footer() {
   const router = useRouter();
   const currentYear = new Date().getFullYear();
 
-  const handleReviewsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    
-    if (pathname === '/') {
-      // Already on home page, just scroll
-      const scrollToReviews = () => {
-        const reviewsSection = document.getElementById('reviews');
-        if (reviewsSection) {
-          const headerOffset = 100;
-          const elementPosition = reviewsSection.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-        }
-      };
-      
-      // Small delay to ensure smooth scroll
-      setTimeout(scrollToReviews, 50);
-    } else {
-      // Navigate to home page with hash
-      router.push('/#reviews');
-    }
-  };
+  // Reviews now link to dedicated page instead of home page section
 
   // Use Bulgarian logo for Bulgarian, regular logo for English and Greek
   const logoPath = language === 'bg' 
@@ -131,28 +106,15 @@ export function Footer() {
               {t.footer.quickLinks}
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3">
-              {uniqueLinks.map((link, index) => {
-                const isReviewsLink = link.href === '/reviews';
-                
-                return isReviewsLink ? (
-                  <a
-                    key={index}
-                    href="#reviews"
-                    onClick={handleReviewsClick}
-                    className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:underline transition-colors cursor-pointer"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={index}
-                    href={link.href}
-                    className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:underline transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
+              {uniqueLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:underline transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
 

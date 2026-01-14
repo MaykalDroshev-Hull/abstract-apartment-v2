@@ -194,6 +194,10 @@ export interface Translations {
       title: string;
       image?: string;
     };
+    cta: {
+      title: string;
+      description: string;
+    };
   };
   gallery: {
     title: string;
@@ -554,6 +558,92 @@ export interface Translations {
     };
     sectionTitle: string;
     helperNote: string;
+  };
+  admin: {
+    login: {
+      title: string;
+      subtitle: string;
+      username: string;
+      password: string;
+      usernamePlaceholder: string;
+      passwordPlaceholder: string;
+      loginButton: string;
+      loginError: string;
+      loginSuccess: string;
+      logoutSuccess: string;
+    };
+    dashboard: {
+      title: string;
+      logout: string;
+      loading: string;
+      addBooking: string;
+      editBooking: string;
+      saveChanges: string;
+      cancel: string;
+      deleteConfirm: string;
+      deleteSuccess: string;
+      addSuccess: string;
+      updateSuccess: string;
+      loadError: string;
+      addError: string;
+      updateError: string;
+      deleteError: string;
+      showAll: string;
+      showUpcoming: string;
+      upcomingBookings: string;
+      allBookings: string;
+      noBookings: string;
+      form: {
+        apartment: string;
+        apartmentOptions: {
+          apartment: string;
+          studio: string;
+        };
+        checkIn: string;
+        checkOut: string;
+        firstName: string;
+        lastName: string;
+        telephone: string;
+        fullPrice: string;
+        paidPrice: string;
+        comments: string;
+        commentsPlaceholder: string;
+        required: string;
+        checkOutAfterCheckIn: string;
+      };
+      table: {
+        apartment: string;
+        guest: string;
+        contact: string;
+        checkIn: string;
+        checkOut: string;
+        price: string;
+        paid: string;
+        comments: string;
+        actions: string;
+      };
+      validation: {
+        checkInRequired: string;
+        checkOutRequired: string;
+        firstNameRequired: string;
+        lastNameRequired: string;
+        telephoneRequired: string;
+        fullPriceRequired: string;
+        paidPriceRequired: string;
+      };
+    };
+  };
+  reviews: {
+    hero: {
+      title: string;
+      subtitle: string;
+    };
+    sectionTitle: string;
+    sectionSubtitle: string;
+    moreReviewsText: string;
+    readMore: string;
+    leaveReview: string;
+    metaTitle: string;
   };
 }
 

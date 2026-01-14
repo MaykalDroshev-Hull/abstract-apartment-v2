@@ -9,22 +9,9 @@ import { CtaAndReviewsSection } from '@/app/components/CtaAndReviewsSection';
 
 export default function Home() {
   useEffect(() => {
-    // Handle scroll to reviews section if hash is present
+    // Redirect #reviews hash to dedicated reviews page
     if (window.location.hash === '#reviews') {
-      // Small delay to ensure DOM is ready
-      setTimeout(() => {
-        const reviewsSection = document.getElementById('reviews');
-        if (reviewsSection) {
-          const headerOffset = 100;
-          const elementPosition = reviewsSection.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-        }
-      }, 100);
+      window.location.href = '/reviews';
     }
   }, []);
 
