@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { GuideItem } from '../page';
+import { GuideItem, GuideCategory } from '../page';
+import { useTranslations } from '@/app/lib/translations';
 
 interface GuideCardProps {
   item: GuideItem;
@@ -11,7 +12,18 @@ interface GuideCardProps {
   delay?: number;
 }
 
+const getCategoryLabel = (category: GuideCategory, t: ReturnType<typeof useTranslations>): string => {
+  if (category === 'All') return t.guide.categories.all;
+  if (category === 'Taverns') return t.guide.categories.taverns;
+  if (category === 'Beaches') return t.guide.categories.beaches;
+  if (category === 'Walks') return t.guide.categories.walks;
+  if (category === 'Events') return t.guide.categories.events;
+  if (category === 'Day Trips') return t.guide.categories.dayTrips;
+  return category;
+};
+
 export function GuideCard({ item, onClick, delay = 0 }: GuideCardProps) {
+  const t = useTranslations();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,7 +48,7 @@ export function GuideCard({ item, onClick, delay = 0 }: GuideCardProps) {
           {/* Category Label */}
           <div className="absolute top-4 left-4">
             <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
-              {item.category}
+              {getCategoryLabel(item.category, t)}
             </span>
           </div>
         </div>

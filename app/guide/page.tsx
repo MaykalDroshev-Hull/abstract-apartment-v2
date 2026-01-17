@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { GuideHero } from './components/GuideHero';
 import { GuideFilters } from './components/GuideFilters';
 import { GuideGrid } from './components/GuideGrid';
 import { GuideModal } from './components/GuideModal';
-import { guideData } from './data';
+import { guideDataRaw } from './data';
+import { useLanguage } from '../lib/translations';
 
 export type GuideCategory = 'All' | 'Taverns' | 'Beaches' | 'Walks' | 'Events' | 'Day Trips';
 
@@ -24,8 +25,19 @@ export type GuideItem = {
 };
 
 export default function GuidePage() {
+  const { language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<GuideCategory>('All');
   const [selectedItem, setSelectedItem] = useState<GuideItem | null>(null);
+
+  const guideData = useMemo<GuideItem[]>(() => {
+    return guideDataRaw.map(item => ({
+      id: item.id,
+      category: item.category,
+      imageSrc: item.imageSrc,
+      mapsUrl: item.mapsUrl,
+      ...item.translations[language]
+    }));
+  }, [language]);
 
   const filteredItems = activeCategory === 'All' 
     ? guideData 

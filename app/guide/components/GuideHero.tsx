@@ -1,12 +1,24 @@
 'use client';
 
+import { useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useTranslations } from '@/app/lib/translations';
+import { guideDataRaw } from '../data';
+
+// Get 3 random images from guide data
+const getRandomImages = () => {
+  const shuffled = [...guideDataRaw].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3).map(item => ({
+    src: item.imageSrc,
+    alt: item.translations.en.imageAlt
+  }));
+};
 
 export function GuideHero() {
   const t = useTranslations();
+  const images = useMemo(() => getRandomImages(), []);
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED] dark:bg-zinc-900">
       <div className="mx-auto max-w-7xl">
@@ -65,8 +77,8 @@ export function GuideHero() {
                 {/* Main Image */}
                 <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-lg z-10">
                   <Image
-                    src="/Images/index/DEMO-hero-image.jpg"
-                    alt="Paralia Ofriniou coastline"
+                    src={images[0]?.src || '/Images/index/DEMO-hero-image.jpg'}
+                    alt={images[0]?.alt || 'Paralia Ofriniou coastline'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 75vw, 50vw"
@@ -75,8 +87,8 @@ export function GuideHero() {
                 {/* Overlapping Image 1 */}
                 <div className="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-lg z-20">
                   <Image
-                    src="/Images/index/DEMO-hero-image.jpg"
-                    alt="Local taverna"
+                    src={images[1]?.src || '/Images/index/DEMO-hero-image.jpg'}
+                    alt={images[1]?.alt || 'Local attraction'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 66vw, 40vw"
@@ -85,8 +97,8 @@ export function GuideHero() {
                 {/* Overlapping Image 2 */}
                 <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 rounded-3xl overflow-hidden shadow-lg z-30">
                   <Image
-                    src="/Images/index/DEMO-hero-image.jpg"
-                    alt="Beach view"
+                    src={images[2]?.src || '/Images/index/DEMO-hero-image.jpg'}
+                    alt={images[2]?.alt || 'Local view'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 50vw, 30vw"

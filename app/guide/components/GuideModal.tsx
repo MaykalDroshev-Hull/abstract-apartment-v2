@@ -4,8 +4,18 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { X, MapPin, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GuideItem } from '../page';
+import { GuideItem, GuideCategory } from '../page';
 import { useTranslations } from '@/app/lib/translations';
+
+const getCategoryLabel = (category: GuideCategory, t: ReturnType<typeof useTranslations>): string => {
+  if (category === 'All') return t.guide.categories.all;
+  if (category === 'Taverns') return t.guide.categories.taverns;
+  if (category === 'Beaches') return t.guide.categories.beaches;
+  if (category === 'Walks') return t.guide.categories.walks;
+  if (category === 'Events') return t.guide.categories.events;
+  if (category === 'Day Trips') return t.guide.categories.dayTrips;
+  return category;
+};
 
 interface GuideModalProps {
   item: GuideItem | null;
@@ -127,7 +137,7 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
               <div className="p-6 sm:p-8 lg:p-10">
                 {/* Category Label */}
                 <span className="inline-block px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-700 text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 mb-4">
-                  {item.category}
+                  {getCategoryLabel(item.category, t)}
                 </span>
 
                 {/* Title */}
