@@ -587,6 +587,7 @@ export const bg: Translations = {
       tips: 'Съвети',
       distance: 'Разстояние от апартамента:',
       openInMaps: 'Отвори в Google Maps',
+      website: 'Уебсайт',
     },
   },
   about: {

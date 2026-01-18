@@ -231,6 +231,7 @@ export interface Translations {
       tips: string;
       distance: string;
       openInMaps: string;
+      website: string;
     };
   };
   about: {

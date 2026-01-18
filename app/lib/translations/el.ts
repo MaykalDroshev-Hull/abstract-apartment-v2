@@ -587,6 +587,7 @@ export const el: Translations = {
       tips: 'Συμβουλές',
       distance: 'Απόσταση από το διαμέρισμα:',
       openInMaps: 'Άνοιγμα στο Google Maps',
+      website: 'Ιστοσελίδα',
     },
   },
   about: {

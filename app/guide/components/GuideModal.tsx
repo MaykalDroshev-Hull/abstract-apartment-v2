@@ -205,16 +205,32 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
                   </span>
                 </div>
 
-                {/* Google Maps Link */}
-                <a
-                  href={item.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors"
-                >
-                  <span>{t.guide.modal.openInMaps}</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+                {/* Action Buttons */}
+                <div className="flex items-center gap-3 flex-wrap">
+                  {/* Google Maps Link */}
+                  <a
+                    href={item.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors"
+                  >
+                    <span>{t.guide.modal.openInMaps}</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+
+                  {/* Website Link */}
+                  {item.websiteUrl && (
+                    <a
+                      href={item.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors"
+                    >
+                      <span>{t.guide.modal.website}</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>

@@ -22,6 +22,7 @@ export type GuideItem = {
   tips?: string[];
   distance: string;
   mapsUrl: string;
+  websiteUrl?: string;
 };
 
 export default function GuidePage() {
@@ -35,6 +36,7 @@ export default function GuidePage() {
       category: item.category,
       imageSrc: item.imageSrc,
       mapsUrl: item.mapsUrl,
+      websiteUrl: item.websiteUrl,
       ...item.translations[language]
     }));
   }, [language]);

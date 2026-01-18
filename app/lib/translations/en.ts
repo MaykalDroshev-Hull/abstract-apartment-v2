@@ -587,6 +587,7 @@ export const en: Translations = {
       tips: 'Tips',
       distance: 'Distance from the apartment:',
       openInMaps: 'Open in Google Maps',
+      website: 'Website',
     },
   },
   about: {

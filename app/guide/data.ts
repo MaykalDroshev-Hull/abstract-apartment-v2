@@ -15,6 +15,7 @@ export type GuideItemRaw = {
   category: 'Taverns' | 'Beaches' | 'Walks' | 'Events' | 'Day Trips';
   imageSrc: string;
   mapsUrl: string;
+  websiteUrl?: string;
   translations: Record<Language, GuideItemTranslation>;
 };
 
@@ -327,6 +328,204 @@ export const guideDataRaw: GuideItemRaw[] = [
           'Συνιστώνται κρατήσεις'
         ],
         distance: 'Μικρή απόσταση με τα πόδια'
+      }
+    }
+  },
+  
+  // Beaches
+  {
+    id: 'beach-1',
+    category: 'Beaches',
+    imageSrc: '/Images/Attractions/beach.jpg',
+    mapsUrl: 'https://maps.app.goo.gl/k9URwbzWXi995Y1D8?g_st=ic',
+    translations: {
+      en: {
+        title: 'Paralia Ofriniou Beach',
+        subtitle: 'Blue Flag certified main beach',
+        imageAlt: 'Paralia Ofriniou main beach',
+        description: 'The main, long and wide beach of Paralia Ofriniou with fine sand and crystal clear sea. Blue Flag certified for water cleanliness, safety and good organization. Features zones with umbrellas and sunbeds, beach bars, restaurants and water sports areas.',
+        highlights: [
+          'Blue Flag certified for water quality and safety',
+          'Long and wide beach with fine sand',
+          'Crystal clear sea',
+          'Beach bars, restaurants and water sports'
+        ],
+        tips: [
+          'Perfect for families and active holidays',
+          'Some areas are quieter, others more organized',
+          'Umbrellas and sunbeds available',
+          'Great for walks and games'
+        ],
+        distance: 'Main beach - walking distance'
+      },
+      bg: {
+        title: 'Плаж Паралия Офринио',
+        subtitle: 'Главният плаж със син флаг',
+        imageAlt: 'Главен плаж Паралия Офринио',
+        description: 'Основният, дълъг и широк плаж на Паралия Офринио – със ситен пясък и кристално море. Blue Flag (Син флаг) – признат за чистота на водата, безопасност и добра организация. Има зони с чадъри и шезлонги, бийч барове, заведения и места за водни спортове.',
+        highlights: [
+          'Blue Flag (Син флаг) – признат за чистота на водата, безопасност и добра организация',
+          'Дълъг и широк плаж със ситен пясък',
+          'Кристално море',
+          'Бийч барове, заведения и водни спортове'
+        ],
+        tips: [
+          'Идеален за семейства и активна почивка',
+          'Части от ивицата са по-спокойни, други са по-организирани',
+          'Налични чадъри и шезлонги',
+          'Отлично за разходки и игри'
+        ],
+        distance: 'Главен плаж - пешеходно разстояние'
+      },
+      el: {
+        title: 'Παραλία Οφρυνιού',
+        subtitle: 'Η κύρια παραλία με Γαλάζια Σημαία',
+        imageAlt: 'Κύρια παραλία Παραλία Οφρυνιού',
+        description: 'Η κύρια, μακριά και φαρδιά παραλία της Παραλίας Οφρυνιού με λεπτή άμμο και κρυστάλλινα νερά. Γαλάζια Σημαία για την καθαρότητα του νερού, την ασφάλεια και την καλή οργάνωση. Διαθέτει ζώνες με ομπρέλες και ξαπλώστρες, beach bars, εστιατόρια και χώρους για θαλάσσια σπορ.',
+        highlights: [
+          'Γαλάζια Σημαία για την ποιότητα του νερού και την ασφάλεια',
+          'Μακριά και φαρδιά παραλία με λεπτή άμμο',
+          'Κρυστάλλινα νερά',
+          'Beach bars, εστιατόρια και θαλάσσια σπορ'
+        ],
+        tips: [
+          'Ιδανική για οικογένειες και ενεργές διακοπές',
+          'Μερικά μέρη είναι πιο ήσυχα, άλλα πιο οργανωμένα',
+          'Διαθέσιμες ομπρέλες και ξαπλώστρες',
+          'Εξαιρετική για βόλτες και παιχνίδια'
+        ],
+        distance: 'Κύρια παραλία - μικρή απόσταση με τα πόδια'
+      }
+    }
+  },
+  {
+    id: 'watersports-1',
+    category: 'Beaches',
+    imageSrc: '/Images/Attractions/OFRYNIO WATERSPORTS.jpg',
+    mapsUrl: 'https://maps.app.goo.gl/k9URwbzWXi995Y1D8?g_st=ic',
+    translations: {
+      en: {
+        title: 'Ofrynio Watersports',
+        subtitle: 'Water activities on the beach',
+        imageAlt: 'Ofrynio Watersports water activities',
+        description: 'Ofrynio Watersports offers diverse water activities directly on the beach. Perfect for both adrenaline seekers and those looking for a more leisurely time on the water. Equipment and instructions are included, and activities are most commonly booked on-site during the summer season (June-September).',
+        highlights: [
+          'Jet-ski rental - for adrenaline and fast rides along the coast',
+          'SUP (Stand-Up Paddleboard) - paddling on calm waters',
+          'Pedal boats - ideal for leisurely rides with friends or family',
+          'Tube rides - fun water rides pulled by boat'
+        ],
+        tips: [
+          'Book on-site during summer season (June-September)',
+          'Equipment and instructions included',
+          'Perfect for adrenaline and fun',
+          'Also great for leisurely water time'
+        ],
+        distance: 'On the beach - walking distance'
+      },
+      bg: {
+        title: 'OFRYNIO WATERSPORTS',
+        subtitle: 'Водни активности на плажа',
+        imageAlt: 'OFRYNIO WATERSPORTS водни активности',
+        description: 'OFRYNIO WATERSPORTS предлага разнообразни водни активности директно на плажа. Чудесни както за адреналин и забавление, така и за по-лежерно време на водата. Най-често се резервират на място през летния сезон (юни–септември) и има екипировка и инструкции включени.',
+        highlights: [
+          '🚤 Jet-ski (джетове) — за адреналин и бързо каране по брега',
+          '🛶 SUP (Stand-Up Paddleboard) — гребане из спокойно море',
+          '🚣‍♂️ Педалови лодки — идеални за спокойна разходка с приятели или семейство',
+          '🪶 Тръби/надуваеми атракции (tube rides) — забавни водни разходки, теглени от лодка'
+        ],
+        tips: [
+          'Резервации на място през летния сезон (юни–септември)',
+          'Екипировка и инструкции включени',
+          'Перфектно за адреналин и забавление',
+          'Също отлично за по-лежерно време на водата'
+        ],
+        distance: 'На плажа - пешеходно разстояние'
+      },
+      el: {
+        title: 'Ofrynio Watersports',
+        subtitle: 'Θαλάσσια δραστηριότητες στην παραλία',
+        imageAlt: 'Ofrynio Watersports θαλάσσια δραστηριότητες',
+        description: 'Το Ofrynio Watersports προσφέρει ποικίλες θαλάσσιες δραστηριότητες απευθείας στην παραλία. Ιδανικό τόσο για τους λάτρεις του αδρεναλίνης όσο και για όσους αναζητούν πιο χαλαρό χρόνο στο νερό. Ο εξοπλισμός και οι οδηγίες περιλαμβάνονται, και οι δραστηριότητες κλείνουν συνήθως επί τόπου κατά τη θερινή περίοδο (Ιούνιος-Σεπτέμβριος).',
+        highlights: [
+          'Ενοικίαση Jet-ski - για αδρεναλίνη και γρήγορες βόλτες κατά μήκος της ακτής',
+          'SUP (Stand-Up Paddleboard) - κωπήλαση σε ήρεμα νερά',
+          'Πεταλοφόρα - ιδανικά για χαλαρές βόλτες με φίλους ή οικογένεια',
+          'Tube rides - διασκεδαστικές θαλάσσιες βόλτες που σέρνονται από σκάφος'
+        ],
+        tips: [
+          'Κλείστε επί τόπου κατά τη θερινή περίοδο (Ιούνιος-Σεπτέμβριος)',
+          'Ο εξοπλισμός και οι οδηγίες περιλαμβάνονται',
+          'Ιδανικό για αδρεναλίνη και διασκέδαση',
+          'Επίσης εξαιρετικό για χαλαρό χρόνο στο νερό'
+        ],
+        distance: 'Στην παραλία - μικρή απόσταση με τα πόδια'
+      }
+    }
+  },
+  {
+    id: 'boat-rental-1',
+    category: 'Beaches',
+    imageSrc: '/Images/Attractions/Poseidon Rental Boats.jpeg',
+    mapsUrl: 'https://maps.app.goo.gl/uSoNQjqNnm4DKGD38',
+    websiteUrl: 'https://poseidonrentalboats.com/about-us/',
+    translations: {
+      en: {
+        title: 'Poseidon Rental Boats',
+        subtitle: 'Become the captain and explore unique places',
+        imageAlt: 'Poseidon Rental Boats boat rental',
+        description: 'Online boat rental at Ofrynio Beach, Karyani Harbor. The boats are suitable for amateurs and do not require a license or special skills to operate. With a brief training session at the meeting point, our staff will take you on a trial ride on the boat so you can learn how to operate it safely and enjoy a unique experience at sea.',
+        highlights: [
+          'Boats suitable for amateurs - no license required',
+          'Brief training and trial ride included',
+          'Explore unique places of the island',
+          'Become the captain of your adventure'
+        ],
+        tips: [
+          'Book boat online in advance',
+          'Choose your preferred date and time',
+          'Training session included before departure',
+          'Perfect for groups and families'
+        ],
+        distance: 'At Ofrynio Beach, Karyani Harbor - walking distance'
+      },
+      bg: {
+        title: 'Poseidon Rental Boats',
+        subtitle: 'Стани капитан и открий уникални места',
+        imageAlt: 'Poseidon Rental Boats наем на лодки',
+        description: 'Онлайн наем на лодки на плаж Офриню, пристанището на Кариани. Лодките са подходящи за аматьори и не изискват свидетелство или специални умения за управление. С кратко обучение на място на срещата, нашият екип ще ви покара на пробна разходка на лодката, за да научите как да я управлявате безопасно и да се насладите на уникално преживяване в морето.',
+        highlights: [
+          'Лодки подходящи за аматьори - не се изисква свидетелство',
+          'Кратко обучение и пробна разходка включени',
+          'Открий уникални места на острова',
+          'Стани капитан на своето приключение'
+        ],
+        tips: [
+          'Резервирайте лодка онлайн предварително',
+          'Изберете предпочитана дата и час',
+          'Сесия за обучение включена преди тръгване',
+          'Перфектно за групи и семейства'
+        ],
+        distance: 'На плаж Офриню, пристанището на Кариани - пешеходно разстояние'
+      },
+      el: {
+        title: 'Poseidon Rental Boats',
+        subtitle: 'Γίνε ο καπετάνιος και εξερεύνησε μοναδικά μέρη',
+        imageAlt: 'Poseidon Rental Boats ενοικίαση σκαφών',
+        description: 'Διαδικτυακή ενοικίαση σκαφών στην Παραλία Οφρυνιού, στο λιμάνι της Καρυάνης. Τα σκάφη είναι κατάλληλα για ερασιτέχνες και δεν απαιτούν άδεια ή ειδικές ικανότητες για λειτουργία. Με μια σύντομη εκπαίδευση στο σημείο συνάντησης, το προσωπικό μας θα σας κάνει μια δοκιμαστική βόλτα πάνω στο σκάφος ώστε να μάθετε πως να το οδηγείτε με ασφάλεια και να απολαύσετε μια μοναδική εμπειρία στη θάλασσα.',
+        highlights: [
+          'Σκάφη κατάλληλα για ερασιτέχνες - δεν απαιτείται άδεια',
+          'Σύντομη εκπαίδευση και δοκιμαστική βόλτα περιλαμβάνονται',
+          'Εξερεύνησε μοναδικά μέρη του νησιού',
+          'Γίνε ο καπετάνιος της περιπέτειας σου'
+        ],
+        tips: [
+          'Κλείστε το σκάφος online εκ των προτέρων',
+          'Επιλέξτε την προτιμώμενη ημερομηνία και ώρα',
+          'Συνεδρία εκπαίδευσης περιλαμβάνεται πριν την αναχώρηση',
+          'Ιδανικό για ομάδες και οικογένειες'
+        ],
+        distance: 'Στην Παραλία Οφρυνιού, στο λιμάνι της Καρυάνης - μικρή απόσταση με τα πόδια'
       }
     }
   },
