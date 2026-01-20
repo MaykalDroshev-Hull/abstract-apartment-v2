@@ -46,7 +46,7 @@ export default function GuidePage() {
     : guideData.filter(item => item.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-[#F5F2ED] dark:bg-zinc-900">
+    <main className="min-h-screen bg-[#F5F2ED]bg-zinc-900">
       <GuideHero />
       
       <div className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">

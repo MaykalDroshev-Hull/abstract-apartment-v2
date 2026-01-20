@@ -39,12 +39,12 @@ export function RatesSection() {
       {/* Section Header */}
       <div className="mb-8 sm:mb-12">
         <h2
-          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-zinc-50 mb-4"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900text-zinc-50 mb-4"
           style={{ fontFamily: 'var(--font-serif)' }}
         >
           {t.rates.section.title}
         </h2>
-        <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400">
+        <p className="text-base sm:text-lg text-zinc-600text-zinc-400">
           {t.rates.section.caption}
         </p>
       </div>
@@ -56,8 +56,8 @@ export function RatesSection() {
             onClick={() => setActiveUnit('Apartment')}
             className={`px-6 py-2.5 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
               activeUnit === 'Apartment'
-                ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                : 'bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700'
+                ? 'bg-zinc-900bg-zinc-100 text-whitetext-zinc-900'
+                : 'bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 hover:bg-zinc-50hover:bg-zinc-700'
             }`}
           >
             {t.rates.units.apartment.unit}
@@ -66,8 +66,8 @@ export function RatesSection() {
             onClick={() => setActiveUnit('Studio')}
             className={`px-6 py-2.5 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
               activeUnit === 'Studio'
-                ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                : 'bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-700'
+                ? 'bg-zinc-900bg-zinc-100 text-whitetext-zinc-900'
+                : 'bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 hover:bg-zinc-50hover:bg-zinc-700'
             }`}
           >
             {t.rates.units.studio.unit}
@@ -84,15 +84,15 @@ export function RatesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-700"
+            className="bg-whitebg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-zinc-200border-zinc-700"
           >
             {/* Season Name */}
-            <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-zinc-900text-zinc-50 mb-2">
               {season.name}
             </h3>
 
             {/* Date Range */}
-            <div className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 mb-4">
+            <div className="flex items-center gap-2 text-sm text-zinc-600text-zinc-400 mb-4">
               <Calendar className="w-4 h-4" />
               <span>{season.dateRange}</span>
             </div>
@@ -108,7 +108,7 @@ export function RatesSection() {
             {season.highlights && season.highlights.length > 0 && (
               <ul className="space-y-2 mb-4">
                 {season.highlights.map((highlight, hIndex) => (
-                  <li key={hIndex} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-400">
+                  <li key={hIndex} className="flex items-start gap-2 text-sm text-zinc-600text-zinc-400">
                     <span className="text-[#9D7F5F] mt-1">•</span>
                     <span>{highlight}</span>
                   </li>
@@ -132,13 +132,13 @@ export function RatesSection() {
 
       {/* Extras / Notes */}
       {currentRates.extras && currentRates.extras.length > 0 && (
-        <div className="bg-zinc-50 dark:bg-zinc-800/50 rounded-xl p-6 sm:p-8 border border-zinc-200 dark:border-zinc-700">
-          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
+        <div className="bg-zinc-50bg-zinc-800/50 rounded-xl p-6 sm:p-8 border border-zinc-200border-zinc-700">
+          <h3 className="text-lg font-semibold text-zinc-900text-zinc-50 mb-4">
             {t.rates.extras.title}
           </h3>
           <ul className="space-y-2">
             {currentRates.extras.map((extra, index) => (
-              <li key={index} className="text-sm text-zinc-600 dark:text-zinc-400 flex items-start gap-2">
+              <li key={index} className="text-sm text-zinc-600text-zinc-400 flex items-start gap-2">
                 <span className="text-[#9D7F5F] mt-1">•</span>
                 <span>{extra}</span>
               </li>

@@ -44,7 +44,10 @@ export function ReviewStep({ draft, villaInfo, onSubmit, onBack, isSubmitting }:
         {/* Villa */}
         <div className="p-6 rounded-xl border border-zinc-200 bg-white">
           <h3 className="text-lg font-semibold text-zinc-900 mb-4">{t.reserve.review.villa}</h3>
-          <p className="text-zinc-700">{villaInfo?.name || '—'}</p>
+          <p className="text-zinc-700 font-medium">{villaInfo?.name || '—'}</p>
+          {villaInfo?.type === 'both' && villaInfo?.description && (
+            <p className="text-sm text-zinc-600 mt-2">{villaInfo.description}</p>
+          )}
         </div>
 
         {/* Dates */}
@@ -68,7 +71,7 @@ export function ReviewStep({ draft, villaInfo, onSubmit, onBack, isSubmitting }:
           <h3 className="text-lg font-semibold text-zinc-900 mb-4">{t.reserve.review.guests}</h3>
           <p className="text-zinc-700">
             {draft.adults || 0} {draft.adults === 1 ? t.reserve.dates.adult : t.reserve.dates.adults}
-            {draft.children && draft.children > 0 && (
+            {(draft.children ?? 0) > 0 && (
               <span>, {draft.children} {draft.children === 1 ? t.reserve.dates.child : t.reserve.dates.children}</span>
             )}
           </p>

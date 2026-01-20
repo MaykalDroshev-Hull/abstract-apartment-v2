@@ -75,7 +75,7 @@ export function Header() {
   return (
     <header className="w-full mt-3 mb-0 relative z-50">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-lg bg-[#F9F7F7] border-b border-zinc-200 dark:border-zinc-800 relative z-50">
+        <div className="rounded-lg bg-[#F9F7F7] border-b border-zinc-200border-zinc-800 relative z-50">
           <div className="relative flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8 z-10">
             {/* Mobile Hamburger - Left */}
             <button
@@ -97,7 +97,7 @@ export function Header() {
                     setExploreOpen(!exploreOpen);
                     setPlanOpen(false);
                   }}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-300 relative z-30"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700text-zinc-50hover:text-zinc-300 relative z-30"
                 >
                   {t.header.explore}
                   <ChevronDown 
@@ -113,7 +113,7 @@ export function Header() {
                     setPlanOpen(!planOpen);
                     setExploreOpen(false);
                   }}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-300 relative z-30"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700text-zinc-50hover:text-zinc-300 relative z-30"
                 >
                   {t.header.plan}
                   <ChevronDown 

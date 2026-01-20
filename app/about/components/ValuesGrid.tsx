@@ -30,11 +30,11 @@ export function ValuesGrid() {
               <div className="text-[#9D7F5F] mb-4">
                 {iconMap[value.icon] || <Home className="w-6 h-6" />}
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-zinc-900text-zinc-50 mb-2">
                 {value.title}
               </h3>
-              <div className="w-12 h-px bg-zinc-300 dark:bg-zinc-600 mb-4" />
-              <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <div className="w-12 h-px bg-zinc-300bg-zinc-600 mb-4" />
+              <p className="text-sm sm:text-base text-zinc-600text-zinc-400 leading-relaxed">
                 {value.description}
               </p>
             </motion.div>

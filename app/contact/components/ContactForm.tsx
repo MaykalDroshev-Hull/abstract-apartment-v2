@@ -63,16 +63,16 @@ export function ContactForm() {
   };
 
   return (
-    <div className="bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-zinc-200 dark:border-zinc-700">
+    <div className="bg-whitebg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-zinc-200border-zinc-700">
       <h2
-        className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-6"
+        className="text-2xl sm:text-3xl font-bold text-zinc-900text-zinc-50 mb-6"
         style={{ fontFamily: 'var(--font-serif)' }}
       >
         {t.contact.form.title}
       </h2>
 
       {isSubmitted && (
-        <div className="mb-6 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200">
+        <div className="mb-6 p-4 rounded-lg bg-green-50bg-green-900/20 border border-green-200border-green-800 text-green-800text-green-200">
           {t.contact.form.successMessage}
         </div>
       )}
@@ -80,7 +80,7 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+          <label htmlFor="name" className="block text-sm font-medium text-zinc-700text-zinc-300 mb-2">
             {t.contact.form.name} <span className="text-red-500">*</span>
           </label>
           <input
@@ -91,19 +91,19 @@ export function ContactForm() {
             onChange={handleChange}
             className={`w-full px-4 py-2.5 rounded-lg border ${
               errors.name
-                ? 'border-red-300 dark:border-red-700'
-                : 'border-zinc-300 dark:border-zinc-600'
-            } bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors`}
+                ? 'border-red-300border-red-700'
+                : 'border-zinc-300border-zinc-600'
+            } bg-whitebg-zinc-900 text-zinc-900text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors`}
             placeholder={t.contact.form.namePlaceholder}
           />
           {errors.name && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+            <p className="mt-1 text-sm text-red-600text-red-400">{errors.name}</p>
           )}
         </div>
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-zinc-700text-zinc-300 mb-2">
             {t.contact.form.email} <span className="text-red-500">*</span>
           </label>
           <input
@@ -114,19 +114,19 @@ export function ContactForm() {
             onChange={handleChange}
             className={`w-full px-4 py-2.5 rounded-lg border ${
               errors.email
-                ? 'border-red-300 dark:border-red-700'
-                : 'border-zinc-300 dark:border-zinc-600'
-            } bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors`}
+                ? 'border-red-300border-red-700'
+                : 'border-zinc-300border-zinc-600'
+            } bg-whitebg-zinc-900 text-zinc-900text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors`}
             placeholder={t.contact.form.emailPlaceholder}
           />
           {errors.email && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
+            <p className="mt-1 text-sm text-red-600text-red-400">{errors.email}</p>
           )}
         </div>
 
         {/* Phone */}
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+          <label htmlFor="phone" className="block text-sm font-medium text-zinc-700text-zinc-300 mb-2">
             {t.contact.form.phone}
           </label>
           <input
@@ -135,14 +135,14 @@ export function ContactForm() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
+            className="w-full px-4 py-2.5 rounded-lg border border-zinc-300border-zinc-600 bg-whitebg-zinc-900 text-zinc-900text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
             placeholder={t.contact.form.phonePlaceholder}
           />
         </div>
 
         {/* Subject */}
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+          <label htmlFor="subject" className="block text-sm font-medium text-zinc-700text-zinc-300 mb-2">
             {t.contact.form.subject}
           </label>
           <select
@@ -150,7 +150,7 @@ export function ContactForm() {
             name="subject"
             value={formData.subject}
             onChange={handleChange}
-            className="w-full px-4 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
+            className="w-full px-4 py-2.5 rounded-lg border border-zinc-300border-zinc-600 bg-whitebg-zinc-900 text-zinc-900text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors"
           >
             {t.contact.form.subjects.map((subject) => (
               <option key={subject.value} value={subject.value}>
@@ -162,7 +162,7 @@ export function ContactForm() {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+          <label htmlFor="message" className="block text-sm font-medium text-zinc-700text-zinc-300 mb-2">
             {t.contact.form.message} <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -173,13 +173,13 @@ export function ContactForm() {
             rows={6}
             className={`w-full px-4 py-2.5 rounded-lg border ${
               errors.message
-                ? 'border-red-300 dark:border-red-700'
-                : 'border-zinc-300 dark:border-zinc-600'
-            } bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors resize-none`}
+                ? 'border-red-300border-red-700'
+                : 'border-zinc-300border-zinc-600'
+            } bg-whitebg-zinc-900 text-zinc-900text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors resize-none`}
             placeholder={t.contact.form.messagePlaceholder}
           />
           {errors.message && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>
+            <p className="mt-1 text-sm text-red-600text-red-400">{errors.message}</p>
           )}
         </div>
 

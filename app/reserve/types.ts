@@ -1,4 +1,4 @@
-export type VillaType = "apartment" | "studio";
+export type VillaType = "apartment" | "studio" | "both";
 
 export interface ReservationDraft {
   villa?: VillaType;

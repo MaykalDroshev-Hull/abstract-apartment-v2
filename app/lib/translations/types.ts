@@ -136,6 +136,18 @@ export interface Translations {
       title: string;
       intro: string;
       address: string;
+      addressPlaceId?: string;
+      beachDestination?: string;
+      beachPlaceId?: string;
+      beachLat?: number;
+      beachLng?: number;
+      beachWalk?: {
+        title: string;
+        time: string;
+        description: string;
+        getDirections: string;
+        beachMapsUrl: string;
+      };
       mapLink: string;
       mapEmbedUrl: string;
       mapTitle: string;
@@ -337,6 +349,23 @@ export interface Translations {
       guests: string;
       guest: string;
       button: string;
+      unitType: string;
+      apartment: string;
+      studio: string;
+      both: string;
+      showCalendar: string;
+      hideCalendar: string;
+      checkingAvailability: string;
+      availableTitle: string;
+      availableMessage: string;
+      notAvailable: string;
+      bookNow: string;
+    };
+    calendar: {
+      available: string;
+      unavailable: string;
+      today: string;
+      selected: string;
     };
     section: {
       title: string;
@@ -391,7 +420,13 @@ export interface Translations {
         description: string;
         features: string[];
       };
+      both?: {
+        name: string;
+        description: string;
+        features: string[];
+      };
       perNight: string;
+      from: string;
     };
     dates: {
       title: string;
@@ -404,6 +439,13 @@ export interface Translations {
       childrenOptional: string;
       adult: string;
       child: string;
+      checkingAvailability: string;
+      apartmentNotAvailable: string;
+      studioNotAvailable: string;
+      bothNotAvailable: string;
+      bothAvailable: string;
+      unableToCheckAvailability: string;
+      availabilityCheckFailed: string;
     };
     details: {
       title: string;
@@ -416,6 +458,7 @@ export interface Translations {
       notesOptional: string;
       note: string;
       required: string;
+      childBedSuggestion: string;
     };
     review: {
       title: string;
@@ -439,10 +482,16 @@ export interface Translations {
       title: string;
       dates: string;
       guests: string;
+      stayCost: string;
       total: string;
       deposit: string;
       depositNote: string;
       perNight: string;
+      basedOn: string;
+      promotion: string;
+      nightFree: string;
+      nightsFree: string;
+      payFor: string;
     };
     success: {
       title: string;
@@ -620,6 +669,7 @@ export interface Translations {
         checkOut: string;
         price: string;
         paid: string;
+        remaining: string;
         comments: string;
         actions: string;
       };
@@ -645,6 +695,34 @@ export interface Translations {
     readMore: string;
     leaveReview: string;
     metaTitle: string;
+  };
+  pageTitles: {
+    home: string;
+    details: string;
+    floorPlan: string;
+    gallery: string;
+    guide: string;
+    rates: string;
+    reserve: string;
+    contact: string;
+    about: string;
+    faq: string;
+    reviews: string;
+    gettingHere: string;
+  };
+  pageDescriptions: {
+    home: string;
+    details: string;
+    floorPlan: string;
+    gallery: string;
+    guide: string;
+    rates: string;
+    reserve: string;
+    contact: string;
+    about: string;
+    faq: string;
+    reviews: string;
+    gettingHere: string;
   };
 }
 

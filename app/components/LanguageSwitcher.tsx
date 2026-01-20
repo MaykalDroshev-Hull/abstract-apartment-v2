@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
       <select
         value={language}
         onChange={(e) => setLanguage(e.target.value as Language)}
-        className="appearance-none rounded-md border border-zinc-300 bg-white px-3 py-1.5 pr-8 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-zinc-500 dark:focus:ring-zinc-500"
+        className="appearance-none rounded-md border border-zinc-300 bg-white px-3 py-1.5 pr-8 text-sm text-zinc-900 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-500border-zinc-700bg-zinc-900text-zinc-50focus:border-zinc-500focus:ring-zinc-500"
       >
         {languages.map((lang) => (
           <option key={lang.code} value={lang.code}>

@@ -564,6 +564,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.checkOut}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.price}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.paid}</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.remaining}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.comments}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.actions}</th>
                 </tr>
@@ -613,6 +614,16 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       </div>
                     </td>
                     <td className="px-6 py-4">
+                      <div className="text-sm text-zinc-900">
+                        {(() => {
+                          const fullPrice = booking.FullPrice || 0;
+                          const paidPrice = booking.PaidPrice || 0;
+                          const remaining = Math.round(fullPrice - paidPrice);
+                          return remaining > 0 ? `€${remaining}` : remaining < 0 ? `-€${Math.abs(remaining)}` : '€0';
+                        })()}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
                       <div className="text-sm text-zinc-600 max-w-xs truncate">
                         {booking.Comments || '-'}
                       </div>
@@ -639,7 +650,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                 ))}
                 {filteredBookings.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="px-6 py-12 text-center text-zinc-500">
+                    <td colSpan={10} className="px-6 py-12 text-center text-zinc-500">
                       {t.admin.dashboard.noBookings}
                     </td>
                   </tr>

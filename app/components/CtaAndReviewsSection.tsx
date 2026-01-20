@@ -46,25 +46,25 @@ function CtaCard({ card, seeDetailsText }: { card: CtaCard; seeDetailsText: stri
         {/* Content */}
         <div className="flex-1 flex flex-col">
           {/* Eyebrow */}
-          <p className="text-xs sm:text-sm font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2">
+          <p className="text-xs sm:text-sm font-medium text-zinc-500text-zinc-400 uppercase tracking-wider mb-2">
             {card.eyebrow}
           </p>
 
           {/* Title */}
           <h3
-            className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3"
+            className="text-xl sm:text-2xl font-bold text-zinc-900text-zinc-50 mb-3"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
             {card.title}
           </h3>
 
           {/* Description */}
-          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-4 leading-relaxed flex-1">
+          <p className="text-sm sm:text-base text-zinc-600text-zinc-400 mb-4 leading-relaxed flex-1">
             {card.description}
           </p>
 
           {/* Link */}
-          <span className="text-sm sm:text-base font-medium text-zinc-900 dark:text-zinc-50 underline underline-offset-4 decoration-2 group-hover:underline-offset-6 transition-all flex items-center gap-2">
+          <span className="text-sm sm:text-base font-medium text-zinc-900text-zinc-50 underline underline-offset-4 decoration-2 group-hover:underline-offset-6 transition-all flex items-center gap-2">
             {seeDetailsText}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </span>
@@ -119,17 +119,17 @@ export function CtaAndReviewsSection() {
   }, []);
 
   return (
-    <section id="reviews" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED] dark:bg-zinc-900">
+    <section id="reviews" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]bg-zinc-900">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 sm:mb-16 lg:mb-20">
           <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-4 sm:mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-4 sm:mb-6"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
             {t.home.ctaReviews.title}
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-3xl">
+          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 max-w-3xl">
             {t.home.ctaReviews.subtitle}
           </p>
         </div>
@@ -145,7 +145,7 @@ export function CtaAndReviewsSection() {
 
         {/* Reviews Carousel */}
         <div
-          className="relative rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-8 sm:p-12 lg:p-16"
+          className="relative rounded-3xl border border-zinc-200border-zinc-700 bg-whitebg-zinc-800 p-8 sm:p-12 lg:p-16"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -161,13 +161,13 @@ export function CtaAndReviewsSection() {
                   className="text-center w-full"
                 >
                   {/* Quote */}
-                  <blockquote className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-zinc-700 dark:text-zinc-300 mb-6 sm:mb-8">
+                  <blockquote className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-zinc-700text-zinc-300 mb-6 sm:mb-8">
                     "{reviews[activeIndex].body}"
                   </blockquote>
 
                   {/* Author */}
                   <div>
-                    <p className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                    <p className="text-base sm:text-lg font-semibold text-zinc-900text-zinc-50">
                       {reviews[activeIndex].name}
                     </p>
                   </div>
@@ -179,17 +179,17 @@ export function CtaAndReviewsSection() {
             <button
               onClick={goToPrevious}
               aria-label="Previous review"
-              className="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 flex items-center justify-center hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors"
+              className="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-zinc-300border-zinc-600 bg-whitebg-zinc-800 flex items-center justify-center hover:border-zinc-400hover:border-zinc-500 transition-colors"
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-700 dark:text-zinc-300" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-700text-zinc-300" />
             </button>
 
             <button
               onClick={goToNext}
               aria-label="Next review"
-              className="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 flex items-center justify-center hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors"
+              className="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-zinc-300border-zinc-600 bg-whitebg-zinc-800 flex items-center justify-center hover:border-zinc-400hover:border-zinc-500 transition-colors"
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-700 dark:text-zinc-300" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-700text-zinc-300" />
             </button>
 
             {/* Pagination Dots */}
@@ -201,8 +201,8 @@ export function CtaAndReviewsSection() {
                   aria-label={`Go to review ${index + 1}`}
                   className={`w-2 h-2 rounded-full transition-all ${
                     index === activeIndex
-                      ? 'bg-zinc-900 dark:bg-zinc-100 w-8'
-                      : 'bg-zinc-300 dark:bg-zinc-600 hover:bg-zinc-400 dark:hover:bg-zinc-500'
+                      ? 'bg-zinc-900bg-zinc-100 w-8'
+                      : 'bg-zinc-300bg-zinc-600 hover:bg-zinc-400hover:bg-zinc-500'
                   }`}
                 />
               ))}

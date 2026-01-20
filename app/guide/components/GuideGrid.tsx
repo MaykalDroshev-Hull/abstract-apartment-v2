@@ -12,7 +12,7 @@ export function GuideGrid({ items, onItemClick }: GuideGridProps) {
   if (items.length === 0) {
     return (
       <div className="text-center py-16">
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">
+        <p className="text-lg text-zinc-600text-zinc-400">
           No items found in this category.
         </p>
       </div>

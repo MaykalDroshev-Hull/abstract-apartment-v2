@@ -6,6 +6,27 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations, useLanguage } from '@/app/lib/translations';
 import { Facebook, Instagram } from 'lucide-react';
 
+// Viber Logo SVG Component
+function ViberIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="64"
+      height="64"
+      viewBox="0 0 3.277 3.277"
+      className={className}
+    >
+      <path d="M1.678 2.21c-.228.003-.476-.003-.724-.018-.026-.003-.04.01-.056.026l-.194.215c-.01.01-.02.03-.038.023s-.01-.028-.01-.043v-.18c.003-.046-.008-.07-.06-.07a1.26 1.26 0 0 1-.194-.023c-.22-.05-.368-.17-.39-.422-.01-.11-.018-.217 0-.327A.43.43 0 0 1 .402.999C.73.945 1.06.927 1.39.922l1.036.023a3.25 3.25 0 0 1 .496.064c.197.04.33.192.348.396a1.48 1.48 0 0 1-.005.353.41.41 0 0 1-.253.33c-.125.054-.258.072-.39.082l-.94.038z" fill="#7c529e"/>
+      <g fill="#fff">
+        <path d="M.834 1.874c.046 0 .1-.043.115-.087s-.015-.06-.04-.08C.89 1.692.87 1.68.852 1.666.813 1.638.777 1.638.75 1.682c-.015.026-.038.026-.06.015-.064-.03-.115-.074-.146-.14C.53 1.528.53 1.5.56 1.48c.015-.01.033-.023.03-.05-.003-.03-.077-.136-.107-.146a.05.05 0 0 0-.038 0c-.07.023-.1.082-.072.148.082.205.23.345.43.432.013.005.026.005.03.008zm-.148-.6c-.01.003-.033-.008-.033.015 0 .015.018.013.03.015a.24.24 0 0 1 .233.24c.003.013-.003.033.015.036s.015-.02.015-.033a.28.28 0 0 0-.261-.274zm1.06.302v-.217c0-.043.015-.08.064-.08s.06.033.06.077v.028c0 .066 0 .066.06.05a.17.17 0 0 1 .207.084c.05.092.054.184 0 .276s-.156.12-.248.064c-.015-.01-.02-.015-.033.003-.018.026-.046.028-.074.015s-.036-.038-.036-.07zm.304.08c0-.07-.038-.12-.09-.123s-.095.046-.095.115.038.12.09.123.095-.046.095-.115zm-.765.003l.107-.29.018-.046c.015-.036.04-.056.082-.04s.05.05.036.09l-.125.325-.054.136c-.01.026-.028.046-.06.05-.036 0-.054-.02-.064-.05l-.18-.455c-.015-.04-.008-.077.038-.092s.066.013.082.05l.118.325zm1.17.036h-.11c-.028 0-.03.013-.018.033.023.043.09.06.146.04.02-.008.038-.018.06-.028.028-.015.054-.013.072.015s.008.056-.018.074c-.082.056-.17.074-.263.036s-.128-.115-.128-.21c-.003-.123.082-.22.192-.233s.212.066.233.182c.013.064-.005.087-.072.09zm-.054-.082c.01 0 .023.003.033 0 .02-.003.05.013.056-.01.008-.03-.018-.054-.043-.066-.036-.018-.07-.015-.1.013-.015.015-.033.033-.026.056s.03.008.05.01c.01 0 .02-.003.03-.003z"/>
+        <path d="M.834 1.874C.826 1.87.816 1.87.803 1.866.6 1.78.455 1.638.373 1.434c-.028-.07 0-.125.072-.148a.05.05 0 0 1 .038 0c.03.01.105.115.107.146.003.023-.015.036-.03.05-.03.02-.03.046-.018.077a.27.27 0 0 0 .146.141c.023.01.046.01.06-.015.028-.043.064-.04.102-.015a.45.45 0 0 1 .056.041c.026.02.056.036.04.08s-.07.087-.115.087zm1.828-.228v-.153c0-.028.01-.05.036-.06s.056-.01.074.013.023.013.036 0c.018-.015.04-.023.067-.02s.046.02.05.05-.005.05-.028.056c-.105.026-.12.097-.11.19a.41.41 0 0 1-.003.097c-.005.038-.028.06-.067.06s-.054-.028-.056-.064v-.164zm-1.09.02V1.52c0-.04.018-.066.06-.066s.06.026.06.064v.294c0 .04-.02.067-.06.067s-.06-.028-.06-.07zm-.887-.394a.28.28 0 0 1 .261.274c0 .013.005.033-.015.033s-.015-.02-.015-.036a.24.24 0 0 0-.233-.24c-.013-.003-.03 0-.03-.015.003-.023.023-.013.033-.015zm1.018.074c-.005.038-.023.064-.064.066s-.07-.028-.07-.066.033-.072.07-.07.06.028.064.07z"/>
+        <path d="M.875 1.52c-.003.01.005.028-.013.03-.023.003-.018-.018-.02-.03-.015-.09-.046-.123-.138-.143-.013-.003-.033 0-.03-.02s.023-.013.036-.01c.092.01.166.087.166.174z"/>
+        <path d="M.806 1.505c0 .01 0 .023-.015.026-.01 0-.015-.008-.018-.018C.77 1.475.75 1.454.71 1.45.7 1.447.688 1.444.693 1.43c.003-.01.013-.01.023-.01.043-.003.09.043.09.087z"/>
+      </g>
+    </svg>
+  );
+}
+
 export function Footer() {
   const t = useTranslations();
   const { language } = useLanguage();
@@ -59,12 +80,12 @@ export function Footer() {
   );
 
   return (
-    <footer className="w-full border-t border-zinc-200 bg-[#F9F7F7] dark:border-zinc-800 dark:bg-zinc-900">
+    <footer className="w-full border-t border-zinc-200 bg-[#F9F7F7]border-zinc-800bg-zinc-900">
       <div className="w-full max-w-[1600px] mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Top Footer - 3 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12">
           {/* Column 1 - Brand & Description */}
-          <div>
+          <div className="text-center md:text-left">
             <Link href="/" className="inline-block mb-4">
               <Image
                 src={logoPath}
@@ -74,16 +95,16 @@ export function Footer() {
                 className="h-auto w-auto"
               />
             </Link>
-            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4 max-w-sm">
+            <p className="text-sm sm:text-base text-zinc-600text-zinc-400 leading-relaxed mb-4 max-w-sm">
               {t.footer.description}
             </p>
             {/* Social Icons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center md:justify-start gap-4">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="w-8 h-8 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -92,7 +113,7 @@ export function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="w-8 h-8 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
+                className="w-8 h-8 flex items-center justify-center text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -101,16 +122,16 @@ export function Footer() {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
+          <div className="text-center md:text-left">
+            <h3 className="text-base sm:text-lg font-semibold text-zinc-900text-zinc-50 mb-4">
               {t.footer.quickLinks}
             </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 justify-items-center lg:justify-items-start">
               {uniqueLinks.map((link, index) => (
                 <Link
                   key={index}
                   href={link.href}
-                  className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:underline transition-colors"
+                  className="text-sm sm:text-base text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 hover:underline transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -119,18 +140,18 @@ export function Footer() {
           </div>
 
           {/* Column 3 - Contacts */}
-          <div>
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
+          <div className="text-center md:text-left">
+            <h3 className="text-base sm:text-lg font-semibold text-zinc-900text-zinc-50 mb-4">
               {t.footer.contacts}
             </h3>
-            <ul className="space-y-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
+            <ul className="space-y-3 text-sm sm:text-base text-zinc-600text-zinc-400 inline-block">
               <li>
-                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                <span className="font-medium text-zinc-700text-zinc-300">
                   {t.footer.phone}:
                 </span>{' '}
                 <a
                   href="tel:+359886790681"
-                  className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
+                  className="hover:text-zinc-900hover:text-zinc-200 transition-colors"
                 >
                   +359886790681
                 </a>
@@ -138,37 +159,46 @@ export function Footer() {
                 {t.footer.niki}
               </li>
               <li>
-                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                <span className="font-medium text-zinc-700text-zinc-300">
                   {t.footer.phone}:
                 </span>{' '}
                 <a
-                  href="tel:+359884535509"
-                  className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
+                  href="tel:+359878112454"
+                  className="hover:text-zinc-900hover:text-zinc-200 transition-colors"
                 >
-                  +359884535509
+                  +359878112454
                 </a>
                 {' - '}
                 {t.footer.kika}
+                {' '}
+                <a
+                  href="viber://chat?number=%2B359878112454"
+                  className="inline-flex items-end ml-2 hover:opacity-80 transition-opacity"
+                  aria-label="Chat on Viber"
+                  title="Chat on Viber"
+                >
+                  <ViberIcon className="w-10 h-10" />
+                </a>
               </li>
               <li>
-                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                <span className="font-medium text-zinc-700text-zinc-300">
                   {t.footer.email}:
                 </span>{' '}
                 <a
                   href="mailto:abstract.apartments@gmail.com"
-                  className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
+                  className="hover:text-zinc-900hover:text-zinc-200 transition-colors"
                 >
                   abstract.apartments@gmail.com
                 </a>
               </li>
               <li>
-                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                <span className="font-medium text-zinc-700text-zinc-300">
                   {t.footer.address}:
                 </span>{' '}
                 Martini 7, Paralia Ofriniou 640 08, Greece
               </li>
-              <li className="pt-2 mt-2 border-t border-zinc-300 dark:border-zinc-700">
-                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+              <li className="pt-2 mt-2 border-t border-zinc-300border-zinc-700">
+                <span className="font-medium text-zinc-700text-zinc-300">
                   (ΑΜΑ) 00003339938
                 </span>
               </li>
@@ -177,18 +207,18 @@ export function Footer() {
         </div>
 
         {/* Bottom Footer Bar */}
-        <div className="border-t border-zinc-200 dark:border-zinc-800 pt-8">
+        <div className="border-t border-zinc-200border-zinc-800 pt-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 text-center sm:text-left">
+            <p className="text-sm text-zinc-600text-zinc-400 text-center sm:text-left">
               © {currentYear} {t.footer.copyrightText}
             </p>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 text-center sm:text-right">
+            <p className="text-sm text-zinc-600text-zinc-400 text-center sm:text-right">
               <span>{t.footer.createdBy}</span>{' '}
               <a
                 href="https://hmwspro.com/"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="hover:text-zinc-900 dark:hover:text-zinc-200 underline transition-colors"
+                className="hover:text-zinc-900hover:text-zinc-200 underline transition-colors"
               >
                 H&M WsPro
               </a>

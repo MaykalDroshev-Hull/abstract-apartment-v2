@@ -58,11 +58,11 @@ export function PoliciesFaq({ title, items }: PoliciesFaqProps) {
   const displayItems = items || defaultItems;
 
   return (
-    <section className="bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-zinc-200 dark:border-zinc-700">
+    <section className="bg-whitebg-zinc-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 border border-zinc-200border-zinc-700">
       <div className="flex items-center gap-3 mb-8">
         <HelpCircle className="w-6 h-6 text-[#9D7F5F]" />
         <h2
-          className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50"
+          className="text-2xl sm:text-3xl font-bold text-zinc-900text-zinc-50"
           style={{ fontFamily: 'var(--font-serif)' }}
         >
           {displayTitle}
@@ -73,18 +73,18 @@ export function PoliciesFaq({ title, items }: PoliciesFaqProps) {
         {displayItems.map((item, index) => (
           <div
             key={index}
-            className="border-b border-zinc-200 dark:border-zinc-700 last:border-b-0"
+            className="border-b border-zinc-200border-zinc-700 last:border-b-0"
           >
             <button
               onClick={() => toggleItem(index)}
               className="w-full flex items-center justify-between py-4 text-left group"
               aria-expanded={openIndex === index}
             >
-              <span className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 group-hover:text-[#9D7F5F] transition-colors">
+              <span className="text-base sm:text-lg font-semibold text-zinc-900text-zinc-50 group-hover:text-[#9D7F5F] transition-colors">
                 {item.q}
               </span>
               <ChevronDown
-                className={`w-5 h-5 text-zinc-500 dark:text-zinc-400 transition-transform ${
+                className={`w-5 h-5 text-zinc-500text-zinc-400 transition-transform ${
                   openIndex === index ? 'rotate-180' : ''
                 }`}
               />
@@ -98,7 +98,7 @@ export function PoliciesFaq({ title, items }: PoliciesFaqProps) {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="pb-4 text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <div className="pb-4 text-base text-zinc-600text-zinc-400 leading-relaxed">
                     {item.a}
                   </div>
                 </motion.div>

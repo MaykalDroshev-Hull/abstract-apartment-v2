@@ -33,7 +33,7 @@ export function GuideCard({ item, onClick, delay = 0 }: GuideCardProps) {
       className="group cursor-pointer"
       onClick={onClick}
     >
-      <div className="bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-700 transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-600">
+      <div className="bg-whitebg-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200border-zinc-700 transition-all duration-300 hover:border-zinc-300hover:border-zinc-600">
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
@@ -47,7 +47,7 @@ export function GuideCard({ item, onClick, delay = 0 }: GuideCardProps) {
           
           {/* Category Label */}
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
+            <span className="px-3 py-1 rounded-full bg-white/90bg-zinc-900/90 backdrop-blur-sm text-xs font-semibold uppercase tracking-wider text-zinc-900text-zinc-100">
               {getCategoryLabel(item.category, t)}
             </span>
           </div>
@@ -55,10 +55,10 @@ export function GuideCard({ item, onClick, delay = 0 }: GuideCardProps) {
 
         {/* Content */}
         <div className="p-6 sm:p-8">
-          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-2 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
+          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900text-zinc-50 mb-2 group-hover:text-zinc-700group-hover:text-zinc-300 transition-colors">
             {item.title}
           </h3>
-          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-1">
+          <p className="text-sm sm:text-base text-zinc-600text-zinc-400 mb-4 line-clamp-1">
             {item.subtitle}
           </p>
           

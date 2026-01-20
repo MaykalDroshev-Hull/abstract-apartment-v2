@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useTranslations } from '@/app/lib/translations';
 import { ReservationDraft, VillaType } from '../types';
 import { Calendar, Users } from 'lucide-react';
@@ -18,8 +19,10 @@ interface DateGuestFormProps {
 
 export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, onBack }: DateGuestFormProps) {
   const t = useTranslations();
-  const maxAdults = selectedVilla === 'apartment' ? 6 : 4;
+  const maxAdults = selectedVilla === 'apartment' ? 6 : selectedVilla === 'both' ? 8 : 4;
   const maxChildren = 4;
+  const [availabilityError, setAvailabilityError] = useState<string | null>(null);
+  const [isCheckingAvailability, setIsCheckingAvailability] = useState(false);
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -33,6 +36,59 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
     }
     return {};
   };
+
+  // Check availability when dates change and villa is "both"
+  useEffect(() => {
+    if (selectedVilla === 'both' && draft.checkIn && draft.checkOut) {
+      const checkAvailability = async () => {
+        setIsCheckingAvailability(true);
+        setAvailabilityError(null);
+        
+        try {
+          const response = await fetch(
+            `/api/bookings/availability?checkIn=${draft.checkIn}&checkOut=${draft.checkOut}&apartmentIds=1,2`
+          );
+          
+          if (!response.ok) {
+            throw new Error('Failed to check availability');
+          }
+          
+          const data = await response.json();
+          
+          if (!data.allAvailable) {
+            const unavailableIds = Object.entries(data.availability)
+              .filter(([_, available]) => !available)
+              .map(([id]) => id);
+            
+            let errorMessage = '';
+            if (unavailableIds.length === 2) {
+              // Both unavailable
+              errorMessage = t.reserve.dates.bothNotAvailable;
+            } else if (unavailableIds[0] === '1') {
+              // Apartment unavailable
+              errorMessage = t.reserve.dates.apartmentNotAvailable;
+            } else if (unavailableIds[0] === '2') {
+              // Studio unavailable
+              errorMessage = t.reserve.dates.studioNotAvailable;
+            } else {
+              errorMessage = t.reserve.dates.bothNotAvailable;
+            }
+            
+            setAvailabilityError(errorMessage);
+          }
+        } catch (error) {
+          console.error('Error checking availability:', error);
+          setAvailabilityError(t.reserve.dates.unableToCheckAvailability);
+        } finally {
+          setIsCheckingAvailability(false);
+        }
+      };
+      
+      checkAvailability();
+    } else {
+      setAvailabilityError(null);
+    }
+  }, [draft.checkIn, draft.checkOut, selectedVilla]);
 
   const handleDateChange = (field: 'checkIn' | 'checkOut', value: string) => {
     const updates: Partial<ReservationDraft> = { [field]: value };
@@ -51,6 +107,7 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
       }
     }
     
+    setAvailabilityError(null); // Clear availability error when dates change
     onUpdate(updates);
   };
 
@@ -104,6 +161,19 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
             )}
           </div>
         </div>
+        
+        {/* Availability Status */}
+        {selectedVilla === 'both' && draft.checkIn && draft.checkOut && (
+          <div className="mt-4">
+            {isCheckingAvailability ? (
+              <p className="text-sm text-zinc-600">{t.reserve.dates.checkingAvailability}</p>
+            ) : availabilityError ? (
+              <p className="text-sm text-red-600">{availabilityError}</p>
+            ) : (
+              <p className="text-sm text-green-600">✓ {t.reserve.dates.bothAvailable}</p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Guest Selection */}
@@ -162,7 +232,8 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
         </button>
         <button
           onClick={onNext}
-          className="flex-1 rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47]"
+          disabled={isCheckingAvailability || (selectedVilla === 'both' && !!availabilityError)}
+          className="flex-1 rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {t.reserve.buttons.ok}
         </button>

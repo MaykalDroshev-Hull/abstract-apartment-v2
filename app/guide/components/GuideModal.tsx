@@ -104,7 +104,7 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="relative w-full max-w-3xl max-h-[90vh] bg-white dark:bg-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col"
+            className="relative w-full max-w-3xl max-h-[90vh] bg-whitebg-zinc-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
@@ -114,9 +114,9 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
             <button
               onClick={onClose}
               aria-label="Close modal"
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 dark:bg-zinc-900/90 hover:bg-white dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center transition-colors shadow-lg"
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90bg-zinc-900/90 hover:bg-whitehover:bg-zinc-800 border border-zinc-200border-zinc-700 flex items-center justify-center transition-colors shadow-lg"
             >
-              <X className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
+              <X className="w-5 h-5 text-zinc-900text-zinc-100" />
             </button>
 
             {/* Scrollable Content */}
@@ -136,40 +136,40 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
               {/* Content */}
               <div className="p-6 sm:p-8 lg:p-10">
                 {/* Category Label */}
-                <span className="inline-block px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-700 text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100 mb-4">
+                <span className="inline-block px-3 py-1 rounded-full bg-zinc-100bg-zinc-700 text-xs font-semibold uppercase tracking-wider text-zinc-900text-zinc-100 mb-4">
                   {getCategoryLabel(item.category, t)}
                 </span>
 
                 {/* Title */}
                 <h2
                   id="modal-title"
-                  className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-3"
+                  className="text-3xl sm:text-4xl font-bold text-zinc-900text-zinc-50 mb-3"
                   style={{ fontFamily: 'var(--font-serif)' }}
                 >
                   {item.title}
                 </h2>
 
                 {/* Subtitle */}
-                <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 mb-6">
+                <p className="text-lg sm:text-xl text-zinc-600text-zinc-400 mb-6">
                   {item.subtitle}
                 </p>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 mb-8">
+                <p className="text-base sm:text-lg leading-relaxed text-zinc-700text-zinc-300 mb-8">
                   {item.description}
                 </p>
 
                 {/* Highlights */}
                 {item.highlights && item.highlights.length > 0 && (
                   <div className="mb-8">
-                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
+                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900text-zinc-50 mb-4">
                       {t.guide.modal.highlights}
                     </h3>
                     <ul className="space-y-2">
                       {item.highlights.map((highlight, index) => (
                         <li key={index} className="flex items-start gap-3">
                           <span className="text-[#9D7F5F] mt-1">•</span>
-                          <span className="text-base text-zinc-700 dark:text-zinc-300 flex-1">
+                          <span className="text-base text-zinc-700text-zinc-300 flex-1">
                             {highlight}
                           </span>
                         </li>
@@ -181,14 +181,14 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
                 {/* Tips */}
                 {item.tips && item.tips.length > 0 && (
                   <div className="mb-8">
-                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-50 mb-4">
+                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900text-zinc-50 mb-4">
                       {t.guide.modal.tips}
                     </h3>
                     <ul className="space-y-2">
                       {item.tips.map((tip, index) => (
                         <li key={index} className="flex items-start gap-3">
                           <span className="text-[#9D7F5F] mt-1">•</span>
-                          <span className="text-base text-zinc-700 dark:text-zinc-300 flex-1">
+                          <span className="text-base text-zinc-700text-zinc-300 flex-1">
                             {tip}
                           </span>
                         </li>
@@ -198,10 +198,10 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
                 )}
 
                 {/* Distance */}
-                <div className="flex items-center gap-2 mb-8 text-base text-zinc-600 dark:text-zinc-400">
+                <div className="flex items-center gap-2 mb-8 text-base text-zinc-600text-zinc-400">
                   <MapPin className="w-5 h-5 text-[#9D7F5F]" />
                   <span>
-                    <strong className="text-zinc-900 dark:text-zinc-100">{t.guide.modal.distance}</strong> {item.distance}
+                    <strong className="text-zinc-900text-zinc-100">{t.guide.modal.distance}</strong> {item.distance}
                   </span>
                 </div>
 

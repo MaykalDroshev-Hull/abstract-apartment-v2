@@ -51,24 +51,24 @@ function AmenityCard({ amenity, index }: { amenity: AmenityItem; index: number }
       {/* Icon */}
       <div className="mb-4 sm:mb-5">
         <div className="flex items-center justify-start">
-          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-600 dark:text-zinc-400" />
+          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-600" />
         </div>
       </div>
 
       {/* Caption (Title) */}
       <h3
-        className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3 leading-tight"
+        className="text-base sm:text-lg font-semibold text-zinc-900 mb-3 leading-tight"
         style={{ fontFamily: 'var(--font-serif)' }}
       >
         {amenity.title}
       </h3>
 
       {/* Thin horizontal divider */}
-      <span className="block w-10 h-px bg-zinc-300 dark:bg-zinc-600 mb-3" />
+      <span className="block w-10 h-px bg-zinc-300 mb-3" />
 
       {/* Description */}
       {amenity.description && (
-        <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
           {amenity.description}
         </p>
       )}
@@ -148,7 +148,7 @@ export function AmenitiesSection() {
   });
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED] dark:bg-zinc-900">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]">
       <div className="mx-auto max-w-7xl">
         {/* Top Text Row - Editorial Intro */}
         <div className="mb-12 sm:mb-16 lg:mb-20">
@@ -156,13 +156,13 @@ export function AmenitiesSection() {
             {/* Left Column - Headline */}
             <div>
               <h2
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-4"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-4"
                 style={{ fontFamily: 'var(--font-serif)' }}
               >
                 {t.home.amenities.intro.title}
               </h2>
               {t.home.amenities.intro.subtitle && (
-                <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400">
+                <p className="text-lg sm:text-xl text-zinc-600">
                   {t.home.amenities.intro.subtitle}
                 </p>
               )}
@@ -174,7 +174,7 @@ export function AmenitiesSection() {
                 {t.home.amenities.intro.paragraphs.map((paragraph, index) => (
                   <p
                     key={index}
-                    className="text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-xl"
+                    className="text-base sm:text-lg leading-relaxed text-zinc-600 max-w-xl"
                   >
                     {paragraph}
                   </p>

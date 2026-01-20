@@ -151,7 +151,7 @@ export function VillasSection() {
             {/* Left Column - Headline */}
             <div>
               <h2
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 whitespace-pre-line"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 whitespace-pre-line"
                 style={{ fontFamily: 'var(--font-serif)' }}
               >
                 {t.home.villas.intro.headline}
@@ -160,7 +160,7 @@ export function VillasSection() {
 
             {/* Right Column - Description */}
             <div className="flex items-center">
-              <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-xl">
+              <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 max-w-xl">
                 {t.home.villas.intro.description}
               </p>
             </div>

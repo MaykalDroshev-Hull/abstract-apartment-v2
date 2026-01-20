@@ -18,7 +18,7 @@ export function VillaSelector({ selectedVilla, onSelect, villas, onNext, onBack,
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-serif text-zinc-900 mb-6">{t.reserve.villa.title}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {villas.map((villa) => (
           <button
             key={villa.type}
@@ -40,10 +40,19 @@ export function VillaSelector({ selectedVilla, onSelect, villas, onNext, onBack,
               ))}
             </ul>
             <div className="mt-4 pt-4 border-t border-zinc-200">
-              <span className="text-lg font-semibold text-[#9D7F5F]">
-                €{villa.nightlyRate}
-              </span>
-              <span className="text-sm text-zinc-600 ml-1">{t.reserve.villa.perNight}</span>
+              {villa.nightlyRate > 0 ? (
+                <>
+                  <span className="text-sm text-zinc-600 mr-1">{t.reserve.villa.from}</span>
+                  <span className="text-lg font-semibold text-[#9D7F5F]">
+                    €{villa.nightlyRate}
+                  </span>
+                  <span className="text-sm text-zinc-600 ml-1">{t.reserve.villa.perNight}</span>
+                </>
+              ) : (
+                <span className="text-sm text-zinc-600">
+                  {t.reserve.villa.perNight} (varies by season)
+                </span>
+              )}
             </div>
           </button>
         ))}

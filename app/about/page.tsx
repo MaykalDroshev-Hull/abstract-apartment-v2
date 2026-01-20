@@ -8,7 +8,7 @@ import { AboutCta } from './components/AboutCta';
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#F5F2ED] dark:bg-zinc-900">
+    <main className="min-h-screen bg-[#F5F2ED]bg-zinc-900">
       <AboutHero />
       <StorySection />
       <ValuesGrid />

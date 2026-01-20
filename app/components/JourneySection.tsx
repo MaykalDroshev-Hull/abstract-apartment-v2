@@ -4,6 +4,8 @@ import { useTranslations } from '@/app/lib/translations';
 import { MapPin, Car, Plane, Route, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { MapWithRoute } from './MapWithRoute';
+import { useState } from 'react';
 
 interface JourneyStep {
   icon: React.ComponentType<{ className?: string }>;
@@ -33,24 +35,24 @@ function JourneyStepItem({ step, index }: { step: JourneyStep; index: number }) 
       {/* Icon */}
       <div className="mb-4 sm:mb-5">
         <div className="flex items-center justify-start">
-          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-600 dark:text-zinc-400" />
+          <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-600" />
         </div>
       </div>
 
       {/* Caption (Title) */}
       <h3
-        className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3 leading-tight"
+        className="text-base sm:text-lg font-semibold text-zinc-900 mb-3 leading-tight"
         style={{ fontFamily: 'var(--font-serif)' }}
       >
         {step.label}
       </h3>
 
       {/* Thin horizontal divider */}
-      <span className="block w-10 h-px bg-zinc-300 dark:bg-zinc-600 mb-3" />
+      <span className="block w-10 h-px bg-zinc-300 mb-3" />
 
       {/* Description */}
       {step.subtext && (
-        <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
           {step.subtext}
         </p>
       )}
@@ -67,6 +69,7 @@ interface JourneySectionProps {
 
 export function JourneySection({ title, intro, sectionTitle, showHeader = true }: JourneySectionProps) {
   const t = useTranslations();
+  const [useFallbackMap, setUseFallbackMap] = useState(false);
 
   // Use provided props or fall back to translations
   const displayTitle = title || t.home.journey.title;
@@ -127,18 +130,18 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED] dark:bg-zinc-900">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]">
       <div className="mx-auto max-w-7xl">
         {/* Header Area - Only show if showHeader is true */}
         {showHeader && (
           <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
             <h2
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {displayTitle}
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-3xl mx-auto">
               {displayIntro}
             </p>
           </div>
@@ -148,7 +151,7 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
         {!showHeader && displaySectionTitle && (
           <div className="mb-8 sm:mb-12">
             <h2
-              className="text-3xl sm:text-4xl font-serif text-zinc-900 dark:text-zinc-50 mb-4"
+              className="text-3xl sm:text-4xl font-serif text-zinc-900 mb-4"
             >
               {displaySectionTitle}
             </h2>
@@ -157,30 +160,43 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
 
         {/* Map Container */}
         <div className="mb-12 sm:mb-16 lg:mb-20">
-          <div className="relative rounded-3xl overflow-hidden bg-zinc-200 dark:bg-zinc-800">
-            <iframe
-              src={t.home.journey.mapEmbedUrl}
-              width="100%"
-              height="500"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title={t.home.journey.mapTitle}
-              className="w-full h-[400px] sm:h-[500px] lg:h-[600px]"
-            />
+          <div className="relative rounded-3xl overflow-hidden bg-zinc-200">
+            {t.home.journey.beachDestination && !useFallbackMap ? (
+              <MapWithRoute
+                origin={t.home.journey.address}
+                destination={t.home.journey.beachDestination}
+                originPlaceId={t.home.journey.addressPlaceId}
+                destinationLat={t.home.journey.beachLat}
+                destinationLng={t.home.journey.beachLng}
+                mapTitle={t.home.journey.mapTitle}
+                beachWalk={t.home.journey.beachWalk}
+                onError={() => setUseFallbackMap(true)}
+              />
+            ) : (
+              <iframe
+                src={t.home.journey.mapEmbedUrl}
+                width="100%"
+                height="500"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={t.home.journey.mapTitle}
+                className="w-full h-[400px] sm:h-[500px] lg:h-[600px]"
+              />
+            )}
           </div>
 
           {/* Address and Link */}
           <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300">
+            <p className="text-sm sm:text-base text-zinc-700">
               {t.home.journey.address}
             </p>
             <Link
               href={t.home.journey.mapLink}
               target="_blank"
               rel="noreferrer noopener"
-              className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1"
+              className="text-sm sm:text-base text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1"
             >
               {t.home.journey.openInMaps}
               <ExternalLink className="w-4 h-4" />
@@ -214,24 +230,24 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
                     {/* Icon */}
                     <div className="mb-4 sm:mb-5">
                       <div className="flex items-center justify-start">
-                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-600 dark:text-zinc-400" />
+                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-zinc-600" />
                       </div>
                     </div>
 
                     {/* Caption (Title) */}
                     <h3
-                      className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3 leading-tight"
+                      className="text-base sm:text-lg font-semibold text-zinc-900 mb-3 leading-tight"
                       style={{ fontFamily: 'var(--font-serif)' }}
                     >
                       {item.label}
                     </h3>
 
                     {/* Thin horizontal divider */}
-                    <span className="block w-10 h-px bg-zinc-300 dark:bg-zinc-600 mb-3" />
+                    <span className="block w-10 h-px bg-zinc-300 mb-3" />
 
                     {/* Description */}
                     {item.subtext && (
-                      <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+                      <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-3">
                         {item.subtext}
                       </p>
                     )}
@@ -241,7 +257,7 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
                       href={t.home.journey.mapLink}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors flex items-center gap-1 mt-2"
+                      className="text-sm sm:text-base text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1 mt-2"
                     >
                       {t.home.journey.seeDirections}
                       <ExternalLink className="w-4 h-4" />

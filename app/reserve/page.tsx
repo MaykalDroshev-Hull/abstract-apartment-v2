@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from '@/app/lib/translations';
 import { ReservationDraft, VillaType, VillaInfo } from './types';
@@ -10,9 +11,11 @@ import { DateGuestForm } from './components/DateGuestForm';
 import { GuestDetailsForm } from './components/GuestDetailsForm';
 import { ReviewStep } from './components/ReviewStep';
 import { ReservationSummaryCard } from './components/ReservationSummaryCard';
+import { calculateStayPrice } from './utils/pricing';
 
-export default function ReservePage() {
+function ReservePageContent() {
   const t = useTranslations();
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [draft, setDraft] = useState<ReservationDraft>({
     adults: 1,
@@ -22,6 +25,53 @@ export default function ReservePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Pre-fill form from URL parameters
+  useEffect(() => {
+    const villa = searchParams.get('villa');
+    const checkIn = searchParams.get('checkIn');
+    const checkOut = searchParams.get('checkOut');
+    const guests = searchParams.get('guests');
+
+    if (villa && ['apartment', 'studio', 'both'].includes(villa)) {
+      setDraft(prev => ({
+        ...prev,
+        villa: villa as VillaType,
+      }));
+      // Auto-advance to step 2 if villa is pre-filled
+      setCurrentStep(2);
+    }
+
+    if (checkIn) {
+      setDraft(prev => ({
+        ...prev,
+        checkIn: checkIn,
+      }));
+    }
+
+    if (checkOut) {
+      setDraft(prev => ({
+        ...prev,
+        checkOut: checkOut,
+      }));
+    }
+
+    if (guests) {
+      const guestCount = parseInt(guests, 10);
+      if (guestCount >= 1 && guestCount <= 8) {
+        setDraft(prev => ({
+          ...prev,
+          adults: guestCount,
+          children: 0,
+        }));
+      }
+    }
+
+    // If all parameters are present, we can advance to step 2
+    if (villa && checkIn && checkOut) {
+      setCurrentStep(2);
+    }
+  }, [searchParams]);
+
   // Build villas from translations
   const VILLAS: VillaInfo[] = [
     {
@@ -30,7 +80,7 @@ export default function ReservePage() {
       description: t.reserve.villa.apartment.description,
       features: t.reserve.villa.apartment.features,
       maxGuests: 6,
-      nightlyRate: 120,
+      nightlyRate: 100, // Starting from price
     },
     {
       type: 'studio',
@@ -38,8 +88,16 @@ export default function ReservePage() {
       description: t.reserve.villa.studio.description,
       features: t.reserve.villa.studio.features,
       maxGuests: 2,
-      nightlyRate: 80,
+      nightlyRate: 75, // Starting from price
     },
+    ...(t.reserve.villa.both ? [{
+      type: 'both' as VillaType,
+      name: t.reserve.villa.both.name,
+      description: t.reserve.villa.both.description,
+      features: t.reserve.villa.both.features,
+      maxGuests: 8,
+      nightlyRate: 175, // Starting from price (100 + 75)
+    }] : []),
   ];
 
   const STEPS = [
@@ -123,13 +181,110 @@ export default function ReservePage() {
       return;
     }
 
+    if (!draft.checkIn || !draft.checkOut || !draft.name || !draft.email || !draft.phone || !draft.villa) {
+      return;
+    }
+
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      if (draft.villa === 'both') {
+        // Calculate prices for both units
+        const priceBreakdown = calculateStayPrice(
+          draft.checkIn,
+          draft.checkOut,
+          'both',
+          t
+        );
+
+        // Create two separate bookings
+        const [firstName, ...lastNameParts] = draft.name.trim().split(' ');
+        const lastName = lastNameParts.join(' ') || '';
+        
+        const bookingData = {
+          CheckInDT: draft.checkIn,
+          CheckOutDT: draft.checkOut,
+          FirstName: firstName,
+          LastName: lastName,
+          Telephone: draft.phone,
+          Comments: draft.notes || '',
+          PaidPrice: 0,
+        };
+
+        // Create apartment booking (ID: 1) - discount already applied in apartmentTotal
+        const apartmentResponse = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...bookingData,
+            apartmentid: 1,
+            FullPrice: priceBreakdown.apartmentTotal, // Already includes discount
+          }),
+        });
+
+        if (!apartmentResponse.ok) {
+          throw new Error('Failed to create apartment booking');
+        }
+
+        // Create studio booking (ID: 2) - discount already applied in studioTotal
+        const studioResponse = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...bookingData,
+            apartmentid: 2,
+            FullPrice: priceBreakdown.studioTotal, // Already includes discount
+          }),
+        });
+
+        if (!studioResponse.ok) {
+          throw new Error('Failed to create studio booking');
+        }
+      } else if (draft.villa === 'apartment' || draft.villa === 'studio') {
+        // Single booking for apartment or studio
+        const apartmentId = draft.villa === 'apartment' ? 1 : 2;
+        
+        // Calculate price for single unit
+        const priceBreakdown = calculateStayPrice(
+          draft.checkIn,
+          draft.checkOut,
+          draft.villa,
+          t
+        );
+        
+        const [firstName, ...lastNameParts] = draft.name.trim().split(' ');
+        const lastName = lastNameParts.join(' ') || '';
+        
+        const response = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            CheckInDT: draft.checkIn,
+            CheckOutDT: draft.checkOut,
+            FirstName: firstName,
+            LastName: lastName,
+            Telephone: draft.phone,
+            Comments: draft.notes || '',
+            PaidPrice: 0,
+            apartmentid: apartmentId,
+            FullPrice: draft.villa === 'apartment' 
+              ? priceBreakdown.apartmentTotal  // Already includes discount
+              : priceBreakdown.studioTotal,    // Already includes discount
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to create booking');
+        }
+      }
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      setErrors({ submit: 'Failed to submit booking. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -208,6 +363,7 @@ export default function ReservePage() {
               {currentStep === 3 && (
                 <GuestDetailsForm
                   draft={draft}
+                  selectedVilla={draft.villa}
                   onUpdate={updateDraft}
                   errors={errors}
                   onNext={handleNext}
@@ -234,6 +390,18 @@ export default function ReservePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ReservePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#F5F2ED] py-8 md:py-12 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#9D7F5F]"></div>
+      </div>
+    }>
+      <ReservePageContent />
+    </Suspense>
   );
 }
 

@@ -18,7 +18,7 @@ export function AboutHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-6"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {t.about.hero.title}
@@ -27,7 +27,7 @@ export function AboutHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 mb-8 max-w-2xl"
+              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 mb-8 max-w-2xl"
             >
               {t.about.hero.subtitle}
             </motion.p>
@@ -47,7 +47,7 @@ export function AboutHero() {
               </Link>
               <Link
                 href="/gallery"
-                className="px-6 py-2 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 font-medium text-sm hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors text-center"
+                className="px-6 py-2 rounded-lg bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-900text-zinc-100 font-medium text-sm hover:bg-zinc-50hover:bg-zinc-700 transition-colors text-center"
               >
                 {t.about.hero.ctaSecondary}
               </Link>
@@ -61,7 +61,7 @@ export function AboutHero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="relative h-[400px] sm:h-[500px] lg:h-[600px]"
           >
-            <div className="relative w-full h-full rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+            <div className="relative w-full h-full rounded-3xl overflow-hidden bg-zinc-100bg-zinc-800">
               <Image
                 src="/Images/index/DEMO-hero-image.jpg"
                 alt="Abstract Apartments illustration"

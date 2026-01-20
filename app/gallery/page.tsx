@@ -79,7 +79,7 @@ export default function GalleryPage() {
   }, [sections]);
 
   return (
-    <main className="min-h-screen bg-[#F5F2ED] dark:bg-zinc-900">
+    <main className="min-h-screen bg-[#F5F2ED]bg-zinc-900">
       <div className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
@@ -88,12 +88,12 @@ export default function GalleryPage() {
               {/* Left: Title and Description */}
               <div className="flex-1">
                 <h1
-                  className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-4 sm:mb-6"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-4 sm:mb-6"
                   style={{ fontFamily: 'var(--font-serif)' }}
                 >
                   {t.gallery.title}
                 </h1>
-                <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 max-w-3xl">
+                <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 max-w-3xl">
                   {t.gallery.description}
                 </p>
               </div>
@@ -102,7 +102,7 @@ export default function GalleryPage() {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:flex-shrink-0">
                 <Link
                   href="/reviews"
-                  className="px-6 py-2 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 font-medium text-sm hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors text-center"
+                  className="px-6 py-2 rounded-lg bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-900text-zinc-100 font-medium text-sm hover:bg-zinc-50hover:bg-zinc-700 transition-colors text-center"
                 >
                   {t.header.exploreSections.guestExperience.items.find(item => item.href === '/reviews')?.label || 'Reviews'}
                 </Link>
@@ -118,7 +118,7 @@ export default function GalleryPage() {
 
           {/* Tabs Navigation */}
           <div className="sticky top-4 sm:top-6 z-40 mb-12 sm:mb-16">
-            <div className="bg-white/80 dark:bg-zinc-800/80 backdrop-blur-sm rounded-2xl border border-zinc-200 dark:border-zinc-700 p-2 sm:p-3 shadow-sm">
+            <div className="bg-white/80bg-zinc-800/80 backdrop-blur-sm rounded-2xl border border-zinc-200border-zinc-700 p-2 sm:p-3 shadow-sm">
               <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
                 {sections.map((section) => (
                   <button
@@ -126,8 +126,8 @@ export default function GalleryPage() {
                     onClick={() => scrollToSection(section.id)}
                     className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
                       activeSection === section.id
-                        ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                        : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700'
+                        ? 'bg-zinc-900bg-zinc-100 text-whitetext-zinc-900'
+                        : 'text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 hover:bg-zinc-100hover:bg-zinc-700'
                     }`}
                   >
                     <span className="hidden sm:inline">{section.title}</span>
@@ -157,7 +157,7 @@ export default function GalleryPage() {
                 transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
               >
                 <h2
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-8 sm:mb-10"
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-900text-zinc-50 mb-8 sm:mb-10"
                   style={{ fontFamily: 'var(--font-serif)' }}
                 >
                   {section.title}

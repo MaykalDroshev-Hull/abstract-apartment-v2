@@ -1,11 +1,12 @@
 'use client';
 
 import { useTranslations } from '@/app/lib/translations';
-import { ReservationDraft } from '../types';
+import { ReservationDraft, VillaType } from '../types';
 import { User, Mail, Phone, Globe } from 'lucide-react';
 
 interface GuestDetailsFormProps {
   draft: ReservationDraft;
+  selectedVilla?: VillaType;
   onUpdate: (updates: Partial<ReservationDraft>) => void;
   errors: {
     name?: string;
@@ -16,8 +17,12 @@ interface GuestDetailsFormProps {
   onBack: () => void;
 }
 
-export function GuestDetailsForm({ draft, onUpdate, errors, onNext, onBack }: GuestDetailsFormProps) {
+export function GuestDetailsForm({ draft, selectedVilla, onUpdate, errors, onNext, onBack }: GuestDetailsFormProps) {
   const t = useTranslations();
+  
+  // Show child bed suggestion for apartment or both
+  const showChildBedSuggestion = selectedVilla === 'apartment' || selectedVilla === 'both';
+  const childBedSuggestion = showChildBedSuggestion ? t.reserve.details.childBedSuggestion : '';
   
   return (
     <div className="space-y-6">
@@ -112,7 +117,7 @@ export function GuestDetailsForm({ draft, onUpdate, errors, onNext, onBack }: Gu
             value={draft.notes || ''}
             onChange={(e) => onUpdate({ notes: e.target.value })}
             className="w-full px-4 py-2.5 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent resize-none"
-            placeholder="Any special requests or notes for your stay..."
+            placeholder={childBedSuggestion || "Any special requests or notes for your stay..."}
           />
         </div>
       </div>

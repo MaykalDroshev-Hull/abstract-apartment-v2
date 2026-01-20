@@ -3,6 +3,7 @@
 :root {
   --background: #F5F2ED;
   --foreground: #171717;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -13,15 +14,52 @@
   --font-serif: var(--font-serif);
 }
 
+/* Force light mode - override dark mode preferences */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #F5F2ED !important;
+    --foreground: #171717 !important;
+    color-scheme: light !important;
+  }
+  
+  html {
+    color-scheme: light !important;
+  }
+  
+  body {
+    background: #F5F2ED !important;
+    color: #171717 !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--background) !important;
+  color: var(--foreground) !important;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Force light mode - prevent dark mode classes from applying */
+html {
+  color-scheme: light !important;
+}
+
+html.dark,
+html[data-theme="dark"],
+.dark {
+  color-scheme: light !important;
+}
+
+/* Override all Tailwind dark: classes - force light mode always */
+/* Since Tailwind v4 uses @media (prefers-color-scheme: dark), we override within that context */
+@media (prefers-color-scheme: dark) {
+  /* Force all backgrounds to cream white */
+  html,
+  body {
+    background-color: #F5F2ED !important;
+  }
+  
+  /* Force all text to dark colors */
+  body {
+    color: #171717 !important;
+  }
 }
