@@ -22,10 +22,35 @@ export default function ReviewsPage() {
     const fetchReviews = async () => {
       try {
         const response = await fetch(`/api/reviews?locale=${language}`);
+        
+        if (!response.ok) {
+          console.error('API response not OK:', response.status, response.statusText);
+          // Try to parse anyway in case it's still valid JSON
+        }
+        
         const data = await response.json();
-        setReviews(data.reviews);
+        console.log('Reviews API response:', { 
+          hasReviews: !!data.reviews, 
+          reviewCount: data.reviews?.length || 0, 
+          hasError: !!data.error,
+          dataKeys: Object.keys(data)
+        });
+        
+        // The API should always return { reviews: [...] }, but handle edge cases
+        if (Array.isArray(data.reviews)) {
+          setReviews(data.reviews);
+        } else if (data.error) {
+          // If there's an error but no reviews, log it but don't set empty array
+          // The API should have returned mock reviews even on error
+          console.error('API Error but no reviews fallback:', data.error);
+          setReviews([]);
+        } else {
+          console.warn('Unexpected API response format - no reviews array:', data);
+          setReviews([]);
+        }
       } catch (err) {
         console.error('Error fetching reviews:', err);
+        setReviews([]);
       } finally {
         setIsLoading(false);
       }
@@ -70,7 +95,7 @@ export default function ReviewsPage() {
 
           {/* Reviews Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {reviews.map((review, index) => (
+            {reviews && reviews.length > 0 ? reviews.map((review, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg shadow-lg p-6 transform hover:scale-105 transition-transform duration-300 relative"
@@ -110,7 +135,11 @@ export default function ReviewsPage() {
                   <div className="text-sm text-zinc-500">{review.date}</div>
                 </div>
               </div>
-            ))}
+            )) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-lg text-zinc-600">No reviews available at this time.</p>
+              </div>
+            )}
           </div>
 
           {/* More Reviews Text */}

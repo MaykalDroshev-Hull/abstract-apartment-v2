@@ -81,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light" style={{ colorScheme: 'light' }}>
+    <html lang="en" className="light" style={{ colorScheme: 'light' }} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -91,10 +91,32 @@ export default function RootLayout({
                 document.documentElement.classList.remove('dark');
                 document.documentElement.classList.add('light');
                 document.documentElement.style.colorScheme = 'light';
+                
+                // Hide body until React hydrates with correct language
+                // This prevents showing English text from SSR
+                try {
+                  var savedLanguage = localStorage.getItem('language');
+                  if (savedLanguage && (savedLanguage === 'bg' || savedLanguage === 'el')) {
+                    // Mark that we need to wait for React hydration
+                    document.documentElement.setAttribute('data-wait-hydration', 'true');
+                  }
+                } catch(e) {
+                  // localStorage might not be available
+                }
               })();
             `,
           }}
         />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            html[data-wait-hydration="true"] body {
+              visibility: hidden;
+            }
+            html[data-hydrated="true"] body {
+              visibility: visible;
+            }
+          `
+        }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased bg-[#F5F2ED]`}

@@ -36,13 +36,13 @@ export const el: Translations = {
           {
             label: 'Facebook',
             description: 'Ακολουθήστε μας στο Facebook.',
-            href: 'https://facebook.com',
+            href: 'https://www.facebook.com/profile.php?id=61575061973914',
             icon: 'Facebook',
           },
           {
             label: 'Instagram',
             description: 'Ακολουθήστε μας στο Instagram.',
-            href: 'https://instagram.com',
+            href: 'https://www.instagram.com/abstract_apartment/',
             icon: 'Instagram',
           },
         ],
@@ -118,7 +118,7 @@ export const el: Translations = {
           {
             label: 'Facebook',
             description: 'Ακολουθήστε μας στο Facebook.',
-            href: 'https://facebook.com',
+            href: 'https://www.facebook.com/profile.php?id=61575061973914',
             icon: 'Facebook',
           },
         ],
@@ -129,7 +129,7 @@ export const el: Translations = {
       description: 'Ιστορίες, οδηγοί και σημειώσεις νησιού από το Abstract Apartment. Σκεπτικές γνώσεις για ταξίδια, σχεδιασμό και ζωή.',
       image: '/Images/index/DEMO-hero-image.jpg',
       ctaText: 'Εξερευνήστε το Instagram μας',
-      ctaLink: 'https://instagram.com',
+      ctaLink: 'https://www.instagram.com/abstract_apartment/',
     },
   },
   footer: {
@@ -361,7 +361,7 @@ export const el: Translations = {
       seeDetails: 'Δείτε λεπτομέρειες',
       cards: [
         {
-          href: '/availability',
+          href: '/rates',
           eyebrow: 'Σχεδιάστε το ταξίδι σας',
           title: 'Τιμές και διαθεσιμότητα',
           description: 'Δείτε τις εποχιακές τιμές και ελέγξτε τη διαθεσιμότητα για τις προτιμώμενες ημερομηνίες σας. Σχεδιάστε την τέλεια διακοπή σας με διαφανείς τιμές.',

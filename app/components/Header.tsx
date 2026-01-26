@@ -98,6 +98,7 @@ export function Header() {
                     setPlanOpen(false);
                   }}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700text-zinc-50hover:text-zinc-300 relative z-30"
+                  suppressHydrationWarning
                 >
                   {t.header.explore}
                   <ChevronDown 

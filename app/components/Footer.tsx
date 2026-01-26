@@ -101,7 +101,7 @@ export function Footer() {
             {/* Social Icons */}
             <div className="flex items-center justify-center md:justify-start gap-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61575061973914"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="w-8 h-8 flex items-center justify-center text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 transition-colors"
@@ -110,7 +110,7 @@ export function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/abstract_apartment/"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="w-8 h-8 flex items-center justify-center text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 transition-colors"

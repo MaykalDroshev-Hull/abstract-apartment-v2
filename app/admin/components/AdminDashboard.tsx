@@ -313,9 +313,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Add/Edit Form */}
         {(isAddingBooking || editingBooking) && (
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border border-zinc-200">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-serif font-semibold text-zinc-900">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-8 border border-zinc-200">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h2 className="text-lg sm:text-xl font-serif font-semibold text-zinc-900">
                 {editingBooking ? t.admin.dashboard.editBooking : t.admin.dashboard.addBooking}
               </h2>
               <button
@@ -326,7 +326,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {/* Apartment Selection */}
               <div>
                 <label className="block text-sm font-medium text-zinc-700 mb-2">
@@ -486,7 +486,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               </div>
 
               {/* Comments */}
-              <div className="md:col-span-2 lg:col-span-3">
+              <div className="sm:col-span-2 lg:col-span-3">
                 <label className="block text-sm font-medium text-zinc-700 mb-2">
                   <MessageSquare className="w-4 h-4 inline mr-1" />
                   {t.admin.dashboard.form.comments}
@@ -501,7 +501,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               </div>
             </div>
 
-            <div className="flex gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 sm:mt-6">
               <button
                 onClick={editingBooking ? handleSaveEdit : handleAddBooking}
                 disabled={isLoading}
@@ -528,22 +528,22 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
         {/* Bookings List */}
         <div className="bg-white rounded-lg shadow-lg border border-zinc-200">
-          <div className="p-6 border-b border-zinc-200">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-serif font-semibold text-zinc-900">
+          <div className="p-4 sm:p-6 border-b border-zinc-200">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+              <h2 className="text-lg sm:text-xl font-serif font-semibold text-zinc-900">
                 {showAll ? t.admin.dashboard.allBookings : t.admin.dashboard.upcomingBookings}
               </h2>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
                 <button
                   onClick={() => setShowAll(!showAll)}
-                  className="px-4 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-50 transition-colors"
+                  className="px-4 py-2 rounded-lg border border-zinc-300 bg-white text-zinc-700 hover:bg-zinc-50 transition-colors text-sm"
                 >
                   {showAll ? t.admin.dashboard.showUpcoming : t.admin.dashboard.showAll}
                 </button>
                 {!isAddingBooking && !editingBooking && (
                   <button
                     onClick={() => setIsAddingBooking(true)}
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#9D7F5F] text-white hover:bg-[#8B6F47] transition-colors"
+                    className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#9D7F5F] text-white hover:bg-[#8B6F47] transition-colors text-sm"
                   >
                     <Plus className="w-4 h-4" />
                     {t.admin.dashboard.addBooking}
@@ -553,7 +553,112 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </div>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Mobile & Tablet Card View */}
+          <div className="lg:hidden space-y-4 p-4">
+            {filteredBookings.map((booking) => {
+              const fullPrice = booking.FullPrice || 0;
+              const paidPrice = booking.PaidPrice || 0;
+              const remaining = Math.round(fullPrice - paidPrice);
+              const remainingText = remaining > 0 ? `€${remaining}` : remaining < 0 ? `-€${Math.abs(remaining)}` : '€0';
+              
+              return (
+                <div
+                  key={booking.BookingID}
+                  className={`bg-white rounded-lg border-2 p-4 space-y-3 ${
+                    overlappingIDs.has(booking.BookingID) ? 'border-red-300 bg-red-50' : 'border-zinc-200'
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-zinc-900 mb-1">
+                        {booking.Customer?.FirstName} {booking.Customer?.LastName}
+                      </div>
+                      <div className="text-xs text-zinc-600">
+                        {Number(booking.apartmentid) === 1
+                          ? (t.admin.dashboard.form.apartmentOptions?.apartment || 'Abstract Apartment')
+                          : (t.admin.dashboard.form.apartmentOptions?.studio || 'Abstract Studio')
+                        }
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleEditBooking(booking)}
+                        className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
+                        title="Edit booking"
+                      >
+                        <Edit className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteBooking(booking.BookingID)}
+                        className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors"
+                        title="Delete booking"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.checkIn}</div>
+                      <div className="text-zinc-900 font-medium">
+                        {format(parseISO(booking.CheckInDT), 'MMM dd, yyyy')}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.checkOut}</div>
+                      <div className="text-zinc-900 font-medium">
+                        {format(parseISO(booking.CheckOutDT), 'MMM dd, yyyy')}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-3 text-sm">
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.price}</div>
+                      <div className="text-zinc-900 font-medium">
+                        {booking.FullPrice ? `€${booking.FullPrice}` : '-'}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.paid}</div>
+                      <div className="text-zinc-900 font-medium">
+                        {booking.PaidPrice ? `€${booking.PaidPrice}` : '-'}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.remaining}</div>
+                      <div className={`font-medium ${remaining > 0 ? 'text-orange-600' : remaining < 0 ? 'text-green-600' : 'text-zinc-900'}`}>
+                        {remainingText}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {booking.Customer?.Telephone && (
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.contact}</div>
+                      <div className="text-sm text-zinc-600">{booking.Customer.Telephone}</div>
+                    </div>
+                  )}
+                  
+                  {booking.Comments && (
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.table.comments}</div>
+                      <div className="text-sm text-zinc-600">{booking.Comments}</div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            {filteredBookings.length === 0 && (
+              <div className="px-6 py-12 text-center text-zinc-500">
+                {t.admin.dashboard.noBookings}
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden lg:block overflow-x-auto">
             <table className="w-full">
               <thead className="bg-zinc-50">
                 <tr>

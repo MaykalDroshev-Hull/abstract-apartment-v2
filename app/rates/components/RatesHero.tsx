@@ -21,8 +21,8 @@ export function RatesHero() {
           >
             <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden">
               <Image
-                src="/Images/index/DEMO-hero-image.jpg"
-                alt="Abstract Apartments"
+                src="/Images/Gallery/ApartmentFromOutside.jpg"
+                alt="Abstract Apartment exterior"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -58,7 +58,7 @@ export function RatesHero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link
-                href="/contact"
+                href="/reserve"
                 className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
               >
                 {t.rates.hero.ctaPrimary}

@@ -36,13 +36,13 @@ export const bg: Translations = {
           {
             label: 'Facebook',
             description: 'Следвайте ни във Facebook.',
-            href: 'https://facebook.com',
+            href: 'https://www.facebook.com/profile.php?id=61575061973914',
             icon: 'Facebook',
           },
           {
             label: 'Instagram',
             description: 'Следвайте ни в Instagram.',
-            href: 'https://instagram.com',
+            href: 'https://www.instagram.com/abstract_apartment/',
             icon: 'Instagram',
           },
         ],
@@ -118,7 +118,7 @@ export const bg: Translations = {
           {
             label: 'Facebook',
             description: 'Следвайте ни във Facebook.',
-            href: 'https://facebook.com',
+            href: 'https://www.facebook.com/profile.php?id=61575061973914',
             icon: 'Facebook',
           },
         ],
@@ -129,7 +129,7 @@ export const bg: Translations = {
       description: 'Истории, ръководства и островни бележки от Abstract Apartment. Внимателни прозрения за пътуване, дизайн и живот.',
       image: '/Images/index/DEMO-hero-image.jpg',
       ctaText: 'Разгледайте нашия Instagram',
-      ctaLink: 'https://instagram.com',
+      ctaLink: 'https://www.instagram.com/abstract_apartment/',
     },
   },
   footer: {
@@ -361,7 +361,7 @@ export const bg: Translations = {
       seeDetails: 'Виж детайли',
       cards: [
         {
-          href: '/availability',
+          href: '/rates',
           eyebrow: 'Планирайте пътуването си',
           title: 'Цени и наличност',
           description: 'Вижте сезонните цени и проверете наличността за предпочитаните от вас дати. Планирайте перфектния си престой с прозрачни цени.',

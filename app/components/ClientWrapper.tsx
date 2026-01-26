@@ -11,9 +11,9 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
     <LanguageProvider>
       <ForceLightMode />
       <PageTitleUpdater />
-      <div className="flex min-h-screen flex-col w-full">
+      <div className="flex min-h-screen flex-col w-full" suppressHydrationWarning>
         <Header />
-        <main className="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8" suppressHydrationWarning>
           {children}
         </main>
         <Footer />

@@ -20,23 +20,62 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    // Load language from localStorage or default to 'en'
+// Helper function to get initial language from localStorage
+function getInitialLanguage(): Language {
+  // Only access localStorage if we're in the browser
+  if (typeof window === 'undefined') {
+    return 'en';
+  }
+  
+  try {
     const savedLanguage = localStorage.getItem('language') as Language;
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'bg' || savedLanguage === 'el')) {
-      setLanguageState(savedLanguage);
+      return savedLanguage;
     }
-  }, []);
+  } catch (e) {
+    // localStorage might not be available
+  }
+  
+  return 'en';
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  // Initialize with language from localStorage immediately using lazy initialization
+  // This prevents the flash by reading localStorage during the first render
+  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage());
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    // Sync with localStorage on mount to ensure consistency
+    const savedLanguage = localStorage.getItem('language') as Language;
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'bg' || savedLanguage === 'el') && savedLanguage !== language) {
+      setLanguageState(savedLanguage);
+      document.documentElement.setAttribute('lang', savedLanguage);
+    } else {
+      // Update html lang attribute to match current language
+      document.documentElement.setAttribute('lang', language);
+    }
+    setIsHydrated(true);
+    // Mark as hydrated to show body content
+    document.documentElement.removeAttribute('data-wait-hydration');
+    document.documentElement.setAttribute('data-hydrated', 'true');
+  }, [language]);
+
+  // Update html lang attribute when language changes
+  useEffect(() => {
+    if (isHydrated && typeof document !== 'undefined') {
+      document.documentElement.setAttribute('lang', language);
+    }
+  }, [language, isHydrated]);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    if (mounted) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem('language', lang);
+      // Also set cookie for server-side reading
+      document.cookie = `language=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+      // Update html lang attribute
+      document.documentElement.setAttribute('lang', lang);
     }
   };
 

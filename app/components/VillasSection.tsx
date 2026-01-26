@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useTranslations } from '@/app/lib/translations';
 import { Bed, Users, Bath, Square } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -19,9 +20,10 @@ interface VillaCardProps {
     cta?: string;
   };
   delay?: number;
+  villaType?: 'apartment' | 'studio';
 }
 
-function VillaCard({ villa, delay = 0 }: VillaCardProps) {
+function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
   return (
     <motion.div
       className="relative h-[500px] sm:h-[600px] lg:h-[700px] rounded-2xl sm:rounded-3xl overflow-hidden group"
@@ -126,13 +128,18 @@ function VillaCard({ villa, delay = 0 }: VillaCardProps) {
 
         {/* Optional CTA Button */}
         {villa.cta && (
-          <motion.button
-            className="mt-6 px-6 py-2.5 rounded-full border border-white/60 text-white/90 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/90 backdrop-blur-sm"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+          <Link
+            href={villaType ? `/details?tab=${villaType}` : '/details'}
+            className="mt-6 inline-block"
           >
-            {villa.cta}
-          </motion.button>
+            <motion.div
+              className="px-6 py-2.5 rounded-full border border-white/60 text-white/90 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/90 backdrop-blur-sm"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {villa.cta}
+            </motion.div>
+          </Link>
         )}
       </motion.div>
     </motion.div>
@@ -173,12 +180,14 @@ export function VillasSection() {
           <VillaCard
             villa={t.home.villas.villa1}
             delay={0}
+            villaType="apartment"
           />
 
           {/* Villa 2 - Abstract Studio */}
           <VillaCard
             villa={t.home.villas.villa2}
             delay={0.1}
+            villaType="studio"
           />
         </div>
       </div>

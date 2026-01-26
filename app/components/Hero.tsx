@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useTranslations } from '@/app/lib/translations';
 import { Users, Bed, Bath } from 'lucide-react';
 import { useScroll, useTransform, motion } from 'framer-motion';
@@ -54,9 +55,9 @@ export function Hero() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white/95 text-center mb-6 sm:mb-8" style={{ fontFamily: 'var(--font-serif)' }}>
               {t.home.hero.title}
             </h1>
-            <button className="px-8 py-3 sm:px-10 sm:py-4 rounded-full border-2 border-white/90 text-white/95 font-medium text-sm sm:text-base transition-all duration-300 hover:bg-white/10 hover:border-white backdrop-blur-sm">
+            <Link href="/details" className="px-8 py-3 sm:px-10 sm:py-4 rounded-full border-2 border-white/90 text-white/95 font-medium text-sm sm:text-base transition-all duration-300 hover:bg-white/10 hover:border-white backdrop-blur-sm">
               {t.home.hero.cta}
-            </button>
+            </Link>
           </div>
 
           {/* Bottom Villa Details */}

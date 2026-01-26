@@ -20,7 +20,7 @@ export function GuideHero() {
   const t = useTranslations();
   const images = useMemo(() => getRandomImages(), []);
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]bg-zinc-900">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Content */}
@@ -29,7 +29,7 @@ export function GuideHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {t.guide.title}
@@ -38,7 +38,7 @@ export function GuideHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 mb-8 max-w-2xl"
+              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 mb-8 max-w-2xl"
             >
               {t.guide.description}
             </motion.p>
@@ -51,14 +51,14 @@ export function GuideHero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link
-                href="/contact"
+                href="/reserve"
                 className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
               >
                 {t.guide.reserve}
               </Link>
               <Link
                 href="/contact"
-                className="px-6 py-2 rounded-lg bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-900text-zinc-100 font-medium text-sm hover:bg-zinc-50hover:bg-zinc-700 transition-colors text-center"
+                className="px-6 py-2 rounded-lg bg-white border border-zinc-300 text-zinc-900 font-medium text-sm hover:bg-zinc-50 transition-colors text-center"
               >
                 {t.guide.contactUs}
               </Link>

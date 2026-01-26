@@ -4,7 +4,6 @@ import { useTranslations } from '@/app/lib/translations';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface CtaCard {
@@ -32,17 +31,6 @@ function CtaCard({ card, seeDetailsText }: { card: CtaCard; seeDetailsText: stri
         whileHover={{ y: -2 }}
         transition={{ duration: 0.2 }}
       >
-        {/* Image */}
-        <div className="relative h-64 sm:h-72 lg:h-80 rounded-2xl sm:rounded-3xl overflow-hidden mb-4">
-          <Image
-            src={card.imageSrc}
-            alt={card.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
-        </div>
-
         {/* Content */}
         <div className="flex-1 flex flex-col">
           {/* Eyebrow */}

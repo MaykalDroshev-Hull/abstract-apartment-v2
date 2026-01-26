@@ -36,13 +36,13 @@ export const en: Translations = {
           {
             label: 'Facebook',
             description: 'Follow us on Facebook.',
-            href: 'https://facebook.com',
+            href: 'https://www.facebook.com/profile.php?id=61575061973914',
             icon: 'Facebook',
           },
           {
             label: 'Instagram',
             description: 'Follow us on Instagram.',
-            href: 'https://instagram.com',
+            href: 'https://www.instagram.com/abstract_apartment/',
             icon: 'Instagram',
           },
         ],
@@ -118,7 +118,7 @@ export const en: Translations = {
           {
             label: 'Facebook',
             description: 'Follow us on Facebook.',
-            href: 'https://facebook.com',
+            href: 'https://www.facebook.com/profile.php?id=61575061973914',
             icon: 'Facebook',
           },
         ],
@@ -129,7 +129,7 @@ export const en: Translations = {
       description: 'Stories, guides, and island notes from Abstract Apartment. Thoughtful insights on travel, design, and life.',
       image: '/Images/index/DEMO-hero-image.jpg',
       ctaText: 'Explore our Instagram',
-      ctaLink: 'https://instagram.com',
+      ctaLink: 'https://www.instagram.com/abstract_apartment/',
     },
   },
   footer: {
@@ -361,7 +361,7 @@ export const en: Translations = {
       seeDetails: 'See details',
       cards: [
         {
-          href: '/availability',
+          href: '/rates',
           eyebrow: 'Plan Your Trip',
           title: 'Rates & Availability',
           description: 'View seasonal rates and check availability for your preferred dates. Plan your perfect getaway with transparent pricing.',

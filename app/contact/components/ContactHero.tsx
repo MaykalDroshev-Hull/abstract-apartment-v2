@@ -40,7 +40,7 @@ export function ContactHero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link
-                href="/contact"
+                href="/reserve"
                 className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
               >
                 {t.contact.hero.ctaPrimary}
@@ -62,31 +62,31 @@ export function ContactHero() {
             className="relative h-[400px] sm:h-[500px] lg:h-[600px]"
           >
             <div className="relative w-full h-full">
-              {/* Main Image */}
+              {/* Main Image - Apartment Exterior */}
               <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-lg z-10">
                 <Image
-                  src="/Images/index/DEMO-hero-image.jpg"
-                  alt="Paralia Ofriniou"
+                  src="/Images/Gallery/ApartmentFromOutside.jpg"
+                  alt="Abstract Apartment exterior"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 75vw, 50vw"
                 />
               </div>
-              {/* Overlapping Image 1 */}
+              {/* Overlapping Image 1 - Living Area */}
               <div className="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-lg z-20">
                 <Image
-                  src="/Images/index/DEMO-hero-image.jpg"
-                  alt="Abstract Apartments"
+                  src="/Images/Gallery/LivingArea1.jpg"
+                  alt="Spacious living area"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 66vw, 40vw"
                 />
               </div>
-              {/* Overlapping Image 2 */}
+              {/* Overlapping Image 2 - Bedroom */}
               <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 rounded-3xl overflow-hidden shadow-lg z-30">
                 <Image
-                  src="/Images/index/DEMO-hero-image.jpg"
-                  alt="Seaside view"
+                  src="/Images/Gallery/Bedroom1.jpg"
+                  alt="Comfortable bedroom"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 50vw, 30vw"

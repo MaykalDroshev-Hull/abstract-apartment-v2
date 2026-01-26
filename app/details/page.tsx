@@ -1,15 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useTranslations } from '@/app/lib/translations';
 import { UnitKey, UnitDetails } from './types';
 import { DetailsHero } from './components/DetailsHero';
 import { DetailsTabs } from './components/DetailsTabs';
 import { UnitDetailsPanel } from './components/UnitDetailsPanel';
 
-export default function DetailsPage() {
+function DetailsPageContent() {
   const t = useTranslations();
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<UnitKey>('apartment');
+
+  // Read tab from URL parameter on mount
+  useEffect(() => {
+    const tabParam = searchParams.get('tab');
+    if (tabParam === 'studio' || tabParam === 'apartment') {
+      setActiveTab(tabParam as UnitKey);
+    }
+  }, [searchParams]);
 
   // Build unit details from translations
   const units: UnitDetails[] = [
@@ -104,6 +114,18 @@ export default function DetailsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DetailsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#F5F2ED] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#9D7F5F]"></div>
+      </div>
+    }>
+      <DetailsPageContent />
+    </Suspense>
   );
 }
 
