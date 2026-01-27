@@ -21,8 +21,8 @@ export function StorySection() {
           >
             <div className="relative h-[400px] sm:h-[500px] rounded-3xl overflow-hidden">
               <Image
-                src="/Images/index/DEMO-hero-image.jpg"
-                alt="Paralia Ofriniou seaside"
+                src="/Images/Gallery/ApartmentFromOutside.jpg"
+                alt="Abstract Apartment exterior"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

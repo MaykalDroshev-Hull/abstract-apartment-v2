@@ -31,7 +31,13 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
       const inDate = new Date(checkIn);
       const outDate = new Date(checkOut);
       if (outDate <= inDate) {
-        return { checkOut: 'Check-out must be after check-in' };
+        return { checkOut: t.reserve.validation.checkOutAfterCheckIn };
+      }
+      // Calculate number of nights
+      const diffTime = outDate.getTime() - inDate.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays < 3) {
+        return { checkOut: t.reserve.validation.minimumNightsRequired };
       }
     }
     return {};
@@ -94,6 +100,18 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
     const updates: Partial<ReservationDraft> = { [field]: value };
     
     if (field === 'checkIn' && draft.checkOut) {
+      const newCheckIn = new Date(value);
+      const existingCheckOut = new Date(draft.checkOut);
+      
+      // If new check-in is later than or equal to existing check-out, clear check-out
+      if (newCheckIn >= existingCheckOut) {
+        updates.checkOut = undefined;
+        setAvailabilityError(null);
+        onUpdate(updates);
+        return;
+      }
+      
+      // Otherwise validate normally
       const validation = validateDates(value, draft.checkOut);
       if (validation.checkOut) {
         // Don't update if invalid
@@ -149,7 +167,11 @@ export function DateGuestForm({ draft, selectedVilla, onUpdate, errors, onNext, 
             <input
               type="date"
               id="checkOut"
-              min={draft.checkIn || today}
+              min={draft.checkIn ? (() => {
+                const checkInDate = new Date(draft.checkIn);
+                checkInDate.setDate(checkInDate.getDate() + 3);
+                return checkInDate.toISOString().split('T')[0];
+              })() : today}
               value={draft.checkOut || ''}
               onChange={(e) => handleDateChange('checkOut', e.target.value)}
               className={`w-full px-4 py-2.5 rounded-lg border ${

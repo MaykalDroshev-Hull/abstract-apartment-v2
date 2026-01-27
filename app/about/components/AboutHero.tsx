@@ -63,8 +63,8 @@ export function AboutHero() {
           >
             <div className="relative w-full h-full rounded-3xl overflow-hidden bg-zinc-100bg-zinc-800">
               <Image
-                src="/Images/index/DEMO-hero-image.jpg"
-                alt="Abstract Apartments illustration"
+                src="/Images/Gallery/LivingArea1.jpg"
+                alt="Abstract Apartment living area"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

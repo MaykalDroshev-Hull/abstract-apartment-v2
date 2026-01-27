@@ -80,7 +80,7 @@ export function Footer() {
   );
 
   return (
-    <footer className="w-full border-t border-zinc-200 bg-[#F9F7F7]border-zinc-800bg-zinc-900">
+    <footer className="w-full border-t border-zinc-200 bg-[#F9F7F7]">
       <div className="w-full max-w-[1600px] mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Top Footer - 3 Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12">

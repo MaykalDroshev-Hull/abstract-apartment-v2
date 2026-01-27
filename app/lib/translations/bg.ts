@@ -193,6 +193,7 @@ export const bg: Translations = {
         name: 'Abstract Studio',
         image: '/Images/Gallery/LivingArea1.jpg',
         imageAlt: 'Вътрешен изглед на Abstract Studio',
+        imageComingSoon: 'Изображението ще бъде качено скоро',
         details: {
           beds: '2 Легла',
           sleepCapacity: 'Настанява до 4 гости',
@@ -418,6 +419,7 @@ export const bg: Translations = {
   gallery: {
     title: 'Галерия',
     description: 'Разгледайте нашите пространства чрез внимателно подбрани изображения, показващи комфорта и елегантността на Abstract Apartment и Abstract Studio.',
+    imagesComingSoon: 'Изображенията идват скоро',
     sections: [
       {
         id: 'apartment',
@@ -1066,6 +1068,7 @@ export const bg: Translations = {
       checkInRequired: 'Датата на настаняване е задължителна',
       checkOutRequired: 'Датата на освобождаване е задължителна',
       checkOutAfterCheckIn: 'Датата на освобождаване трябва да е след датата на настаняване',
+      minimumNightsRequired: 'Минималният престой е 3 нощувки',
       nameRequired: 'Пълното име е задължително',
       emailRequired: 'Имейлът е задължителен',
       emailInvalid: 'Моля, въведете валиден имейл адрес',

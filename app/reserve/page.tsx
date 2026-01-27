@@ -139,6 +139,13 @@ function ReservePageContent() {
         const checkOut = new Date(draft.checkOut);
         if (checkOut <= checkIn) {
           newErrors.checkOut = t.reserve.validation.checkOutAfterCheckIn;
+        } else {
+          // Calculate number of nights
+          const diffTime = checkOut.getTime() - checkIn.getTime();
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          if (diffDays < 3) {
+            newErrors.checkOut = t.reserve.validation.minimumNightsRequired;
+          }
         }
       }
     }
@@ -169,12 +176,28 @@ function ReservePageContent() {
     }
     // Validation passed - proceed to next step
     setCurrentStep(prev => Math.min(prev + 1, STEPS.length));
+    // Scroll to top of page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBack = () => {
     setCurrentStep(prev => Math.max(prev - 1, 1));
     setErrors({});
+    // Scroll to top of page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Scroll to top whenever step changes (including auto-advance from URL params)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
+
+  // Scroll to top when success message is shown
+  useEffect(() => {
+    if (isSubmitted) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [isSubmitted]);
 
   const handleSubmit = async () => {
     if (!validateStep(4)) {
@@ -240,6 +263,33 @@ function ReservePageContent() {
         if (!studioResponse.ok) {
           throw new Error('Failed to create studio booking');
         }
+
+        // Send email notification
+        try {
+          await fetch('/api/send-booking-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              checkIn: draft.checkIn,
+              checkOut: draft.checkOut,
+              firstName,
+              lastName,
+              telephone: draft.phone,
+              email: draft.email,
+              fullPrice: priceBreakdown.combinedTotal,
+              paidPrice: 0,
+              villaType: 'both',
+              apartmentPrice: priceBreakdown.apartmentTotal,
+              studioPrice: priceBreakdown.studioTotal,
+              totalNights: priceBreakdown.totalNights,
+              guests: (draft.adults || 0) + (draft.children || 0),
+              comments: draft.notes || '',
+            }),
+          });
+        } catch (emailError) {
+          console.error('Error sending email notification:', emailError);
+          // Don't fail the booking if email fails
+        }
       } else if (draft.villa === 'apartment' || draft.villa === 'studio') {
         // Single booking for apartment or studio
         const apartmentId = draft.villa === 'apartment' ? 1 : 2;
@@ -275,6 +325,33 @@ function ReservePageContent() {
 
         if (!response.ok) {
           throw new Error('Failed to create booking');
+        }
+
+        // Send email notification
+        try {
+          await fetch('/api/send-booking-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              checkIn: draft.checkIn,
+              checkOut: draft.checkOut,
+              firstName,
+              lastName,
+              telephone: draft.phone,
+              email: draft.email,
+              fullPrice: draft.villa === 'apartment' 
+                ? priceBreakdown.apartmentTotal
+                : priceBreakdown.studioTotal,
+              paidPrice: 0,
+              villaType: draft.villa,
+              totalNights: priceBreakdown.totalNights,
+              guests: (draft.adults || 0) + (draft.children || 0),
+              comments: draft.notes || '',
+            }),
+          });
+        } catch (emailError) {
+          console.error('Error sending email notification:', emailError);
+          // Don't fail the booking if email fails
         }
       }
       

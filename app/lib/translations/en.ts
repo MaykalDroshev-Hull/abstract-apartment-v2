@@ -193,6 +193,7 @@ export const en: Translations = {
         name: 'Abstract Studio',
         image: '/Images/Gallery/LivingArea1.jpg',
         imageAlt: 'Abstract Studio interior view',
+        imageComingSoon: 'Image coming soon',
         details: {
           beds: '2 Beds',
           sleepCapacity: 'Sleeps up to 4 guests',
@@ -418,6 +419,7 @@ export const en: Translations = {
   gallery: {
     title: 'Gallery',
     description: 'Explore our spaces through carefully curated images showcasing the comfort and elegance of Abstract Apartment and Abstract Studio.',
+    imagesComingSoon: 'Images coming soon',
     sections: [
       {
         id: 'apartment',
@@ -1066,6 +1068,7 @@ export const en: Translations = {
       checkInRequired: 'Check-in date is required',
       checkOutRequired: 'Check-out date is required',
       checkOutAfterCheckIn: 'Check-out must be after check-in',
+      minimumNightsRequired: 'Minimum stay is 3 nights',
       nameRequired: 'Full name is required',
       emailRequired: 'Email is required',
       emailInvalid: 'Please enter a valid email address',

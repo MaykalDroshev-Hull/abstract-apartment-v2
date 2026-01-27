@@ -63,6 +63,39 @@ function getMonthNumber(monthName: string): number {
 }
 
 /**
+ * Gets the cheapest price from all seasons for a property
+ */
+function getCheapestPrice(
+  seasons: Array<{ name: string; price: string }>,
+  unitType: 'apartment' | 'studio'
+): number {
+  if (!seasons || seasons.length === 0) {
+    // Fallback to pricing map - find cheapest
+    const mapPrices = Object.values(PRICING_MAP[unitType]).filter(p => p > 0);
+    return mapPrices.length > 0 ? Math.min(...mapPrices) : 0;
+  }
+  
+  const prices: number[] = [];
+  
+  // Extract all prices from seasons
+  seasons.forEach((season) => {
+    if (season && season.price) {
+      const price = extractPrice(season.price);
+      if (price > 0) {
+        prices.push(price);
+      }
+    }
+  });
+  
+  // Also check pricing map
+  const mapPrices = Object.values(PRICING_MAP[unitType]).filter(p => p > 0);
+  prices.push(...mapPrices);
+  
+  // Return cheapest price, or 0 if none found
+  return prices.length > 0 ? Math.min(...prices) : 0;
+}
+
+/**
  * Gets the price for a specific month from the seasons array
  */
 function getPriceForMonth(
@@ -77,7 +110,9 @@ function getPriceForMonth(
   
   // Try to extract from translations
   if (!seasons || seasons.length === 0) {
-    return 0;
+    // If no seasons, use cheapest from pricing map
+    const mapPrices = Object.values(PRICING_MAP[unitType]).filter(p => p > 0);
+    return mapPrices.length > 0 ? Math.min(...mapPrices) : 0;
   }
   
   const season = seasons.find((s) => {
@@ -89,9 +124,8 @@ function getPriceForMonth(
   });
   
   if (!season) {
-    // If no season found for this month, return 0 (outside booking season)
-    // This is expected for months outside May-October
-    return 0;
+    // If no season found for this month, use cheapest price instead of 0
+    return getCheapestPrice(seasons, unitType);
   }
   
   const price = extractPrice(season.price);
@@ -101,6 +135,8 @@ function getPriceForMonth(
     if (mapPrice) {
       return mapPrice;
     }
+    // If map also fails, use cheapest price
+    return getCheapestPrice(seasons, unitType);
   }
   
   return price;

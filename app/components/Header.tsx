@@ -115,6 +115,7 @@ export function Header() {
                     setExploreOpen(false);
                   }}
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700text-zinc-50hover:text-zinc-300 relative z-30"
+                  suppressHydrationWarning
                 >
                   {t.header.plan}
                   <ChevronDown 
@@ -148,6 +149,7 @@ export function Header() {
                   setPlanOpen(false);
                 }}
                 className="hidden lg:block rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47]"
+                suppressHydrationWarning
               >
                 {t.header.reserve}
               </Link>

@@ -99,6 +99,7 @@ export interface Translations {
         name: string;
         image: string;
         imageAlt: string;
+        imageComingSoon: string;
         details: {
           beds: string;
           sleepCapacity: string;
@@ -214,6 +215,7 @@ export interface Translations {
   gallery: {
     title: string;
     description: string;
+    imagesComingSoon: string;
     sections: Array<{
       id: string;
       title: string;
@@ -505,6 +507,7 @@ export interface Translations {
       checkInRequired: string;
       checkOutRequired: string;
       checkOutAfterCheckIn: string;
+      minimumNightsRequired: string;
       nameRequired: string;
       emailRequired: string;
       emailInvalid: string;

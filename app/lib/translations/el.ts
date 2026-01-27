@@ -193,6 +193,7 @@ export const el: Translations = {
         name: 'Abstract Studio',
         image: '/Images/Gallery/LivingArea1.jpg',
         imageAlt: 'Εσωτερική όψη του Abstract Studio',
+        imageComingSoon: 'Η εικόνα έρχεται σύντομα',
         details: {
           beds: '2 Κρεβάτια',
           sleepCapacity: 'Φιλοξενεί έως 4 επισκέπτες',
@@ -418,6 +419,7 @@ export const el: Translations = {
   gallery: {
     title: 'Συλλογή',
     description: 'Εξερευνήστε τους χώρους μας μέσα από προσεκτικά επιλεγμένες εικόνες που παρουσιάζουν την άνεση και την κομψότητα του Abstract Apartment και του Abstract Studio.',
+    imagesComingSoon: 'Οι εικόνες έρχονται σύντομα',
     sections: [
       {
         id: 'apartment',
@@ -1066,6 +1068,7 @@ export const el: Translations = {
       checkInRequired: 'Η ημερομηνία άφιξης είναι υποχρεωτική',
       checkOutRequired: 'Η ημερομηνία αναχώρησης είναι υποχρεωτική',
       checkOutAfterCheckIn: 'Η ημερομηνία αναχώρησης πρέπει να είναι μετά την ημερομηνία άφιξης',
+      minimumNightsRequired: 'Η ελάχιστη διαμονή είναι 3 βράδια',
       nameRequired: 'Το πλήρες όνομα είναι υποχρεωτικό',
       emailRequired: 'Το email είναι υποχρεωτικό',
       emailInvalid: 'Παρακαλώ εισάγετε έγκυρη διεύθυνση email',

@@ -163,38 +163,48 @@ export default function GalleryPage() {
                   {section.title}
                 </h2>
 
-                {/* Image Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                  {section.images.map((image, imageIndex) => (
-                    <motion.div
-                      key={imageIndex}
-                      className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer"
-                      onClick={() => openLightbox(section.id, imageIndex)}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={{
-                        hidden: { opacity: 0, scale: 0.95 },
-                        visible: { opacity: 1, scale: 1 },
-                      }}
-                      transition={{
-                        duration: 0.4,
-                        delay: (sectionIndex * 0.1) + (imageIndex * 0.05),
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                    </motion.div>
-                  ))}
-                </div>
+                {/* Image Grid or Coming Soon Message */}
+                {section.id === 'studio' ? (
+                  <div className="flex items-center justify-center py-16 sm:py-20 lg:py-24">
+                    <div className="text-center px-6">
+                      <p className="text-zinc-600 text-lg sm:text-xl lg:text-2xl font-medium">
+                        {t.gallery.imagesComingSoon}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                    {section.images.map((image, imageIndex) => (
+                      <motion.div
+                        key={imageIndex}
+                        className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer"
+                        onClick={() => openLightbox(section.id, imageIndex)}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={{
+                          hidden: { opacity: 0, scale: 0.95 },
+                          visible: { opacity: 1, scale: 1 },
+                        }}
+                        transition={{
+                          duration: 0.4,
+                          delay: (sectionIndex * 0.1) + (imageIndex * 0.05),
+                        }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
               </motion.section>
             ))}
           </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -54,15 +53,6 @@ export function TeamSection() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="bg-whitebg-zinc-800 rounded-2xl p-6 border border-zinc-200border-zinc-700"
               >
-                <div className="relative w-20 h-20 rounded-full overflow-hidden mb-4">
-                  <Image
-                    src={member.imageSrc}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                    sizes="80px"
-                  />
-                </div>
                 <h3 className="text-lg font-semibold text-zinc-900text-zinc-50 mb-1">
                   {member.name}
                 </h3>

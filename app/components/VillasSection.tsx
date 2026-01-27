@@ -11,6 +11,7 @@ interface VillaCardProps {
     name: string;
     image: string;
     imageAlt: string;
+    imageComingSoon?: string;
     details: {
       beds: string;
       sleepCapacity: string;
@@ -24,6 +25,9 @@ interface VillaCardProps {
 }
 
 function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
+  const isStudio = villaType === 'studio';
+  const showComingSoon = isStudio && villa.imageComingSoon;
+
   return (
     <motion.div
       className="relative h-[500px] sm:h-[600px] lg:h-[700px] rounded-2xl sm:rounded-3xl overflow-hidden group"
@@ -36,15 +40,25 @@ function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
       }}
       transition={{ duration: 0.6 }}
     >
-      {/* Background Image */}
+      {/* Background Image or Coming Soon Message */}
       <div className="absolute inset-0">
-        <Image
-          src={villa.image}
-          alt={villa.imageAlt}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        {showComingSoon ? (
+          <div className="absolute inset-0 bg-zinc-100 flex items-center justify-center">
+            <div className="text-center px-6">
+              <p className="text-zinc-600 text-lg sm:text-xl font-medium">
+                {villa.imageComingSoon}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <Image
+            src={villa.image}
+            alt={villa.imageAlt}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        )}
       </div>
 
       {/* Gradient Overlay for Text Readability */}

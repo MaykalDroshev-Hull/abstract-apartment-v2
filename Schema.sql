@@ -3,7 +3,7 @@
 
 CREATE TABLE public.Booking (
   BookingID bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
-  CheckInDT date NOT NULL UNIQUE,
+  CheckInDT date NOT NULL,
   CustomerID bigint,
   CheckOutDT date,
   FullPrice double precision CHECK ("FullPrice" >= 0.0::double precision),
