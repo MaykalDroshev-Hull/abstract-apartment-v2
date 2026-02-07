@@ -66,10 +66,12 @@ export async function GET(request: NextRequest) {
         const apartmentId = booking.apartmentid;
 
         // Check if dates overlap
+        // Allow checkout on the same day as another booking's check-in
+        // (checkout is morning, check-in is afternoon)
         const overlaps = 
           (checkInDate >= bookingCheckIn && checkInDate < bookingCheckOut) ||
-          (checkOutDate > bookingCheckIn && checkOutDate <= bookingCheckOut) ||
-          (checkInDate <= bookingCheckIn && checkOutDate >= bookingCheckOut);
+          (checkOutDate > bookingCheckIn && checkOutDate < bookingCheckOut) || // Changed <= to < to allow checkout on check-in date
+          (checkInDate < bookingCheckIn && checkOutDate > bookingCheckOut); // Changed <= and >= to < and > to allow same-day transitions
 
         if (overlaps) {
           availability[apartmentId] = false;

@@ -17,22 +17,6 @@ export async function PUT(
     const bookingId = params.id;
 
     if (!bookingId) {
-      // #region agent log - missing booking ID
-      fetch('http://127.0.0.1:7245/ingest/fcedc78c-139b-4d26-92b1-3c89299a6d76', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'api/bookings/[id]/route.ts:PUT:missing-id',
-          message: 'Booking ID is missing from URL params',
-          data: { params: params },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          runId: 'edit-debug',
-          hypothesisId: 'A'
-        })
-      }).catch(() => {});
-      // #endregion
-
       return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
     }
     const requestBody = await request.json();

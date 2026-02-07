@@ -36,6 +36,7 @@ export async function GET(request: NextRequest) {
     }
 
     const bookedDates: Record<string, boolean> = {};
+    const checkInDates: Record<string, boolean> = {}; // Track dates that are check-in dates
     const bookedDatesByApartment: Record<number, Record<string, boolean>> = {};
 
     // Initialize apartment-specific tracking
@@ -49,6 +50,10 @@ export async function GET(request: NextRequest) {
 
         let current = parseISO(CheckInDT);
         const end = parseISO(CheckOutDT);
+        const checkInDateStr = format(current, 'yyyy-MM-dd');
+
+        // Mark check-in date separately
+        checkInDates[checkInDateStr] = true;
 
         // Only include dates up to the day *before* CheckOutDT
         while (isBefore(current, end)) {
@@ -70,6 +75,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       bookedDates,
+      checkInDates, // Return check-in dates separately
       bookedDatesByApartment,
     });
   } catch (error) {

@@ -11,6 +11,9 @@ import {
   isToday,
   startOfWeek,
   endOfWeek,
+  addDays,
+  isBefore,
+  parseISO,
 } from 'date-fns';
 import { enUS, bg, el } from 'date-fns/locale';
 import { useTranslations, useLanguage } from '@/app/lib/translations';
@@ -43,6 +46,7 @@ export function AvailabilityCalendar({
   const { language } = useLanguage();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [bookedDates, setBookedDates] = useState<Record<string, boolean>>({});
+  const [checkInDates, setCheckInDates] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
 
   // Navigate to focus date when it changes (e.g., when search is clicked)
@@ -71,6 +75,7 @@ export function AvailabilityCalendar({
 
         if (result.success) {
           setBookedDates(result.bookedDates || {});
+          setCheckInDates(result.checkInDates || {});
         }
       } catch (error) {
         console.error('Error loading booked dates:', error);
@@ -89,7 +94,49 @@ export function AvailabilityCalendar({
 
   const isAvailable = (date: Date): boolean => {
     const dateStr = format(date, 'yyyy-MM-dd');
-    return !bookedDates[dateStr];
+    const isBooked = !!bookedDates[dateStr];
+    const isCheckInDate = !!checkInDates[dateStr];
+    
+    // Determine selection context: are we selecting check-in or checkout?
+    const isSelectingCheckout = !!checkIn && !checkOut;
+    
+    // If check-in is selected, disable all dates before the check-in date
+    if (checkIn) {
+      const checkInDate = parseISO(checkIn);
+      const dateObj = parseISO(dateStr);
+      
+      // If date is before check-in date, it's not available
+      if (isBefore(dateObj, checkInDate)) {
+        return false;
+      }
+    }
+    
+    // Base availability: not booked, or (selecting checkout and it's a check-in date)
+    const baseAvailable = !isBooked || (isSelectingCheckout && isCheckInDate);
+    
+    // If selecting checkout, ensure all dates between check-in and checkout are available
+    if (isSelectingCheckout && baseAvailable && checkIn) {
+      const checkInDate = parseISO(checkIn);
+      const potentialCheckOutDate = parseISO(dateStr);
+      
+      // Check all dates between check-in (exclusive) and checkout (exclusive)
+      let current = addDays(checkInDate, 1);
+      while (isBefore(current, potentialCheckOutDate)) {
+        const currentStr = format(current, 'yyyy-MM-dd');
+        const currentIsBooked = !!bookedDates[currentStr];
+        const currentIsCheckInDate = !!checkInDates[currentStr];
+        
+        // Dates in between must be available (not booked, unless they're check-in dates)
+        // We allow check-in dates in between because they don't block the stay
+        if (currentIsBooked && !currentIsCheckInDate) {
+          return false;
+        }
+        
+        current = addDays(current, 1);
+      }
+    }
+    
+    return baseAvailable;
   };
 
   const isSelected = (date: Date): boolean => {

@@ -87,6 +87,13 @@ export function AvailabilitySearchBar() {
   };
 
   const handleDateSelect = (date: string) => {
+    // If clicking on the same check-in date, reset the selection
+    if (checkIn && date === checkIn && !checkOut) {
+      setCheckIn('');
+      setCheckOut('');
+      return;
+    }
+    
     if (!checkIn || (checkIn && checkOut)) {
       // Start new selection
       setCheckIn(date);
