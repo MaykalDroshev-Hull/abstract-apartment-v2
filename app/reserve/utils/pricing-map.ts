@@ -2,7 +2,7 @@
 // Months 1-4 and 11-12 are outside booking season (price: 0)
 export const PRICING_MAP = {
   apartment: {
-    5: 110,   // May
+    5: 100,   // May
     6: 130,   // June
     7: 160,   // July
     8: 160,   // August
@@ -11,10 +11,10 @@ export const PRICING_MAP = {
   },
   studio: {
     5: 80,    // May
-    6: 95,    // June
-    7: 120,   // July
-    8: 120,   // August
-    9: 95,    // September
-    10: 75,   // October
+    6: 100,   // June
+    7: 110,   // July
+    8: 110,   // August
+    9: 100,   // September
+    10: 80,   // October
   },
 };

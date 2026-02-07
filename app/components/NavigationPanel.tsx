@@ -22,7 +22,11 @@ export function NavigationPanel({ sections, featuredCard, onClose }: NavigationP
   // Reviews now link to dedicated page instead of home page section
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-zinc-200 py-6 px-8 z-[100] pointer-events-auto" data-navigation-panel>
+    <div 
+      className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-zinc-200 py-6 px-8 z-[100] pointer-events-auto" 
+      data-navigation-panel
+      onMouseDown={(e) => e.stopPropagation()}
+    >
       <div className="flex gap-8">
         {/* Left side - Sections */}
         <div className={`flex-1 grid ${featuredCard ? 'grid-cols-3' : 'grid-cols-3'} gap-8`}>

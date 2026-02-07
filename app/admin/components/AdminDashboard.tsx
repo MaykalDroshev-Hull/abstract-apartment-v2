@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { format, parseISO, isAfter } from 'date-fns';
 import { toast } from 'react-toastify';
-import { LogOut, Plus, Calendar, Users, Euro, MessageSquare, Edit, Trash2, Save, X, Home } from 'lucide-react';
+import { LogOut, Plus, Calendar, Users, Euro, MessageSquare, Edit, Trash2, Save, X, Home, CheckCircle } from 'lucide-react';
 import { useTranslations } from '@/app/lib/translations';
 
 interface Booking {
@@ -14,10 +14,12 @@ interface Booking {
   PaidPrice: number | null;
   Comments: string | null;
   apartmentid: number;
+  rfstatusid: number;
   Customer: {
     FirstName: string | null;
     LastName: string | null;
     Telephone: string | null;
+    Email: string | null;
   } | null;
 }
 
@@ -39,6 +41,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     FirstName: '',
     LastName: '',
     Telephone: '',
+    Email: '',
     FullPrice: '',
     PaidPrice: '',
     Comments: '',
@@ -107,6 +110,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       FirstName: '',
       LastName: '',
       Telephone: '',
+      Email: '',
       FullPrice: '',
       PaidPrice: '',
       Comments: '',
@@ -125,7 +129,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       const res = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, apartmentid: 1 }),
+        body: JSON.stringify({ 
+          ...formData, 
+          apartmentid: parseInt(formData.apartmentid),
+          Email: formData.Email || null
+        }),
       });
 
       if (res.ok) {
@@ -161,6 +169,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       FirstName: booking.Customer?.FirstName || '',
       LastName: booking.Customer?.LastName || '',
       Telephone: booking.Customer?.Telephone || '',
+      Email: booking.Customer?.Email || '',
       FullPrice: booking.FullPrice?.toString() || '',
       PaidPrice: booking.PaidPrice?.toString() || '',
       Comments: booking.Comments || '',
@@ -212,6 +221,37 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     }
   };
 
+  const handleConfirmBooking = async (bookingId: number) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`/api/bookings/${bookingId}/confirm`, {
+        method: 'PATCH',
+      });
+
+      if (res.ok) {
+        await loadBookings();
+        toast.success('Booking confirmed successfully', {
+          position: 'top-center',
+          style: { background: '#16a34a', color: 'white' }
+        });
+      } else {
+        const error = await res.json();
+        toast.error(error.error || 'Failed to confirm booking', {
+          position: 'top-center',
+          style: { background: '#dc2626', color: 'white' }
+        });
+      }
+    } catch (error) {
+      console.error('Error confirming booking:', error);
+      toast.error('Failed to confirm booking', {
+        position: 'top-center',
+        style: { background: '#dc2626', color: 'white' }
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleDeleteBooking = async (bookingId: number) => {
     if (!confirm(t.admin.dashboard.deleteConfirm)) {
       return;
@@ -244,6 +284,61 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleAddToCalendar = (booking: Booking) => {
+    try {
+      const checkInDate = parseISO(booking.CheckInDT);
+      const checkOutDate = parseISO(booking.CheckOutDT);
+      
+      // Set start time to 15:00 on check-in date
+      const startDate = new Date(checkInDate);
+      startDate.setHours(15, 0, 0, 0);
+      
+      // Set end time to 10:00 on check-out date
+      const endDate = new Date(checkOutDate);
+      endDate.setHours(10, 0, 0, 0);
+      
+      // Get apartment type name
+      const apartmentType = booking.apartmentid === 1 ? 'Апартамент' : 'Студио';
+      
+      // Get guest name
+      const guestName = booking.Customer 
+        ? `${booking.Customer.FirstName || ''} ${booking.Customer.LastName || ''}`.trim()
+        : 'Гост';
+      
+      // Format title: "[apartment type] престой - [guest]"
+      const title = `${apartmentType} престой - ${guestName}`;
+      
+      // Format dates for Google Calendar (YYYYMMDDTHHMMSS)
+      const formatGoogleDate = (date: Date) => {
+        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      };
+      
+      // Build description
+      const description = `Резервация за ${apartmentType}\nГост: ${guestName}\nТелефон: ${booking.Customer?.Telephone || 'N/A'}`;
+      
+      // Create Google Calendar URL
+      const googleCalendarUrl = new URL('https://calendar.google.com/calendar/render');
+      googleCalendarUrl.searchParams.set('action', 'TEMPLATE');
+      googleCalendarUrl.searchParams.set('text', title);
+      googleCalendarUrl.searchParams.set('dates', `${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}`);
+      googleCalendarUrl.searchParams.set('details', description);
+      
+      // Open Google Calendar in new tab
+      window.open(googleCalendarUrl.toString(), '_blank');
+      
+      toast.success('Google Calendar се отваря...', {
+        position: 'top-center',
+        style: { background: '#16a34a', color: 'white' }
+      });
+    } catch (error) {
+      console.error('Error generating calendar event:', error);
+      toast.error('Неуспешно генериране на календарно събитие', {
+        position: 'top-center',
+        style: { background: '#dc2626', color: 'white' }
+      });
     }
   };
 
@@ -286,9 +381,14 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   };
 
   const overlappingIDs = getOverlappingBookingIDs();
-  const filteredBookings = showAll
+  const allFilteredBookings = showAll
     ? bookings
     : bookings.filter(b => isAfter(parseISO(b.CheckOutDT), new Date()));
+  
+  // Separate unconfirmed (rfstatusid === 1) and confirmed (rfstatusid === 2) bookings
+  const unconfirmedBookings = allFilteredBookings.filter(b => b.rfstatusid === 1);
+  const confirmedBookings = allFilteredBookings.filter(b => b.rfstatusid === 2);
+  const filteredBookings = [...unconfirmedBookings, ...confirmedBookings];
 
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
@@ -443,6 +543,26 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                 )}
               </div>
 
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-zinc-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={formData.Email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, Email: e.target.value }))}
+                  disabled={!!editingBooking}
+                  className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors disabled:bg-zinc-50 disabled:text-zinc-500 ${
+                    errors.Email ? 'border-red-300' : 'border-zinc-300'
+                  }`}
+                  placeholder="Enter email address"
+                />
+                {errors.Email && (
+                  <p className="mt-1 text-sm text-red-600">{errors.Email}</p>
+                )}
+              </div>
+
               {/* Full Price */}
               <div>
                 <label className="block text-sm font-medium text-zinc-700 mb-2">
@@ -553,9 +673,19 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </div>
           </div>
 
+          {/* Unconfirmed Bookings Section */}
+          {unconfirmedBookings.length > 0 && (
+            <div className="p-4 sm:p-6 border-b border-amber-200 bg-amber-50">
+              <h3 className="text-lg font-semibold text-amber-900 mb-4">
+                {t.admin.dashboard.unconfirmedBookings} ({unconfirmedBookings.length})
+              </h3>
+            </div>
+          )}
+
           {/* Mobile & Tablet Card View */}
           <div className="lg:hidden space-y-4 p-4">
             {filteredBookings.map((booking) => {
+              const isUnconfirmed = booking.rfstatusid === 1;
               const fullPrice = booking.FullPrice || 0;
               const paidPrice = booking.PaidPrice || 0;
               const remaining = Math.round(fullPrice - paidPrice);
@@ -565,7 +695,8 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                 <div
                   key={booking.BookingID}
                   className={`bg-white rounded-lg border-2 p-4 space-y-3 ${
-                    overlappingIDs.has(booking.BookingID) ? 'border-red-300 bg-red-50' : 'border-zinc-200'
+                    overlappingIDs.has(booking.BookingID) ? 'border-red-300 bg-red-50' : 
+                    isUnconfirmed ? 'border-amber-300 bg-amber-50' : 'border-zinc-200'
                   }`}
                 >
                   <div className="flex items-start justify-between">
@@ -581,12 +712,28 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
+                      {isUnconfirmed && (
+                        <button
+                          onClick={() => handleConfirmBooking(booking.BookingID)}
+                          className="p-2 rounded-lg bg-green-100 text-green-600 hover:bg-green-200 transition-colors"
+                          title="Confirm booking"
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                        </button>
+                      )}
                       <button
                         onClick={() => handleEditBooking(booking)}
                         className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
                         title="Edit booking"
                       >
                         <Edit className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleAddToCalendar(booking)}
+                        className="p-2 rounded-lg bg-purple-100 text-purple-600 hover:bg-purple-200 transition-colors"
+                        title="Add to Apple Calendar"
+                      >
+                        <Calendar className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteBooking(booking.BookingID)}
@@ -670,15 +817,29 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.price}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.paid}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.remaining}</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.comments}</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.actions}</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900 max-w-xs">{t.admin.dashboard.table.comments}</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900 whitespace-nowrap">{t.admin.dashboard.table.actions}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200">
-                {filteredBookings.map((booking) => (
+                {unconfirmedBookings.length > 0 && (
+                  <tr>
+                    <td colSpan={10} className="px-6 py-3 bg-amber-50 border-b-2 border-amber-200">
+                      <div className="text-sm font-semibold text-amber-900">
+                        {t.admin.dashboard.unconfirmedBookings} ({unconfirmedBookings.length})
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {filteredBookings.map((booking) => {
+                  const isUnconfirmed = booking.rfstatusid === 1;
+                  return (
                   <tr
                     key={booking.BookingID}
-                    className={`hover:bg-zinc-50 ${overlappingIDs.has(booking.BookingID) ? 'bg-red-50' : ''}`}
+                    className={`hover:bg-zinc-50 ${
+                      overlappingIDs.has(booking.BookingID) ? 'bg-red-50' : 
+                      isUnconfirmed ? 'bg-amber-50' : ''
+                    }`}
                   >
                     <td className="px-6 py-4">
                       <div className="text-sm text-zinc-900">
@@ -728,19 +889,35 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                         })()}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-zinc-600 max-w-xs truncate">
+                    <td className="px-6 py-4 max-w-xs">
+                      <div className="text-sm text-zinc-600 break-words">
                         {booking.Comments || '-'}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
+                        {isUnconfirmed && (
+                          <button
+                            onClick={() => handleConfirmBooking(booking.BookingID)}
+                            className="p-2 rounded-lg bg-green-100 text-green-600 hover:bg-green-200 transition-colors"
+                            title="Confirm booking"
+                          >
+                            <CheckCircle className="w-4 h-4" />
+                          </button>
+                        )}
                         <button
                           onClick={() => handleEditBooking(booking)}
                           className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
                           title="Edit booking"
                         >
                           <Edit className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleAddToCalendar(booking)}
+                          className="p-2 rounded-lg bg-purple-100 text-purple-600 hover:bg-purple-200 transition-colors"
+                          title="Add to Apple Calendar"
+                        >
+                          <Calendar className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleDeleteBooking(booking.BookingID)}
@@ -752,7 +929,8 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       </div>
                     </td>
                   </tr>
-                ))}
+                );
+                })}
                 {filteredBookings.length === 0 && (
                   <tr>
                     <td colSpan={10} className="px-6 py-12 text-center text-zinc-500">

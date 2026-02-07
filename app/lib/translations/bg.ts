@@ -8,10 +8,10 @@ export const bg: Translations = {
     reserve: 'Резервирай',
     exploreSections: {
       theVilla: {
-        title: 'ВИЛАТА',
+        title: 'Апартаменти',
         items: [
           {
-            label: 'Вилата',
+            label: 'Апартаменти',
             description: 'Открити жилищни пространства, проектирани да текат към морето.',
             href: '/details',
             icon: 'Home',
@@ -125,7 +125,7 @@ export const bg: Translations = {
       },
     },
     featuredCard: {
-      title: 'Кокосовият телеграф',
+      title: 'Instagram',
       description: 'Истории, ръководства и островни бележки от Abstract Apartment. Внимателни прозрения за пътуване, дизайн и живот.',
       image: '/Images/index/DEMO-hero-image.jpg',
       ctaText: 'Разгледайте нашия Instagram',
@@ -796,7 +796,7 @@ export const bg: Translations = {
           {
             name: 'Май',
             dateRange: '1 май - 31 май',
-            price: '€ 110 / нощувка',
+            price: '€ 100 / нощувка',
             highlights: [
               'Най-хубавото време за почивка',
               'По-ниски цени',
@@ -882,7 +882,7 @@ export const bg: Translations = {
           {
             name: 'Юни',
             dateRange: '1 юни - 30 юни',
-            price: '€ 95 / нощувка',
+            price: '€ 100 / нощувка',
             highlights: [
               'Топло време',
               'Идеално за море',
@@ -893,7 +893,7 @@ export const bg: Translations = {
           {
             name: 'Юли',
             dateRange: '1 юли - 31 юли',
-            price: '€ 120 / нощувка',
+            price: '€ 110 / нощувка',
             highlights: [
               'Горещо лято',
               'Много събития',
@@ -904,7 +904,7 @@ export const bg: Translations = {
           {
             name: 'Август',
             dateRange: '1 август - 31 август',
-            price: '€ 120 / нощувка',
+            price: '€ 110 / нощувка',
             highlights: [
               'Пикът на лятото',
               'Празници и фестивали',
@@ -915,7 +915,7 @@ export const bg: Translations = {
           {
             name: 'Септември',
             dateRange: '1 септември - 30 септември',
-            price: '€ 95 / нощувка',
+            price: '€ 100 / нощувка',
             highlights: [
               'Топло море',
               'По-спокойна атмосфера',
@@ -926,7 +926,7 @@ export const bg: Translations = {
           {
             name: 'Октомври',
             dateRange: '1 октомври - 31 октомври',
-            price: '€ 75 / нощувка',
+            price: '€ 80 / нощувка',
             highlights: [
               'Истинска почивка – без тълпи',
               'Най-достъпните цени за сезона',
@@ -974,7 +974,7 @@ export const bg: Translations = {
           'Настанява до 2 гости',
           '2 легла',
           '1 баня',
-          'Кухненка',
+          'Кухня',
           'Частен балкон',
         ],
       },
@@ -1127,13 +1127,13 @@ export const bg: Translations = {
       rooms: [
         { label: 'Основна спална зона', details: '2 легла, климатик', icon: 'BedDouble' },
         { label: 'Баня', details: '1 баня', icon: 'BedDouble' },
-        { label: 'Възможност за детско легло', details: 'По заявка', icon: 'Baby' },
       ],
       amenities: [
-        { title: 'Напълно оборудвана кухненка', icon: 'CookingPot' },
+        { title: 'Напълно оборудвана кухня', icon: 'CookingPot' },
         { title: 'Wi-Fi', icon: 'Wifi' },
         { title: 'Климатик', icon: 'Snowflake' },
         { title: 'Телевизия', icon: 'Tv' },
+        { title: 'Българска телевизия', icon: 'Tv' },
         { title: 'Лесен достъп до плаж/таверни', icon: 'MapPin' },
       ],
       note: 'Подробностите за Студиото ще бъдат добавени скоро.',
@@ -1279,6 +1279,7 @@ export const bg: Translations = {
       upcomingBookings: 'Предстоящи Резервации',
       allBookings: 'Всички Резервации',
       noBookings: 'Няма намерени резервации',
+      unconfirmedBookings: 'Непотвърдени Резервации',
       form: {
         apartment: 'Апартамент',
         apartmentOptions: {

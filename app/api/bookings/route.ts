@@ -19,10 +19,12 @@ export async function GET(request: NextRequest) {
       CheckOutDT,
       CustomerID,
       apartmentid,
+      rfstatusid,
       Customer:CustomerID (
         FirstName,
         LastName,
-        Telephone
+        Telephone,
+        Email
       ),
       FullPrice,
       PaidPrice,
@@ -48,23 +50,44 @@ export async function GET(request: NextRequest) {
 // POST /api/bookings - Add new booking
 export async function POST(request: NextRequest) {
   try {
-    const { CheckInDT, CheckOutDT, FirstName, LastName, Telephone, FullPrice, PaidPrice, Comments, apartmentid } = await request.json();
+    const { CheckInDT, CheckOutDT, FirstName, LastName, Telephone, Email, FullPrice, PaidPrice, Comments, apartmentid } = await request.json();
 
     // First, insert the customer
-    const { data: customer, error: custErr } = await supabase
+    // Try with Email first, fallback to without Email if column doesn't exist
+    let customer, custErr;
+    const customerData: any = { FirstName, LastName, Telephone };
+    if (Email) {
+      customerData.Email = Email;
+    }
+    
+    const insertResult = await supabase
       .from('Customer')
-      .insert([{ FirstName, LastName, Telephone }])
+      .insert([customerData])
       .select()
       .single();
+    
+    customer = insertResult.data;
+    custErr = insertResult.error;
+    
+    // If error is about missing Email column, retry without Email
+    if (custErr && custErr.message && custErr.message.includes("Email") && custErr.message.includes("schema cache")) {
+      const retryResult = await supabase
+        .from('Customer')
+        .insert([{ FirstName, LastName, Telephone }])
+        .select()
+        .single();
+      customer = retryResult.data;
+      custErr = retryResult.error;
+    }
 
     if (custErr) {
       return NextResponse.json({ error: custErr }, { status: 500 });
     }
 
-    // Then, insert the booking
+    // Then, insert the booking with rfstatusid = 1 (not confirmed) by default
     const { error: bookErr } = await supabase
       .from('Booking')
-      .insert([{ CheckInDT, CheckOutDT, CustomerID: customer.CustomerID, FullPrice, PaidPrice, Comments, apartmentid }]);
+      .insert([{ CheckInDT, CheckOutDT, CustomerID: customer.CustomerID, FullPrice, PaidPrice, Comments, apartmentid, rfstatusid: 1 }]);
 
     if (bookErr) {
       return NextResponse.json({ error: bookErr }, { status: 500 });

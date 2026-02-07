@@ -46,6 +46,12 @@ export function Header() {
         return;
       }
 
+      // Check if click is inside any navigation panel
+      const navigationPanel = target.closest('[data-navigation-panel]');
+      if (navigationPanel) {
+        return; // Don't close if clicking inside any navigation panel
+      }
+
       // Check if click is outside the explore menu area (button + panel)
       if (exploreOpen && exploreRef.current) {
         const explorePanel = exploreRef.current.parentElement?.querySelector('[data-navigation-panel]');

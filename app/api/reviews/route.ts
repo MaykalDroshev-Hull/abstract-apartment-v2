@@ -26,7 +26,8 @@ const mockReviews = [
 ];
 
 export async function GET(request: NextRequest) {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  // Check for API key - prefer server-only key, fallback to NEXT_PUBLIC version
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY || process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const { searchParams } = new URL(request.url);
   const locale = searchParams.get('locale') || 'bg'; // fallback to 'bg' if not provided
 

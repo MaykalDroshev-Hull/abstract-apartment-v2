@@ -53,12 +53,8 @@ export function AvailabilityCalendar({
   useEffect(() => {
     if (focusDate) {
       setCurrentMonth(new Date(focusDate.getFullYear(), focusDate.getMonth(), 1));
-    } else if (checkIn) {
-      // If no focus date but check-in exists, navigate to check-in month
-      const checkInDate = new Date(checkIn);
-      setCurrentMonth(new Date(checkInDate.getFullYear(), checkInDate.getMonth(), 1));
     }
-  }, [focusDate, checkIn]);
+  }, [focusDate]);
 
   useEffect(() => {
     const loadDates = async () => {

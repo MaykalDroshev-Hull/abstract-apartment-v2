@@ -125,7 +125,7 @@ export const el: Translations = {
       },
     },
     featuredCard: {
-      title: 'Ο Καρυοφυλλικός Τηλέγραφος',
+      title: 'Instagram',
       description: 'Ιστορίες, οδηγοί και σημειώσεις νησιού από το Abstract Apartment. Σκεπτικές γνώσεις για ταξίδια, σχεδιασμό και ζωή.',
       image: '/Images/index/DEMO-hero-image.jpg',
       ctaText: 'Εξερευνήστε το Instagram μας',
@@ -795,7 +795,7 @@ export const el: Translations = {
           {
             name: 'Μάιος',
             dateRange: '1 Μαΐου - 31 Μαΐου',
-            price: '€ 110 / βράδυ',
+            price: '€ 100 / βράδυ',
             highlights: [
               'Καλύτερος χρόνος για διακοπές',
               'Χαμηλότερες τιμές',
@@ -881,7 +881,7 @@ export const el: Translations = {
           {
             name: 'Ιούνιος',
             dateRange: '1 Ιουνίου - 30 Ιουνίου',
-            price: '€ 95 / βράδυ',
+            price: '€ 100 / βράδυ',
             highlights: [
               'Ζεστός καιρός',
               'Ιδανικό για τη θάλασσα',
@@ -892,7 +892,7 @@ export const el: Translations = {
           {
             name: 'Ιούλιος',
             dateRange: '1 Ιουλίου - 31 Ιουλίου',
-            price: '€ 120 / βράδυ',
+            price: '€ 110 / βράδυ',
             highlights: [
               'Καυτό καλοκαίρι',
               'Πολλά γεγονότα',
@@ -903,7 +903,7 @@ export const el: Translations = {
           {
             name: 'Αύγουστος',
             dateRange: '1 Αυγούστου - 31 Αυγούστου',
-            price: '€ 120 / βράδυ',
+            price: '€ 110 / βράδυ',
             highlights: [
               'Κορύφωση του καλοκαιριού',
               'Γιορτές και φεστιβάλ',
@@ -914,7 +914,7 @@ export const el: Translations = {
           {
             name: 'Σεπτέμβριος',
             dateRange: '1 Σεπτεμβρίου - 30 Σεπτεμβρίου',
-            price: '€ 95 / βράδυ',
+            price: '€ 100 / βράδυ',
             highlights: [
               'Ζεστή θάλασσα',
               'Πιο ήρεμη ατμόσφαιρα',
@@ -925,7 +925,7 @@ export const el: Translations = {
           {
             name: 'Οκτώβριος',
             dateRange: '1 Οκτωβρίου - 31 Οκτωβρίου',
-            price: '€ 75 / βράδυ',
+            price: '€ 80 / βράδυ',
             highlights: [
               'Αληθινές διακοπές – χωρίς συνωστισμό',
               'Οι πιο προσιτές τιμές για τη σεζόν',
@@ -1126,13 +1126,13 @@ export const el: Translations = {
       rooms: [
         { label: 'Κύρια περιοχή ύπνου', details: '2 κρεβάτια, AC', icon: 'BedDouble' },
         { label: 'Μπάνιο', details: '1 μπάνιο', icon: 'BedDouble' },
-        { label: 'Διαθέσιμο παιδικό κρεβάτι', details: 'Κατόπιν αιτήματος', icon: 'Baby' },
       ],
       amenities: [
         { title: 'Πλήρως εξοπλισμένη μικρή κουζίνα', icon: 'CookingPot' },
         { title: 'Wi-Fi', icon: 'Wifi' },
         { title: 'AC', icon: 'Snowflake' },
         { title: 'Τηλεόραση', icon: 'Tv' },
+        { title: 'Βουλγαρική τηλεόραση', icon: 'Tv' },
         { title: 'Εύκολη πρόσβαση στην παραλία/ταβέρνες', icon: 'MapPin' },
       ],
       note: 'Οι λεπτομέρειες για το Στούντιο θα προστεθούν σύντομα.',
@@ -1278,6 +1278,7 @@ export const el: Translations = {
       upcomingBookings: 'Επερχόμενες Κρατήσεις',
       allBookings: 'Όλες οι Κρατήσεις',
       noBookings: 'Δεν βρέθηκαν κρατήσεις',
+      unconfirmedBookings: 'Μη Επιβεβαιωμένες Κρατήσεις',
       form: {
         apartment: 'Διαμέρισμα',
         apartmentOptions: {

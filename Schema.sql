@@ -10,15 +10,23 @@ CREATE TABLE public.Booking (
   PaidPrice double precision CHECK ("PaidPrice" >= 0.0::double precision),
   Comments text,
   apartmentid bigint NOT NULL,
+  rfstatusid bigint NOT NULL DEFAULT 1,
   CONSTRAINT Booking_pkey PRIMARY KEY (BookingID),
   CONSTRAINT Booking_CustomerID_fkey FOREIGN KEY (CustomerID) REFERENCES public.Customer(CustomerID),
-  CONSTRAINT booking_apartmentid_fkey FOREIGN KEY (apartmentid) REFERENCES public.apartment(apartmentid)
+  CONSTRAINT booking_apartmentid_fkey FOREIGN KEY (apartmentid) REFERENCES public.apartment(apartmentid),
+  CONSTRAINT booking_rfstatusid_fkey FOREIGN KEY (rfstatusid) REFERENCES public.rfstatus(id)
+);
+CREATE TABLE public.rfstatus (
+  id bigint NOT NULL,
+  name text NOT NULL,
+  CONSTRAINT rfstatus_pkey PRIMARY KEY (id)
 );
 CREATE TABLE public.Customer (
   CustomerID bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   FirstName text NOT NULL,
   LastName text,
   Telephone text,
+  Email text,
   CONSTRAINT Customer_pkey PRIMARY KEY (CustomerID)
 );
 CREATE TABLE public.admin_users (

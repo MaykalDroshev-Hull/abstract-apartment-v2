@@ -230,6 +230,7 @@ function ReservePageContent() {
           FirstName: firstName,
           LastName: lastName,
           Telephone: draft.phone,
+          Email: draft.email,
           Comments: draft.notes || '',
           PaidPrice: 0,
         };
@@ -314,6 +315,7 @@ function ReservePageContent() {
             FirstName: firstName,
             LastName: lastName,
             Telephone: draft.phone,
+            Email: draft.email,
             Comments: draft.notes || '',
             PaidPrice: 0,
             apartmentid: apartmentId,

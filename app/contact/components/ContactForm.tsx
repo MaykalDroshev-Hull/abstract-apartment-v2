@@ -43,22 +43,37 @@ export function ContactForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validate()) {
-      // Form is just UI for now - show success message
-      setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: 'Question',
-        message: '',
-      });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
+      try {
+        const response = await fetch('/api/send-contact-enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || 'Failed to send enquiry');
+        }
+        
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: 'Question',
+          message: '',
+        });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } catch (error) {
+        console.error('Error sending enquiry:', error);
+        setErrors({ submit: error instanceof Error ? error.message : 'Failed to send enquiry. Please try again.' });
+      }
     }
   };
 
@@ -74,6 +89,12 @@ export function ContactForm() {
       {isSubmitted && (
         <div className="mb-6 p-4 rounded-lg bg-green-50bg-green-900/20 border border-green-200border-green-800 text-green-800text-green-200">
           {t.contact.form.successMessage}
+        </div>
+      )}
+
+      {errors.submit && (
+        <div className="mb-6 p-4 rounded-lg bg-red-50bg-red-900/20 border border-red-200border-red-800 text-red-800text-red-200">
+          {errors.submit}
         </div>
       )}
 

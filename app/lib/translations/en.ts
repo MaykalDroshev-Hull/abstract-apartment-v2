@@ -125,7 +125,7 @@ export const en: Translations = {
       },
     },
     featuredCard: {
-      title: 'The Coconut Telegraph',
+      title: 'Instagram',
       description: 'Stories, guides, and island notes from Abstract Apartment. Thoughtful insights on travel, design, and life.',
       image: '/Images/index/DEMO-hero-image.jpg',
       ctaText: 'Explore our Instagram',
@@ -795,7 +795,7 @@ export const en: Translations = {
           {
             name: 'May',
             dateRange: 'May 1 - May 31',
-            price: '€ 110 / night',
+            price: '€ 100 / night',
             highlights: [
               'Best time for vacation',
               'Lower prices',
@@ -881,7 +881,7 @@ export const en: Translations = {
           {
             name: 'June',
             dateRange: 'June 1 - June 30',
-            price: '€ 95 / night',
+            price: '€ 100 / night',
             highlights: [
               'Warm weather',
               'Perfect for the sea',
@@ -892,7 +892,7 @@ export const en: Translations = {
           {
             name: 'July',
             dateRange: 'July 1 - July 31',
-            price: '€ 120 / night',
+            price: '€ 110 / night',
             highlights: [
               'Hot summer',
               'Many events',
@@ -903,7 +903,7 @@ export const en: Translations = {
           {
             name: 'August',
             dateRange: 'August 1 - August 31',
-            price: '€ 120 / night',
+            price: '€ 110 / night',
             highlights: [
               'Peak of summer',
               'Holidays and festivals',
@@ -914,7 +914,7 @@ export const en: Translations = {
           {
             name: 'September',
             dateRange: 'September 1 - September 30',
-            price: '€ 95 / night',
+            price: '€ 100 / night',
             highlights: [
               'Warm sea',
               'More peaceful atmosphere',
@@ -925,7 +925,7 @@ export const en: Translations = {
           {
             name: 'October',
             dateRange: 'October 1 - October 31',
-            price: '€ 75 / night',
+            price: '€ 80 / night',
             highlights: [
               'True vacation – no crowds',
               'Most affordable prices for the season',
@@ -1126,13 +1126,13 @@ export const en: Translations = {
       rooms: [
         { label: 'Main sleeping area', details: '2 beds, AC', icon: 'BedDouble' },
         { label: 'Bathroom', details: '1 bathroom', icon: 'BedDouble' },
-        { label: 'Baby cot available', details: 'On request', icon: 'Baby' },
       ],
       amenities: [
         { title: 'Fully equipped kitchenette', icon: 'CookingPot' },
         { title: 'Wi-Fi', icon: 'Wifi' },
         { title: 'AC', icon: 'Snowflake' },
         { title: 'TV', icon: 'Tv' },
+        { title: 'Bulgarian TV', icon: 'Tv' },
         { title: 'Easy access to beach/taverns', icon: 'MapPin' },
       ],
       note: 'Studio details will be added soon.',
@@ -1278,6 +1278,7 @@ export const en: Translations = {
       upcomingBookings: 'Upcoming Bookings',
       allBookings: 'All Bookings',
       noBookings: 'No bookings found',
+      unconfirmedBookings: 'Unconfirmed Bookings',
       form: {
         apartment: 'Apartment',
         apartmentOptions: {

@@ -646,6 +646,7 @@ export interface Translations {
       upcomingBookings: string;
       allBookings: string;
       noBookings: string;
+      unconfirmedBookings: string;
       form: {
         apartment: string;
         apartmentOptions: {

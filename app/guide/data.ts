@@ -210,7 +210,7 @@ export const guideDataRaw: GuideItemRaw[] = [
   {
     id: 'tavern-4',
     category: 'Taverns',
-    imageSrc: '/Images/Attractions/Fish Taverna Atlantida.jpg',
+    imageSrc: '/Images/Attractions/Fish Taverna Atlantid.jpg',
     mapsUrl: 'https://maps.app.goo.gl/tsRpyU1nHqzzr61z6?g_st=ic',
     translations: {
       en: {
@@ -272,7 +272,7 @@ export const guideDataRaw: GuideItemRaw[] = [
   {
     id: 'tavern-5',
     category: 'Taverns',
-    imageSrc: '/Images/Attractions/Kyriakos Taverna.jpg',
+    imageSrc: '/Images/Attractions/Kyriakos Taverna.webp',
     mapsUrl: 'https://maps.app.goo.gl/EcPMheeMr4SCagpP6?g_st=ic',
     translations: {
       en: {
@@ -336,7 +336,7 @@ export const guideDataRaw: GuideItemRaw[] = [
   {
     id: 'beach-1',
     category: 'Beaches',
-    imageSrc: '/Images/Attractions/beach.jpg',
+    imageSrc: '/Images/Attractions/beach.png',
     mapsUrl: 'https://maps.app.goo.gl/k9URwbzWXi995Y1D8?g_st=ic',
     translations: {
       en: {
