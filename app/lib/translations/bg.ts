@@ -18,7 +18,7 @@ export const bg: Translations = {
           },
           {
             label: 'План на етажа',
-            description: 'Преглед на оформлението и потока на вилата.',
+            description: 'Преглед на оформлението и потока на апартаментите.',
             href: '/floor-plan',
             icon: 'Layout',
           },
@@ -83,7 +83,7 @@ export const bg: Translations = {
         items: [
           {
             label: 'Цени и календар',
-            description: 'Вижте сезонните цени и наличността на вилата за предпочитаните от вас дати.',
+            description: 'Вижте сезонните цени и наличността на апартаментите за предпочитаните от вас дати.',
             href: '/rates',
             icon: 'DollarSign',
           },
@@ -100,7 +100,7 @@ export const bg: Translations = {
         items: [
           {
             label: 'Как да стигнете',
-            description: 'Открийте най-лесните маршрути и опции за трансфер до вилата.',
+            description: 'Открийте най-лесните маршрути и опции за трансфер до апартаментите.',
             href: '/getting-here',
             icon: 'MapPin',
           },
@@ -111,7 +111,7 @@ export const bg: Translations = {
         items: [
           {
             label: 'Свържете се с нас',
-            description: 'Свържете се с нашия екип за запитвания за вилата или персонализирана помощ.',
+            description: 'Свържете се с нашия екип за запитвания за апартаментите или персонализирана помощ.',
             href: '/contact',
             icon: 'Mail',
           },
@@ -165,7 +165,7 @@ export const bg: Translations = {
       imageAlt: 'Луксозна вила за наемане',
       location: 'Паралия Офринио',
       title: 'Abstract Apartment',
-      cta: 'Разгледай Вилата',
+      cta: 'Разгледай Апартаментите',
       details: {
         guests: '8 Гости',
         bedrooms: '4 Спални',
@@ -401,7 +401,7 @@ export const bg: Translations = {
   },
   floorPlan: {
     title: 'План на етажа',
-    description: 'Преглед на оформлението и потока на вилата за Abstract Apartment и Abstract Studio.',
+    description: 'Преглед на оформлението и потока на апартаментите за Abstract Apartment и Abstract Studio.',
     placeholder: 'План на етажа скоро',
     apartment: {
       title: 'Abstract Apartment',
