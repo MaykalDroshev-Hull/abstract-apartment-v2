@@ -102,6 +102,7 @@ export interface Translations {
         imageComingSoon: string;
         details: {
           beds: string;
+          couch?: string;
           sleepCapacity: string;
           bathrooms: string;
         };

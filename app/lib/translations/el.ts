@@ -195,7 +195,8 @@ export const el: Translations = {
         imageAlt: 'Εσωτερική όψη του Abstract Studio',
         imageComingSoon: 'Η εικόνα έρχεται σύντομα',
         details: {
-          beds: '2 Κρεβάτια',
+          beds: '1 Κρεβάτι',
+          couch: '1 Καναπές',
           sleepCapacity: 'Φιλοξενεί έως 4 επισκέπτες',
           bathrooms: '1 Μπάνιο',
         },
@@ -1109,6 +1110,7 @@ export const el: Translations = {
         { label: 'Δωμάτιο 1', details: 'Διπλό κρεβάτι, AC, ταράτσα', icon: 'BedDouble' },
         { label: 'Δωμάτιο 2', details: 'Διπλό κρεβάτι, AC, ταράτσα', icon: 'BedDouble' },
         { label: 'Δωμάτιο 3', details: 'Καναπές-κρεβάτι', icon: 'Sofa' },
+        { label: 'Μπάνιο', details: 'Πλυντήριο ρούχων', icon: 'Bath' },
         { label: 'Διαθέσιμο παιδικό κρεβάτι', details: 'Κατόπιν αιτήματος', icon: 'Baby' },
       ],
       amenities: [
@@ -1122,16 +1124,16 @@ export const el: Translations = {
     },
     studio: {
       roomsTitle: 'Δωμάτια',
-      amenitiesTitle: 'Ανέσεις & Εξοπλισμός',
+      amenitiesTitle: 'Ανέσεις',
       rooms: [
-        { label: 'Κύρια περιοχή ύπνου', details: '2 κρεβάτια, AC', icon: 'BedDouble' },
-        { label: 'Μπάνιο', details: '1 μπάνιο', icon: 'BedDouble' },
+        { label: 'Κύρια περιοχή ύπνου', details: '1 κρεβάτι, AC', icon: 'Bed' },
+        { label: 'Σαλόνι', details: '1 καναπές', icon: 'Sofa' },
+        { label: 'Μπάνιο', details: '1 μπάνιο', icon: 'Bath' },
       ],
       amenities: [
         { title: 'Πλήρως εξοπλισμένη μικρή κουζίνα', icon: 'CookingPot' },
-        { title: 'Wi-Fi', icon: 'Wifi' },
+        { title: 'Γρήγορο Wi-Fi', icon: 'Wifi' },
         { title: 'AC', icon: 'Snowflake' },
-        { title: 'Τηλεόραση', icon: 'Tv' },
         { title: 'Βουλγαρική τηλεόραση', icon: 'Tv' },
         { title: 'Εύκολη πρόσβαση στην παραλία/ταβέρνες', icon: 'MapPin' },
       ],

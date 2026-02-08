@@ -195,7 +195,8 @@ export const en: Translations = {
         imageAlt: 'Abstract Studio interior view',
         imageComingSoon: 'Image coming soon',
         details: {
-          beds: '2 Beds',
+          beds: '1 Bed',
+          couch: '1 Couch',
           sleepCapacity: 'Sleeps up to 4 guests',
           bathrooms: '1 Bathroom',
         },
@@ -1109,6 +1110,7 @@ export const en: Translations = {
         { label: 'Room 1', details: 'Double bed, AC, terrace', icon: 'BedDouble' },
         { label: 'Room 2', details: 'Double bed, AC, terrace', icon: 'BedDouble' },
         { label: 'Room 3', details: 'Sofa bed', icon: 'Sofa' },
+        { label: 'Bathroom', details: 'Washing machine', icon: 'Bath' },
         { label: 'Baby cot available', details: 'On request', icon: 'Baby' },
       ],
       amenities: [
@@ -1122,16 +1124,16 @@ export const en: Translations = {
     },
     studio: {
       roomsTitle: 'Rooms',
-      amenitiesTitle: 'Comfort & Amenities',
+      amenitiesTitle: 'Comfort',
       rooms: [
-        { label: 'Main sleeping area', details: '2 beds, AC', icon: 'BedDouble' },
-        { label: 'Bathroom', details: '1 bathroom', icon: 'BedDouble' },
+        { label: 'Main sleeping area', details: '1 bed, AC', icon: 'Bed' },
+        { label: 'Living area', details: '1 sofa', icon: 'Sofa' },
+        { label: 'Bathroom', details: '1 bathroom', icon: 'Bath' },
       ],
       amenities: [
         { title: 'Fully equipped kitchenette', icon: 'CookingPot' },
-        { title: 'Wi-Fi', icon: 'Wifi' },
+        { title: 'Fast Wi-Fi', icon: 'Wifi' },
         { title: 'AC', icon: 'Snowflake' },
-        { title: 'TV', icon: 'Tv' },
         { title: 'Bulgarian TV', icon: 'Tv' },
         { title: 'Easy access to beach/taverns', icon: 'MapPin' },
       ],
