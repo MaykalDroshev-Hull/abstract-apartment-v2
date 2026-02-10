@@ -191,9 +191,8 @@ export const bg: Translations = {
       },
       villa2: {
         name: 'Abstract Studio',
-        image: '/Images/Gallery/LivingArea1.jpg',
+        image: '/Images/Attractions/abstract-studio.jpg',
         imageAlt: 'Вътрешен изглед на Abstract Studio',
-        imageComingSoon: 'Изображението ще бъде качено скоро',
         details: {
           beds: '1 Легло',
           couch: '1 Диван',
@@ -570,13 +569,8 @@ export const bg: Translations = {
         titleMobile: 'Студио',
         images: [
           {
-            src: '/Images/Gallery/LivingArea1.jpg',
-            alt: 'Студио жилищна зона',
-            caption: 'Комфортно студио пространство',
-          },
-          {
-            src: '/Images/Gallery/LivingArea1.jpg',
-            alt: 'Студио интериор',
+            src: '/Images/Attractions/abstract-studio.jpg',
+            alt: 'Вътрешен изглед на Abstract Studio',
             caption: 'Вътрешен изглед на Abstract Studio',
           },
         ],

@@ -191,9 +191,8 @@ export const el: Translations = {
       },
       villa2: {
         name: 'Abstract Studio',
-        image: '/Images/Gallery/LivingArea1.jpg',
+        image: '/Images/Attractions/abstract-studio.jpg',
         imageAlt: 'Εσωτερική όψη του Abstract Studio',
-        imageComingSoon: 'Η εικόνα έρχεται σύντομα',
         details: {
           beds: '1 Κρεβάτι',
           couch: '1 Καναπές',
@@ -570,13 +569,8 @@ export const el: Translations = {
         titleMobile: 'Στούντιο',
         images: [
           {
-            src: '/Images/Gallery/LivingArea1.jpg',
-            alt: 'Στούντιο χώρος διαβίωσης',
-            caption: 'Άνετος χώρος στούντιο',
-          },
-          {
-            src: '/Images/Gallery/LivingArea1.jpg',
-            alt: 'Στούντιο εσωτερικό',
+            src: '/Images/Attractions/abstract-studio.jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio',
             caption: 'Εσωτερική όψη του Abstract Studio',
           },
         ],

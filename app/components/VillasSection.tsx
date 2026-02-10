@@ -30,7 +30,7 @@ function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
 
   return (
     <motion.div
-      className="relative h-[500px] sm:h-[600px] lg:h-[700px] rounded-2xl sm:rounded-3xl overflow-hidden group"
+      className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden group"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
@@ -55,14 +55,14 @@ function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
             src={villa.image}
             alt={villa.imageAlt}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className={`${isStudio ? 'object-contain' : 'object-cover'} transition-transform duration-700 group-hover:scale-105`}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         )}
       </div>
 
       {/* Gradient Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+      <div className={`absolute ${isStudio ? 'right-0 bottom-0 w-full h-full' : 'inset-0'} bg-gradient-to-t from-black/60 via-black/20 to-transparent`} />
 
       {/* Bottom Overlay Content */}
       <motion.div

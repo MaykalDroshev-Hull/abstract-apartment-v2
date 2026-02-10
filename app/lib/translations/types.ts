@@ -99,7 +99,7 @@ export interface Translations {
         name: string;
         image: string;
         imageAlt: string;
-        imageComingSoon: string;
+        imageComingSoon?: string;
         details: {
           beds: string;
           couch?: string;

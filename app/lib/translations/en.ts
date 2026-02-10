@@ -191,9 +191,8 @@ export const en: Translations = {
       },
       villa2: {
         name: 'Abstract Studio',
-        image: '/Images/Gallery/LivingArea1.jpg',
+        image: '/Images/Attractions/abstract-studio.jpg',
         imageAlt: 'Abstract Studio interior view',
-        imageComingSoon: 'Image coming soon',
         details: {
           beds: '1 Bed',
           couch: '1 Couch',
@@ -570,13 +569,8 @@ export const en: Translations = {
         titleMobile: 'Studio',
         images: [
           {
-            src: '/Images/Gallery/LivingArea1.jpg',
-            alt: 'Studio living area',
-            caption: 'Comfortable studio space',
-          },
-          {
-            src: '/Images/Gallery/LivingArea1.jpg',
-            alt: 'Studio interior',
+            src: '/Images/Attractions/abstract-studio.jpg',
+            alt: 'Abstract Studio interior view',
             caption: 'Abstract Studio interior view',
           },
         ],
