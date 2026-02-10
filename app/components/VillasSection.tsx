@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from '@/app/lib/translations';
-import { Bed, Users, Bath, Square } from 'lucide-react';
+import { Bed, Users, Bath, Sofa } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface VillaCardProps {
@@ -109,7 +109,7 @@ function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
             <>
               <div className="w-px h-4 bg-white/40" />
               <div className="flex items-center gap-2 text-white/85">
-                <Square className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Sofa className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span className="text-sm sm:text-base font-light">
                   {villa.details.couch}
                 </span>
