@@ -167,9 +167,10 @@ export const en: Translations = {
       title: 'Abstract Apartment',
       cta: 'Explore Villa',
       details: {
-        guests: '8 Guests',
-        bedrooms: '4 Bedrooms',
-        bathrooms: '3 Bathrooms',
+        guests: '10 Guests',
+        bedrooms: '3 Beds',
+        bathrooms: '2 Baths',
+        sofas: '2 Sofas',
       },
     },
     villas: {

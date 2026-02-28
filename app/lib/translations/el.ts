@@ -167,9 +167,10 @@ export const el: Translations = {
       title: 'Abstract Apartment',
       cta: 'Εξερεύνηση Βίλας',
       details: {
-        guests: '8 Επισκέπτες',
-        bedrooms: '4 Υπνοδωμάτια',
-        bathrooms: '3 Μπάνια',
+        guests: '10 Επισκέπτες',
+        bedrooms: '3 Κρεβάτια',
+        bathrooms: '2 Μπάνια',
+        sofas: '2 Καναπές',
       },
     },
     villas: {

@@ -76,6 +76,7 @@ export interface Translations {
         guests: string;
         bedrooms: string;
         bathrooms: string;
+        sofas: string;
       };
     };
     villas: {

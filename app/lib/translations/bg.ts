@@ -167,9 +167,10 @@ export const bg: Translations = {
       title: 'Abstract Apartment',
       cta: 'Разгледай Апартаментите',
       details: {
-        guests: '8 Гости',
-        bedrooms: '4 Спални',
-        bathrooms: '3 Бани',
+        guests: '10 Гости',
+        bedrooms: '3 Легла',
+        bathrooms: '2 Бани',
+        sofas: '2 Дивана',
       },
     },
     villas: {

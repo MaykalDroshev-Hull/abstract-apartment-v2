@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from '@/app/lib/translations';
-import { Users, Bed, Bath } from 'lucide-react';
+import { Users, Bed, Bath, Sofa } from 'lucide-react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -90,6 +90,17 @@ export function Hero() {
                 <Bath className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span className="text-xs sm:text-sm font-light">
                   {t.home.hero.details.bathrooms}
+                </span>
+              </div>
+
+              {/* Separator */}
+              <div className="w-px h-4 bg-white/30" />
+
+              {/* Sofas */}
+              <div className="flex items-center gap-2 text-white/70">
+                <Sofa className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-xs sm:text-sm font-light">
+                  {t.home.hero.details.sofas}
                 </span>
               </div>
             </div>
