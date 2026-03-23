@@ -249,6 +249,14 @@ export interface Translations {
       openInMaps: string;
       website: string;
     };
+    contacts: {
+      title: string;
+      searchPlaceholder: string;
+      noResults: string;
+      call: string;
+      callAlt: string;
+      maps: string;
+    };
   };
   about: {
     hero: {

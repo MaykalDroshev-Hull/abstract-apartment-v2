@@ -598,6 +598,14 @@ export const bg: Translations = {
       openInMaps: 'Отвори в Google Maps',
       website: 'Уебсайт',
     },
+    contacts: {
+      title: 'Полезни контакти',
+      searchPlaceholder: 'Търсене на контакти…',
+      noResults: 'Няма контакти, които да отговарят на търсенето.',
+      call: 'Обаждане',
+      callAlt: 'Обаждане (2)',
+      maps: 'Карта',
+    },
   },
   about: {
     hero: {

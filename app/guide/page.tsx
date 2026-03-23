@@ -5,6 +5,7 @@ import { GuideHero } from './components/GuideHero';
 import { GuideFilters } from './components/GuideFilters';
 import { GuideGrid } from './components/GuideGrid';
 import { GuideModal } from './components/GuideModal';
+import { GuideContactsSection } from './components/GuideContactsSection';
 import { guideDataRaw } from './data';
 import { useLanguage } from '../lib/translations';
 
@@ -60,6 +61,8 @@ export default function GuidePage() {
             items={filteredItems}
             onItemClick={setSelectedItem}
           />
+
+          <GuideContactsSection />
         </div>
       </div>
 

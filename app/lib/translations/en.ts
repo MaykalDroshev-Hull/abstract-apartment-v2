@@ -598,6 +598,14 @@ export const en: Translations = {
       openInMaps: 'Open in Google Maps',
       website: 'Website',
     },
+    contacts: {
+      title: 'Useful contacts',
+      searchPlaceholder: 'Search contacts…',
+      noResults: 'No contacts match your search.',
+      call: 'Call',
+      callAlt: 'Call (2)',
+      maps: 'Maps',
+    },
   },
   about: {
     hero: {

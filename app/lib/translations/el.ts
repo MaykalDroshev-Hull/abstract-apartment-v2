@@ -598,6 +598,14 @@ export const el: Translations = {
       openInMaps: 'Άνοιγμα στο Google Maps',
       website: 'Ιστοσελίδα',
     },
+    contacts: {
+      title: 'Χρήσιμες επαφές',
+      searchPlaceholder: 'Αναζήτηση επαφών…',
+      noResults: 'Δεν βρέθηκαν επαφές που να ταιριάζουν στην αναζήτησή σας.',
+      call: 'Κλήση',
+      callAlt: 'Κλήση (2)',
+      maps: 'Χάρτης',
+    },
   },
   about: {
     hero: {
