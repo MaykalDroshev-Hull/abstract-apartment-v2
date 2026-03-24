@@ -21,7 +21,7 @@ export function RatesHero() {
           >
             <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden">
               <Image
-                src="/Images/Gallery/ApartmentFromOutside.jpg"
+                src="/Images/abstract Studio/abstract-studio (3).jpg"
                 alt="Abstract Apartment exterior"
                 fill
                 className="object-cover"

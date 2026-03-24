@@ -65,7 +65,7 @@ export function ContactHero() {
               {/* Main Image - Apartment Exterior */}
               <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-lg z-10">
                 <Image
-                  src="/Images/Gallery/ApartmentFromOutside.jpg"
+                  src="/Images/abstract Studio/abstract-studio (3).jpg"
                   alt="Abstract Apartment exterior"
                   fill
                   className="object-cover"

@@ -55,7 +55,7 @@ function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
             src={villa.image}
             alt={villa.imageAlt}
             fill
-            className={`${isStudio ? 'object-contain' : 'object-cover'} transition-transform duration-700 group-hover:scale-105`}
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         )}

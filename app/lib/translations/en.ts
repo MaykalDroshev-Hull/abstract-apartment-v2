@@ -161,7 +161,7 @@ export const en: Translations = {
     title: 'Welcome',
     description: 'This is your main content area. The header and footer are always visible, and you can switch between English, Bulgarian, and Greek using the language switcher in the header.',
     hero: {
-      image: '/Images/Gallery/ApartmentFromOutside.jpg',
+      image: '/Images/abstract Studio/abstract-studio (3).jpg',
       imageAlt: 'Luxury vacation rental villa',
       location: 'Paralia Ofriniou',
       title: 'Abstract Apartment',
@@ -180,7 +180,7 @@ export const en: Translations = {
       },
       villa1: {
         name: 'Abstract Apartment',
-        image: '/Images/Gallery/ApartmentFromOutside.jpg',
+        image: '/Images/Gallery/LivingArea1.jpg',
         imageAlt: 'Abstract Apartment exterior view',
         details: {
           beds: '2 Beds',
@@ -192,7 +192,7 @@ export const en: Translations = {
       },
       villa2: {
         name: 'Abstract Studio',
-        image: '/Images/Attractions/abstract-studio.jpg',
+        image: '/Images/abstract Studio/abstract-studio (10).jpg',
         imageAlt: 'Abstract Studio interior view',
         details: {
           beds: '1 Bed',
@@ -467,11 +467,6 @@ export const en: Translations = {
             caption: 'Private bathroom with modern amenities',
           },
           {
-            src: '/Images/Gallery/ApartmentFromOutside.jpg',
-            alt: 'Apartment exterior',
-            caption: 'Abstract Apartment exterior view',
-          },
-          {
             src: '/Images/Gallery/LivingArea1.jpg',
             alt: 'Living area',
             caption: 'Spacious living area',
@@ -555,10 +550,6 @@ export const en: Translations = {
             alt: 'Main entrance',
           },
           {
-            src: '/Images/Gallery/Garage.jpg',
-            alt: 'Garage',
-          },
-          {
             src: '/Images/Gallery/ElectricalAndInfoCloser.jpg',
             alt: 'Electrical and information panel',
           },
@@ -570,9 +561,114 @@ export const en: Translations = {
         titleMobile: 'Studio',
         images: [
           {
-            src: '/Images/Attractions/abstract-studio.jpg',
-            alt: 'Abstract Studio interior view',
-            caption: 'Abstract Studio interior view',
+            src: '/Images/abstract Studio/abstract-studio (1).jpg',
+            alt: 'Abstract Studio interior view 1',
+            caption: 'Abstract Studio interior view 1',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (2).jpg',
+            alt: 'Abstract Studio interior view 2',
+            caption: 'Abstract Studio interior view 2',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (3).jpg',
+            alt: 'Abstract Studio interior view 3',
+            caption: 'Abstract Studio interior view 3',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (4).jpg',
+            alt: 'Abstract Studio interior view 4',
+            caption: 'Abstract Studio interior view 4',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (5).jpg',
+            alt: 'Abstract Studio interior view 5',
+            caption: 'Abstract Studio interior view 5',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (6).jpg',
+            alt: 'Abstract Studio interior view 6',
+            caption: 'Abstract Studio interior view 6',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (7).jpg',
+            alt: 'Abstract Studio interior view 7',
+            caption: 'Abstract Studio interior view 7',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (8).jpg',
+            alt: 'Abstract Studio interior view 8',
+            caption: 'Abstract Studio interior view 8',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (9).jpg',
+            alt: 'Abstract Studio interior view 9',
+            caption: 'Abstract Studio interior view 9',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (10).jpg',
+            alt: 'Abstract Studio interior view 10',
+            caption: 'Abstract Studio interior view 10',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (11).jpg',
+            alt: 'Abstract Studio interior view 11',
+            caption: 'Abstract Studio interior view 11',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (12).jpg',
+            alt: 'Abstract Studio interior view 12',
+            caption: 'Abstract Studio interior view 12',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (13).jpg',
+            alt: 'Abstract Studio interior view 13',
+            caption: 'Abstract Studio interior view 13',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (14).jpg',
+            alt: 'Abstract Studio interior view 14',
+            caption: 'Abstract Studio interior view 14',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (15).jpg',
+            alt: 'Abstract Studio interior view 15',
+            caption: 'Abstract Studio interior view 15',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (16).jpg',
+            alt: 'Abstract Studio interior view 16',
+            caption: 'Abstract Studio interior view 16',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (17).jpg',
+            alt: 'Abstract Studio interior view 17',
+            caption: 'Abstract Studio interior view 17',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (18).jpg',
+            alt: 'Abstract Studio interior view 18',
+            caption: 'Abstract Studio interior view 18',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (19).jpg',
+            alt: 'Abstract Studio interior view 19',
+            caption: 'Abstract Studio interior view 19',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (20).jpg',
+            alt: 'Abstract Studio interior view 20',
+            caption: 'Abstract Studio interior view 20',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (21).jpg',
+            alt: 'Abstract Studio interior view 21',
+            caption: 'Abstract Studio interior view 21',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (22).jpg',
+            alt: 'Abstract Studio interior view 22',
+            caption: 'Abstract Studio interior view 22',
           },
         ],
       },

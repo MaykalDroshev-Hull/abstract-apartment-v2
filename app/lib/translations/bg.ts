@@ -161,7 +161,7 @@ export const bg: Translations = {
     title: 'Добре дошли',
     description: 'Това е вашата основна област за съдържание. Заглавката и долният колонтитул винаги са видими, и можете да превключвате между английски, български и гръцки, като използвате превключвателя за език в заглавката.',
     hero: {
-      image: '/Images/Gallery/ApartmentFromOutside.jpg',
+      image: '/Images/abstract Studio/abstract-studio (3).jpg',
       imageAlt: 'Луксозна вила за наемане',
       location: 'Паралия Офринио',
       title: 'Abstract Apartment',
@@ -180,7 +180,7 @@ export const bg: Translations = {
       },
       villa1: {
         name: 'Abstract Apartment',
-        image: '/Images/Gallery/ApartmentFromOutside.jpg',
+        image: '/Images/Gallery/LivingArea1.jpg',
         imageAlt: 'Външен изглед на Abstract Apartment',
         details: {
           beds: '2 Легла',
@@ -192,7 +192,7 @@ export const bg: Translations = {
       },
       villa2: {
         name: 'Abstract Studio',
-        image: '/Images/Attractions/abstract-studio.jpg',
+        image: '/Images/abstract Studio/abstract-studio (10).jpg',
         imageAlt: 'Вътрешен изглед на Abstract Studio',
         details: {
           beds: '1 Легло',
@@ -467,11 +467,6 @@ export const bg: Translations = {
             caption: 'Лична баня с модерни удобства',
           },
           {
-            src: '/Images/Gallery/ApartmentFromOutside.jpg',
-            alt: 'Външен изглед на апартамента',
-            caption: 'Външен изглед на Abstract Apartment',
-          },
-          {
             src: '/Images/Gallery/LivingArea1.jpg',
             alt: 'Жилищна зона',
             caption: 'Просторна жилищна зона',
@@ -555,10 +550,6 @@ export const bg: Translations = {
             alt: 'Главен вход',
           },
           {
-            src: '/Images/Gallery/Garage.jpg',
-            alt: 'Гараж',
-          },
-          {
             src: '/Images/Gallery/ElectricalAndInfoCloser.jpg',
             alt: 'Електрическа и информационна панел',
           },
@@ -570,9 +561,114 @@ export const bg: Translations = {
         titleMobile: 'Студио',
         images: [
           {
-            src: '/Images/Attractions/abstract-studio.jpg',
-            alt: 'Вътрешен изглед на Abstract Studio',
-            caption: 'Вътрешен изглед на Abstract Studio',
+            src: '/Images/abstract Studio/abstract-studio (1).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 1',
+            caption: 'Вътрешен изглед на Abstract Studio 1',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (2).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 2',
+            caption: 'Вътрешен изглед на Abstract Studio 2',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (3).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 3',
+            caption: 'Вътрешен изглед на Abstract Studio 3',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (4).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 4',
+            caption: 'Вътрешен изглед на Abstract Studio 4',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (5).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 5',
+            caption: 'Вътрешен изглед на Abstract Studio 5',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (6).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 6',
+            caption: 'Вътрешен изглед на Abstract Studio 6',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (7).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 7',
+            caption: 'Вътрешен изглед на Abstract Studio 7',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (8).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 8',
+            caption: 'Вътрешен изглед на Abstract Studio 8',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (9).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 9',
+            caption: 'Вътрешен изглед на Abstract Studio 9',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (10).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 10',
+            caption: 'Вътрешен изглед на Abstract Studio 10',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (11).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 11',
+            caption: 'Вътрешен изглед на Abstract Studio 11',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (12).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 12',
+            caption: 'Вътрешен изглед на Abstract Studio 12',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (13).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 13',
+            caption: 'Вътрешен изглед на Abstract Studio 13',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (14).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 14',
+            caption: 'Вътрешен изглед на Abstract Studio 14',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (15).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 15',
+            caption: 'Вътрешен изглед на Abstract Studio 15',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (16).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 16',
+            caption: 'Вътрешен изглед на Abstract Studio 16',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (17).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 17',
+            caption: 'Вътрешен изглед на Abstract Studio 17',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (18).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 18',
+            caption: 'Вътрешен изглед на Abstract Studio 18',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (19).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 19',
+            caption: 'Вътрешен изглед на Abstract Studio 19',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (20).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 20',
+            caption: 'Вътрешен изглед на Abstract Studio 20',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (21).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 21',
+            caption: 'Вътрешен изглед на Abstract Studio 21',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (22).jpg',
+            alt: 'Вътрешен изглед на Abstract Studio 22',
+            caption: 'Вътрешен изглед на Abstract Studio 22',
           },
         ],
       },

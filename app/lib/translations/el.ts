@@ -161,7 +161,7 @@ export const el: Translations = {
     title: 'Καλώς ήρθατε',
     description: 'Αυτή είναι η κύρια περιοχή περιεχομένου σας. Η κεφαλίδα και το υποσέλιδο είναι πάντα ορατά, και μπορείτε να αλλάξετε μεταξύ Αγγλικά, Βουλγαρικά και Ελληνικά χρησιμοποιώντας τον μεταγωγέα γλώσσας στην κεφαλίδα.',
     hero: {
-      image: '/Images/Gallery/ApartmentFromOutside.jpg',
+      image: '/Images/abstract Studio/abstract-studio (3).jpg',
       imageAlt: 'Πολυτελής βίλα για ενοικίαση',
       location: 'Παραλία Οφρυνίου',
       title: 'Abstract Apartment',
@@ -180,7 +180,7 @@ export const el: Translations = {
       },
       villa1: {
         name: 'Abstract Apartment',
-        image: '/Images/Gallery/ApartmentFromOutside.jpg',
+        image: '/Images/Gallery/LivingArea1.jpg',
         imageAlt: 'Εξωτερική όψη του Abstract Apartment',
         details: {
           beds: '2 Κρεβάτια',
@@ -192,7 +192,7 @@ export const el: Translations = {
       },
       villa2: {
         name: 'Abstract Studio',
-        image: '/Images/Attractions/abstract-studio.jpg',
+        image: '/Images/abstract Studio/abstract-studio (10).jpg',
         imageAlt: 'Εσωτερική όψη του Abstract Studio',
         details: {
           beds: '1 Κρεβάτι',
@@ -467,11 +467,6 @@ export const el: Translations = {
             caption: 'Ιδιωτικό μπάνιο με σύγχρονα αγαθά',
           },
           {
-            src: '/Images/Gallery/ApartmentFromOutside.jpg',
-            alt: 'Εξωτερική όψη διαμερίσματος',
-            caption: 'Εξωτερική όψη του Abstract Apartment',
-          },
-          {
             src: '/Images/Gallery/LivingArea1.jpg',
             alt: 'Χώρος διαβίωσης',
             caption: 'Ευρύχωρος χώρος διαβίωσης',
@@ -555,10 +550,6 @@ export const el: Translations = {
             alt: 'Κύρια είσοδος',
           },
           {
-            src: '/Images/Gallery/Garage.jpg',
-            alt: 'Γκαράζ',
-          },
-          {
             src: '/Images/Gallery/ElectricalAndInfoCloser.jpg',
             alt: 'Ηλεκτρικό και πληροφοριακό πάνελ',
           },
@@ -570,9 +561,114 @@ export const el: Translations = {
         titleMobile: 'Στούντιο',
         images: [
           {
-            src: '/Images/Attractions/abstract-studio.jpg',
-            alt: 'Εσωτερική όψη του Abstract Studio',
-            caption: 'Εσωτερική όψη του Abstract Studio',
+            src: '/Images/abstract Studio/abstract-studio (1).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 1',
+            caption: 'Εσωτερική όψη του Abstract Studio 1',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (2).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 2',
+            caption: 'Εσωτερική όψη του Abstract Studio 2',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (3).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 3',
+            caption: 'Εσωτερική όψη του Abstract Studio 3',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (4).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 4',
+            caption: 'Εσωτερική όψη του Abstract Studio 4',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (5).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 5',
+            caption: 'Εσωτερική όψη του Abstract Studio 5',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (6).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 6',
+            caption: 'Εσωτερική όψη του Abstract Studio 6',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (7).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 7',
+            caption: 'Εσωτερική όψη του Abstract Studio 7',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (8).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 8',
+            caption: 'Εσωτερική όψη του Abstract Studio 8',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (9).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 9',
+            caption: 'Εσωτερική όψη του Abstract Studio 9',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (10).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 10',
+            caption: 'Εσωτερική όψη του Abstract Studio 10',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (11).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 11',
+            caption: 'Εσωτερική όψη του Abstract Studio 11',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (12).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 12',
+            caption: 'Εσωτερική όψη του Abstract Studio 12',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (13).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 13',
+            caption: 'Εσωτερική όψη του Abstract Studio 13',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (14).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 14',
+            caption: 'Εσωτερική όψη του Abstract Studio 14',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (15).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 15',
+            caption: 'Εσωτερική όψη του Abstract Studio 15',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (16).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 16',
+            caption: 'Εσωτερική όψη του Abstract Studio 16',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (17).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 17',
+            caption: 'Εσωτερική όψη του Abstract Studio 17',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (18).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 18',
+            caption: 'Εσωτερική όψη του Abstract Studio 18',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (19).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 19',
+            caption: 'Εσωτερική όψη του Abstract Studio 19',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (20).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 20',
+            caption: 'Εσωτερική όψη του Abstract Studio 20',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (21).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 21',
+            caption: 'Εσωτερική όψη του Abstract Studio 21',
+          },
+          {
+            src: '/Images/abstract Studio/abstract-studio (22).jpg',
+            alt: 'Εσωτερική όψη του Abstract Studio 22',
+            caption: 'Εσωτερική όψη του Abstract Studio 22',
           },
         ],
       },
