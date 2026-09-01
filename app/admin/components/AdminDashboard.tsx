@@ -5,6 +5,8 @@ import { format, parseISO, isAfter } from 'date-fns';
 import { toast } from 'react-toastify';
 import { LogOut, Plus, Calendar, Users, Euro, MessageSquare, Edit, Trash2, Save, X, Home, CheckCircle } from 'lucide-react';
 import { useTranslations } from '@/app/lib/translations';
+import { ExpensesTab } from './ExpensesTab';
+import { StatisticsTab } from './StatisticsTab';
 
 interface Booking {
   BookingID: number;
@@ -12,9 +14,13 @@ interface Booking {
   CheckOutDT: string;
   FullPrice: number | null;
   PaidPrice: number | null;
+  cleaning_hours: number | null;
   Comments: string | null;
   apartmentid: number;
   rfstatusid: number;
+  apartment?: {
+    cleaning_price_per_hour: number | null;
+  } | null;
   Customer: {
     FirstName: string | null;
     LastName: string | null;
@@ -34,6 +40,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [showAll, setShowAll] = useState(false);
   const [isAddingBooking, setIsAddingBooking] = useState(false);
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
+  const [activeTab, setActiveTab] = useState<'bookings' | 'expenses' | 'statistics'>('bookings');
 
   const [formData, setFormData] = useState({
     CheckInDT: '',
@@ -44,6 +51,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
     Email: '',
     FullPrice: '',
     PaidPrice: '',
+    cleaning_hours: '',
     Comments: '',
     apartmentid: '1', // Default to Apartment
   });
@@ -113,6 +121,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       Email: '',
       FullPrice: '',
       PaidPrice: '',
+      cleaning_hours: '',
       Comments: '',
       apartmentid: '1',
     });
@@ -132,6 +141,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         body: JSON.stringify({ 
           ...formData, 
           apartmentid: parseInt(formData.apartmentid),
+          cleaning_hours: formData.cleaning_hours ? parseFloat(formData.cleaning_hours) : null,
           Email: formData.Email || null
         }),
       });
@@ -172,6 +182,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       Email: booking.Customer?.Email || '',
       FullPrice: booking.FullPrice?.toString() || '',
       PaidPrice: booking.PaidPrice?.toString() || '',
+      cleaning_hours: booking.cleaning_hours?.toString() || '',
       Comments: booking.Comments || '',
       apartmentid: booking.apartmentid?.toString() || '1',
     });
@@ -191,6 +202,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
           newCheckOutDT: formData.CheckOutDT,
           FullPrice: parseFloat(formData.FullPrice) || null,
           PaidPrice: parseFloat(formData.PaidPrice) || null,
+          cleaning_hours: parseFloat(formData.cleaning_hours) || null,
           Comments: formData.Comments,
           apartmentid: parseInt(formData.apartmentid),
         }),
@@ -410,7 +422,35 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         </div>
       </header>
 
+      {/* Tabs */}
+      <div className="bg-white border-b border-zinc-200">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="-mb-px flex space-x-8">
+            <button
+              onClick={() => setActiveTab('bookings')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'bookings' ? 'border-[#9D7F5F] text-[#9D7F5F]' : 'border-transparent text-zinc-500 hover:text-zinc-700 hover:border-zinc-300'}`}
+            >
+              {t.admin.dashboard.tabs?.bookings || 'Bookings'}
+            </button>
+            <button
+              onClick={() => setActiveTab('expenses')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'expenses' ? 'border-[#9D7F5F] text-[#9D7F5F]' : 'border-transparent text-zinc-500 hover:text-zinc-700 hover:border-zinc-300'}`}
+            >
+              {t.admin.dashboard.tabs?.expenses || 'Expenses'}
+            </button>
+            <button
+              onClick={() => setActiveTab('statistics')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'statistics' ? 'border-[#9D7F5F] text-[#9D7F5F]' : 'border-transparent text-zinc-500 hover:text-zinc-700 hover:border-zinc-300'}`}
+            >
+              {t.admin.dashboard.tabs?.statistics || 'Statistics'}
+            </button>
+          </nav>
+        </div>
+      </div>
+
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {activeTab === 'bookings' && (
+          <>
         {/* Add/Edit Form */}
         {(isAddingBooking || editingBooking) && (
           <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-8 border border-zinc-200">
@@ -605,6 +645,23 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                 )}
               </div>
 
+              {/* Cleaning Hours */}
+              <div>
+                <label className="block text-sm font-medium text-zinc-700 mb-2">
+                  {t.admin.dashboard.form.cleaningHours || 'Cleaning Hours'}
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={formData.cleaning_hours}
+                  onChange={(e) => setFormData(prev => ({ ...prev, cleaning_hours: e.target.value }))}
+                  className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors ${
+                    errors.cleaning_hours ? 'border-red-300' : 'border-zinc-300'
+                  }`}
+                  placeholder="e.g. 2.5"
+                />
+              </div>
+
               {/* Comments */}
               <div className="sm:col-span-2 lg:col-span-3">
                 <label className="block text-sm font-medium text-zinc-700 mb-2">
@@ -779,6 +836,12 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                         {remainingText}
                       </div>
                     </div>
+                    <div>
+                      <div className="text-xs text-zinc-500 mb-1">{t.admin.dashboard.form.cleaningHours || 'Cleaning'}</div>
+                      <div className="text-sm text-zinc-600">
+                        {booking.cleaning_hours ? `€${(booking.cleaning_hours * (booking.apartment?.cleaning_price_per_hour || 15)).toFixed(2)} (${booking.cleaning_hours}h)` : '-'}
+                      </div>
+                    </div>
                   </div>
                   
                   {booking.Customer?.Telephone && (
@@ -817,6 +880,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.price}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.paid}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.table.remaining}</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900">{t.admin.dashboard.form.cleaningHours || 'Cleaning'}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900 max-w-xs">{t.admin.dashboard.table.comments}</th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-zinc-900 whitespace-nowrap">{t.admin.dashboard.table.actions}</th>
                 </tr>
@@ -824,7 +888,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <tbody className="divide-y divide-zinc-200">
                 {unconfirmedBookings.length > 0 && (
                   <tr>
-                    <td colSpan={10} className="px-6 py-3 bg-amber-50 border-b-2 border-amber-200">
+                    <td colSpan={11} className="px-6 py-3 bg-amber-50 border-b-2 border-amber-200">
                       <div className="text-sm font-semibold text-amber-900">
                         {t.admin.dashboard.unconfirmedBookings} ({unconfirmedBookings.length})
                       </div>
@@ -889,6 +953,11 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                         })()}
                       </div>
                     </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm text-zinc-600">
+                        {booking.cleaning_hours ? `€${(booking.cleaning_hours * (booking.apartment?.cleaning_price_per_hour || 15)).toFixed(2)} (${booking.cleaning_hours}h)` : '-'}
+                      </div>
+                    </td>
                     <td className="px-6 py-4 max-w-xs">
                       <div className="text-sm text-zinc-600 break-words">
                         {booking.Comments || '-'}
@@ -933,7 +1002,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                 })}
                 {filteredBookings.length === 0 && (
                   <tr>
-                    <td colSpan={10} className="px-6 py-12 text-center text-zinc-500">
+                    <td colSpan={11} className="px-6 py-12 text-center text-zinc-500">
                       {t.admin.dashboard.noBookings}
                     </td>
                   </tr>
@@ -942,6 +1011,16 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             </table>
           </div>
         </div>
+        </>
+        )}
+        
+        {activeTab === 'expenses' && (
+          <ExpensesTab />
+        )}
+
+        {activeTab === 'statistics' && (
+          <StatisticsTab />
+        )}
       </div>
 
       {/* Loading Overlay */}

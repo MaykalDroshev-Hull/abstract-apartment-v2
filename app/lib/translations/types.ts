@@ -670,6 +670,7 @@ export interface Translations {
         telephone: string;
         fullPrice: string;
         paidPrice: string;
+        cleaningHours: string;
         comments: string;
         commentsPlaceholder: string;
         required: string;
@@ -695,6 +696,40 @@ export interface Translations {
         telephoneRequired: string;
         fullPriceRequired: string;
         paidPriceRequired: string;
+      };
+      tabs: {
+        bookings: string;
+        expenses: string;
+        statistics: string;
+      };
+      expenses: {
+        title: string;
+        addExpense: string;
+        editExpense: string;
+        name: string;
+        month: string;
+        year: string;
+        price: string;
+        actions: string;
+        save: string;
+        cancel: string;
+        noExpenses: string;
+        deleteConfirm: string;
+        addSuccess: string;
+        updateSuccess: string;
+        deleteSuccess: string;
+        loadError: string;
+        operationError: string;
+      };
+      statistics: {
+        loading: string;
+        error: string;
+        allTime: string;
+        byYear: string;
+        byMonth: string;
+        revenue: string;
+        expenses: string;
+        profit: string;
       };
     };
   };

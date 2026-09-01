@@ -20,9 +20,9 @@ export async function PUT(
       return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
     }
     const requestBody = await request.json();
-    const { newCheckInDT, newCheckOutDT, FullPrice, PaidPrice, Comments, apartmentid } = requestBody;
+    const { newCheckInDT, newCheckOutDT, FullPrice, PaidPrice, Comments, apartmentid, cleaning_hours } = requestBody;
 
-    const updateData: any = { CheckInDT: newCheckInDT, CheckOutDT: newCheckOutDT, FullPrice, PaidPrice, Comments };
+    const updateData: any = { CheckInDT: newCheckInDT, CheckOutDT: newCheckOutDT, FullPrice, PaidPrice, Comments, cleaning_hours };
     if (apartmentid !== undefined) {
       updateData.apartmentid = apartmentid;
     }

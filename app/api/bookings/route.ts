@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
       CustomerID,
       apartmentid,
       rfstatusid,
+      apartment:apartmentid (
+        cleaning_price_per_hour
+      ),
       Customer:CustomerID (
         FirstName,
         LastName,
@@ -28,7 +31,8 @@ export async function GET(request: NextRequest) {
       ),
       FullPrice,
       PaidPrice,
-      Comments
+      Comments,
+      cleaning_hours
     `)
     .order('CheckInDT');
 
@@ -50,7 +54,7 @@ export async function GET(request: NextRequest) {
 // POST /api/bookings - Add new booking
 export async function POST(request: NextRequest) {
   try {
-    const { CheckInDT, CheckOutDT, FirstName, LastName, Telephone, Email, FullPrice, PaidPrice, Comments, apartmentid } = await request.json();
+    const { CheckInDT, CheckOutDT, FirstName, LastName, Telephone, Email, FullPrice, PaidPrice, Comments, apartmentid, cleaning_hours } = await request.json();
 
     // First, insert the customer
     // Try with Email first, fallback to without Email if column doesn't exist
@@ -87,7 +91,7 @@ export async function POST(request: NextRequest) {
     // Then, insert the booking with rfstatusid = 1 (not confirmed) by default
     const { error: bookErr } = await supabase
       .from('Booking')
-      .insert([{ CheckInDT, CheckOutDT, CustomerID: customer.CustomerID, FullPrice, PaidPrice, Comments, apartmentid, rfstatusid: 1 }]);
+      .insert([{ CheckInDT, CheckOutDT, CustomerID: customer.CustomerID, FullPrice, PaidPrice, Comments, apartmentid, rfstatusid: 1, cleaning_hours }]);
 
     if (bookErr) {
       return NextResponse.json({ error: bookErr }, { status: 500 });

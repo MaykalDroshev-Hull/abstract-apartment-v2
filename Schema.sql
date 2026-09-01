@@ -11,6 +11,7 @@ CREATE TABLE public.Booking (
   Comments text,
   apartmentid bigint NOT NULL,
   rfstatusid bigint NOT NULL DEFAULT 1,
+  cleaning_hours double precision,
   CONSTRAINT Booking_pkey PRIMARY KEY (BookingID),
   CONSTRAINT Booking_CustomerID_fkey FOREIGN KEY (CustomerID) REFERENCES public.Customer(CustomerID),
   CONSTRAINT booking_apartmentid_fkey FOREIGN KEY (apartmentid) REFERENCES public.apartment(apartmentid),
@@ -42,6 +43,7 @@ CREATE TABLE public.apartment (
   apartmentid bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   name text NOT NULL,
   slug text UNIQUE,
+  cleaning_price_per_hour double precision DEFAULT 15.0,
   CONSTRAINT apartment_pkey PRIMARY KEY (apartmentid)
 );
 CREATE TABLE public.heartbeat (
@@ -51,3 +53,38 @@ CREATE TABLE public.heartbeat (
   note text,
   CONSTRAINT heartbeat_pkey PRIMARY KEY (id)
 );
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE public.apartment ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.rfstatus ENABLE ROW LEVEL SECURITY;
+
+-- Policies for public read access (SELECT)
+CREATE POLICY "Allow public read access to apartment" 
+ON public.apartment 
+FOR SELECT 
+TO public 
+USING (true);
+
+CREATE POLICY "Allow public read access to rfstatus" 
+ON public.rfstatus 
+FOR SELECT 
+TO public 
+USING (true);
+
+CREATE TABLE public.expenses (
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  month integer,
+  year integer NOT NULL,
+  price double precision NOT NULL,
+  created_at timestamp with time zone DEFAULT now(),
+  CONSTRAINT expenses_pkey PRIMARY KEY (id)
+);
+
+ALTER TABLE public.expenses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read access to expenses" 
+ON public.expenses 
+FOR SELECT 
+TO public 
+USING (true);
