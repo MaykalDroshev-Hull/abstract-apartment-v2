@@ -409,7 +409,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <h1 className="text-2xl font-serif font-semibold text-zinc-900">
-              {t.admin.dashboard.title}
+              {activeTab === 'bookings' && t.admin.dashboard.title}
+              {activeTab === 'expenses' && t.admin.dashboard.expensesTitle}
+              {activeTab === 'statistics' && t.admin.dashboard.statisticsTitle}
             </h1>
             <button
               onClick={handleLogout}

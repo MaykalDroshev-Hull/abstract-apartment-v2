@@ -211,7 +211,48 @@ export function ExpensesTab() {
       )}
 
       <div className="bg-white rounded-lg shadow-lg border border-zinc-200 overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile View */}
+        <div className="lg:hidden divide-y divide-zinc-200">
+          {expenses.length === 0 ? (
+            <div className="p-6 text-center text-zinc-500">
+              {t.admin.dashboard.expenses?.noExpenses || 'No expenses found'}
+            </div>
+          ) : (
+            expenses.map(expense => (
+              <div key={expense.id} className="p-4 space-y-4">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <div className="font-medium text-zinc-900">{expense.name}</div>
+                    <div className="text-sm text-zinc-500">
+                      {expense.month ? `${expense.month}/${expense.year}` : expense.year}
+                    </div>
+                  </div>
+                  <div className="font-medium text-zinc-900 text-lg">
+                    €{expense.price.toFixed(2)}
+                  </div>
+                </div>
+                
+                <div className="flex justify-end gap-2 pt-2 border-t border-zinc-100">
+                  <button
+                    onClick={() => handleEdit(expense)}
+                    className="flex-1 py-2 flex justify-center items-center gap-2 text-blue-600 hover:bg-blue-50 rounded-lg border border-blue-100 transition-colors"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(expense.id)}
+                    className="flex-1 py-2 flex justify-center items-center gap-2 text-red-600 hover:bg-red-50 rounded-lg border border-red-100 transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Desktop View */}
+        <div className="hidden lg:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-zinc-50 border-b border-zinc-200">
               <tr>

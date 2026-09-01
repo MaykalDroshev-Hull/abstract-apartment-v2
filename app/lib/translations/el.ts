@@ -1360,6 +1360,8 @@ export const el: Translations = {
     },
     dashboard: {
       title: 'Διαχείριση Κρατήσεων',
+      expensesTitle: 'Διαχείριση Εξόδων',
+      statisticsTitle: 'Στατιστικά',
       logout: 'Αποσύνδεση',
       loading: 'Επεξεργασία...',
       addBooking: 'Προσθήκη Κράτησης',

@@ -1361,6 +1361,8 @@ export const bg: Translations = {
     },
     dashboard: {
       title: 'Управление на Резервации',
+      expensesTitle: 'Управление на Разходи',
+      statisticsTitle: 'Статистика',
       logout: 'Изход',
       loading: 'Обработка...',
       addBooking: 'Добави Резервация',

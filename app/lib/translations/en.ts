@@ -1359,7 +1359,9 @@ export const en: Translations = {
       logoutSuccess: 'Logged out successfully',
     },
     dashboard: {
-      title: 'Booking Management',
+      title: 'Reservation Management',
+      expensesTitle: 'Expense Management',
+      statisticsTitle: 'Statistics',
       logout: 'Logout',
       loading: 'Processing...',
       addBooking: 'Add Booking',

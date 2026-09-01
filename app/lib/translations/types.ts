@@ -637,6 +637,8 @@ export interface Translations {
     };
     dashboard: {
       title: string;
+      expensesTitle: string;
+      statisticsTitle: string;
       logout: string;
       loading: string;
       addBooking: string;
