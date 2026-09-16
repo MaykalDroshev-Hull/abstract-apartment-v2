@@ -205,6 +205,10 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
           cleaning_hours: parseFloat(formData.cleaning_hours) || null,
           Comments: formData.Comments,
           apartmentid: parseInt(formData.apartmentid),
+          FirstName: formData.FirstName,
+          LastName: formData.LastName,
+          Telephone: formData.Telephone,
+          Email: formData.Email,
         }),
       });
 
@@ -533,7 +537,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   type="text"
                   value={formData.FirstName}
                   onChange={(e) => setFormData(prev => ({ ...prev, FirstName: e.target.value }))}
-                  disabled={!!editingBooking}
+                  disabled={!!editingBooking && !!editingBooking.Customer?.FirstName}
                   className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors disabled:bg-zinc-50 disabled:text-zinc-500 ${
                     errors.FirstName ? 'border-red-300' : 'border-zinc-300'
                   }`}
@@ -554,7 +558,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   type="text"
                   value={formData.LastName}
                   onChange={(e) => setFormData(prev => ({ ...prev, LastName: e.target.value }))}
-                  disabled={!!editingBooking}
+                  disabled={!!editingBooking && !!editingBooking.Customer?.LastName}
                   className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors disabled:bg-zinc-50 disabled:text-zinc-500 ${
                     errors.LastName ? 'border-red-300' : 'border-zinc-300'
                   }`}
@@ -574,7 +578,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   type="tel"
                   value={formData.Telephone}
                   onChange={(e) => setFormData(prev => ({ ...prev, Telephone: e.target.value }))}
-                  disabled={!!editingBooking}
+                  disabled={!!editingBooking && !!editingBooking.Customer?.Telephone}
                   className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors disabled:bg-zinc-50 disabled:text-zinc-500 ${
                     errors.Telephone ? 'border-red-300' : 'border-zinc-300'
                   }`}
@@ -594,7 +598,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                   type="email"
                   value={formData.Email}
                   onChange={(e) => setFormData(prev => ({ ...prev, Email: e.target.value }))}
-                  disabled={!!editingBooking}
+                  disabled={!!editingBooking && !!editingBooking.Customer?.Email}
                   className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#9D7F5F] focus:border-transparent transition-colors disabled:bg-zinc-50 disabled:text-zinc-500 ${
                     errors.Email ? 'border-red-300' : 'border-zinc-300'
                   }`}

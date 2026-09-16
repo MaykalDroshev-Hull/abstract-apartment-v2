@@ -20,11 +20,50 @@ export async function PUT(
       return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
     }
     const requestBody = await request.json();
-    const { newCheckInDT, newCheckOutDT, FullPrice, PaidPrice, Comments, apartmentid, cleaning_hours } = requestBody;
+    const { 
+      newCheckInDT, 
+      newCheckOutDT, 
+      FullPrice, 
+      PaidPrice, 
+      Comments, 
+      apartmentid, 
+      cleaning_hours,
+      FirstName,
+      LastName,
+      Telephone,
+      Email
+    } = requestBody;
 
     const updateData: any = { CheckInDT: newCheckInDT, CheckOutDT: newCheckOutDT, FullPrice, PaidPrice, Comments, cleaning_hours };
     if (apartmentid !== undefined) {
       updateData.apartmentid = apartmentid;
+    }
+
+    const { data: booking, error: fetchErr } = await supabase
+      .from('Booking')
+      .select('CustomerID')
+      .eq('BookingID', bookingId)
+      .single();
+
+    if (fetchErr) {
+      return NextResponse.json({ error: fetchErr }, { status: 500 });
+    }
+
+    if (booking?.CustomerID && (FirstName !== undefined || LastName !== undefined || Telephone !== undefined || Email !== undefined)) {
+      const customerUpdate: any = {};
+      if (FirstName !== undefined) customerUpdate.FirstName = FirstName;
+      if (LastName !== undefined) customerUpdate.LastName = LastName;
+      if (Telephone !== undefined) customerUpdate.Telephone = Telephone;
+      if (Email !== undefined) customerUpdate.Email = Email;
+
+      const { error: customerError } = await supabase
+        .from('Customer')
+        .update(customerUpdate)
+        .eq('CustomerID', booking.CustomerID);
+
+      if (customerError) {
+        console.error('Error updating customer:', customerError);
+      }
     }
 
     const { error } = await supabase
