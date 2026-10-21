@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Menu } from 'lucide-react';
 import { useTranslations, useLanguage } from '@/app/lib/translations';
@@ -12,16 +13,24 @@ import { MobileNavPanel } from './MobileNavPanel';
 export function Header() {
   const t = useTranslations();
   const { language } = useLanguage();
+  const pathname = usePathname();
   const [exploreOpen, setExploreOpen] = useState(false);
   const [planOpen, setPlanOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const exploreRef = useRef<HTMLDivElement>(null);
   const planRef = useRef<HTMLDivElement>(null);
 
-  // Use Bulgarian logo for Bulgarian, regular logo for English and Greek
-  const logoPath = language === 'bg' 
-    ? '/Images/Logo_Bulgarian.png' 
-    : '/Images/Logo.png';
+  const isHouse = pathname?.startsWith('/house');
+
+  // Select logo based on current section (House vs Apartment) and language
+  const logoPath = isHouse
+    ? (language === 'bg' ? '/Images/Logo_House_Bulgarian.png' : '/Images/Logo_House.png')
+    : (language === 'bg' ? '/Images/Logo_Bulgarian.png' : '/Images/Logo.png');
+
+  const logoHref = isHouse ? '/house' : '/';
+  const logoAlt = isHouse
+    ? (language === 'bg' ? 'Къща за гости „Абстракт"' : 'Abstract Guest House')
+    : (language === 'bg' ? 'Апартамент Абстракт' : 'Abstract Apartment');
 
   // Prepare sections for Explore menu
   const exploreSections = [
@@ -132,14 +141,15 @@ export function Header() {
             </nav>
             
             {/* Logo - Center */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 z-10 pointer-events-auto">
-              <Link href="/" className="flex items-center">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-auto flex items-center justify-center">
+              <Link href={logoHref} className="flex items-center justify-center">
                 <Image
+                  key={logoPath}
                   src={logoPath}
-                  alt="Abstract Apartment Logo"
-                  width={200}
-                  height={60}
-                  className="h-auto w-auto max-w-full"
+                  alt={logoAlt}
+                  width={220}
+                  height={55}
+                  className="h-10 sm:h-12 w-auto object-contain"
                   priority
                 />
               </Link>

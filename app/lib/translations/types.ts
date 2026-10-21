@@ -747,6 +747,69 @@ export interface Translations {
     leaveReview: string;
     metaTitle: string;
   };
+  house: {
+    hero: {
+      image: string;
+      imageAlt: string;
+      location: string;
+      tagline: string;
+      title: string;
+      cta: string;
+      details: {
+        guests: string;
+        rooms: string;
+        views: string;
+        spa: string;
+      };
+    };
+    rooms: {
+      intro: {
+        headline: string;
+        description: string;
+      };
+      items: Array<{
+        name: string;
+        image: string;
+        description: string;
+        features: string[];
+      }>;
+    };
+    amenities: {
+      intro: {
+        title: string;
+        subtitle?: string;
+        paragraphs: string[];
+      };
+      items: Array<{
+        icon: string;
+        title: string;
+        description?: string;
+      }>;
+    };
+    location: {
+      title: string;
+      description: string;
+      address: string;
+      mapLink: string;
+      mapEmbedUrl: string;
+      mapTitle: string;
+      openInMaps: string;
+      travelInfo: Array<{
+        icon: string;
+        label: string;
+        subtext?: string;
+      }>;
+    };
+    cta: {
+      image: string;
+      title: string;
+      description: string;
+      primaryButton: string;
+      secondaryButton: string;
+      alsoExplore: string;
+      apartmentLabel: string;
+    };
+  };
   pageTitles: {
     home: string;
     details: string;
@@ -760,6 +823,7 @@ export interface Translations {
     faq: string;
     reviews: string;
     gettingHere: string;
+    house: string;
   };
   pageDescriptions: {
     home: string;
@@ -774,6 +838,7 @@ export interface Translations {
     faq: string;
     reviews: string;
     gettingHere: string;
+    house: string;
   };
 }
 

@@ -39,6 +39,7 @@ export function usePageTitle() {
       '/faq': 'faq',
       '/reviews': 'reviews',
       '/getting-here': 'gettingHere',
+      '/house': 'house',
     };
 
     const titleKey = routeToTitleKey[pathname] || 'home';
@@ -47,7 +48,9 @@ export function usePageTitle() {
 
     const baseUrl = getBaseUrl();
     const fullUrl = `${baseUrl}${pathname}`;
-    const ogImage = `${baseUrl}/Images/Gallery/KitchenArea.jpg`; // Default OG image
+    const ogImage = pathname === '/house'
+      ? `${baseUrl}/Images/House/hero.jpg`
+      : `${baseUrl}/Images/Gallery/KitchenArea.jpg`; // Default OG image
 
     // Update document title
     if (title) {

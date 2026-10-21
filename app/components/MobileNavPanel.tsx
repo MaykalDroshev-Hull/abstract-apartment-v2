@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { X } from 'lucide-react';
 import { useTranslations, useLanguage } from '@/app/lib/translations';
 import { MobileNavAccordion } from './MobileNavAccordion';
@@ -18,15 +19,23 @@ interface MobileNavPanelProps {
 export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections }: MobileNavPanelProps) {
   const t = useTranslations();
   const { language } = useLanguage();
+  const pathname = usePathname();
   const [exploreOpen, setExploreOpen] = useState(false); // Start collapsed
   const [planOpen, setPlanOpen] = useState(false); // Start collapsed
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Use Bulgarian logo for Bulgarian, regular logo for English and Greek
-  const logoPath = language === 'bg' 
-    ? '/Images/Logo_Bulgarian.png' 
-    : '/Images/Logo.png';
+  const isHouse = pathname?.startsWith('/house');
+
+  // Select logo based on current section (House vs Apartment) and language
+  const logoPath = isHouse
+    ? (language === 'bg' ? '/Images/Logo_House_Bulgarian.png' : '/Images/Logo_House.png')
+    : (language === 'bg' ? '/Images/Logo_Bulgarian.png' : '/Images/Logo.png');
+
+  const logoHref = isHouse ? '/house' : '/';
+  const logoAlt = isHouse
+    ? (language === 'bg' ? 'Къща за гости „Абстракт"' : 'Abstract Guest House')
+    : (language === 'bg' ? 'Апартамент Абстракт' : 'Abstract Apartment');
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -127,13 +136,14 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-4 border-b border-zinc-200 flex-shrink-0">
-          <Link href="/" onClick={onClose} className="flex items-center">
+          <Link href={logoHref} onClick={onClose} className="flex items-center">
             <Image
+              key={logoPath}
               src={logoPath}
-              alt="Abstract Apartment Logo"
-              width={150}
+              alt={logoAlt}
+              width={160}
               height={45}
-              className="h-auto w-auto"
+              className="h-9 w-auto object-contain"
               priority
             />
           </Link>

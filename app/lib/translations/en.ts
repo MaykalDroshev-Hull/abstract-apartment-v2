@@ -22,6 +22,12 @@ export const en: Translations = {
             href: '/floor-plan',
             icon: 'Layout',
           },
+          {
+            label: 'Guest House "Abstract"',
+            description: 'Our new mountain retreat in Golets, where modern meets tradition.',
+            href: '/house',
+            icon: 'Trees',
+          },
         ],
       },
       visualJourney: {
@@ -1470,6 +1476,114 @@ export const en: Translations = {
     leaveReview: 'Leave a Review',
     metaTitle: 'Guest Reviews - Abstract Apartment',
   },
+  house: {
+    hero: {
+      image: '/Images/House/hero.jpg',
+      imageAlt: 'Abstract Guest House in Golets Village, Bulgaria',
+      location: 'Golets Village, Bulgaria',
+      tagline: 'Where Modern Meets Tradition',
+      title: 'Guest House\n"Abstract"',
+      cta: 'Get in Touch',
+      details: {
+        guests: 'Up to 12 guests',
+        rooms: '4 Rooms',
+        views: 'Mountain Views',
+        spa: 'Jacuzzi & Sauna',
+      },
+    },
+    rooms: {
+      intro: {
+        headline: 'Rooms Steeped\nin Tradition',
+        description: 'Each room is thoughtfully designed to blend traditional Bulgarian warmth with modern comfort. Wooden interiors, handcrafted details, and stunning mountain views create an unforgettable retreat.',
+      },
+      items: [
+        {
+          name: 'Mountain View Suite',
+          image: '/Images/House/room.jpg',
+          description: 'Spacious suite with panoramic mountain views, traditional wooden furnishings, and a private balcony.',
+          features: ['Double Bed', 'Mountain View', 'Private Balcony'],
+        },
+        {
+          name: 'Traditional Room',
+          image: '/Images/House/room.jpg',
+          description: 'Warm and cozy room with authentic Bulgarian décor, hand-woven textiles, and natural wood accents.',
+          features: ['Double Bed', 'Garden View', 'Ensuite'],
+        },
+        {
+          name: 'Family Room',
+          image: '/Images/House/room.jpg',
+          description: 'A generous room perfect for families, with rustic charm and all the comforts of home.',
+          features: ['Double + Single Bed', 'Mountain View', 'Spacious'],
+        },
+        {
+          name: 'Garden Room',
+          image: '/Images/House/room.jpg',
+          description: 'Ground-floor room opening onto the lush garden, with direct access to the outdoor area and BBQ.',
+          features: ['Double Bed', 'Garden Access', 'Terrace'],
+        },
+      ],
+    },
+    amenities: {
+      intro: {
+        title: 'Your Mountain Retreat',
+        subtitle: 'Traditional comfort, modern luxury',
+        paragraphs: [
+          'Our guest house offers the perfect blend of rustic Bulgarian charm and modern conveniences. From our outdoor hot thermal pool to the traditional wood-fired sauna, every detail is designed for relaxation and rejuvenation.',
+        ],
+      },
+      items: [
+        { icon: 'jacuzzi', title: 'Jacuzzi', description: 'Outdoor jacuzzi surrounded by natural stone and mountain views.' },
+        { icon: 'sauna', title: 'Sauna', description: 'Traditional wood-fired sauna for the ultimate relaxation experience.' },
+        { icon: 'pool', title: 'Hot Thermal Pool', description: 'Heated outdoor pool with stunning views of the surrounding mountains.' },
+        { icon: 'bbq', title: 'BBQ & Grill Area', description: 'Traditional stone BBQ with outdoor dining under a grape-vine pergola.' },
+        { icon: 'garden', title: 'Private Garden', description: 'Lush garden with seating areas, surrounded by nature and mountain scenery.' },
+        { icon: 'fireplace', title: 'Fireplace', description: 'Cozy indoor fireplace for warm evenings in the traditional living room.' },
+        { icon: 'wifi', title: 'Free Wi-Fi', description: 'High-speed internet throughout the entire property.' },
+        { icon: 'parking', title: 'Free Parking', description: 'Private parking available on the property grounds.' },
+        { icon: 'mountain', title: 'Mountain Views', description: 'Breathtaking panoramic views of the Rhodope Mountains.' },
+        { icon: 'kitchen', title: 'Traditional Kitchen', description: 'Fully equipped kitchen with traditional Bulgarian cooking essentials.' },
+        { icon: 'ac', title: 'Air Conditioning', description: 'Climate control in all rooms for year-round comfort.' },
+        { icon: 'heating', title: 'Central Heating', description: 'Warm and cozy during the cooler months.' },
+        { icon: 'washer', title: 'Washing Machine', description: 'Laundry facilities available for guest use.' },
+        { icon: 'tv', title: 'Smart TV', description: 'Smart TVs with streaming services in all rooms.' },
+      ],
+    },
+    location: {
+      title: 'Find Us in Golets',
+      description: 'Nestled in the picturesque Golets village in the Rhodope Mountains of Bulgaria, our guest house offers a serene escape into nature while remaining accessible from major cities.',
+      address: 'Golets Village, Rhodope Mountains, Bulgaria',
+      mapLink: 'https://www.google.com/maps/search/Golets+village+Bulgaria',
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47000!2d24.5!3d41.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sGolets+Bulgaria!5e0!3m2!1sen!2sbg!4v1',
+      mapTitle: 'Guest House Abstract - Golets Village Location',
+      openInMaps: 'Open in Google Maps',
+      travelInfo: [
+        {
+          icon: 'address',
+          label: 'Our Address',
+          subtext: 'Golets Village, Rhodope Mountains, Bulgaria',
+        },
+        {
+          icon: 'car',
+          label: 'By Car',
+          subtext: 'Approximately 2.5 hours from Sofia, 1.5 hours from Plovdiv. Well-connected via main roads through the Rhodope Mountains.',
+        },
+        {
+          icon: 'car',
+          label: 'Nearby Attractions',
+          subtext: 'Close to thermal springs, hiking trails, and traditional Rhodope villages. An ideal base for exploring the region.',
+        },
+      ],
+    },
+    cta: {
+      image: '/Images/House/outdoor.jpg',
+      title: 'Your Mountain Escape Awaits',
+      description: 'Step into the heart of the Rhodope Mountains. Traditional hospitality, modern comfort, and nature at your doorstep. Contact us to plan your stay at Guest House Abstract.',
+      primaryButton: 'Contact Us',
+      secondaryButton: 'View Apartment',
+      alsoExplore: 'Also explore our beachfront property',
+      apartmentLabel: 'Beachfront · Paralia Ofriniou',
+    },
+  },
   pageTitles: {
     home: 'Abstract Apartment - Luxury Beachfront Villa in Paralia Ofriniou',
     details: 'Details - Abstract Apartment',
@@ -1483,6 +1597,7 @@ export const en: Translations = {
     faq: 'Frequently Asked Questions - Abstract Apartment',
     reviews: 'Guest Reviews - Abstract Apartment',
     gettingHere: 'How to Get Here - Abstract Apartment',
+    house: 'Guest House Abstract - Mountain Retreat in Golets Village',
   },
   pageDescriptions: {
     home: 'Experience luxury beachfront living at Abstract Apartment in Paralia Ofriniou, Greece. Spacious apartment and cozy studio with stunning sea views, just 2 minutes walk from the beach. Book your perfect getaway today.',
@@ -1497,6 +1612,7 @@ export const en: Translations = {
     faq: 'Find answers to frequently asked questions about Abstract Apartment. Learn about policies, bookings, availability, and everything you need to know for your stay.',
     reviews: 'Read authentic guest reviews and testimonials about Abstract Apartment. See what our guests say about their stay in Paralia Ofriniou, Greece.',
     gettingHere: 'How to get to Abstract Apartment in Paralia Ofriniou, Greece. Directions by car from Bulgaria or by flight via Thessaloniki. Easy travel instructions for your journey.',
+    house: 'Guest House Abstract in Golets Village, Bulgaria. Traditional mountain retreat with jacuzzi, sauna, thermal pool, and stunning Rhodope Mountain views. Where modern meets tradition.',
   },
 };
 

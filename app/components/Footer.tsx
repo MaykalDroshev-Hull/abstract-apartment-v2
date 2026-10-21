@@ -34,12 +34,17 @@ export function Footer() {
   const router = useRouter();
   const currentYear = new Date().getFullYear();
 
-  // Reviews now link to dedicated page instead of home page section
+  const isHouse = pathname?.startsWith('/house');
 
-  // Use Bulgarian logo for Bulgarian, regular logo for English and Greek
-  const logoPath = language === 'bg' 
-    ? '/Images/Logo_Bulgarian.png' 
-    : '/Images/Logo.png';
+  // Select logo based on current section (House vs Apartment) and language
+  const logoPath = isHouse
+    ? (language === 'bg' ? '/Images/Logo_House_Bulgarian.png' : '/Images/Logo_House.png')
+    : (language === 'bg' ? '/Images/Logo_Bulgarian.png' : '/Images/Logo.png');
+
+  const logoHref = isHouse ? '/house' : '/';
+  const logoAlt = isHouse
+    ? (language === 'bg' ? 'Къща за гости „Абстракт"' : 'Abstract Guest House')
+    : (language === 'bg' ? 'Апартамент Абстракт' : 'Abstract Apartment');
 
   // Collect all navigation links from header sections
   const quickLinks: Array<{ label: string; href: string }> = [];
@@ -86,17 +91,18 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12">
           {/* Column 1 - Brand & Description */}
           <div className="text-center md:text-left">
-            <Link href="/" className="inline-block mb-4">
+            <Link href={logoHref} className="inline-block mb-4">
               <Image
+                key={logoPath}
                 src={logoPath}
-                alt="Abstract Apartment Logo"
+                alt={logoAlt}
                 width={180}
                 height={54}
-                className="h-auto w-auto"
+                className="h-10 sm:h-12 w-auto object-contain"
               />
             </Link>
             <p className="text-sm sm:text-base text-zinc-600text-zinc-400 leading-relaxed mb-4 max-w-sm">
-              {t.footer.description}
+              {isHouse ? t.house.hero.tagline : t.footer.description}
             </p>
             {/* Social Icons */}
             <div className="flex items-center justify-center md:justify-start gap-4">
