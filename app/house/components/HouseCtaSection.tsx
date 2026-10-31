@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from '@/app/lib/translations';
+import { useTranslations, useLanguage } from '@/app/lib/translations';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -8,7 +8,15 @@ import Image from 'next/image';
 
 export function HouseCtaSection() {
   const t = useTranslations();
+  const { language } = useLanguage();
   const h = t.house;
+
+  const ctaImageAlt =
+    language === 'bg'
+      ? 'Ограденият зелен двор и отопляемият басейн на Къща за гости Абстракт в с. Голец, видени изпод дървените греди на верандата'
+      : language === 'el'
+      ? 'Ο περιφραγμένος πράσινος κήπος και η θερμαινόμενη πισίνα του Ξενώνα Abstract στο Γκόλετς κάτω από τα ξύλινα δοκάρια της βεράντας'
+      : 'View from beneath the wooden veranda beams across the enclosed green lawn toward the heated swimming pool at Abstract Guest House in Golets';
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
@@ -29,7 +37,7 @@ export function HouseCtaSection() {
           <div className="absolute inset-0">
             <Image
               src={h.cta.image}
-              alt=""
+              alt={ctaImageAlt}
               fill
               className="object-cover"
               sizes="100vw"
@@ -37,7 +45,7 @@ export function HouseCtaSection() {
           </div>
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#3D2B1F]/80 via-[#3D2B1F]/60 to-[#3D2B1F]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#3D2B1F]/80 via-[#3D2B1F]/60 to-[#3D2B1F]/30" aria-hidden="true" />
 
           {/* Content */}
           <div className="relative z-10 px-8 py-16 sm:px-12 sm:py-20 lg:px-16 lg:py-24 max-w-2xl">
@@ -52,14 +60,14 @@ export function HouseCtaSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/contact"
+                href="/house/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#5B7A3A] text-white font-medium text-sm sm:text-base transition-all duration-300 hover:bg-[#4A6830]"
               >
                 {h.cta.primaryButton}
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
               <Link
-                href="/"
+                href="/apartments"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border-2 border-white/50 text-white/90 font-medium text-sm sm:text-base transition-all duration-300 hover:bg-white/10 hover:border-white/80 backdrop-blur-sm"
               >
                 {h.cta.secondaryButton}
@@ -72,7 +80,7 @@ export function HouseCtaSection() {
         <div className="mt-12 sm:mt-16 text-center">
           <p className="text-sm sm:text-base text-zinc-500 mb-4">{h.cta.alsoExplore}</p>
           <Link
-            href="/"
+            href="/apartments"
             className="group inline-flex items-center gap-3 px-6 py-3 rounded-xl border border-zinc-200 hover:border-[#9D7F5F] transition-all duration-300 hover:shadow-md"
           >
             <div className="flex flex-col items-start">
@@ -80,10 +88,14 @@ export function HouseCtaSection() {
                 {h.cta.apartmentLabel}
               </span>
               <span className="text-base font-semibold text-zinc-900" style={{ fontFamily: 'var(--font-serif)' }}>
-                Abstract Apartment
+                {language === 'bg'
+                  ? 'Апартамент „Абстракт“'
+                  : language === 'el'
+                  ? 'Διαμέρισμα „Abstract“'
+                  : 'Abstract Apartment'}
               </span>
             </div>
-            <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-[#9D7F5F] group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-[#9D7F5F] group-hover:translate-x-1 transition-all" aria-hidden="true" />
           </Link>
         </div>
       </div>

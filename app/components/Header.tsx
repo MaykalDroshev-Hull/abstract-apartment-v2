@@ -24,26 +24,60 @@ export function Header() {
 
   // Select logo based on current section (House vs Apartment) and language
   const logoPath = isHouse
-    ? (language === 'bg' ? '/Images/Logo_House_Bulgarian.png' : '/Images/Logo_House.png')
+    ? '/Images/House/house-logo.png'
     : (language === 'bg' ? '/Images/Logo_Bulgarian.png' : '/Images/Logo.png');
 
-  const logoHref = isHouse ? '/house' : '/';
+  const logoHref = isHouse ? '/house' : '/apartments';
   const logoAlt = isHouse
-    ? (language === 'bg' ? 'Къща за гости „Абстракт"' : 'Abstract Guest House')
-    : (language === 'bg' ? 'Апартамент Абстракт' : 'Abstract Apartment');
+    ? (language === 'bg'
+        ? 'Къща за гости „Абстракт“ – Начало'
+        : language === 'el'
+        ? 'Ξενώνας „Abstract“ – Αρχική'
+        : 'Guest House "Abstract" – Home')
+    : (language === 'bg' ? 'Апартамент Абстракт – Начало' : 'Abstract Apartment – Home');
+
+  const houseFeaturedCard =
+    language === 'bg'
+      ? {
+          title: 'Къща за гости „Абстракт“',
+          description:
+            'Автентичен възрожденски уют, механа с камина, отопляем басейн и целогодишно горещо външно джакузи в с. Голец.',
+          image: '/Images/House/house-facade-pool-courtyard.jpg',
+          ctaText: 'Разгледайте нашия Instagram',
+          ctaLink: 'https://www.instagram.com/abstract_apartment/',
+        }
+      : language === 'el'
+      ? {
+          title: 'Ξενώνας „Abstract“',
+          description:
+            'Παραδοσιακή φιλοξενία στο Γκόλετς με ταβέρνα, τζάκι, θερμαινόμενη πισίνα και εξωτερικό τζακούζι όλο τον χρόνο.',
+          image: '/Images/House/house-facade-pool-courtyard.jpg',
+          ctaText: 'Δείτε το Instagram μας',
+          ctaLink: 'https://www.instagram.com/abstract_apartment/',
+        }
+      : {
+          title: 'Guest House "Abstract"',
+          description:
+            'Bulgarian Revival charm in Golets village with a traditional fireplace tavern, heated pool, sauna, and year-round outdoor hot jacuzzi.',
+          image: '/Images/House/house-facade-pool-courtyard.jpg',
+          ctaText: 'Explore our Instagram',
+          ctaLink: 'https://www.instagram.com/abstract_apartment/',
+        };
+
+  const currentHeader = isHouse ? t.house.header : t.header;
 
   // Prepare sections for Explore menu
   const exploreSections = [
-    t.header.exploreSections.theVilla,
-    t.header.exploreSections.visualJourney,
-    t.header.exploreSections.guestExperience,
+    isHouse ? t.house.header.exploreSections.theHouse : t.header.exploreSections.theVilla,
+    currentHeader.exploreSections.visualJourney,
+    currentHeader.exploreSections.guestExperience,
   ];
 
   // Prepare sections for Plan menu
   const planSections = [
-    t.header.planSections.bookingInfo,
-    t.header.planSections.travelLogistics,
-    t.header.planSections.getInTouch,
+    currentHeader.planSections.bookingInfo,
+    currentHeader.planSections.travelLogistics,
+    currentHeader.planSections.getInTouch,
   ];
 
   useEffect(() => {
@@ -83,8 +117,20 @@ export function Header() {
         }
       }
     }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setExploreOpen(false);
+        setPlanOpen(false);
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [exploreOpen, planOpen]);
 
   return (
@@ -94,30 +140,55 @@ export function Header() {
           <div className="relative flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8 z-10">
             {/* Mobile Hamburger - Left */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(true)}
               className="lg:hidden p-2 rounded-lg hover:bg-zinc-200/50 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label="Open menu"
+              aria-label={
+                isHouse
+                  ? language === 'bg'
+                    ? 'Отвори навигационното меню'
+                    : language === 'el'
+                    ? 'Άνοιγμα μενού πλοήγησης'
+                    : 'Open navigation menu'
+                  : 'Open navigation menu'
+              }
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-panel"
             >
-              <Menu className="w-6 h-6 text-zinc-900" />
+              <Menu className="w-6 h-6 text-zinc-900" aria-hidden="true" />
             </button>
 
             {/* Navigation - Left (Desktop) */}
-            <nav className="hidden lg:flex items-center space-x-6 flex-1 relative z-20">
+            <nav
+              aria-label={
+                isHouse
+                  ? language === 'bg'
+                    ? 'Основна навигация – Къща за гости „Абстракт“'
+                    : language === 'el'
+                    ? 'Κύρια πλοήγηση – Ξενώνας Abstract'
+                    : 'Guest House primary navigation'
+                  : 'Apartment primary navigation'
+              }
+              className="hidden lg:flex items-center space-x-6 flex-1 relative z-20"
+            >
               {/* Explore Menu */}
               <div className="relative z-30" ref={exploreRef}>
                 <button
+                  type="button"
                   onClick={() => {
                     setExploreOpen(!exploreOpen);
                     setPlanOpen(false);
                   }}
+                  aria-expanded={exploreOpen}
+                  aria-haspopup="true"
+                  aria-controls="desktop-explore-panel"
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700text-zinc-50hover:text-zinc-300 relative z-30"
                   suppressHydrationWarning
                 >
                   {t.header.explore}
                   <ChevronDown 
                     className={`w-4 h-4 ${exploreOpen ? 'rotate-180' : ''}`}
+                    aria-hidden="true"
                   />
                 </button>
               </div>
@@ -125,16 +196,21 @@ export function Header() {
               {/* Plan Menu */}
               <div className="relative z-30" ref={planRef}>
                 <button
+                  type="button"
                   onClick={() => {
                     setPlanOpen(!planOpen);
                     setExploreOpen(false);
                   }}
+                  aria-expanded={planOpen}
+                  aria-haspopup="true"
+                  aria-controls="desktop-plan-panel"
                   className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-bold text-zinc-900 transition-colors hover:bg-zinc-200/50 hover:text-zinc-700text-zinc-50hover:text-zinc-300 relative z-30"
                   suppressHydrationWarning
                 >
                   {t.header.plan}
                   <ChevronDown 
                     className={`w-4 h-4 ${planOpen ? 'rotate-180' : ''}`}
+                    aria-hidden="true"
                   />
                 </button>
               </div>
@@ -147,9 +223,9 @@ export function Header() {
                   key={logoPath}
                   src={logoPath}
                   alt={logoAlt}
-                  width={220}
-                  height={55}
-                  className="h-10 sm:h-12 w-auto object-contain"
+                  width={isHouse ? 240 : 220}
+                  height={isHouse ? 48 : 55}
+                  className={`${isHouse ? 'h-9 sm:h-12' : 'h-10 sm:h-12'} w-auto object-contain`}
                   priority
                 />
               </Link>
@@ -159,12 +235,14 @@ export function Header() {
             <div className="flex items-center justify-end gap-4 flex-1">
               {/* Reserve Button - Hidden on mobile/tablet (shown in menu) */}
               <Link 
-                href="/reserve"
+                href={isHouse ? "/house/reserve" : "/apartments/reserve"}
                 onClick={() => {
                   setExploreOpen(false);
                   setPlanOpen(false);
                 }}
-                className="hidden lg:block rounded-lg bg-[#9D7F5F] px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-[#8B6F47]"
+                className={`hidden lg:block rounded-lg px-6 py-2 text-sm font-medium text-white transition-colors ${
+                  isHouse ? 'bg-[#5B7A3A] hover:bg-[#4d6831]' : 'bg-[#9D7F5F] hover:bg-[#8B6F47]'
+                }`}
                 suppressHydrationWarning
               >
                 {t.header.reserve}
@@ -179,13 +257,17 @@ export function Header() {
           {/* Navigation Panels - Positioned relative to header container */}
           {exploreOpen && (
             <NavigationPanel
+              id="desktop-explore-panel"
+              label={t.header.explore}
               sections={exploreSections}
-              featuredCard={t.header.featuredCard}
+              featuredCard={isHouse ? houseFeaturedCard : t.header.featuredCard}
               onClose={() => setExploreOpen(false)}
             />
           )}
           {planOpen && (
             <NavigationPanel 
+              id="desktop-plan-panel"
+              label={t.header.plan}
               sections={planSections}
               onClose={() => setPlanOpen(false)}
             />
@@ -203,4 +285,3 @@ export function Header() {
     </header>
   );
 }
-

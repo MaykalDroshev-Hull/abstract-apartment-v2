@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useTranslations, useLanguage } from '@/app/lib/translations';
 import { Facebook, Instagram } from 'lucide-react';
 
@@ -15,6 +15,7 @@ function ViberIcon({ className }: { className?: string }) {
       height="64"
       viewBox="0 0 3.277 3.277"
       className={className}
+      aria-hidden="true"
     >
       <path d="M1.678 2.21c-.228.003-.476-.003-.724-.018-.026-.003-.04.01-.056.026l-.194.215c-.01.01-.02.03-.038.023s-.01-.028-.01-.043v-.18c.003-.046-.008-.07-.06-.07a1.26 1.26 0 0 1-.194-.023c-.22-.05-.368-.17-.39-.422-.01-.11-.018-.217 0-.327A.43.43 0 0 1 .402.999C.73.945 1.06.927 1.39.922l1.036.023a3.25 3.25 0 0 1 .496.064c.197.04.33.192.348.396a1.48 1.48 0 0 1-.005.353.41.41 0 0 1-.253.33c-.125.054-.258.072-.39.082l-.94.038z" fill="#7c529e"/>
       <g fill="#fff">
@@ -31,29 +32,41 @@ export function Footer() {
   const t = useTranslations();
   const { language } = useLanguage();
   const pathname = usePathname();
-  const router = useRouter();
   const currentYear = new Date().getFullYear();
 
   const isHouse = pathname?.startsWith('/house');
 
   // Select logo based on current section (House vs Apartment) and language
   const logoPath = isHouse
-    ? (language === 'bg' ? '/Images/Logo_House_Bulgarian.png' : '/Images/Logo_House.png')
+    ? '/Images/House/house-logo.png'
     : (language === 'bg' ? '/Images/Logo_Bulgarian.png' : '/Images/Logo.png');
 
-  const logoHref = isHouse ? '/house' : '/';
+  const logoHref = isHouse ? '/house' : '/apartments';
   const logoAlt = isHouse
-    ? (language === 'bg' ? 'Къща за гости „Абстракт"' : 'Abstract Guest House')
-    : (language === 'bg' ? 'Апартамент Абстракт' : 'Abstract Apartment');
+    ? (language === 'bg'
+        ? 'Къща за гости „Абстракт“ – Начало'
+        : language === 'el'
+        ? 'Ξενώνας „Abstract“ – Αρχική'
+        : 'Guest House "Abstract" – Home')
+    : (language === 'bg' ? 'Апартамент Абстракт – Начало' : 'Abstract Apartment – Home');
+
+  const houseCopyrightText =
+    language === 'bg'
+      ? 'Къща за гости „Абстракт“. Всички права запазени.'
+      : language === 'el'
+      ? 'Ξενώνας „Abstract“. Όλα τα δικαιώματα διατηρούνται.'
+      : 'Guest House "Abstract". All rights reserved.';
+
+  const currentHeader = isHouse ? t.house.header : t.header;
 
   // Collect all navigation links from header sections
   const quickLinks: Array<{ label: string; href: string }> = [];
 
   // Add links from explore sections
   const exploreSections = [
-    t.header.exploreSections.theVilla,
-    t.header.exploreSections.visualJourney,
-    t.header.exploreSections.guestExperience,
+    isHouse ? t.house.header.exploreSections.theHouse : t.header.exploreSections.theVilla,
+    currentHeader.exploreSections.visualJourney,
+    currentHeader.exploreSections.guestExperience,
   ];
 
   exploreSections.forEach((section) => {
@@ -66,9 +79,9 @@ export function Footer() {
 
   // Add links from plan sections
   const planSections = [
-    t.header.planSections.bookingInfo,
-    t.header.planSections.travelLogistics,
-    t.header.planSections.getInTouch,
+    currentHeader.planSections.bookingInfo,
+    currentHeader.planSections.travelLogistics,
+    currentHeader.planSections.getInTouch,
   ];
 
   planSections.forEach((section) => {
@@ -96,12 +109,12 @@ export function Footer() {
                 key={logoPath}
                 src={logoPath}
                 alt={logoAlt}
-                width={180}
-                height={54}
+                width={isHouse ? 240 : 180}
+                height={isHouse ? 48 : 54}
                 className="h-10 sm:h-12 w-auto object-contain"
               />
             </Link>
-            <p className="text-sm sm:text-base text-zinc-600text-zinc-400 leading-relaxed mb-4 max-w-sm">
+            <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-4 max-w-sm">
               {isHouse ? t.house.hero.tagline : t.footer.description}
             </p>
             {/* Social Icons */}
@@ -110,26 +123,53 @@ export function Footer() {
                 href="https://www.facebook.com/profile.php?id=61575061973914"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="w-8 h-8 flex items-center justify-center text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 transition-colors"
-                aria-label="Facebook"
+                className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-colors"
+                aria-label={
+                  isHouse
+                    ? language === 'bg'
+                      ? 'Последвайте ни във Facebook'
+                      : language === 'el'
+                      ? 'Ακολουθήστε μας στο Facebook'
+                      : 'Follow us on Facebook'
+                    : 'Follow us on Facebook'
+                }
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.instagram.com/abstract_apartment/"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="w-8 h-8 flex items-center justify-center text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 transition-colors"
-                aria-label="Instagram"
+                className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-colors"
+                aria-label={
+                  isHouse
+                    ? language === 'bg'
+                      ? 'Последвайте ни в Instagram'
+                      : language === 'el'
+                      ? 'Ακολουθήστε μας στο Instagram'
+                      : 'Follow us on Instagram'
+                    : 'Follow us on Instagram'
+                }
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div className="text-center md:text-left">
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900text-zinc-50 mb-4">
+          <nav
+            aria-label={
+              isHouse
+                ? language === 'bg'
+                  ? 'Навигация в долния колонтитул – Къща за гости „Абстракт“'
+                  : language === 'el'
+                  ? 'Πλοήγηση υποσέλιδου – Ξενώνας Abstract'
+                  : 'Guest House footer navigation'
+                : 'Apartment footer navigation'
+            }
+            className="text-center md:text-left"
+          >
+            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
               {t.footer.quickLinks}
             </h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 justify-items-center lg:justify-items-start">
@@ -137,78 +177,151 @@ export function Footer() {
                 <Link
                   key={index}
                   href={link.href}
-                  className="text-sm sm:text-base text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 hover:underline transition-colors"
+                  className="text-sm sm:text-base text-zinc-600 hover:text-zinc-900 hover:underline transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-          </div>
+          </nav>
 
           {/* Column 3 - Contacts */}
           <div className="text-center md:text-left">
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900text-zinc-50 mb-4">
+            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
               {t.footer.contacts}
             </h3>
-            <ul className="space-y-3 text-sm sm:text-base text-zinc-600text-zinc-400 inline-block">
-              <li>
-                <span className="font-medium text-zinc-700text-zinc-300">
-                  {t.footer.phone}:
-                </span>{' '}
-                <a
-                  href="tel:+359886790681"
-                  className="hover:text-zinc-900hover:text-zinc-200 transition-colors"
-                >
-                  +359886790681
-                </a>
-                {' - '}
-                {t.footer.niki}
-              </li>
-              <li>
-                <span className="font-medium text-zinc-700text-zinc-300">
-                  {t.footer.phone}:
-                </span>{' '}
-                <a
-                  href="tel:+359878112454"
-                  className="hover:text-zinc-900hover:text-zinc-200 transition-colors"
-                >
-                  +359878112454
-                </a>
-                {' - '}
-                {t.footer.kika}
-                {' '}
-                <a
-                  href="viber://chat?number=%2B359878112454"
-                  className="inline-flex items-end ml-2 hover:opacity-80 transition-opacity"
-                  aria-label="Chat on Viber"
-                  title="Chat on Viber"
-                >
-                  <ViberIcon className="w-10 h-10" />
-                </a>
-              </li>
-              <li>
-                <span className="font-medium text-zinc-700text-zinc-300">
-                  {t.footer.email}:
-                </span>{' '}
-                <a
-                  href="mailto:abstract.apartments@gmail.com"
-                  className="hover:text-zinc-900hover:text-zinc-200 transition-colors"
-                >
-                  abstract.apartments@gmail.com
-                </a>
-              </li>
-              <li>
-                <span className="font-medium text-zinc-700text-zinc-300">
-                  {t.footer.address}:
-                </span>{' '}
-                Martini 7, Paralia Ofriniou 640 08, Greece
-              </li>
-              <li className="pt-2 mt-2 border-t border-zinc-300border-zinc-700">
-                <span className="font-medium text-zinc-700text-zinc-300">
-                  (ΑΜΑ) 00003339938
-                </span>
-              </li>
-            </ul>
+            {isHouse ? (
+              <ul className="space-y-3 text-sm sm:text-base text-zinc-600 inline-block">
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.phone}:
+                  </span>{' '}
+                  <a
+                    href="tel:+359878112454"
+                    className="hover:text-zinc-900 transition-colors"
+                  >
+                    +359 878 112 454
+                  </a>
+                  {' - '}
+                  {language === 'bg' ? 'Кристина Иванова' : language === 'el' ? 'Κριστίνα Ιβάνοβα' : 'Kristina Ivanova'}
+                  {' '}
+                  <a
+                    href="viber://chat?number=%2B359878112454"
+                    className="inline-flex items-end ml-2 hover:opacity-80 transition-opacity"
+                    aria-label={
+                      language === 'bg'
+                        ? 'Чат с Кристина Иванова във Viber'
+                        : language === 'el'
+                        ? 'Συνομιλία με την Κριστίνα Ιβάνοβα στο Viber'
+                        : 'Chat with Kristina Ivanova on Viber'
+                    }
+                    title={
+                      language === 'bg'
+                        ? 'Чат във Viber'
+                        : language === 'el'
+                        ? 'Συνομιλία στο Viber'
+                        : 'Chat on Viber'
+                    }
+                  >
+                    <ViberIcon className="w-10 h-10" />
+                  </a>
+                </li>
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.phone}:
+                  </span>{' '}
+                  <a
+                    href="tel:+359889226794"
+                    className="hover:text-zinc-900 transition-colors"
+                  >
+                    +359 889 226 794
+                  </a>
+                  {' - '}
+                  {language === 'bg' ? 'Камелия Иванова' : language === 'el' ? 'Καμέλια Ιβάνοβα' : 'Kameliya Ivanova'}
+                </li>
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.email}:
+                  </span>{' '}
+                  <a
+                    href="mailto:abstract.apartments@gmail.com"
+                    className="hover:text-zinc-900 transition-colors"
+                  >
+                    abstract.apartments@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.address}:
+                  </span>{' '}
+                  {language === 'bg'
+                    ? 'с. Голец, Община Угърчин, Област Ловеч, България'
+                    : language === 'el'
+                    ? 'Χωριό Γκόλετς, Δήμος Ουγκάρτσιν, Επαρχία Λόβετς, Βουλγαρία'
+                    : 'Golets village, Ugarchin Municipality, Lovech Province, Bulgaria'}
+                </li>
+              </ul>
+            ) : (
+              <ul className="space-y-3 text-sm sm:text-base text-zinc-600 inline-block">
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.phone}:
+                  </span>{' '}
+                  <a
+                    href="tel:+359886790681"
+                    className="hover:text-zinc-900 transition-colors"
+                  >
+                    +359886790681
+                  </a>
+                  {' - '}
+                  {t.footer.niki}
+                </li>
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.phone}:
+                  </span>{' '}
+                  <a
+                    href="tel:+359878112454"
+                    className="hover:text-zinc-900 transition-colors"
+                  >
+                    +359878112454
+                  </a>
+                  {' - '}
+                  {t.footer.kika}
+                  {' '}
+                  <a
+                    href="viber://chat?number=%2B359878112454"
+                    className="inline-flex items-end ml-2 hover:opacity-80 transition-opacity"
+                    aria-label="Chat on Viber"
+                    title="Chat on Viber"
+                  >
+                    <ViberIcon className="w-10 h-10" />
+                  </a>
+                </li>
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.email}:
+                  </span>{' '}
+                  <a
+                    href="mailto:abstract.apartments@gmail.com"
+                    className="hover:text-zinc-900 transition-colors"
+                  >
+                    abstract.apartments@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <span className="font-medium text-zinc-700">
+                    {t.footer.address}:
+                  </span>{' '}
+                  Martini 7, Paralia Ofriniou 640 08, Greece
+                </li>
+                <li className="pt-2 mt-2 border-t border-zinc-300">
+                  <span className="font-medium text-zinc-700">
+                    (ΑΜΑ) 00003339938
+                  </span>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
 
@@ -216,7 +329,7 @@ export function Footer() {
         <div className="border-t border-zinc-200border-zinc-800 pt-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-zinc-600text-zinc-400 text-center sm:text-left">
-              © {currentYear} {t.footer.copyrightText}
+              © {currentYear} {isHouse ? houseCopyrightText : t.footer.copyrightText}
             </p>
             <p className="text-sm text-zinc-600text-zinc-400 text-center sm:text-right">
               <span>{t.footer.createdBy}</span>{' '}

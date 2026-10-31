@@ -8,12 +8,12 @@ import { HouseCtaSection } from './components/HouseCtaSection';
 
 export default function HousePage() {
   return (
-    <main>
+    <div>
       <HouseHero />
       <HouseRoomsSection />
       <HouseAmenitiesSection />
       <HouseLocationSection />
       <HouseCtaSection />
-    </main>
+    </div>
   );
 }

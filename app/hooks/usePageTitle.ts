@@ -28,6 +28,18 @@ export function usePageTitle() {
     // Map routes to page title keys
     const routeToTitleKey: Record<string, keyof typeof t.pageTitles> = {
       '/': 'home',
+      '/apartments': 'home',
+      '/apartments/details': 'details',
+      '/apartments/floor-plan': 'floorPlan',
+      '/apartments/gallery': 'gallery',
+      '/apartments/guide': 'guide',
+      '/apartments/rates': 'rates',
+      '/apartments/reserve': 'reserve',
+      '/apartments/contact': 'contact',
+      '/apartments/about': 'about',
+      '/apartments/faq': 'faq',
+      '/apartments/reviews': 'reviews',
+      '/apartments/getting-here': 'gettingHere',
       '/details': 'details',
       '/floor-plan': 'floorPlan',
       '/gallery': 'gallery',
@@ -40,16 +52,27 @@ export function usePageTitle() {
       '/reviews': 'reviews',
       '/getting-here': 'gettingHere',
       '/house': 'house',
+      '/house/about': 'houseAbout',
+      '/house/contact': 'houseContact',
+      '/house/details': 'houseDetails',
+      '/house/faq': 'houseFaq',
+      '/house/floor-plan': 'houseFloorPlan',
+      '/house/gallery': 'houseGallery',
+      '/house/getting-here': 'houseGettingHere',
+      '/house/guide': 'houseGuide',
+      '/house/rates': 'houseRates',
+      '/house/reserve': 'houseReserve',
+      '/house/reviews': 'houseReviews',
     };
 
-    const titleKey = routeToTitleKey[pathname] || 'home';
+    const titleKey = routeToTitleKey[pathname] || (pathname.startsWith('/house') ? 'house' : 'home');
     const title = t.pageTitles[titleKey];
     const description = t.pageDescriptions[titleKey];
 
     const baseUrl = getBaseUrl();
     const fullUrl = `${baseUrl}${pathname}`;
-    const ogImage = pathname === '/house'
-      ? `${baseUrl}/Images/House/hero.jpg`
+    const ogImage = pathname.startsWith('/house')
+      ? `${baseUrl}/Images/House/house-facade-pool-courtyard.jpg`
       : `${baseUrl}/Images/Gallery/KitchenArea.jpg`; // Default OG image
 
     // Update document title

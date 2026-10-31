@@ -29,13 +29,17 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
 
   // Select logo based on current section (House vs Apartment) and language
   const logoPath = isHouse
-    ? (language === 'bg' ? '/Images/Logo_House_Bulgarian.png' : '/Images/Logo_House.png')
+    ? '/Images/House/house-logo.png'
     : (language === 'bg' ? '/Images/Logo_Bulgarian.png' : '/Images/Logo.png');
 
-  const logoHref = isHouse ? '/house' : '/';
+  const logoHref = isHouse ? '/house' : '/apartments';
   const logoAlt = isHouse
-    ? (language === 'bg' ? 'Къща за гости „Абстракт"' : 'Abstract Guest House')
-    : (language === 'bg' ? 'Апартамент Абстракт' : 'Abstract Apartment');
+    ? (language === 'bg'
+        ? 'Къща за гости „Абстракт“ – Начало'
+        : language === 'el'
+        ? 'Ξενώνας „Abstract“ – Αρχική'
+        : 'Guest House "Abstract" – Home')
+    : (language === 'bg' ? 'Апартамент Абстракт – Начало' : 'Abstract Apartment – Home');
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -65,10 +69,10 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
 
     // Simple focus trap - keep focus within panel
     const handleTab = (e: KeyboardEvent) => {
-      if (!panelRef.current) return;
+      if (e.key !== 'Tab' || !panelRef.current) return;
       
       const focusableElements = panelRef.current.querySelectorAll(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        'a[href], select, button:not([disabled]), [tabindex]:not([tabindex="-1"])'
       );
       const firstElement = focusableElements[0] as HTMLElement;
       const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
@@ -128,10 +132,19 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
       
       {/* Panel */}
       <div
+        id="mobile-nav-panel"
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
+        aria-label={
+          isHouse
+            ? language === 'bg'
+              ? 'Навигационно меню'
+              : language === 'el'
+              ? 'Μενού πλοήγησης'
+              : 'Navigation menu'
+            : 'Navigation menu'
+        }
         className="fixed inset-0 top-0 left-0 right-0 bottom-0 z-[101] lg:hidden flex flex-col bg-[#F9F7F7]"
       >
         {/* Header */}
@@ -141,29 +154,50 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
               key={logoPath}
               src={logoPath}
               alt={logoAlt}
-              width={160}
-              height={45}
-              className="h-9 w-auto object-contain"
+              width={isHouse ? 180 : 160}
+              height={isHouse ? 36 : 45}
+              className={`${isHouse ? 'h-8 sm:h-9' : 'h-9'} w-auto object-contain`}
               priority
             />
           </Link>
           <div className="flex items-center gap-3">
             <MobileLanguageSwitcher />
             <button
+              type="button"
               ref={closeButtonRef}
               onClick={onClose}
               className="p-2 rounded-lg hover:bg-zinc-100 transition-colors"
-              aria-label="Close menu"
+              aria-label={
+                isHouse
+                  ? language === 'bg'
+                    ? 'Затвори навигационното меню'
+                    : language === 'el'
+                    ? 'Κλείσιμο μενού πλοήγησης'
+                    : 'Close navigation menu'
+                  : 'Close navigation menu'
+              }
             >
-              <X className="w-6 h-6 text-zinc-900" />
+              <X className="w-6 h-6 text-zinc-900" aria-hidden="true" />
             </button>
           </div>
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto">
+        <nav
+          aria-label={
+            isHouse
+              ? language === 'bg'
+                ? 'Мобилна навигация'
+                : language === 'el'
+                ? 'Κινητή πλοήγηση'
+                : 'Mobile navigation'
+              : 'Mobile navigation'
+          }
+          className="flex-1 overflow-y-auto"
+        >
           <div className="px-4 py-6 max-w-2xl mx-auto w-full">
             <MobileNavAccordion
+              idPrefix="mobile-explore"
               label={t.header.explore}
               sections={exploreSections}
               isOpen={exploreOpen}
@@ -171,6 +205,7 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
               onItemClick={handleItemClick}
             />
             <MobileNavAccordion
+              idPrefix="mobile-plan"
               label={t.header.plan}
               sections={planSections}
               isOpen={planOpen}
@@ -178,15 +213,17 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
               onItemClick={handleItemClick}
             />
           </div>
-        </div>
+        </nav>
 
         {/* Sticky Reserve Button */}
         <div className="sticky bottom-0 left-0 right-0 p-4 bg-[#F9F7F7]/95 backdrop-blur-sm border-t border-zinc-200 flex-shrink-0">
           <div className="max-w-2xl mx-auto w-full">
             <Link
-              href="/reserve"
+              href={isHouse ? "/house/reserve" : "/apartments/reserve"}
               onClick={onClose}
-              className="w-full flex items-center justify-center px-6 py-3 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors"
+              className={`w-full flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium text-sm transition-colors ${
+                isHouse ? 'bg-[#5B7A3A] hover:bg-[#4d6831]' : 'bg-[#9D7F5F] hover:bg-[#8B6F47]'
+              }`}
             >
               {t.header.reserve}
             </Link>
@@ -196,4 +233,3 @@ export function MobileNavPanel({ isOpen, onClose, exploreSections, planSections 
     </>
   );
 }
-

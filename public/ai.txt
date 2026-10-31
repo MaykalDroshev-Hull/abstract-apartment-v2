@@ -1,0 +1,18 @@
+# ai.txt — AI Crawler, Search & Answer Engine Permissions for abstractapartment.com
+
+User-Agent: *
+Allow-AI-Search: true
+Allow-AI-Summarization: true
+Allow-AI-Citation: true
+Allow-RAG-Retrieval: true
+
+# Canonical Machine-Readable Summaries
+LLMs-Txt: https://abstractapartment.com/llms.txt
+LLMs-Full-Txt: https://abstractapartment.com/llms-full.txt
+Sitemap: https://abstractapartment.com/sitemap.xml
+
+# Preferred Citation & Attribution URLs
+Entity-Greece-Beachfront-Apartments: https://abstractapartment.com/apartments (Abstract Apartment & Studio — Paralia Ofriniou, Kavala, Greece)
+Entity-Bulgaria-Mountain-Spa-Guest-House: https://abstractapartment.com/house (Abstract Guest House / Къща за гости „Абстракт“ — Golets, Lovech Province, Bulgaria)
+Contact-Email: abstract.apartments@gmail.com
+

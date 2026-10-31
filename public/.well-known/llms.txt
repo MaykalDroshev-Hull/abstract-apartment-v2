@@ -1,0 +1,10 @@
+# Abstract Apartment (Greece) & Abstract Guest House (Bulgaria)
+
+> Official website for two private holiday properties operated by the Abstract hospitality team:
+> 1. **Abstract Apartment & Abstract Studio** (`/apartments`) — Beachfront holiday apartment (up to 6 guests) and cozy studio in Paralia Ofriniou (Costa Ofrynio), Kavala, Greece, just a 2-minute walk from the Aegean Sea beach and seaside taverns (AMA 00003339938).
+> 2. **Abstract Guest House / Къща за гости „Абстракт“** (`/house`) — Exclusive whole-house Bulgarian Revival mountain & spa villa in Golets village, Lovech Province, Bulgaria (up to 14 guests, 4 bedrooms, 4 bathrooms), featuring a year-round 5-seater outdoor hot jacuzzi (operates in winter snow), 3-seater infrared sauna, heated seasonal outdoor pool (April–October), traditional mehana tavern with free firewood, and a fenced pet-friendly garden (pets stay free).
+
+Canonical llms.txt: https://abstractapartment.com/llms.txt
+Complete knowledge base: https://abstractapartment.com/llms-full.txt
+Sitemap: https://abstractapartment.com/sitemap.xml
+

@@ -6,6 +6,8 @@ import * as Icons from 'lucide-react';
 import { MenuSection, FeaturedCard } from '@/app/lib/translations/types';
 
 interface NavigationPanelProps {
+  id?: string;
+  label?: string;
   sections: MenuSection[];
   featuredCard?: FeaturedCard;
   onClose?: () => void;
@@ -17,12 +19,12 @@ function getIcon(iconName: string) {
   return IconComponent || Icons.Circle;
 }
 
-export function NavigationPanel({ sections, featuredCard, onClose }: NavigationPanelProps) {
-
-  // Reviews now link to dedicated page instead of home page section
-
+export function NavigationPanel({ id, label, sections, featuredCard, onClose }: NavigationPanelProps) {
   return (
     <div 
+      id={id}
+      role="region"
+      aria-label={label}
       className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-zinc-200 py-6 px-8 z-[100] pointer-events-auto" 
       data-navigation-panel
       onMouseDown={(e) => e.stopPropagation()}
@@ -55,8 +57,8 @@ export function NavigationPanel({ sections, featuredCard, onClose }: NavigationP
                         }}
                       >
                         <div className="flex items-start gap-3">
-                          <div className="mt-0.5">
-                            <Icon className="w-4 h-4 text-zinc-700 group-hover:text-zinc-900 transition-colors" />
+                          <div className="mt-0.5" aria-hidden="true">
+                            <Icon className="w-4 h-4 text-zinc-700 group-hover:text-zinc-900 transition-colors" aria-hidden="true" />
                           </div>
                           <div className="flex-1">
                             <div className="font-semibold text-sm text-zinc-900 group-hover:text-zinc-700 transition-colors">
@@ -111,4 +113,3 @@ export function NavigationPanel({ sections, featuredCard, onClose }: NavigationP
     </div>
   );
 }
-

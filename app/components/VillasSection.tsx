@@ -143,7 +143,7 @@ function VillaCard({ villa, delay = 0, villaType }: VillaCardProps) {
         {/* Optional CTA Button */}
         {villa.cta && (
           <Link
-            href={villaType ? `/details?tab=${villaType}` : '/details'}
+            href={villaType ? `/apartments/details?tab=${villaType}` : '/apartments/details'}
             className="mt-6 inline-block"
           >
             <motion.div

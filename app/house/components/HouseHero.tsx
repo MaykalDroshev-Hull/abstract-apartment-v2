@@ -40,7 +40,7 @@ export function HouseHero() {
           </motion.div>
 
           {/* Gradient Overlay - warmer tones for the house */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#3D2B1F]/30 via-[#3D2B1F]/10 to-[#3D2B1F]/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3D2B1F]/30 via-[#3D2B1F]/10 to-[#3D2B1F]/50" aria-hidden="true" />
 
           {/* Location Label - Top Left */}
           <div className="absolute top-6 left-6 sm:top-8 sm:left-8 z-10">
@@ -69,7 +69,7 @@ export function HouseHero() {
               {h.hero.title}
             </h1>
             <Link
-              href="/contact"
+              href="/house/reserve"
               className="px-8 py-3 sm:px-10 sm:py-4 rounded-full border-2 border-white/90 text-white/95 font-medium text-sm sm:text-base transition-all duration-300 hover:bg-white/10 hover:border-white backdrop-blur-sm"
             >
               {h.hero.cta}
@@ -81,40 +81,40 @@ export function HouseHero() {
             <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8">
               {/* Guests */}
               <div className="flex items-center gap-2 text-white/70">
-                <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Users className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                 <span className="text-xs sm:text-sm font-light">
                   {h.hero.details.guests}
                 </span>
               </div>
 
               {/* Separator */}
-              <div className="w-px h-4 bg-white/30" />
+              <div className="w-px h-4 bg-white/30" aria-hidden="true" />
 
               {/* Bedrooms */}
               <div className="flex items-center gap-2 text-white/70">
-                <Bed className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Bed className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                 <span className="text-xs sm:text-sm font-light">
                   {h.hero.details.rooms}
                 </span>
               </div>
 
               {/* Separator */}
-              <div className="w-px h-4 bg-white/30" />
+              <div className="w-px h-4 bg-white/30" aria-hidden="true" />
 
               {/* Mountain */}
               <div className="flex items-center gap-2 text-white/70">
-                <Mountain className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Mountain className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                 <span className="text-xs sm:text-sm font-light">
                   {h.hero.details.views}
                 </span>
               </div>
 
               {/* Separator */}
-              <div className="w-px h-4 bg-white/30" />
+              <div className="w-px h-4 bg-white/30" aria-hidden="true" />
 
               {/* Spa */}
               <div className="flex items-center gap-2 text-white/70">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
                 <span className="text-xs sm:text-sm font-light">
                   {h.hero.details.spa}
                 </span>

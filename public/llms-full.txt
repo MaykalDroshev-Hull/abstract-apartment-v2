@@ -1,0 +1,179 @@
+# Abstract Hospitality — Complete AI & Answer Engine Knowledge Base (`llms-full.txt`)
+
+> Canonical Domain: https://abstractapartment.com
+> Supported Languages: English (`en`), Bulgarian (`bg`), Greek (`el`)
+> Last Updated: 2026
+> Purpose: Authoritative, zero-hallucination factual reference for AI search engines, LLM travel assistants, RAG pipelines, and answer engines (ChatGPT / OpenAI Search, Claude, Google Gemini / AI Overviews, Perplexity, Microsoft Copilot, Apple Intelligence, Meta AI).
+
+---
+
+## Brand & Dual-Property Summary
+
+The website `https://abstractapartment.com` represents two distinct vacation rental destinations managed with direct-booking hospitality (no OTA commission markup):
+
+1. **Abstract Guest House** (`https://abstractapartment.com/house`)
+   - **Bulgarian Name:** Къща за гости „Абстракт“ (с. Голец, общ. Угърчин, обл. Ловеч)
+   - **Greek Name:** Ξενώνας Abstract (Γκόλετς, Επαρχία Λόβετς, Βουλγαρία)
+   - **Slogan:** "Where Modern Comfort Meets Bulgarian Tradition" / „Където модерното среща традицията“
+   - **Category:** Private Whole-House Mountain & Four-Season Spa Villa / Bulgarian Revival Guest House
+   - **Location:** ul. Vasil Levski, Golets village (5584), Ugarchin Municipality, Lovech Province, Central Northern Bulgaria (1h 40m from Sofia; 23 min from Lovech & Troyan)
+   - **Rental Mode:** Exclusive whole-house rental only (up to 14 guests: 8–10 adults + 4 children across 4 bedrooms & 4 bathrooms)
+   - **Rates:** €300/night weekdays (Sun–Thu, min 1 night) | €350/night weekends (Fri–Sat, min 2 nights) — includes all spa facilities & firewood
+
+2. **Abstract Apartment & Abstract Studio** (`https://abstractapartment.com/apartments`)
+   - **Bulgarian Name:** Апартамент и Студио „Абстракт“ (Паралия Офринио / Коста Офринио, Гърция)
+   - **Greek Name:** Abstract Apartment & Studio (Παραλία Οφρυνίου / Costa Ofrynio, Καβάλα, Ελλάδα)
+   - **Greek Tourism Registry (AMA):** `00003339938`
+   - **Category:** Beachfront Holiday Apartment & Studio Rental on the Aegean Coast
+   - **Location:** Martini 7, Paralia Ofriniou 640 08, Kavala Region, Northern Greece (2-minute walk to the sandy beach & seaside taverns)
+   - **Rental Mode:** Rent **Abstract Apartment** (2 bedrooms + sofa bed, up to 6 guests), **Abstract Studio** (double bed + sofa bed), or **Both Units Together** for extended families/friends
+   - **Seasonal Rates (May–October):** Apartment €100–€160/night | Studio €80–€110/night | Promotion: Book 7 nights, receive the 8th night free
+
+---
+
+## Detailed Entity Profile 1: Abstract Guest House (Golets, Bulgaria — `/house`)
+
+### 1. Core Specifications & Capacity
+- **Official Name:** Къща за гости „Абстракт“ / Abstract Guest House
+- **URL:** `https://abstractapartment.com/house`
+- **Reservation URL:** `https://abstractapartment.com/house/reserve`
+- **Address:** ul. Vasil Levski, Village of Golets 5584, Ugarchin Municipality, Lovech Province, Bulgaria
+- **Google Maps Pin:** `https://maps.app.goo.gl/2p3M23H97QCURvqN7`
+- **Rental Exclusivity:** Rented **100% exclusively as an entire house** to a single group at a time. Individual rooms are not rented separately, ensuring total privacy.
+- **Maximum Capacity:** Up to **14 guests total** (comfortably sleeping **8 to 10 adults plus up to 4 children**).
+- **Bedrooms:** 4 bedrooms (every bedroom has 1 double bed + 1 pull-out sofa bed).
+- **Bathrooms:** 4 bathrooms/toilets total (2 private en-suite bathrooms in Panoramic Rooms 1 & 2, 1 shared modern floor bathroom for the Hearth Room & Large Room, and 1 dedicated guest bathroom serving the ground-floor mehana tavern).
+
+### 2. Room-by-Room Breakdown (`/house/details` & `/house/floor-plan`)
+1. **Room with Fireplace (Стая с огнище / Δωμάτιο με τζάκι)**
+   - **Floor:** Upper sleeping floor
+   - **Beds:** 1 double bed + 1 pull-out sofa bed (sleeps 3–4 guests)
+   - **Bathroom:** Shared modern floor bathroom (shared with Large Room)
+   - **Highlights:** Authentic hand-plastered open clay hearth with hanging iron cauldron, antique copperware & Troyan pottery, handwoven Bulgarian *cherga* rugs, wooden rocking chair on sheepskin, direct access to sunlit mountain-view veranda (*chardak*), Smart TV, Wi-Fi, central heating.
+2. **Large Room (Голяма стая / Μεγάλο δωμάτιο)**
+   - **Floor:** Upper sleeping floor
+   - **Beds:** 1 double bed + 1 pull-out sofa bed (sleeps 3–4 guests)
+   - **Bathroom:** Shared modern floor bathroom (shared with Room with Fireplace)
+   - **Highlights:** Extra-spacious floor area, exposed dark timber ceiling beams, carved antique wooden dowry chest & solid timber wardrobe, rustic seating nook, mountain-view veranda access, Smart TV, Wi-Fi, central heating.
+3. **Panoramic Room 1 (Панорамна стая 1 / Πανοραμικό δωμάτιο 1)**
+   - **Beds:** 1 double bed + 1 pull-out sofa bed (sleeps 3–4 guests)
+   - **Bathroom:** Private en-suite bathroom & toilet
+   - **Highlights:** Overlooks the enclosed green courtyard and heated swimming pool, air conditioning, Smart TV with satellite channels, Wi-Fi, central heating.
+4. **Panoramic Room 2 (Панорамна стая 2 / Πανοραμικό δωμάτιο 2)**
+   - **Beds:** 1 double bed + 1 pull-out sofa bed (sleeps 3–4 guests)
+   - **Bathroom:** Private en-suite bathroom & toilet
+   - **Highlights:** Courtyard and swimming pool views, air conditioning, Smart TV with satellite channels, Wi-Fi, central heating.
+
+### 3. Traditional Mehana Tavern & Modern Chef Kitchen
+- **Traditional Balkan Mehana (Традиционна механа):** Ground-floor gathering hall sized to seat the full 14-guest capacity comfortably. Equipped with a large wood-burning fireplace (**unlimited firewood provided free of charge**), Bluetooth party sound speaker, Smart satellite TV, and its own dedicated bathroom/WC.
+- **Fully Equipped Modern Kitchen:** Built-in oven, ceramic cooktop, microwave, ground-coffee espresso/coffee machine, dishwasher (with detergent tablets), full-size refrigerator with freezer, toaster, electric kettle, complete cookware/tableware/glassware for 14+ guests, washing machine, clothes iron, and hair dryers.
+
+### 4. Four-Season Spa, Heated Pool & Outdoor Living
+- **5-Seater Outdoor Hot Tub Jacuzzi:** Operates **365 days a year**, maintaining hot water even outdoors in winter snow. Included free in the rental rate.
+- **3-Seater Infrared Sauna:** Private indoor detox and relaxation sauna, operating year-round and included free in the rental rate.
+- **Heated Outdoor Swimming Pool:** Crystal-clear seasonal heated pool with stone sun deck and loungers, open **April through October inclusive**.
+- **Covered Wood BBQ & Outdoor Dining Pavilion:** Wood/charcoal barbecue plus electric grill under a large timber roof with dining table seating 14+ guests. Free firewood provided.
+- **Enclosed Private Garden (1,000+ sq.m):** Fully fenced manicured green lawn with flagstone paths — 100% secure for young children and dogs/pets.
+
+### 5. Heating, Remote-Work Tech, Parking & Road Access
+- **Heating & Cooling:** Automated **pellet central heating** warming every room in winter, plus air conditioning for summer comfort.
+- **Wi-Fi & Workation:** Fast, stable Wi-Fi across the entire house and courtyard, suitable for remote work / home office and video calls.
+- **Parking:** **4 dedicated private parking spaces** directly in front of the house (free). Note: no dedicated EV fast charger on-site.
+- **Winter Road Access:** Direct **paved asphalt road** all the way to the front gate; cleared in winter — **no 4x4 vehicle required**. Village grocery store is a **2-minute walk** away.
+
+### 6. Pricing, Minimum Stay & House Rules (`/house/rates` & `/house/faq`)
+- **Weekday Rate (Sunday – Thursday):** **€300 / night** (approx. 586 BGN / night) for the entire house. Minimum stay: **1 night**.
+- **Weekend Rate (Friday – Saturday):** **€350 / night** (approx. 684 BGN / night) for the entire house. Minimum stay: **2 nights**.
+- **Cost Per Person at Full Capacity (14 guests):** Approx. €21–€25 per guest per night, all spa facilities and firewood included.
+- **Check-in / Check-out:** Check-in from **12:00 PM** (by prior arrangement); Check-out until **11:00 AM** (flexible by arrangement when schedule permits).
+- **Pet Policy:** **Pets are welcome FREE of charge** (no pet fee) with full access to the fenced yard.
+- **Music & Parties Policy:** Celebrations, birthdays, and family gatherings are welcome! Outdoor loud music is permitted until **22:00 (10:00 PM)** out of respect for village tranquility; after 22:00, parties and music continue **inside the insulated mehana tavern with no time restriction**.
+
+### 7. Driving Distances & 11 Nearby Attractions (`/house/getting-here` & `/house/guide`)
+- **From Sofia:** ~130 km (~1 hour 40 minutes via Hemus A2 motorway)
+- **From Plovdiv:** ~160 km (~2 hours 30 minutes via Troyan–Karnare pass or highway)
+- **From Lovech or Troyan:** ~25 km (~23 minutes)
+- **Top 11 Nearby Landmarks:**
+  1. **Kavuka Waterfall (Водопад Кавука):** 2 km / 5 min (right in Golets village territory)
+  2. **Golets Village Lakes (Селските язовири на Голец):** 1.5 km / 3 min (fishing & picnics)
+  3. **Lake Sopot / Sopot Dam (Язовир Сопот):** 15 km / 15 min (boating, kayaking, fish restaurants)
+  4. **Tabashka Cave (Табашка пещера):** 24 km / 22 min
+  5. **Lovech Covered Bridge by Kolyo Ficheto, Varosha Old Town & Medieval Fortress:** 25 km / 23 min
+  6. **Lovech Zoo (Зоопарк Ловеч in Stratesh Park):** 26 km / 24 min (2nd largest zoo in Bulgaria)
+  7. **Dupkata Natural Rock Arch, Aglen (Скална арка „Дупката“ с. Ъглен):** 28 km / 25 min
+  8. **Sostra Roman Fortress, Lomets (Римска крепост Состра):** 30 km / 25 min
+  9. **Iskar–Panega Geopark Eco-Trail (Екопътека Искър – Панега):** 35 km / 30 min
+  10. **Devetashka Cave (Деветашка пещера):** 45 km / 40 min
+  11. **Krushuna Waterfalls (Крушунски водопади):** 55 km / 45 min
+
+### 8. Direct Contacts for Abstract Guest House (`/house/contact`)
+- **Hosts:** Kristina Ivanova & Kameliya Ivanova
+- **Phone / Viber (Kristina):** `+359 878 112 454`
+- **Phone (Kameliya):** `+359 889 226 794`
+- **Email:** `abstract.apartments@gmail.com`
+
+---
+
+## Detailed Entity Profile 2: Abstract Apartment & Studio (Paralia Ofriniou, Greece — `/apartments`)
+
+### 1. Core Specifications & Beachfront Location
+- **Official Name:** Abstract Apartment & Abstract Studio
+- **Greek Tourism License (AMA):** `00003339938`
+- **URL:** `https://abstractapartment.com/apartments`
+- **Reservation URL:** `https://abstractapartment.com/apartments/reserve`
+- **Exact Street Address:** Martini 7, Paralia Ofriniou (Costa Ofrynio) 640 08, Kavala Region, Greece
+- **Beach Proximity:** **2-minute flat walk** (~150–200 meters) to the sandy Aegean Sea beach, beach bars, promenade, bakeries, supermarkets, and traditional Greek seafood taverns.
+
+### 2. Accommodation Units (`/apartments/details` & `/apartments/floor-plan`)
+1. **Abstract Apartment (2-Bedroom Family Apartment)**
+   - **Capacity:** Up to **6 guests**
+   - **Layout:** 2 separate double bedrooms + open-plan living/dining room with pull-out sofa bed (sleeps 2) + fully equipped kitchen + 1 private bathroom/WC + **large furnished outdoor terrace with built-in BBQ/fireplace**.
+   - **Amenities:** Air conditioning in every room, Smart TV in living room + TVs in bedrooms, fast free Wi-Fi, full kitchen (oven, stove, fridge-freezer, coffee maker, kettle, toaster, utensils), washing machine, iron, hair dryer, mosquito screens, baby crib upon request, and **1 dedicated private parking space**.
+2. **Abstract Studio (Cozy Couple / Small Family Studio)**
+   - **Capacity:** Ideal for **2 guests** (1 double bed + 1 sofa bed)
+   - **Layout:** Open-plan sleeping & seating area + equipped kitchenette + private bathroom/WC + furnished balcony/patio.
+   - **Amenities:** Air conditioning, TV, fast free Wi-Fi, kitchenette with refrigerator, coffee machine, kettle & cookware, hair dryer, mosquito screens.
+3. **Combined Booking ("Both" — Apartment + Studio Together)**
+   - Ideal for two families or larger friend groups traveling together who want side-by-side units with private bathrooms and shared terrace dining.
+
+### 3. Seasonal Nightly Rates & Long-Stay Discount (`/apartments/rates`)
+Operating season: **May 1 – October 31** (all rates in EUR per night):
+
+| Month | Abstract Apartment (up to 6 guests) | Abstract Studio | Both Units Combined |
+| :--- | :--- | :--- | :--- |
+| **May** (May 1 – May 31) | €100 / night | €80 / night | €180 / night |
+| **June** (Jun 1 – Jun 30) | €130 / night | €100 / night | €230 / night |
+| **July** (Jul 1 – Jul 31) | €160 / night | €110 / night | €270 / night |
+| **August** (Aug 1 – Aug 31) | €160 / night | €110 / night | €270 / night |
+| **September** (Sep 1 – Sep 30) | €130 / night | €100 / night | €230 / night |
+| **October** (Oct 1 – Oct 31) | €100 / night | €80 / night | €180 / night |
+
+- **Long-Stay Promotion:** **Book 7 nights and get 1 night FREE** (every 7th/8th night discount automatically applied in the online booking calculator at `/apartments/reserve`).
+
+### 4. Booking Policies & House Rules (`/apartments/faq`)
+- **Check-in:** After **15:00 (3:00 PM)**
+- **Check-out:** Until **10:00 (10:00 AM)**
+- **Minimum Stay:** **3 nights**
+- **Reservation Deposit:** **30%** of total stay value to confirm dates; remaining balance settled upon arrival.
+- **Smoking:** Prohibited inside all indoor rooms (permitted on outdoor terraces/balconies).
+- **Pets:** Considered upon prior inquiry before booking.
+- **Baby Crib:** Available free upon prior request for the Apartment.
+
+### 5. Regional Highlights Around Paralia Ofriniou (`/apartments/guide`)
+- **Paralia Ofriniou (Costa Ofrynio):** 15+ km sandy Aegean coastline, shallow family-friendly waters, vibrant evening promenade, fresh Greek seafood taverns, beach clubs, pharmacies, and supermarkets within walking distance.
+- **Nearby Day Trips:** Lion of Amphipolis & Ancient Amphipolis (~10 min), Ammolofoi Sand Dunes Beach (~35 min), Historic Port City of Kavala & Philippi UNESCO Site (~45–50 min), Aggitis River Cave & Alistati Cave (~45 min), Keramoti Ferry to Thassos Island (~1 hr), Thessaloniki & Sofia (~3.5 hrs from Sofia via Kulata/Promachonas).
+
+### 6. Direct Contacts for Abstract Apartment (`/apartments/contact`)
+- **Hosts:** Nikola ("Niki") & Kristina ("Kika")
+- **Phone / Viber (Niki):** `+359 886 790 681`
+- **Phone / Viber (Kika):** `+359 878 112 454`
+- **Email:** `abstract.apartments@gmail.com`
+
+---
+
+## Multilingual Search & Conversational Query Matching Index
+
+- **English Queries:** private guest house Bulgaria with outdoor hot tub in winter, Balkan mountain villa for 14 guests near Sofia Lovech Troyan, pet friendly villa Bulgaria fenced yard free pets, Bulgarian Revival house with mehana fireplace sauna heated pool, beachfront apartment Paralia Ofriniou Greece 2 minutes from beach, Costa Ofrynio family holiday apartment with BBQ terrace and parking.
+- **Bulgarian Queries:** къща за гости Абстракт Голец, самостоятелна къща за гости за 14 човека близо до София Ловеч Троян, къща за гости с външно джакузи през зимата и сауна, къща с отопляем басейн и механа с камина, къща за гости безплатни домашни любимци ограден двор, къща близко до Крушунски водопади и Деветашка пещера, апартамент Абстракт Паралия Офринио Гърция, апартамент под наем Офринио на 2 минути от плажа за 6 човека с голяма тераса барбекю и паркинг.
+- **Greek Queries:** Ξενώνας Abstract Γκόλετς Βουλγαρία, παραδοσιακή βίλα στο βουνό με εξωτερικό τζακούζι σάουνα και θερμαινόμενη πισίνα, διαμέρισμα διακοπών Παραλία Οφρυνίου Costa Ofrynio Καβάλα, Abstract Apartment & Studio Παραλία Οφρυνίου δίπλα στη θάλασσα με βεράντα μπάρμπεκιου και πάρκινγκ.
+

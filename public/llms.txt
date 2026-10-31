@@ -1,0 +1,44 @@
+# Abstract Apartment (Greece) & Abstract Guest House (Bulgaria)
+
+> Official website for two private holiday properties operated by the Abstract hospitality team:
+> 1. **Abstract Apartment & Abstract Studio** (`/apartments`) — Beachfront holiday apartment (up to 6 guests) and cozy studio in Paralia Ofriniou (Costa Ofrynio), Kavala, Greece, just a 2-minute walk from the Aegean Sea beach and seaside taverns (AMA 00003339938).
+> 2. **Abstract Guest House / Къща за гости „Абстракт“** (`/house`) — Exclusive whole-house Bulgarian Revival mountain & spa villa in Golets village, Lovech Province, Bulgaria (up to 14 guests, 4 bedrooms, 4 bathrooms), featuring a year-round 5-seater outdoor hot jacuzzi (operates in winter snow), 3-seater infrared sauna, heated seasonal outdoor pool (April–October), traditional mehana tavern with free firewood, and a fenced pet-friendly garden (pets stay free).
+
+Website languages supported: English (`en`), Bulgarian (`bg`), and Greek (`el`).
+For the complete structured knowledge base (exact room layouts, monthly/weekend pricing tables, house rules, GPS directions, and local attractions), read:
+- [Complete AI Knowledge Base (llms-full.txt)](https://abstractapartment.com/llms-full.txt): Exhaustive factual reference for AI assistants, travel planners, and answer engines.
+
+## Property 1: Abstract Guest House — Golets, Lovech Province, Bulgaria (`/house`)
+
+Key facts: Rented exclusively as an entire private house (never shared with strangers) | Capacity: up to 14 guests (8–10 adults + 4 children) | 4 bedrooms + traditional Balkan mehana tavern | Rates: €300/night weekdays (Sun–Thu, min 1 night), €350/night weekends (Fri–Sat, min 2 nights) | Year-round outdoor hot tub jacuzzi, infrared sauna, heated outdoor pool (Apr–Oct), pellet central heating, free firewood, 4 free parking spaces, free pet stays | 1h 40m (130 km) from Sofia, 23 min (25 km) from Lovech & Troyan via paved asphalt road | Hosts: Kristina Ivanova (+359 878 112 454, Viber) & Kameliya Ivanova (+359 889 226 794), email `abstract.apartments@gmail.com`.
+
+- [Abstract Guest House Overview](https://abstractapartment.com/house): Main landing page for the private Balkan Revival spa guest house in Golets, Bulgaria.
+- [Rooms, Mehana & Spa Details](https://abstractapartment.com/house/details): Detailed breakdown of all 4 bedrooms (Room with Fireplace, Large Room, Panoramic Room 1, Panoramic Room 2), traditional mehana tavern, modern kitchen, spa facilities, and connectivity.
+- [Whole-House Rates & Price Calculator](https://abstractapartment.com/house/rates): Transparent €300 weekday / €350 weekend whole-house pricing, all-inclusive spa/firewood perks, and booking policies.
+- [Book Abstract Guest House](https://abstractapartment.com/house/reserve): Direct whole-house reservation request form with instant stay cost calculation.
+- [Photo Gallery](https://abstractapartment.com/house/gallery): 15 real photographs of the Bulgarian Revival stone-and-timber facade, Hearth Room, bedrooms, vintage brass bathroom, enclosed lawn, and heated pool.
+- [Floor Plan & Spatial Layout](https://abstractapartment.com/house/floor-plan): Architectural breakdown of the ground-level mehana & kitchen, upper bedroom floor, and 1,000+ sq.m fenced courtyard & spa zone.
+- [Regional Attractions Guide (Lovech & Troyan)](https://abstractapartment.com/house/guide): 11 nearby landmarks including Kavuka Waterfall (2 km), Lake Sopot (15 km), Lovech Covered Bridge (25 km), Devetashka Cave (45 km), and Krushuna Waterfalls (55 km).
+- [Directions & Getting Here](https://abstractapartment.com/house/getting-here): Driving routes from Sofia (1h 40m), Plovdiv (2h 30m), Lovech, and Troyan, year-round asphalt road access, and Google Maps pin.
+- [Guest Reviews (5.0 / 5)](https://abstractapartment.com/house/reviews): Verified 5-star guest reviews from families, remote workers, and groups.
+- [FAQ & House Rules](https://abstractapartment.com/house/faq): Answers on whole-house privacy, winter jacuzzi operation, heated pool season, free firewood, music rules, and free pet policy.
+- [Our Story & Heritage](https://abstractapartment.com/house/about): Story of the Bulgarian Revival stone-and-timber restoration and hosts Kristina & Kameliya Ivanova.
+- [Contact Hosts](https://abstractapartment.com/house/contact): Direct phone, Viber, email, and inquiry form for Abstract Guest House.
+
+## Property 2: Abstract Apartment & Studio — Paralia Ofriniou, Greece (`/apartments`)
+
+Key facts: Address: Martini 7, Paralia Ofriniou (Costa Ofrynio) 640 08, Kavala Region, Greece (Registry: AMA 00003339938) | 2-minute walk to the sandy Aegean beach and seaside taverns | Two units available individually or together: **Abstract Apartment** (2 bedrooms + living room sofa bed, up to 6 guests, full kitchen, washing machine, large BBQ terrace, private parking; €100–€160/night May–Oct) and **Abstract Studio** (double bed + sofa bed, kitchenette, private bathroom, AC, balcony; €80–€110/night May–Oct) | Promotion: Book 7 nights, get the 8th night free | Minimum stay: 3 nights | Check-in after 15:00, check-out until 10:00 | Hosts: Niki (+359 886 790 681) & Kika (+359 878 112 454), email `abstract.apartments@gmail.com`.
+
+- [Abstract Apartment & Studio Overview](https://abstractapartment.com/apartments): Main landing page for beachfront holiday accommodation in Paralia Ofriniou, Greece.
+- [Apartment & Studio Details](https://abstractapartment.com/apartments/details): Room specifications, sleeping arrangements, kitchen equipment, AC, Wi-Fi, BBQ terrace, and parking details.
+- [Seasonal Rates & Availability Calendar](https://abstractapartment.com/apartments/rates): Live availability search, May–October monthly nightly rates, and 7+1 free night promotion.
+- [Reserve Your Stay](https://abstractapartment.com/apartments/reserve): Direct online booking wizard for Abstract Apartment, Abstract Studio, or both units combined.
+- [Photo Gallery](https://abstractapartment.com/apartments/gallery): Interior, terrace, bedroom, studio, and Paralia Ofriniou beach photographs.
+- [Floor Plans](https://abstractapartment.com/apartments/floor-plan): Architectural room layouts for Abstract Apartment and Abstract Studio.
+- [Paralia Ofriniou Local Guide](https://abstractapartment.com/apartments/guide): Curated guide to beaches, taverns, Amphipolis, Kavala, Ammolofoi Dunes, caves, and local emergency/service phone contacts.
+- [Directions & Getting Here](https://abstractapartment.com/apartments/getting-here): Interactive driving route, GPS location (`Martini 7, Paralia Ofriniou 640 08`), and travel tips.
+- [Guest Reviews](https://abstractapartment.com/apartments/reviews): Verified Google guest reviews and ratings.
+- [FAQ & Booking Policies](https://abstractapartment.com/apartments/faq): Check-in/out times, 3-night minimum stay, 30% reservation deposit, smoking/pet policies, and baby crib availability.
+- [About Us & Hosts](https://abstractapartment.com/apartments/about): Story of Abstract Apartment and hosts Niki & Kika.
+- [Contact Us](https://abstractapartment.com/apartments/contact): Direct phone, Viber, email, and contact form for Paralia Ofriniou bookings.
+

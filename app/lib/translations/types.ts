@@ -809,6 +809,24 @@ export interface Translations {
       alsoExplore: string;
       apartmentLabel: string;
     };
+    header: {
+      exploreSections: {
+        theHouse: MenuSection;
+        visualJourney: MenuSection;
+        guestExperience: MenuSection;
+      };
+      planSections: {
+        bookingInfo: MenuSection;
+        travelLogistics: MenuSection;
+        getInTouch: MenuSection;
+      };
+    };
+    footer: {
+      tagline: string;
+      address: string;
+      kameliya: string;
+      kristina: string;
+    };
   };
   pageTitles: {
     home: string;
@@ -824,6 +842,17 @@ export interface Translations {
     reviews: string;
     gettingHere: string;
     house: string;
+    houseDetails?: string;
+    houseFloorPlan?: string;
+    houseGallery?: string;
+    houseGuide?: string;
+    houseRates?: string;
+    houseReserve?: string;
+    houseContact?: string;
+    houseAbout?: string;
+    houseFaq?: string;
+    houseReviews?: string;
+    houseGettingHere?: string;
   };
   pageDescriptions: {
     home: string;
@@ -839,6 +868,17 @@ export interface Translations {
     reviews: string;
     gettingHere: string;
     house: string;
+    houseDetails?: string;
+    houseFloorPlan?: string;
+    houseGallery?: string;
+    houseGuide?: string;
+    houseRates?: string;
+    houseReserve?: string;
+    houseContact?: string;
+    houseAbout?: string;
+    houseFaq?: string;
+    houseReviews?: string;
+    houseGettingHere?: string;
   };
 }
 

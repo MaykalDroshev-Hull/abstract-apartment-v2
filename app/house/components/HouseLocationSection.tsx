@@ -1,114 +1,155 @@
 'use client';
 
-import { useTranslations } from '@/app/lib/translations';
-import { MapPin, Car, ExternalLink } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useTranslations, useLanguage } from '@/app/lib/translations';
+import {
+  MapPin,
+  Car,
+  ExternalLink,
+  ShieldCheck,
+  Compass,
+  ShoppingBag,
+} from 'lucide-react';
 import Link from 'next/link';
 
 export function HouseLocationSection() {
   const t = useTranslations();
+  const { language } = useLanguage();
   const h = t.house;
+
+  const ui =
+    language === 'bg'
+      ? {
+        eyebrow: 'ЛОКАЦИЯ • С. ГОЛЕЦ, ОБЛАСТ ЛОВЕЧ',
+        pills: [
+          { icon: Compass, text: '100% Асфалт до вратата' },
+          { icon: ShieldCheck, text: 'Без нужда от 4x4 зимата' },
+          { icon: ShoppingBag, text: 'Магазин на 2 мин пеша' },
+          { icon: Car, text: '4 безплатни паркоместа' },
+        ],
+        drives: [
+          { city: 'София', time: '1 ч. 40 мин', dist: '130 км • Магистрала „Хемус“' },
+          { city: 'Ловеч и Троян', time: '23 мин', dist: '25 км • Асфалтов път' },
+          { city: 'Пловдив', time: '2 ч. 30 мин', dist: '160 км • Троянски проход / А1' },
+        ],
+      }
+      : language === 'el'
+        ? {
+          eyebrow: 'ΤΟΠΟΘΕΣΙΑ • ΧΩΡΙΟ ΓΚΟΛΕΤΣ, ΛΟΒΕΤΣ',
+          pills: [
+            { icon: Compass, text: '100% Άσφαλτος μέχρι την πόρτα' },
+            { icon: ShieldCheck, text: 'Χωρίς ανάγκη 4x4 τον χειμώνα' },
+            { icon: ShoppingBag, text: 'Παντοπωλείο σε 2 λεπτά' },
+            { icon: Car, text: '4 δωρεάν θέσεις στάθμευσης' },
+          ],
+          drives: [
+            { city: 'Σόφια', time: '1 ώ. 40 λ.', dist: '130 χλμ • Αυτοκινητόδρομος Χέμους' },
+            { city: 'Λόβετς & Τρογιάν', time: '23 λεπτά', dist: '25 χλμ • Ασφαλτόδρομος' },
+            { city: 'Πλόβντιβ', time: '2 ώ. 30 λ.', dist: '160 χλμ • Κεντρικές αρτηρίες' },
+          ],
+        }
+        : {
+          eyebrow: 'LOCATION • GOLETS VILLAGE, LOVECH',
+          pills: [
+            { icon: Compass, text: '100% Paved Road to Gate' },
+            { icon: ShieldCheck, text: 'No 4x4 Needed in Winter' },
+            { icon: ShoppingBag, text: 'Village Shop 2 min Walk' },
+            { icon: Car, text: '4 Free Parking Spots' },
+          ],
+          drives: [
+            { city: 'From Sofia', time: '1h 40m', dist: '130 km • Hemus Motorway (A2)' },
+            { city: 'Lovech & Troyan', time: '23 min', dist: '25 km • Direct Paved Road' },
+            { city: 'From Plovdiv', time: '2h 30m', dist: '160 km • Scenic Pass / A1' },
+          ],
+        };
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
-          <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6"
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            {h.location.title}
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-3xl mx-auto">
-            {h.location.description}
-          </p>
-        </div>
-
-        {/* Map Container */}
-        <div className="mb-12 sm:mb-16 lg:mb-20">
-          <div className="relative rounded-3xl overflow-hidden bg-zinc-200">
-            <iframe
-              src={h.location.mapEmbedUrl}
-              width="100%"
-              height="500"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title={h.location.mapTitle}
-              className="w-full h-[400px] sm:h-[500px] lg:h-[600px]"
-            />
+          {/* Compact Visual Header + Road Access Pills */}
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wider bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+              {ui.eyebrow}
+            </span>
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6"
+              style={{ fontFamily: 'var(--font-serif)' }}
+            >
+              {h.location.title}
+            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              {ui.pills.map((pill, idx) => {
+                const PillIcon = pill.icon;
+                return (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200 text-xs font-semibold text-zinc-700 shadow-sm"
+                  >
+                    <PillIcon className="w-3.5 h-3.5 text-[#5B7A3A]" aria-hidden="true" />
+                    <span>{pill.text}</span>
+                  </span>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Address and Link */}
-          <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <p className="text-sm sm:text-base text-zinc-700">
-              {h.location.address}
-            </p>
-            <Link
-              href={h.location.mapLink}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="text-sm sm:text-base text-[#5B7A3A] hover:text-[#4A6830] transition-colors flex items-center gap-1"
-            >
-              {h.location.openInMaps}
-              <ExternalLink className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Travel Info Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-14 lg:gap-16">
-          {h.location.travelInfo.map((info, index) => (
-            <motion.div
-              key={index}
-              className="flex flex-col"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.1,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-            >
-              {/* Icon */}
-              <div className="mb-4 sm:mb-5">
-                <div className="flex items-center justify-start">
-                  {info.icon === 'address' ? (
-                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-[#5B7A3A]" />
-                  ) : (
-                    <Car className="w-5 h-5 sm:w-6 sm:h-6 text-[#5B7A3A]" />
-                  )}
+          {/* Map Container */}
+              <div className="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm mb-6">
+                <div className="relative bg-zinc-200">
+                  <iframe
+                    src={h.location.mapEmbedUrl}
+                    width="100%"
+                    height="460"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={h.location.mapTitle}
+                    className="w-full h-[360px] sm:h-[440px] lg:h-[500px]"
+                  />
                 </div>
+
+                  {/* Docked Address Bar */}
+                  <div className="px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-white">
+                    <div className="flex items-center gap-2 text-sm font-medium text-zinc-800">
+                      <MapPin className="w-4 h-4 text-[#5B7A3A] flex-shrink-0" aria-hidden="true" />
+                      <span>{h.location.address}</span>
+                    </div>
+                    <Link
+                      href={h.location.mapLink}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] hover:bg-[#5B7A3A] hover:text-white transition-colors text-xs font-bold"
+                    >
+                      <span>{h.location.openInMaps}</span>
+                      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+
+        {/* 3 Big-Number Drive-Time Stat Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          {ui.drives.map((drive, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl border border-zinc-200/90 p-6 flex items-center justify-between shadow-sm"
+            >
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                  <Car className="w-3.5 h-3.5 text-[#5B7A3A]" aria-hidden="true" />
+                  <span>{drive.city}</span>
+                </div>
+                <div
+                  className="text-2xl sm:text-3xl font-bold text-zinc-900"
+                  style={{ fontFamily: 'var(--font-serif)' }}
+                >
+                  {drive.time}
+                </div>
+                <p className="text-xs text-zinc-500 mt-1">{drive.dist}</p>
               </div>
-
-              {/* Title */}
-              <h3
-                className="text-base sm:text-lg font-semibold text-zinc-900 mb-3 leading-tight"
-                style={{ fontFamily: 'var(--font-serif)' }}
-              >
-                {info.label}
-              </h3>
-
-              {/* Divider */}
-              <span className="block w-10 h-px bg-[#5B7A3A]/30 mb-3" />
-
-              {/* Description */}
-              {info.subtext && (
-                <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
-                  {info.subtext}
-                </p>
-              )}
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
-  );
+                );
 }

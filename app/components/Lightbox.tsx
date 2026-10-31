@@ -116,6 +116,9 @@ export function Lightbox({ open, images, initialIndex, onClose }: LightboxProps)
     <AnimatePresence>
       {open && (
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label={currentImage.alt || 'Image gallery viewer'}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -132,30 +135,33 @@ export function Lightbox({ open, images, initialIndex, onClose }: LightboxProps)
         >
           {/* Close Button */}
           <button
+            type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label="Close image viewer"
             className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-colors"
           >
-            <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
           </button>
 
           {/* Navigation Buttons */}
           {images.length > 1 && (
             <>
               <button
+                type="button"
                 onClick={goToPrevious}
                 aria-label="Previous image"
                 className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-colors"
               >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
               </button>
 
               <button
+                type="button"
                 onClick={goToNext}
                 aria-label="Next image"
                 className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-colors"
               >
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
               </button>
             </>
           )}
@@ -188,7 +194,7 @@ export function Lightbox({ open, images, initialIndex, onClose }: LightboxProps)
           </div>
 
           {/* Counter and Caption */}
-          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-10 text-center">
+          <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-10 text-center" aria-live="polite">
             <p className="text-sm sm:text-base text-white/80 mb-2">
               {currentIndex + 1} / {images.length}
             </p>
@@ -203,4 +209,3 @@ export function Lightbox({ open, images, initialIndex, onClose }: LightboxProps)
     </AnimatePresence>
   );
 }
-
