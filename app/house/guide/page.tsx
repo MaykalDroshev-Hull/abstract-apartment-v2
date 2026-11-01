@@ -4,14 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/app/lib/translations';
 import {
-    MapPin,
-    ExternalLink,
-    Trees,
-    Mountain,
-    Landmark,
-    Waves,
-    Compass,
-  } from 'lucide-react';
+  MapPin,
+  ExternalLink,
+  Trees,
+  Mountain,
+  Landmark,
+  Waves,
+  Compass,
+} from 'lucide-react';
 
 type AttractionCategory = 'all' | 'nature' | 'caves' | 'historic' | 'lakes';
 
@@ -381,149 +381,152 @@ export default function HouseGuidePage() {
   };
 
   return (
-      <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-            <div className="text-center max-w-2xl mx-auto mb-8">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
-                {t.eyebrow}
-              </span>
-                <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
-                  {t.title}
-                </h1>
-                  <p className="text-sm sm:text-base text-zinc-600">
-                    {t.subtitle}
-                  </p>
-                </div>
+    <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+            {t.eyebrow}
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
+            {t.title}
+          </h1>
+          <p className="text-sm sm:text-base text-zinc-600">
+            {t.subtitle}
+          </p>
+        </div>
 
-                {/* 3-Tier Visual Distance Ring Bar */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-4xl mx-auto mb-8">
-                  {t.rings.map((ring, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white rounded-2xl border border-zinc-200 px-5 py-4 flex items-center gap-3.5 shadow-2xs"
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0">
-                        <Compass className="w-5 h-5" aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="text-lg font-serif font-extrabold text-[#3D2B1F] leading-tight">
-                          {ring.time}
-                        </p>
-                        <p className="text-xs font-bold text-zinc-900">{ring.label}</p>
-                        <p className="text-[11px] text-zinc-500">{ring.sub}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Category Filters */}
-                <div
-                  role="group"
-                  aria-label={t.eyebrow}
-                  className="flex flex-wrap items-center justify-center gap-2 mb-10"
-                >
-                  {(['all', 'nature', 'caves', 'historic', 'lakes'] as const).map((cat) => (
-                    <button
-                      key={cat}
-                      type="button"
-                      aria-pressed={activeCategory === cat}
-                      onClick={() => setActiveCategory(cat)}
-                            ? 'bg-[#5B7A3A] text-white shadow-md'
-                            : 'bg-white text-zinc-700 hover:bg-zinc-50 border border-zinc-200'
-                          }`}
+        {/* 3-Tier Visual Distance Ring Bar */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 max-w-4xl mx-auto mb-8">
+          {t.rings.map((ring, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-2xl border border-zinc-200 px-5 py-4 flex items-center gap-3.5 shadow-2xs"
             >
-              {cat !== 'all' && renderCategoryIcon(cat, 'w-3.5 h-3.5')}
-              <span>{t.categories[cat]}</span>
-            </button>
+              <div className="w-10 h-10 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0">
+                <Compass className="w-5 h-5" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="text-lg font-serif font-extrabold text-[#3D2B1F] leading-tight">
+                  {ring.time}
+                </p>
+                <p className="text-xs font-bold text-zinc-900">{ring.label}</p>
+                <p className="text-[11px] text-zinc-500">{ring.sub}</p>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Compact Visual Attractions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-          {filteredAttractions.map((item) => (
-            <article
-              key={item.id}
-              className="bg-white rounded-3xl border border-zinc-200 p-6 shadow-sm flex flex-col justify-between hover:border-[#5B7A3A]/40 transition-colors"
-            >
-              <div>
-                {/* Top Visual Header: Category Icon Pill + Big Drive-Time Badge */}
-                <div className="flex items-start justify-between gap-3 mb-3.5">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-lg bg-[#5B7A3A]/10 text-[#5B7A3A]">
-                    {renderCategoryIcon(item.category, 'w-3.5 h-3.5')}
-                    {t.categoryBadges[item.category]}
-                  </span>
-                  <div className="text-right">
-                    <span className="block text-xl font-serif font-extrabold text-[#3D2B1F] leading-none">
-                      {item.driveTime}
+          {/* Category Filters */}
+          <div
+            role="group"
+            aria-label={t.eyebrow}
+            className="flex flex-wrap items-center justify-center gap-2 mb-10"
+          >
+            {(['all', 'nature', 'caves', 'historic', 'lakes'] as const).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                aria-pressed={activeCategory === cat}
+                onClick={() => setActiveCategory(cat)}
+                className={[
+                  'inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all',
+                  activeCategory === cat
+                    ? 'bg-[#5B7A3A] text-white shadow-md'
+                    : 'bg-white text-zinc-700 hover:bg-zinc-50 border border-zinc-200',
+                ].join(' ')}
+              >
+                {cat !== 'all' && renderCategoryIcon(cat, 'w-3.5 h-3.5')}
+                <span>{t.categories[cat]}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Compact Visual Attractions Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
+            {filteredAttractions.map((item) => (
+              <article
+                key={item.id}
+                className="bg-white rounded-3xl border border-zinc-200 p-6 shadow-sm flex flex-col justify-between hover:border-[#5B7A3A]/40 transition-colors"
+              >
+                <div>
+                  {/* Top Visual Header: Category Icon Pill + Big Drive-Time Badge */}
+                  <div className="flex items-start justify-between gap-3 mb-3.5">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-lg bg-[#5B7A3A]/10 text-[#5B7A3A]">
+                      {renderCategoryIcon(item.category, 'w-3.5 h-3.5')}
+                      {t.categoryBadges[item.category]}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[11px] text-zinc-400 font-medium mt-0.5">
-                      <MapPin className="w-3 h-3" aria-hidden="true" />
-                      {item.distance}
-                    </span>
+                    <div className="text-right">
+                      <span className="block text-xl font-serif font-extrabold text-[#3D2B1F] leading-none">
+                        {item.driveTime}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[11px] text-zinc-400 font-medium mt-0.5">
+                        <MapPin className="w-3 h-3" aria-hidden="true" />
+                        {item.distance}
+                      </span>
+                    </div>
+                  </div>
+
+                  <h2 className="text-lg font-bold text-zinc-900 mb-1.5">
+                    {item.title}
+                  </h2>
+
+                  <p className="text-xs sm:text-sm text-zinc-600 leading-snug mb-4">
+                    {item.desc}
+                  </p>
+
+                  {/* Compact Horizontal Pill Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {item.highlights.map((hl, hIdx) => (
+                      <span
+                        key={hIdx}
+                        className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-[#F5F2ED] text-zinc-700"
+                      >
+                        {hl}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                <h2 className="text-lg font-bold text-zinc-900 mb-1.5">
-                  {item.title}
-                </h2>
-
-                <p className="text-xs sm:text-sm text-zinc-600 leading-snug mb-4">
-                  {item.desc}
-                </p>
-
-                {/* Compact Horizontal Pill Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {item.highlights.map((hl, hIdx) => (
-                    <span
-                      key={hIdx}
-                      className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-[#F5F2ED] text-zinc-700"
-                    >
-                      {hl}
-                    </span>
-                  ))}
+                <div className="pt-3.5 border-t border-zinc-100">
+                  <a
+                    href={item.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-bold text-zinc-800 hover:bg-[#5B7A3A] hover:text-white hover:border-[#5B7A3A] transition-colors"
+                  >
+                    <span>{t.navigateBtn}</span>
+                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                  </a>
                 </div>
-              </div>
+              </article>
+            ))}
+          </div>
 
-              <div className="pt-3.5 border-t border-zinc-100">
-                <a
-                  href={item.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-zinc-50 border border-zinc-200 text-xs font-bold text-zinc-800 hover:bg-[#5B7A3A] hover:text-white hover:border-[#5B7A3A] transition-colors"
-                >
-                  <span>{t.navigateBtn}</span>
-                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="bg-[#5B7A3A] rounded-3xl p-8 sm:p-10 text-center text-white shadow-xl">
-          <h2 className="text-2xl sm:text-4xl font-serif font-bold mb-2">
-            {t.ctaTitle}
-          </h2>
-          <p className="text-white/90 max-w-xl mx-auto mb-6 text-sm sm:text-base">
-            {t.ctaSubtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/house/reserve"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 transition-colors shadow-md"
-            >
-              {t.ctaReserve}
-            </Link>
-            <Link
-              href="/house/details"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition-colors"
-            >
-              {t.ctaDetails}
-            </Link>
+          {/* Bottom CTA */}
+          <div className="bg-[#5B7A3A] rounded-3xl p-8 sm:p-10 text-center text-white shadow-xl">
+            <h2 className="text-2xl sm:text-4xl font-serif font-bold mb-2">
+              {t.ctaTitle}
+            </h2>
+            <p className="text-white/90 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+              {t.ctaSubtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/house/reserve"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 transition-colors shadow-md"
+              >
+                {t.ctaReserve}
+              </Link>
+              <Link
+                href="/house/details"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition-colors"
+              >
+                {t.ctaDetails}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+      );
 }
