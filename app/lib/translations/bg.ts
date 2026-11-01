@@ -1596,12 +1596,6 @@ export const bg: Translations = {
               icon: 'Home',
             },
             {
-              label: 'Разпределение',
-              description: 'Преглед на етажите, механата и двора.',
-              href: '/house/floor-plan',
-              icon: 'Layout',
-            },
-            {
               label: 'Апартамент „Абстракт"',
               description: 'Нашата луксозна вила на първа линия в Паралия Офринио, Гърция.',
               href: '/apartments',

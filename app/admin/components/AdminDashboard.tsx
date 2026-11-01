@@ -310,14 +310,14 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
       
       // Set start time to 15:00 on check-in date
       const startDate = new Date(checkInDate);
-      startDate.setHours(15, 0, 0, 0);
+      startDate.setHours(Number(booking.apartmentid) === 3 ? 12 : 15, 0, 0, 0);
       
       // Set end time to 10:00 on check-out date
       const endDate = new Date(checkOutDate);
-      endDate.setHours(10, 0, 0, 0);
+      endDate.setHours(Number(booking.apartmentid) === 3 ? 11 : 10, 0, 0, 0);
       
       // Get apartment type name
-      const apartmentType = booking.apartmentid === 1 ? 'Апартамент' : 'Студио';
+      const apartmentType = Number(booking.apartmentid) === 1 ? 'Апартамент' : Number(booking.apartmentid) === 2 ? 'Студио' : 'Къща за гости';
       
       // Get guest name
       const guestName = booking.Customer 
@@ -486,6 +486,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                 >
                   <option value="1">{t.admin.dashboard.form.apartmentOptions.apartment}</option>
                   <option value="2">{t.admin.dashboard.form.apartmentOptions.studio}</option>
+                  <option value="3">Къща за гости „Абстракт“ (с. Голец)</option>
                 </select>
               </div>
 
@@ -770,7 +771,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       <div className="text-xs text-zinc-600">
                         {Number(booking.apartmentid) === 1
                           ? (t.admin.dashboard.form.apartmentOptions?.apartment || 'Abstract Apartment')
-                          : (t.admin.dashboard.form.apartmentOptions?.studio || 'Abstract Studio')
+                          : Number(booking.apartmentid) === 2
+                          ? (t.admin.dashboard.form.apartmentOptions?.studio || 'Abstract Studio')
+                          : 'Къща за гости „Абстракт“'
                         }
                       </div>
                     </div>
@@ -915,7 +918,9 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       <div className="text-sm text-zinc-900">
                         {Number(booking.apartmentid) === 1
                           ? (t.admin.dashboard.form.apartmentOptions?.apartment || 'Abstract Apartment')
-                          : (t.admin.dashboard.form.apartmentOptions?.studio || 'Abstract Studio')
+                          : Number(booking.apartmentid) === 2
+                          ? (t.admin.dashboard.form.apartmentOptions?.studio || 'Abstract Studio')
+                          : 'Къща за гости „Абстракт“'
                         }
                       </div>
                     </td>

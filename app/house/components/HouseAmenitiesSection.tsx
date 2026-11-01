@@ -281,35 +281,30 @@ export function HouseAmenitiesSection() {
           })}
       </div>
 
-                {/* Scannable Visual Amenity Icon Chips (Zero Paragraph Walls) */}
+        {/* Scannable Visual Amenity List (Clean, borderless, zero background boxes) */}
         <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">
-                  {ui.chipsLabel}
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                  {ui.chips.map((chip, index) => {
-                    const ChipIcon = chip.icon;
-                    return (
+          <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-6">
+            {ui.chipsLabel}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 sm:gap-x-8 gap-y-7 sm:gap-y-8">
+            {ui.chips.map((chip, index) => {
+              const ChipIcon = chip.icon;
+              return (
                 <div
                   key={index}
-                  className="bg-white/90 rounded-2xl border border-zinc-200/80 p-3.5 sm:p-4 flex items-center gap-3 shadow-sm hover:border-[#5B7A3A]/40 transition-colors"
+                  className="flex items-start gap-3"
                 >
-              <div
-                className="w-9 h-9 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0"
-                aria-hidden="true"
-              >
-                <ChipIcon className="w-4 h-4 sm:w-5 sm:h-5" />
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-xs sm:text-sm font-bold text-zinc-900 truncate">
-                  {chip.title}
-                </h3>
-                <p className="text-[11px] text-zinc-500 truncate mt-0.5">
-                  {chip.tag}
-                </p>
-              </div>
-            </div>
-            );
+                  <ChipIcon className="w-5 h-5 text-[#5B7A3A] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold text-zinc-900 leading-snug">
+                      {chip.title}
+                    </h3>
+                    <p className="text-xs text-zinc-500 mt-1 leading-snug">
+                      {chip.tag}
+                    </p>
+                  </div>
+                </div>
+              );
             })}
           </div>
         </div>

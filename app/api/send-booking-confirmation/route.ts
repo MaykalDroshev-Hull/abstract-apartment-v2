@@ -44,6 +44,8 @@ export async function POST(request: NextRequest) {
       villaName = 'Abstract Apartment';
     } else if (apartmentid === 2) {
       villaName = 'Abstract Studio';
+    } else if (apartmentid === 3) {
+      villaName = 'Abstract Guest House (Къща за гости „Абстракт“) - с. Голец';
     } else {
       villaName = 'Abstract';
     }
@@ -57,9 +59,9 @@ export async function POST(request: NextRequest) {
     const nights = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
 
     const mailOptions = {
-      from: `"Abstract Apartment" <${emailAddress}>`,
+      from: `"${apartmentid === 3 ? 'Abstract Guest House' : 'Abstract Apartment'}" <${emailAddress}>`,
       to: email,
-      subject: 'Потвърждение на Резервация',
+      subject: apartmentid === 3 ? 'Потвърждение на Резервация - Къща за гости „Абстракт“' : 'Потвърждение на Резервация',
       text: `
 Вашата резервация е потвърдена!
 
@@ -77,7 +79,7 @@ ${comments ? `Коментари: ${comments}` : ''}
 Благодарим ви за резервацията!
 
 С уважение,
-Екипът на Abstract Apartment
+${apartmentid === 3 ? 'Екипът на Къща за гости „Абстракт“' : 'Екипът на Abstract Apartment'}
       `,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

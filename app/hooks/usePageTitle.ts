@@ -56,7 +56,6 @@ export function usePageTitle() {
       '/house/contact': 'houseContact',
       '/house/details': 'houseDetails',
       '/house/faq': 'houseFaq',
-      '/house/floor-plan': 'houseFloorPlan',
       '/house/gallery': 'houseGallery',
       '/house/getting-here': 'houseGettingHere',
       '/house/guide': 'houseGuide',

@@ -1595,12 +1595,6 @@ export const en: Translations = {
               icon: 'Home',
             },
             {
-              label: 'Floor plan',
-              description: 'Overview of floors, gathering hall, and outdoor layout.',
-              href: '/house/floor-plan',
-              icon: 'Layout',
-            },
-            {
               label: 'Abstract Apartment',
               description: 'Our luxury beachfront property in Paralia Ofriniou, Greece.',
               href: '/apartments',

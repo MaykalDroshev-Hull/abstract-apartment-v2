@@ -45,7 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { path: '/house/rates', priority: 0.9, changeFrequency: 'weekly' },
       { path: '/house/reserve', priority: 0.9, changeFrequency: 'weekly', images: [houseImageUrls[0]] },
       { path: '/house/about', priority: 0.8, changeFrequency: 'monthly', images: [houseImageUrls[3], houseImageUrls[7], houseImageUrls[6]] },
-      { path: '/house/floor-plan', priority: 0.8, changeFrequency: 'monthly', images: [houseImageUrls[3], houseImageUrls[1], houseImageUrls[5]] },
       { path: '/house/guide', priority: 0.8, changeFrequency: 'monthly' },
       { path: '/house/reviews', priority: 0.8, changeFrequency: 'weekly' },
       { path: '/house/getting-here', priority: 0.8, changeFrequency: 'monthly' },

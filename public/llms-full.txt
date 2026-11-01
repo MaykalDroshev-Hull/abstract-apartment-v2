@@ -44,7 +44,7 @@ The website `https://abstractapartment.com` represents two distinct vacation ren
 - **Bedrooms:** 4 bedrooms (every bedroom has 1 double bed + 1 pull-out sofa bed).
 - **Bathrooms:** 4 bathrooms/toilets total (2 private en-suite bathrooms in Panoramic Rooms 1 & 2, 1 shared modern floor bathroom for the Hearth Room & Large Room, and 1 dedicated guest bathroom serving the ground-floor mehana tavern).
 
-### 2. Room-by-Room Breakdown (`/house/details` & `/house/floor-plan`)
+### 2. Room-by-Room Breakdown (`/house/details`)
 1. **Room with Fireplace (Стая с огнище / Δωμάτιο με τζάκι)**
    - **Floor:** Upper sleeping floor
    - **Beds:** 1 double bed + 1 pull-out sofa bed (sleeps 3–4 guests)

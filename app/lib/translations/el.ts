@@ -1595,12 +1595,6 @@ export const el: Translations = {
               icon: 'Home',
             },
             {
-              label: 'Σχέδιο ορόφου',
-              description: 'Επισκόπηση ορόφων, ταβέρνας και εξωτερικών χώρων.',
-              href: '/house/floor-plan',
-              icon: 'Layout',
-            },
-            {
               label: 'Διαμέρισμα Abstract',
               description: 'Η πολυτελής παραθαλάσσια βίλα μας στην Παραλία Οφρυνίου, Ελλάδα.',
               href: '/apartments',

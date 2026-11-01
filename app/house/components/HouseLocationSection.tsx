@@ -27,9 +27,27 @@ export function HouseLocationSection() {
           { icon: Car, text: '4 безплатни паркоместа' },
         ],
         drives: [
-          { city: 'София', time: '1 ч. 40 мин', dist: '130 км • Магистрала „Хемус“' },
-          { city: 'Ловеч и Троян', time: '23 мин', dist: '25 км • Асфалтов път' },
-          { city: 'Пловдив', time: '2 ч. 30 мин', dist: '160 км • Троянски проход / А1' },
+          {
+            city: 'От София',
+            parts: [
+              { num: '1', unit: ' ч. ' },
+              { num: '40', unit: ' мин' },
+            ],
+            dist: '130 км • Магистрала „Хемус“',
+          },
+          {
+            city: 'Ловеч и Троян',
+            parts: [{ num: '23', unit: ' мин' }],
+            dist: '25 км • Директен асфалтов път',
+          },
+          {
+            city: 'От Пловдив',
+            parts: [
+              { num: '2', unit: ' ч. ' },
+              { num: '30', unit: ' мин' },
+            ],
+            dist: '160 км • Троянски проход / А1',
+          },
         ],
       }
       : language === 'el'
@@ -42,9 +60,27 @@ export function HouseLocationSection() {
             { icon: Car, text: '4 δωρεάν θέσεις στάθμευσης' },
           ],
           drives: [
-            { city: 'Σόφια', time: '1 ώ. 40 λ.', dist: '130 χλμ • Αυτοκινητόδρομος Χέμους' },
-            { city: 'Λόβετς & Τρογιάν', time: '23 λεπτά', dist: '25 χλμ • Ασφαλτόδρομος' },
-            { city: 'Πλόβντιβ', time: '2 ώ. 30 λ.', dist: '160 χλμ • Κεντρικές αρτηρίες' },
+            {
+              city: 'Από Σόφια',
+              parts: [
+                { num: '1', unit: ' ώ. ' },
+                { num: '40', unit: ' λ.' },
+              ],
+              dist: '130 χλμ • Αυτοκινητόδρομος Χέμους',
+            },
+            {
+              city: 'Λόβετς & Τρογιάν',
+              parts: [{ num: '23', unit: ' λεπτά' }],
+              dist: '25 χλμ • Άμεσος ασφαλτόδρομος',
+            },
+            {
+              city: 'Από Φιλιππούπολη',
+              parts: [
+                { num: '2', unit: ' ώ. ' },
+                { num: '30', unit: ' λ.' },
+              ],
+              dist: '160 χλμ • Κεντρικές αρτηρίες',
+            },
           ],
         }
         : {
@@ -56,9 +92,27 @@ export function HouseLocationSection() {
             { icon: Car, text: '4 Free Parking Spots' },
           ],
           drives: [
-            { city: 'From Sofia', time: '1h 40m', dist: '130 km • Hemus Motorway (A2)' },
-            { city: 'Lovech & Troyan', time: '23 min', dist: '25 km • Direct Paved Road' },
-            { city: 'From Plovdiv', time: '2h 30m', dist: '160 km • Scenic Pass / A1' },
+            {
+              city: 'From Sofia',
+              parts: [
+                { num: '1', unit: 'h ' },
+                { num: '40', unit: 'm' },
+              ],
+              dist: '130 km • Hemus Motorway (A2)',
+            },
+            {
+              city: 'Lovech & Troyan',
+              parts: [{ num: '23', unit: ' min' }],
+              dist: '25 km • Direct Paved Road',
+            },
+            {
+              city: 'From Plovdiv',
+              parts: [
+                { num: '2', unit: 'h ' },
+                { num: '30', unit: 'm' },
+              ],
+              dist: '160 km • Scenic Pass / A1',
+            },
           ],
         };
 
@@ -126,25 +180,28 @@ export function HouseLocationSection() {
                   </div>
                 </div>
 
-        {/* 3 Big-Number Drive-Time Stat Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {/* 3 Minimal Borderless Drive-Time Stats */}
+        <div className="max-w-5xl mx-auto pt-10 sm:pt-12 pb-2 grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6 sm:gap-x-8">
           {ui.drives.map((drive, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl border border-zinc-200/90 p-6 flex items-center justify-between shadow-sm"
-            >
-              <div>
-                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">
-                  <Car className="w-3.5 h-3.5 text-[#5B7A3A]" aria-hidden="true" />
-                  <span>{drive.city}</span>
-                </div>
-                <div
-                  className="text-2xl sm:text-3xl font-bold text-zinc-900"
-                  style={{ fontFamily: 'var(--font-serif)' }}
-                >
-                  {drive.time}
-                </div>
-                <p className="text-xs text-zinc-500 mt-1">{drive.dist}</p>
+            <div key={index} className="text-center flex flex-col items-center">
+              <div
+                className="text-4xl sm:text-3xl md:text-4xl lg:text-[52px] font-extrabold tracking-tight text-[#5B7A3A] leading-none whitespace-nowrap"
+                style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+              >
+                {drive.parts.map((part, pIdx) => (
+                  <span key={pIdx}>
+                    <span>{part.num}</span>
+                    <span className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                      {part.unit}
+                    </span>
+                  </span>
+                ))}
+              </div>
+              <div className="mt-3 text-sm sm:text-base font-bold text-zinc-900 tracking-tight">
+                {drive.city}
+              </div>
+              <div className="mt-1 text-xs text-zinc-500 leading-snug">
+                {drive.dist}
               </div>
             </div>
           ))}

@@ -100,98 +100,99 @@ export function Footer() {
   return (
     <footer className="w-full border-t border-zinc-200 bg-[#F9F7F7]">
       <div className="w-full max-w-[1600px] mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        {/* Top Footer - 3 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12">
-          {/* Column 1 - Brand & Description */}
-          <div className="text-center md:text-left">
-            <Link href={logoHref} className="inline-block mb-4">
-              <Image
-                key={logoPath}
-                src={logoPath}
-                alt={logoAlt}
-                width={isHouse ? 240 : 180}
-                height={isHouse ? 48 : 54}
-                className="h-10 sm:h-12 w-auto object-contain"
-              />
-            </Link>
-            <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-4 max-w-sm">
-              {isHouse ? t.house.hero.tagline : t.footer.description}
-            </p>
-            {/* Social Icons */}
-            <div className="flex items-center justify-center md:justify-start gap-4">
-              <a
-                href="https://www.facebook.com/profile.php?id=61575061973914"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-colors"
-                aria-label={
-                  isHouse
-                    ? language === 'bg'
+        {/* Top Footer */}
+        {isHouse ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 mb-12">
+            {/* Column 1 - Brand & Description (Centered full-width banner on tablet, left column on desktop) */}
+            <div className="md:col-span-2 lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-left md:pb-8 md:border-b md:border-zinc-200/80 lg:pb-0 lg:border-b-0">
+              <Link href={logoHref} className="inline-block mb-4">
+                <Image
+                  key={logoPath}
+                  src={logoPath}
+                  alt={logoAlt}
+                  width={240}
+                  height={48}
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
+              </Link>
+              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-4 max-w-sm">
+                {t.house.hero.tagline}
+              </p>
+              {/* Social Icons */}
+              <div className="flex items-center justify-center lg:justify-start gap-4">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61575061973914"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-[#5B7A3A] transition-colors"
+                  aria-label={
+                    language === 'bg'
                       ? 'Последвайте ни във Facebook'
                       : language === 'el'
                       ? 'Ακολουθήστε μας στο Facebook'
                       : 'Follow us on Facebook'
-                    : 'Follow us on Facebook'
-                }
-              >
-                <Facebook className="w-5 h-5" aria-hidden="true" />
-              </a>
-              <a
-                href="https://www.instagram.com/abstract_apartment/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-colors"
-                aria-label={
-                  isHouse
-                    ? language === 'bg'
+                  }
+                >
+                  <Facebook className="w-5 h-5" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.instagram.com/abstract_apartment/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-[#5B7A3A] transition-colors"
+                  aria-label={
+                    language === 'bg'
                       ? 'Последвайте ни в Instagram'
                       : language === 'el'
                       ? 'Ακολουθήστε μας στο Instagram'
                       : 'Follow us on Instagram'
-                    : 'Follow us on Instagram'
-                }
-              >
-                <Instagram className="w-5 h-5" aria-hidden="true" />
-              </a>
+                  }
+                >
+                  <Instagram className="w-5 h-5" aria-hidden="true" />
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Column 2 - Quick Links */}
-          <nav
-            aria-label={
-              isHouse
-                ? language === 'bg'
+            {/* Column 2 - Quick Links (2-column balanced grid on mobile, tablet & desktop) */}
+            <nav
+              aria-label={
+                language === 'bg'
                   ? 'Навигация в долния колонтитул – Къща за гости „Абстракт“'
                   : language === 'el'
                   ? 'Πλοήγηση υποσέλιδου – Ξενώνας Abstract'
                   : 'Guest House footer navigation'
-                : 'Apartment footer navigation'
-            }
-            className="text-center md:text-left"
-          >
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
-              {t.footer.quickLinks}
-            </h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 justify-items-center lg:justify-items-start">
-              {uniqueLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className="text-sm sm:text-base text-zinc-600 hover:text-zinc-900 hover:underline transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </nav>
+              }
+              className="md:col-span-1 lg:col-span-5 text-center md:text-left"
+            >
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
+                {t.footer.quickLinks}
+              </h3>
+              <div className="grid grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-2.5 max-w-sm mx-auto md:max-w-none md:mx-0 justify-items-center md:justify-items-start">
+                {uniqueLinks.map((link, index) => {
+                  const isOddLast =
+                    uniqueLinks.length % 2 === 1 && index === uniqueLinks.length - 1;
+                  return (
+                    <Link
+                      key={index}
+                      href={link.href}
+                      className={[
+                        'text-sm sm:text-base text-zinc-600 hover:text-[#5B7A3A] hover:underline transition-colors',
+                        isOddLast ? 'col-span-2 md:col-span-1' : '',
+                      ].join(' ')}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
 
-          {/* Column 3 - Contacts */}
-          <div className="text-center md:text-left">
-            <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
-              {t.footer.contacts}
-            </h3>
-            {isHouse ? (
-              <ul className="space-y-3 text-sm sm:text-base text-zinc-600 inline-block">
+            {/* Column 3 - Contacts */}
+            <div className="md:col-span-1 lg:col-span-4 text-center md:text-left">
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
+                {t.footer.contacts}
+              </h3>
+              <ul className="space-y-3 text-sm sm:text-base text-zinc-600 inline-block text-center md:text-left">
                 <li>
                   <span className="font-medium text-zinc-700">
                     {t.footer.phone}:
@@ -203,11 +204,14 @@ export function Footer() {
                     +359 878 112 454
                   </a>
                   {' - '}
-                  {language === 'bg' ? 'Кристина Иванова' : language === 'el' ? 'Κριστίνα Ιβάνοβα' : 'Kristina Ivanova'}
-                  {' '}
+                  {language === 'bg'
+                    ? 'Кристина Иванова'
+                    : language === 'el'
+                    ? 'Κριστίνα Ιβάνοβα'
+                    : 'Kristina Ivanova'}{' '}
                   <a
                     href="viber://chat?number=%2B359878112454"
-                    className="inline-flex items-end ml-2 hover:opacity-80 transition-opacity"
+                    className="inline-flex items-center align-middle ml-1 -my-2 hover:opacity-80 transition-opacity"
                     aria-label={
                       language === 'bg'
                         ? 'Чат с Кристина Иванова във Viber'
@@ -223,7 +227,7 @@ export function Footer() {
                         : 'Chat on Viber'
                     }
                   >
-                    <ViberIcon className="w-10 h-10" />
+                    <ViberIcon className="w-9 h-9" />
                   </a>
                 </li>
                 <li>
@@ -237,7 +241,11 @@ export function Footer() {
                     +359 889 226 794
                   </a>
                   {' - '}
-                  {language === 'bg' ? 'Камелия Иванова' : language === 'el' ? 'Καμέλια Ιβάνοβα' : 'Kameliya Ivanova'}
+                  {language === 'bg'
+                    ? 'Камелия Иванова'
+                    : language === 'el'
+                    ? 'Καμέλια Ιβάνοβα'
+                    : 'Kameliya Ivanova'}
                 </li>
                 <li>
                   <span className="font-medium text-zinc-700">
@@ -261,7 +269,74 @@ export function Footer() {
                     : 'Golets village, Ugarchin Municipality, Lovech Province, Bulgaria'}
                 </li>
               </ul>
-            ) : (
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-12">
+            {/* Column 1 - Brand & Description */}
+            <div className="text-center md:text-left">
+              <Link href={logoHref} className="inline-block mb-4">
+                <Image
+                  key={logoPath}
+                  src={logoPath}
+                  alt={logoAlt}
+                  width={180}
+                  height={54}
+                  className="h-10 sm:h-12 w-auto object-contain"
+                />
+              </Link>
+              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed mb-4 max-w-sm">
+                {t.footer.description}
+              </p>
+              {/* Social Icons */}
+              <div className="flex items-center justify-center md:justify-start gap-4">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61575061973914"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-colors"
+                  aria-label="Follow us on Facebook"
+                >
+                  <Facebook className="w-5 h-5" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.instagram.com/abstract_apartment/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="w-8 h-8 flex items-center justify-center text-zinc-600 hover:text-zinc-900 transition-colors"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="w-5 h-5" aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+
+            {/* Column 2 - Quick Links */}
+            <nav
+              aria-label="Apartment footer navigation"
+              className="text-center md:text-left"
+            >
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
+                {t.footer.quickLinks}
+              </h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 justify-items-center lg:justify-items-start">
+                {uniqueLinks.map((link, index) => (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    className="text-sm sm:text-base text-zinc-600 hover:text-zinc-900 hover:underline transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+
+            {/* Column 3 - Contacts */}
+            <div className="text-center md:text-left">
+              <h3 className="text-base sm:text-lg font-semibold text-zinc-900 mb-4">
+                {t.footer.contacts}
+              </h3>
               <ul className="space-y-3 text-sm sm:text-base text-zinc-600 inline-block">
                 <li>
                   <span className="font-medium text-zinc-700">
@@ -287,8 +362,7 @@ export function Footer() {
                     +359878112454
                   </a>
                   {' - '}
-                  {t.footer.kika}
-                  {' '}
+                  {t.footer.kika}{' '}
                   <a
                     href="viber://chat?number=%2B359878112454"
                     className="inline-flex items-end ml-2 hover:opacity-80 transition-opacity"
@@ -321,9 +395,9 @@ export function Footer() {
                   </span>
                 </li>
               </ul>
-            )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Bottom Footer Bar */}
         <div className="border-t border-zinc-200border-zinc-800 pt-8">

@@ -49,6 +49,8 @@ export async function POST(request: NextRequest) {
       villaName = 'Abstract Studio';
     } else if (villaType === 'both') {
       villaName = 'Abstract Apartment + Studio';
+    } else if (villaType === 'house') {
+      villaName = 'Abstract Guest House (Къща за гости „Абстракт“) - с. Голец';
     }
 
     // Calculate remaining balance
@@ -57,7 +59,7 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: `"Booking Form" <${emailAddress}>`,
       to: emailAddress,
-      subject: 'Нова Заявка за Резервация',
+      subject: villaType === 'house' ? 'Нова Заявка за Резервация - Къща за гости „Абстракт“' : 'Нова Заявка за Резервация',
       text: `
 Нова Заявка е получена:
 

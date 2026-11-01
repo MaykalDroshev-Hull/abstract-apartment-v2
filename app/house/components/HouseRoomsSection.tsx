@@ -6,11 +6,8 @@ import { useTranslations, useLanguage } from '@/app/lib/translations';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
-  Users,
   Bed,
   Bath,
-  Home,
-  Flame,
   Mountain,
   Waves,
 } from 'lucide-react';
@@ -22,16 +19,16 @@ export function HouseRoomsSection() {
 
   const ui =
     language === 'bg'
-        ? {
+      ? {
           eyebrow: 'САМОСТОЯТЕЛНО НАЕМАНЕ • ЦЯЛАТА КЪЩА',
           subtitle: 'Пълно уединение за вашата компания – 4 възрожденски спални и просторна механа с камина.',
           ctaText: 'Разгледайте стаите и механата',
           stats: [
-            { value: '14', label: 'Макс. гости', icon: Users },
-            { value: '4', label: 'Спални', icon: Bed },
-            { value: '4', label: 'Бани', icon: Bath },
-            { value: '100%', label: 'Само за вас', icon: Home },
-            { value: '1', label: 'Механа с камина', icon: Flame },
+            { value: '14', suffix: '', label: 'Макс. гости', sublabel: '8–10 възрастни + 4 деца' },
+            { value: '4', suffix: '', label: 'Спални', sublabel: 'възрожденски стил и уют' },
+            { value: '4', suffix: '', label: 'Бани', sublabel: '2 собствени и 2 етажни' },
+            { value: '100', suffix: '%', label: 'Само за вас', sublabel: 'без други гости в имота' },
+            { value: '1', suffix: '', label: 'Механа с камина', sublabel: 'с включени дърва за огрев' },
           ],
           cards: [
             {
@@ -74,17 +71,17 @@ export function HouseRoomsSection() {
             'Панорамна спалня с двойно легло, автентични дървени мебели и директен излаз към остъкления чардак',
           ],
         }
-        : language === 'el'
-      ?{
-    eyebrow: 'ΑΠΟΚΛΕΙΣΤΙΚΗ ΧΡΗΣΗ • ΟΛΟΚΛΗΡΟ ΤΟ ΣΠΙΤΙ',
-      subtitle: 'Πλήρης ιδιωτικότητα για την παρέα σας – 4 παραδοσιακά υπνοδωμάτια και ταβέρνα με τζάκι.',
-        ctaText: 'Δείτε τα δωμάτια και την ταβέρνα',
+      : language === 'el'
+      ? {
+          eyebrow: 'ΑΠΟΚΛΕΙΣΤΙΚΗ ΧΡΗΣΗ • ΟΛΟΚΛΗΡΟ ΤΟ ΣΠΙΤΙ',
+          subtitle: 'Πλήρης ιδιωτικότητα για την παρέα σας – 4 παραδοσιακά υπνοδωμάτια και ταβέρνα με τζάκι.',
+          ctaText: 'Δείτε τα δωμάτια και την ταβέρνα',
           stats: [
-            { value: '14', label: 'Επισκέπτες', icon: Users },
-            { value: '4', label: 'Υπνοδωμάτια', icon: Bed },
-            { value: '4', label: 'Μπάνια', icon: Bath },
-            { value: '100%', label: 'Ιδιωτικότητα', icon: Home },
-            { value: '1', label: 'Ταβέρνα με τζάκι', icon: Flame },
+            { value: '14', suffix: '', label: 'Επισκέπτες', sublabel: '8–10 ενήλικες + 4 παιδιά' },
+            { value: '4', suffix: '', label: 'Υπνοδωμάτια', sublabel: 'παραδοσιακή αρχοντιά & άνεση' },
+            { value: '4', suffix: '', label: 'Μπάνια', sublabel: '2 ιδιωτικά και 2 ορόφου' },
+            { value: '100', suffix: '%', label: 'Ιδιωτικότητα', sublabel: 'κανένας άλλος επισκέπτης' },
+            { value: '1', suffix: '', label: 'Ταβέρνα με τζάκι', sublabel: 'με δωρεάν καυσόξυλα' },
           ],
             cards: [
               {
@@ -128,15 +125,15 @@ export function HouseRoomsSection() {
               ],
         }
       : {
-    eyebrow: 'EXCLUSIVE RENTAL • ENTIRE ESTATE',
-      subtitle: 'Total privacy for your group — 4 Revival bedrooms plus a stone-fireplace gathering tavern.',
-        ctaText: 'Explore All Rooms & Mehana',
+          eyebrow: 'EXCLUSIVE RENTAL • ENTIRE ESTATE',
+          subtitle: 'Total privacy for your group — 4 Revival bedrooms plus a stone-fireplace gathering tavern.',
+          ctaText: 'Explore All Rooms & Mehana',
           stats: [
-            { value: '14', label: 'Max Guests', icon: Users },
-            { value: '4', label: 'Bedrooms', icon: Bed },
-            { value: '4', label: 'Bathrooms', icon: Bath },
-            { value: '100%', label: 'Private Estate', icon: Home },
-            { value: '1', label: 'Fireplace Tavern', icon: Flame },
+            { value: '14', suffix: '', label: 'Max Guests', sublabel: '8–10 adults + 4 children' },
+            { value: '4', suffix: '', label: 'Bedrooms', sublabel: 'Revival heritage & climate control' },
+            { value: '4', suffix: '', label: 'Bathrooms', sublabel: '2 en-suite & 2 floor baths' },
+            { value: '100', suffix: '%', label: 'Private Estate', sublabel: 'zero other guests on site' },
+            { value: '1', suffix: '', label: 'Fireplace Tavern', sublabel: 'free firewood included' },
           ],
             cards: [
               {
@@ -202,35 +199,32 @@ export function HouseRoomsSection() {
                 </p>
               </div>
 
-              {/* At-a-Glance Visual Stat Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                {ui.stats.map((stat, idx) => {
-                  const StatIcon = stat.icon;
-                  return (
+              {/* At-a-Glance Minimal Borderless Stat Strip (3 top + 2 centered bottom on tablet & PC) */}
+              <div className="max-w-5xl mx-auto py-8 sm:py-10 flex flex-wrap justify-center gap-y-10 sm:gap-y-12">
+                {ui.stats.map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="w-1/2 sm:w-1/3 px-3 sm:px-6 text-center flex flex-col items-center"
+                  >
                     <div
-                      key={idx}
-                      className="bg-white/90 rounded-2xl border border-zinc-200/80 px-5 py-4 flex items-center gap-3.5 shadow-sm"
+                      className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight text-[#5B7A3A] leading-none"
+                      style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
                     >
-                      <div
-                        className="w-10 h-10 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0"
-                        aria-hidden="true"
-                      >
-                        <StatIcon className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div
-                          className="text-2xl sm:text-3xl font-bold text-zinc-900 leading-none"
-                          style={{ fontFamily: 'var(--font-serif)' }}
-                        >
-                          {stat.value}
-                        </div>
-                        <div className="text-xs font-medium text-zinc-500 mt-1">
-                          {stat.label}
-                        </div>
-                      </div>
+                      {stat.value}
+                      {stat.suffix && (
+                        <span className="text-2xl sm:text-3xl lg:text-4xl font-bold ml-0.5">
+                          {stat.suffix}
+                        </span>
+                      )}
                     </div>
-                  );
-                })}
+                    <div className="mt-3 text-sm sm:text-base font-bold text-zinc-900 tracking-tight">
+                      {stat.label}
+                    </div>
+                    <div className="mt-1 text-xs text-zinc-500 leading-snug">
+                      {stat.sublabel}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 

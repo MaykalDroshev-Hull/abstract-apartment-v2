@@ -20,6 +20,8 @@ export async function GET(request: NextRequest) {
       apartmentIds = [1];
     } else if (unitType === 'studio') {
       apartmentIds = [2];
+    } else if (unitType === 'house') {
+      apartmentIds = [3];
     } else {
       // 'both' - get both apartments
       apartmentIds = [1, 2];

@@ -4,16 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/app/lib/translations';
 import {
-    JacuzziIcon,
-    FireplaceIcon,
-  } from '@/app/house/components/HouseAmenityIcons';
+  FireplaceIcon,
+} from '@/app/house/components/HouseAmenityIcons';
 import {
   Heart,
-  ShieldCheck,
   Trees,
   Phone,
   MapPin,
-  Dog,
 } from 'lucide-react';
 
 export default function HouseAboutPage() {
@@ -297,39 +294,33 @@ export default function HouseAboutPage() {
                               </div>
                             </div>
 
-                                {/* Core Values - 4 Visual Stat Tiles */}
-                                <div className="mb-12">
-                                  <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 text-center mb-7">
-                                    {t.valuesTitle}
-                                  </h2>
-                                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-                                      {t.values.map((val, idx) => (
-                                          <div
-                                            key={idx}
-                                            className="bg-white rounded-3xl border border-zinc-200 p-5 sm:p-6 shadow-sm flex flex-col justify-between"
-                                          >
-                                            <div>
-                                                <div className="flex items-center justify-between gap-2 mb-3.5">
-                                                  <div
-                                                    className="w-10 h-10 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0"
-                                                    aria-hidden="true"
-                                                  >
-                                                    {idx === 0 ? <ShieldCheck className="w-5 h-5" /> :
-                                                      idx === 1 ? <JacuzziIcon className="w-5 h-5" /> :
-                                                        idx === 2 ? <FireplaceIcon className="w-5 h-5" /> :
-                                                          <Dog className="w-5 h-5" />}
-                                                  </div>
-                                                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#5B7A3A]/10 text-[#5B7A3A]">
-                                                    {val.stat}
-                                                  </span>
-                                                </div>
-                                                <h3 className="text-base font-bold text-zinc-900 mb-1">{val.title}</h3>
-                                                <p className="text-xs text-zinc-600 leading-snug">{val.desc}</p>
-                                              </div>
-                                            </div>
+        {/* Core Values - 4 Minimal Borderless Stats */}
+        <div className="mb-14 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 text-center mb-10">
+            {t.valuesTitle}
+          </h2>
+          <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 sm:gap-x-8">
+            {t.values.map((val, idx) => (
+              <div
+                key={idx}
+                className="text-center flex flex-col items-center"
+              >
+                <div
+                  className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight text-[#5B7A3A] leading-none"
+                  style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+                >
+                  {val.stat}
+                </div>
+                <div className="mt-3 text-sm sm:text-base font-bold text-zinc-900 tracking-tight">
+                  {val.title}
+                </div>
+                <div className="mt-1.5 text-xs text-zinc-500 leading-snug max-w-[230px]">
+                  {val.desc}
+                </div>
+              </div>
             ))}
-                                          </div>
-                                        </div>
+          </div>
+        </div>
 
         {/* Hosts Section */ }
                                           <div className="bg-white rounded-3xl border border-zinc-200 p-8 sm:p-10 shadow-sm mb-12 text-center">
