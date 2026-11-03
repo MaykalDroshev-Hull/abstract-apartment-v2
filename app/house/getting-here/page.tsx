@@ -3,14 +3,10 @@
 import Link from 'next/link';
 import { useLanguage } from '@/app/lib/translations';
 import {
-    Car,
-    MapPin,
-    ShieldCheck,
-    ShoppingBag,
-    ExternalLink,
-    Compass,
-    Navigation,
-  } from 'lucide-react';
+  MapPin,
+  ExternalLink,
+  Navigation,
+} from 'lucide-react';
 
 export default function HouseGettingHerePage() {
   const { language } = useLanguage();
@@ -202,89 +198,85 @@ export default function HouseGettingHerePage() {
   };
 
   const t = content[language as keyof typeof content] || content.en;
-  const accessIcons = [Compass, ShieldCheck, ShoppingBag, Car];
 
   return (
-      <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
-                {t.eyebrow}
-              </span>
-                <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
-                  {t.title}
-                </h1>
-                  <p className="text-sm sm:text-base text-zinc-600">
-                    {t.subtitle}
-                  </p>
-                </div>
-
-                    {/* Driving Route Big-Number Cards */}
-                    <div className="mb-12">
-                      <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 text-center mb-7">
-                        {t.routesTitle}
-                      </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                          {t.routes.map((rt, idx) => (
-                              <div
-                                key={idx}
-                                className="bg-white rounded-3xl border border-zinc-200 p-7 shadow-sm flex flex-col justify-between hover:border-[#5B7A3A]/40 transition-colors"
-                              >
-                                <div>
-                                  <div className="flex items-center justify-between mb-4">
-                                      <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#5B7A3A]/10 text-[#5B7A3A]">
-                                        {rt.badge}
-                                      </span>
-                                      <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-700">
-                                        {rt.dist}
-                                      </span>
-                                  </div>
-
-                                    <p className="text-3xl sm:text-4xl font-serif font-extrabold text-[#3D2B1F] mb-1">
-                                      {rt.time}
-                                    </p>
-                                    <h3 className="text-lg font-bold text-zinc-900 mb-3">{rt.city}</h3>
-
-                                    <p className="inline-flex items-center gap-1.5 text-xs text-zinc-600 bg-[#F9F7F7] border border-zinc-100 px-3 py-1.5 rounded-xl font-medium">
-                                      <Navigation className="w-3.5 h-3.5 text-[#5B7A3A] flex-shrink-0" aria-hidden="true" />
-                                      <span>{rt.route}</span>
-                                    </p>
-                                </div>
-                              </div>
-            ))}
-                            </div>
+    <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+            {t.eyebrow}
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
+            {t.title}
+          </h1>
+          <p className="text-sm sm:text-base text-zinc-600">
+            {t.subtitle}
+          </p>
         </div>
 
-                            {/* Road Quality & Winter Access - 4 Big-Metric Tiles */}
-                            <div className="bg-white rounded-3xl border border-zinc-200 p-6 sm:p-10 shadow-sm mb-12">
-                              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-7 text-center">
-                                {t.accessTitle}
-                              </h2>
-                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                          {t.accessItems.map((item, idx) => {
-                                            const Icon = accessIcons[idx] || Car;
-                                            return (
-                                              <div
-                                                key={idx}
-                                                className="p-5 rounded-2xl bg-[#F9F7F7] border border-zinc-100 text-center flex flex-col items-center"
-                                              >
-                                                <div
-                                                  className="w-10 h-10 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center mb-2.5"
-                                                  aria-hidden="true"
-                                                >
-                                                  <Icon className="w-5 h-5" />
-                                                </div>
-                                                <p className="text-2xl sm:text-3xl font-serif font-extrabold text-[#3D2B1F] mb-1">
-                                                  {item.metric}
-                                                </p>
-                                                <h3 className="font-bold text-zinc-900 text-sm mb-0.5">{item.title}</h3>
-                                                <p className="text-xs text-zinc-500">{item.desc}</p>
-                                              </div>
-                                        );
-            })}
-                                      </div>
-                                    </div>
+        {/* Driving Route Section (Clean, borderless, zero white boxes) */}
+        <div className="max-w-5xl mx-auto mb-16 sm:mb-20">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 text-center mb-10">
+            {t.routesTitle}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-x-8 lg:gap-x-12">
+            {t.routes.map((rt, idx) => (
+              <div
+                key={idx}
+                className="text-center flex flex-col items-center"
+              >
+                <h3 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight mb-2">
+                  {rt.city}
+                </h3>
+
+                <p
+                  className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-[#5B7A3A] leading-none uppercase my-1"
+                  style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+                >
+                  {rt.time}
+                </p>
+
+                <div className="text-xs sm:text-sm font-semibold text-zinc-700 mt-2">
+                  {rt.dist}
+                </div>
+
+                <p className="flex items-center justify-center gap-1.5 text-xs text-zinc-500 leading-snug mt-1.5 max-w-[240px]">
+                  <Navigation className="w-3.5 h-3.5 text-[#5B7A3A] flex-shrink-0" aria-hidden="true" />
+                  <span>{rt.route}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Road Quality & Winter Access (Clean, borderless highlights strip) */}
+        <div className="max-w-6xl mx-auto mb-16 sm:mb-20">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-10 text-center">
+            {t.accessTitle}
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 sm:gap-x-8">
+            {t.accessItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="text-center flex flex-col items-center"
+              >
+                <p
+                  className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight text-[#5B7A3A] leading-none"
+                  style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+                >
+                  {item.metric}
+                </p>
+                <h3 className="mt-3 text-sm sm:text-base font-bold text-zinc-900 tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-1 text-xs text-zinc-500 leading-snug max-w-[220px]">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
                                     {/* Location & Map Section */}
                                       <div className="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm mb-12">
