@@ -32,7 +32,7 @@ export function FaqHero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, im
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif text-zinc-900 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif text-zinc-900 mb-6 text-balance"
             >
               {title}
             </motion.h1>
@@ -77,11 +77,12 @@ export function FaqHero({ eyebrow, title, subtitle, ctaPrimary, ctaSecondary, im
             <div className="relative w-full h-full">
               {/* Main Image */}
               {images[0] && (
-                <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-lg z-10">
+                <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-2xl overflow-hidden shadow-xs border border-zinc-200/80 z-10">
                   <Image
                     src={images[0]}
                     alt="Sunlit living and dining area inside Abstract Apartment in Paralia Ofriniou, Greece"
                     fill
+                    priority
                     className="object-cover"
                     sizes="(max-width: 1024px) 75vw, 50vw"
                   />

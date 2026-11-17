@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { GuideItem, GuideCategory } from '../page';
 import { useTranslations } from '@/app/lib/translations';
@@ -24,52 +23,55 @@ const getCategoryLabel = (category: GuideCategory, t: ReturnType<typeof useTrans
 
 export function GuideCard({ item, onClick, delay = 0 }: GuideCardProps) {
   const t = useTranslations();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.4, delay }}
-      className="group cursor-pointer"
+      className="group cursor-pointer select-none"
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
     >
-      <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-zinc-200 transition-all duration-300 hover:border-zinc-300">
-        {/* Image */}
-        <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="rounded-2xl border border-zinc-300/80 bg-white/60 overflow-hidden backdrop-blur-xs transition-colors duration-200 hover:border-[#9D7F5F]/60 hover:bg-white/90">
+        {/* Unobstructed Image: No floating pill badges */}
+        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-200">
           <Image
             src={item.imageSrc}
             alt={item.imageAlt}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-          
-          {/* Category Label */}
-          <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold uppercase tracking-wider text-zinc-900">
-              {getCategoryLabel(item.category, t)}
-            </span>
-          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-6 sm:p-8">
-          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 mb-2 group-hover:text-zinc-700 transition-colors">
+        {/* Content: Clean typographic hierarchy */}
+        <div className="p-5 sm:p-6">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#9D7F5F] mb-1.5">
+            {getCategoryLabel(item.category, t)}
+          </p>
+
+          <h3 className="text-lg sm:text-xl font-bold text-zinc-900 tracking-tight text-balance mb-2 group-hover:text-[#9D7F5F] transition-colors">
             {item.title}
           </h3>
-          <p className="text-sm sm:text-base text-zinc-600 mb-4 line-clamp-1">
+
+          <p className="text-xs sm:text-sm text-zinc-600 line-clamp-2 leading-relaxed text-pretty mb-3">
             {item.subtitle}
           </p>
-          
-          {/* View Details Hint */}
-          <div className="flex items-center gap-2 text-sm font-medium text-[#9D7F5F] group-hover:gap-3 transition-all">
-            <span>View details</span>
-            <ArrowRight className="w-4 h-4" />
+
+          <div className="text-xs font-semibold text-zinc-500 tabular-nums">
+            {item.distance}
           </div>
         </div>
       </div>
     </motion.div>
   );
 }
-

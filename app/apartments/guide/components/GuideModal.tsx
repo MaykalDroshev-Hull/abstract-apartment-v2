@@ -91,7 +91,7 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-4 sm:p-6"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               onClose();
@@ -100,11 +100,11 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
         >
           <motion.div
             ref={modalRef}
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3 }}
-            className="relative w-full max-w-3xl max-h-[90vh] bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col"
+            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            transition={{ duration: 0.25 }}
+            className="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-2xl overflow-hidden border border-zinc-200 flex flex-col"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
@@ -114,15 +114,15 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
             <button
               onClick={onClose}
               aria-label="Close modal"
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-white border border-zinc-200 flex items-center justify-center transition-colors shadow-lg"
+              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-xl bg-white/90 hover:bg-white border border-zinc-200/90 flex items-center justify-center transition-colors"
             >
-              <X className="w-5 h-5 text-zinc-900" />
+              <X className="w-4 h-4 text-zinc-900" />
             </button>
 
             {/* Scrollable Content */}
             <div className="overflow-y-auto flex-1">
               {/* Image */}
-              <div className="relative w-full h-64 sm:h-80">
+              <div className="relative w-full h-60 sm:h-72 bg-zinc-100">
                 <Image
                   src={item.imageSrc}
                   alt={item.imageAlt}
@@ -134,63 +134,41 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
               </div>
 
               {/* Content */}
-              <div className="p-6 sm:p-8 lg:p-10">
-                {/* Category Label */}
-                <span className="inline-block px-3 py-1 rounded-full bg-zinc-100 text-xs font-semibold uppercase tracking-wider text-zinc-900 mb-4">
+              <div className="p-6 sm:p-8">
+                {/* Category Heading (No filler badge pill) */}
+                <p className="text-xs font-bold uppercase tracking-wider text-[#9D7F5F] mb-2">
                   {getCategoryLabel(item.category, t)}
-                </span>
+                </p>
 
                 {/* Title */}
                 <h2
                   id="modal-title"
-                  className="text-3xl sm:text-4xl font-bold text-zinc-900 mb-3"
-                  style={{ fontFamily: 'var(--font-serif)' }}
+                  className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 tracking-tight text-balance mb-2"
                 >
                   {item.title}
                 </h2>
 
                 {/* Subtitle */}
-                <p className="text-lg sm:text-xl text-zinc-600 mb-6">
+                <p className="text-base sm:text-lg text-zinc-600 mb-5 text-pretty">
                   {item.subtitle}
                 </p>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg leading-relaxed text-zinc-700 mb-8">
+                <p className="text-sm sm:text-base leading-relaxed text-zinc-700 mb-6 text-pretty">
                   {item.description}
                 </p>
 
                 {/* Highlights */}
                 {item.highlights && item.highlights.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 mb-4">
+                  <div className="mb-6">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-900 mb-3">
                       {t.guide.modal.highlights}
                     </h3>
                     <ul className="space-y-2">
                       {item.highlights.map((highlight, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <span className="text-[#9D7F5F] mt-1">•</span>
-                          <span className="text-base text-zinc-700 flex-1">
-                            {highlight}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Tips */}
-                {item.tips && item.tips.length > 0 && (
-                  <div className="mb-8">
-                    <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 mb-4">
-                      {t.guide.modal.tips}
-                    </h3>
-                    <ul className="space-y-2">
-                      {item.tips.map((tip, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <span className="text-[#9D7F5F] mt-1">•</span>
-                          <span className="text-base text-zinc-700 flex-1">
-                            {tip}
-                          </span>
+                        <li key={index} className="flex items-start gap-2.5 text-sm text-zinc-700">
+                          <span className="text-[#9D7F5F] mt-0.5">•</span>
+                          <span className="flex-1 leading-snug">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -198,36 +176,35 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
                 )}
 
                 {/* Distance */}
-                <div className="flex items-center gap-2 mb-8 text-base text-zinc-600">
-                  <MapPin className="w-5 h-5 text-[#9D7F5F]" />
+                <div className="flex items-center gap-2 mb-8 text-sm text-zinc-600">
+                  <MapPin className="w-4 h-4 text-[#9D7F5F] shrink-0" />
                   <span>
-                    <strong className="text-zinc-900">{t.guide.modal.distance}</strong> {item.distance}
+                    <strong className="text-zinc-900 font-semibold">{t.guide.modal.distance}:</strong>{' '}
+                    <span className="tabular-nums">{item.distance}</span>
                   </span>
                 </div>
 
-                {/* Action Buttons */}
+                {/* Action Buttons: Primary solid vs Secondary ghost */}
                 <div className="flex items-center gap-3 flex-wrap">
-                  {/* Google Maps Link */}
                   <a
                     href={item.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#9D7F5F] text-white font-semibold text-xs sm:text-sm hover:bg-[#8B6F47] active:scale-[0.98] transition-all"
                   >
                     <span>{t.guide.modal.openInMaps}</span>
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 translate-y-[-0.5px]" />
                   </a>
 
-                  {/* Website Link */}
                   {item.websiteUrl && (
                     <a
                       href={item.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-transparent border border-zinc-300 text-zinc-900 font-semibold text-xs sm:text-sm hover:bg-zinc-100 active:scale-[0.98] transition-all"
                     >
                       <span>{t.guide.modal.website}</span>
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4 translate-y-[-0.5px]" />
                     </a>
                   )}
                 </div>
@@ -239,4 +216,3 @@ export function GuideModal({ item, onClose }: GuideModalProps) {
     </AnimatePresence>
   );
 }
-

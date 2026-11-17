@@ -19,46 +19,46 @@ const getRandomImages = () => {
 export function GuideHero() {
   const t = useTranslations();
   const images = useMemo(() => getRandomImages(), []);
+
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-[#F5F2ED]">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Left Column - Content */}
           <div>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6"
-              style={{ fontFamily: 'var(--font-serif)' }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-zinc-900 tracking-tight text-balance mb-5"
             >
               {t.guide.title}
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 mb-8 max-w-2xl"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-base sm:text-lg text-zinc-700 leading-relaxed text-pretty mb-8"
             >
               {t.guide.description}
             </motion.p>
-            
+
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link
                 href="/apartments/reserve"
-                className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
+                className="px-7 py-3 rounded-xl bg-[#9D7F5F] text-white font-semibold text-sm hover:bg-[#8B6F47] active:scale-[0.98] transition-all text-center"
               >
                 {t.guide.reserve}
               </Link>
               <Link
                 href="/apartments/contact"
-                className="px-6 py-2 rounded-lg bg-white border border-zinc-300 text-zinc-900 font-medium text-sm hover:bg-zinc-50 transition-colors text-center"
+                className="px-7 py-3 rounded-xl bg-transparent border border-zinc-400/80 text-zinc-900 font-semibold text-sm hover:bg-zinc-900/5 active:scale-[0.98] transition-all text-center"
               >
                 {t.guide.contactUs}
               </Link>
@@ -66,16 +66,16 @@ export function GuideHero() {
           </div>
 
           {/* Right Column - Image Collage */}
-          <div className="relative h-[400px] sm:h-[500px] lg:h-[600px]">
+          <div className="relative h-[360px] sm:h-[460px] lg:h-[520px]">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
               className="absolute inset-0"
             >
               <div className="relative w-full h-full">
                 {/* Main Image */}
-                <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-lg z-10">
+                <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-2xl overflow-hidden border border-zinc-300/70 z-10">
                   <Image
                     src={images[0]?.src || '/Images/index/DEMO-hero-image.jpg'}
                     alt={images[0]?.alt || 'Paralia Ofriniou coastline'}
@@ -85,23 +85,13 @@ export function GuideHero() {
                   />
                 </div>
                 {/* Overlapping Image 1 */}
-                <div className="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-lg z-20">
+                <div className="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-2xl overflow-hidden border border-zinc-300/70 z-20">
                   <Image
                     src={images[1]?.src || '/Images/index/DEMO-hero-image.jpg'}
                     alt={images[1]?.alt || 'Local attraction'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 66vw, 40vw"
-                  />
-                </div>
-                {/* Overlapping Image 2 */}
-                <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 rounded-3xl overflow-hidden shadow-lg z-30">
-                  <Image
-                    src={images[2]?.src || '/Images/index/DEMO-hero-image.jpg'}
-                    alt={images[2]?.alt || 'Local view'}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 50vw, 30vw"
                   />
                 </div>
               </div>
@@ -112,4 +102,3 @@ export function GuideHero() {
     </section>
   );
 }
-

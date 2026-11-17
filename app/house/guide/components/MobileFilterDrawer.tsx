@@ -75,18 +75,18 @@ export function MobileFilterDrawer({
   };
 
   return (
-    <div className="lg:hidden mb-8">
-      {/* Collapsed Pill Trigger Bar */}
-      <div className="bg-white rounded-2xl border border-zinc-200 shadow-2xs overflow-hidden transition-all">
+    <div className="lg:hidden mb-6">
+      {/* Collapsed Clean Bar */}
+      <div className="bg-white rounded-2xl border border-zinc-200 overflow-hidden transition-all">
         <button
           type="button"
           onClick={onToggle}
-          className="w-full px-4 py-3.5 flex items-center justify-between text-left cursor-pointer hover:bg-zinc-50/80 transition-colors"
+          className="w-full px-4 py-3 flex items-center justify-between text-left cursor-pointer hover:bg-zinc-50 transition-colors"
           aria-expanded={isOpen}
         >
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0">
-              <SlidersHorizontal className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-lg bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center flex-shrink-0">
+              <SlidersHorizontal className="w-4 h-4 stroke-[1.75]" aria-hidden="true" />
             </div>
             <div className="min-w-0">
               <div className="flex items-center gap-2">
@@ -94,12 +94,12 @@ export function MobileFilterDrawer({
                   {labels.toggleTitle}
                 </span>
                 {activeCount > 0 && (
-                  <span className="w-5 h-5 rounded-full bg-[#5B7A3A] text-white text-[10px] font-extrabold flex items-center justify-center flex-shrink-0">
+                  <span className="px-1.5 py-0.5 rounded-md bg-[#5B7A3A] text-white text-[11px] font-bold tabular-nums">
                     {activeCount}
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-zinc-500 truncate mt-0.5">
+              <p className="text-xs text-zinc-600 truncate tabular-nums">
                 {totalResults} {labels.showingResults}
               </p>
             </div>
@@ -110,19 +110,19 @@ export function MobileFilterDrawer({
               <button
                 type="button"
                 onClick={handleReset}
-                className="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-zinc-500 hover:text-red-600 hover:bg-red-50 transition-colors flex items-center gap-1"
+                className="px-2 py-1 rounded-md text-xs font-semibold text-zinc-700 hover:text-red-600 hover:bg-red-50 transition-colors flex items-center gap-1 cursor-pointer"
               >
-                <RotateCcw className="w-3 h-3" />
+                <RotateCcw className="w-3 h-3 stroke-[1.75]" />
                 <span className="hidden sm:inline">{labels.reset}</span>
               </button>
             )}
 
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="w-7 h-7 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-600"
+              transition={{ duration: 0.18 }}
+              className="w-7 h-7 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-700"
             >
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-4 h-4 stroke-[1.75]" />
             </motion.div>
           </div>
         </button>
@@ -134,13 +134,13 @@ export function MobileFilterDrawer({
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
-              className="overflow-hidden border-t border-zinc-100 bg-[#F9F8F6] px-4 py-4 sm:p-5"
+              transition={{ duration: 0.22, ease: 'easeInOut' }}
+              className="overflow-hidden border-t border-zinc-100 bg-[#FAF8F5] px-4 py-4"
             >
-              {/* Section 1: Drive Radius Scrubber */}
+              {/* Radius Options */}
               <div className="mb-4">
-                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider flex items-center gap-1.5 mb-2.5">
-                  <Compass className="w-3 h-3 text-[#5B7A3A]" />
+                <span className="text-xs font-bold text-zinc-700 uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                  <Compass className="w-3.5 h-3.5 text-[#5B7A3A] stroke-[1.75]" aria-hidden="true" />
                   <span>{labels.radiusHeading}</span>
                 </span>
                 <div className="grid grid-cols-2 gap-1.5">
@@ -152,17 +152,17 @@ export function MobileFilterDrawer({
                         type="button"
                         onClick={() => onRadiusChange(opt.id)}
                         className={[
-                          'py-2 px-2.5 rounded-xl text-left text-xs font-semibold transition-all cursor-pointer flex items-center justify-between',
+                          'py-2 px-2.5 rounded-xl text-left text-xs font-semibold transition-colors cursor-pointer flex items-center justify-between',
                           isSelected
-                            ? 'bg-[#5B7A3A] text-white shadow-xs'
-                            : 'bg-white border border-zinc-200/80 text-zinc-700 hover:bg-zinc-50',
+                            ? 'bg-[#5B7A3A] text-white'
+                            : 'bg-white border border-zinc-200 text-zinc-800 hover:bg-zinc-50',
                         ].join(' ')}
                       >
                         <span className="truncate">{opt.label}</span>
                         <span
                           className={[
-                            'text-[10px] ml-1 font-bold',
-                            isSelected ? 'text-white/80' : 'text-zinc-400',
+                            'text-[11px] ml-1 font-bold tabular-nums',
+                            isSelected ? 'text-white/90' : 'text-zinc-600',
                           ].join(' ')}
                         >
                           ({opt.count})
@@ -173,9 +173,9 @@ export function MobileFilterDrawer({
                 </div>
               </div>
 
-              {/* Section 2: Categories */}
+              {/* Categories */}
               <div className="mb-4">
-                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-2.5">
+                <span className="text-xs font-bold text-zinc-700 uppercase tracking-wider block mb-2">
                   {labels.categoryHeading}
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -188,10 +188,10 @@ export function MobileFilterDrawer({
                           type="button"
                           onClick={() => onCategoryChange(cat)}
                           className={[
-                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer',
+                            'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer',
                             isSelected
-                              ? 'bg-[#5B7A3A] text-white shadow-xs'
-                              : 'bg-white border border-zinc-200/80 text-zinc-700 hover:bg-zinc-50',
+                              ? 'bg-[#5B7A3A] text-white'
+                              : 'bg-white border border-zinc-200 text-zinc-800 hover:bg-zinc-50',
                           ].join(' ')}
                         >
                           {cat !== 'all' && renderCategoryIcon(cat, 'w-3 h-3')}
@@ -203,12 +203,12 @@ export function MobileFilterDrawer({
                 </div>
               </div>
 
-              {/* Apply / Close Button */}
-              <div className="pt-2 border-t border-zinc-200/60 flex items-center justify-between">
+              {/* Footer */}
+              <div className="pt-3 border-t border-zinc-200 flex items-center justify-between">
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="text-xs font-semibold text-zinc-500 hover:text-zinc-800 transition-colors"
+                  className="text-xs font-medium text-zinc-600 hover:text-zinc-900 transition-colors cursor-pointer"
                 >
                   {labels.reset}
                 </button>
@@ -216,10 +216,10 @@ export function MobileFilterDrawer({
                 <button
                   type="button"
                   onClick={onToggle}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#5B7A3A] text-white font-bold text-xs hover:bg-[#4A642F] transition-colors shadow-xs"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#5B7A3A] text-white font-bold text-xs hover:bg-[#4A642F] transition-colors cursor-pointer"
                 >
-                  <Check className="w-3.5 h-3.5" />
-                  <span>{labels.apply} ({totalResults})</span>
+                  <Check className="w-3.5 h-3.5 stroke-[2]" aria-hidden="true" />
+                  <span>{labels.apply} (<span className="tabular-nums">{totalResults}</span>)</span>
                 </button>
               </div>
             </motion.div>
@@ -229,4 +229,3 @@ export function MobileFilterDrawer({
     </div>
   );
 }
-

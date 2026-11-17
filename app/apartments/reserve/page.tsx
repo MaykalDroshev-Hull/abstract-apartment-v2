@@ -209,7 +209,7 @@ function ReservePageContent() {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       if (draft.villa === 'both') {
         // Calculate prices for both units
@@ -223,7 +223,7 @@ function ReservePageContent() {
         // Create two separate bookings
         const [firstName, ...lastNameParts] = draft.name.trim().split(' ');
         const lastName = lastNameParts.join(' ') || '';
-        
+
         const bookingData = {
           CheckInDT: draft.checkIn,
           CheckOutDT: draft.checkOut,
@@ -294,7 +294,7 @@ function ReservePageContent() {
       } else if (draft.villa === 'apartment' || draft.villa === 'studio') {
         // Single booking for apartment or studio
         const apartmentId = draft.villa === 'apartment' ? 1 : 2;
-        
+
         // Calculate price for single unit
         const priceBreakdown = calculateStayPrice(
           draft.checkIn,
@@ -302,10 +302,10 @@ function ReservePageContent() {
           draft.villa,
           t
         );
-        
+
         const [firstName, ...lastNameParts] = draft.name.trim().split(' ');
         const lastName = lastNameParts.join(' ') || '';
-        
+
         const response = await fetch('/api/bookings', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -319,7 +319,7 @@ function ReservePageContent() {
             Comments: draft.notes || '',
             PaidPrice: 0,
             apartmentid: apartmentId,
-            FullPrice: draft.villa === 'apartment' 
+            FullPrice: draft.villa === 'apartment'
               ? priceBreakdown.apartmentTotal  // Already includes discount
               : priceBreakdown.studioTotal,    // Already includes discount
           }),
@@ -341,7 +341,7 @@ function ReservePageContent() {
               lastName,
               telephone: draft.phone,
               email: draft.email,
-              fullPrice: draft.villa === 'apartment' 
+              fullPrice: draft.villa === 'apartment'
                 ? priceBreakdown.apartmentTotal
                 : priceBreakdown.studioTotal,
               paidPrice: 0,
@@ -356,7 +356,7 @@ function ReservePageContent() {
           // Don't fail the booking if email fails
         }
       }
-      
+
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting booking:', error);
@@ -368,15 +368,15 @@ function ReservePageContent() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-[#F5F2ED] py-16">
+      <main className="min-h-screen bg-[#F5F2ED] py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl border border-zinc-200 p-8 md:p-12 text-center">
+          <section aria-label="Reservation Confirmation" className="bg-white rounded-2xl border border-zinc-200 p-8 md:p-12 text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="text-3xl font-serif text-zinc-900 mb-4">{t.reserve.success.title}</h1>
+            <h2 className="text-3xl font-serif text-zinc-900 mb-4 text-balance">{t.reserve.success.title}</h2>
             <p className="text-lg text-zinc-700 mb-8">
               {t.reserve.success.message}
             </p>
@@ -397,23 +397,23 @@ function ReservePageContent() {
                 {t.reserve.success.contactUs}
               </Link>
             </div>
-          </div>
+          </section>
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED] py-8 md:py-12">
+    <main className="min-h-screen bg-[#F5F2ED] py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-serif text-zinc-900 mb-2">{t.reserve.title}</h1>
+        <header className="mb-8">
+          <h1 className="text-4xl font-serif text-zinc-900 mb-2 text-balance">{t.reserve.title}</h1>
           <p className="text-zinc-600">{t.reserve.subtitle}</p>
-        </div>
+        </header>
 
         <ReservationStepper currentStep={currentStep} steps={STEPS} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <section aria-label="Reservation Form" className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl border border-zinc-200 p-6 md:p-8">
@@ -466,9 +466,9 @@ function ReservePageContent() {
           <div className="lg:col-span-1">
             <ReservationSummaryCard draft={draft} villaInfo={selectedVilla} />
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 

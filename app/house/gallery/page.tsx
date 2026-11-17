@@ -9,6 +9,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
+  ArrowRight,
+  PhoneCall,
 } from 'lucide-react';
 
 type GalleryCategory = 'all' | 'exterior' | 'pool' | 'hearth' | 'interior';
@@ -373,50 +375,79 @@ export default function HouseGalleryPage() {
     };
   }, [activeImageIndex, closeLightbox, nextImage, prevImage]);
 
+  const categoryCounts: Record<GalleryCategory, number> = {
+    all: PHOTOS.length,
+    exterior: PHOTOS.filter((p) => p.category === 'exterior').length,
+    pool: PHOTOS.filter((p) => p.category === 'pool').length,
+    hearth: PHOTOS.filter((p) => p.category === 'hearth').length,
+    interior: PHOTOS.filter((p) => p.category === 'interior').length,
+  };
+
   return (
-    <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#F5F2ED] py-12 md:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+        <header className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <p className="text-xs font-bold tracking-widest uppercase text-[#5B7A3A] mb-3">
             {t.eyebrow}
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-4">
+          </p>
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight text-balance mb-4">
             {t.title}
           </h1>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
+          <p className="text-base sm:text-lg text-zinc-700 leading-relaxed text-pretty max-w-2xl mx-auto">
             {t.subtitle}
           </p>
-        </div>
+        </header>
 
-        {/* Filters */}
-        <div
-          role="group"
-          aria-label={t.eyebrow}
-          className="flex flex-wrap items-center justify-center gap-2 mb-12"
-        >
-          {(['all', 'exterior', 'pool', 'hearth', 'interior'] as const).map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              aria-pressed={activeCategory === cat}
-              onClick={() => {
-                setActiveCategory(cat);
-                setActiveImageIndex(null);
-              }}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-                activeCategory === cat
-                  ? 'bg-[#5B7A3A] text-white shadow-md'
-                  : 'bg-white text-zinc-700 hover:bg-zinc-50 border border-zinc-200'
-              }`}
-            >
-              {t.categories[cat]}
-            </button>
-          ))}
+        {/* Cohesive Segmented Control with Mathematical Radius & Tabular Counts */}
+        <div className="flex justify-center mb-10 sm:mb-12">
+          <div
+            role="tablist"
+            aria-label={t.eyebrow}
+            className="inline-flex flex-wrap items-center justify-center gap-1.5 p-1.5 rounded-2xl bg-zinc-200/70 border border-zinc-300/80 backdrop-blur-xs"
+          >
+            {(['all', 'exterior', 'pool', 'hearth', 'interior'] as const).map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                id={`gallery-tab-${cat}`}
+                aria-selected={activeCategory === cat}
+                aria-controls="gallery-photo-grid"
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setActiveImageIndex(null);
+                }}
+                className={[
+                  'inline-flex items-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all',
+                  activeCategory === cat
+                    ? 'bg-[#5B7A3A] text-white shadow-xs'
+                    : 'text-zinc-700 hover:text-zinc-900 hover:bg-white/60',
+                ].join(' ')}
+              >
+                <span>{t.categories[cat]}</span>
+                <span
+                  className={[
+                    'tabular-nums text-[11px] font-mono px-1.5 py-0.5 rounded-md',
+                    activeCategory === cat
+                      ? 'bg-black/20 text-white'
+                      : 'bg-zinc-300/60 text-zinc-600',
+                  ].join(' ')}
+                >
+                  {categoryCounts[cat]}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <section
+          id="gallery-photo-grid"
+          role="region"
+          aria-label={t.title}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+        >
           {filteredPhotos.map((photo, idx) => (
             <div
               key={photo.id}
@@ -430,25 +461,32 @@ export default function HouseGalleryPage() {
                   openLightbox(idx);
                 }
               }}
-              className="group relative h-80 rounded-3xl overflow-hidden bg-zinc-200 cursor-pointer shadow-sm border border-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5B7A3A] focus-visible:ring-offset-2"
+              className="group relative h-80 rounded-2xl overflow-hidden bg-zinc-200 cursor-pointer border border-zinc-300/80 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5B7A3A] focus-visible:ring-offset-2"
             >
               <Image
                 src={photo.src}
                 alt={photo.alt[lang]}
                 fill
-                className={`object-cover ${photo.objectPosition || ''} group-hover:scale-105 transition-transform duration-500`}
+                className={`object-cover ${photo.objectPosition || ''} group-hover:scale-[1.02] transition-transform duration-300 ease-out`}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#3D2B1F]/80 via-[#3D2B1F]/20 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
-                <p className="font-bold text-base mb-1">{photo.title[lang]}</p>
-                <div className="flex items-center gap-2 text-xs text-white/80">
-                  <Maximize2 className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>{t.enlargeLabel}</span>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent flex flex-col justify-end p-5 text-white">
+                <p className="font-serif font-bold text-base sm:text-lg text-white text-balance drop-shadow-xs mb-1.5">
+                  {photo.title[lang]}
+                </p>
+                <div className="flex items-center justify-between text-xs text-white/80">
+                  <span className="font-mono tabular-nums text-[11px] tracking-wider text-white/70">
+                    {String(idx + 1).padStart(2, '0')} / {String(filteredPhotos.length).padStart(2, '0')}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span className="text-[11px] font-medium">{t.enlargeLabel}</span>
+                  </span>
                 </div>
               </div>
             </div>
           ))}
-        </div>
+        </section>
 
         {/* Lightbox Modal */}
         {activeImageIndex !== null && filteredPhotos[activeImageIndex] && (
@@ -456,78 +494,115 @@ export default function HouseGalleryPage() {
             role="dialog"
             aria-modal="true"
             aria-label={filteredPhotos[activeImageIndex].title[lang]}
-            className="fixed inset-0 z-50 bg-[#1F1610]/95 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 select-none"
           >
-            <button
-              type="button"
-              onClick={closeLightbox}
-              className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-              aria-label={t.closeLabel}
-            >
-              <X className="w-6 h-6" aria-hidden="true" />
-            </button>
-
-            <button
-              type="button"
-              onClick={prevImage}
-              className="absolute left-4 sm:left-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
-              aria-label={t.prevLabel}
-            >
-              <ChevronLeft className="w-6 h-6" aria-hidden="true" />
-            </button>
-
-            <div className="relative max-w-5xl max-h-[85vh] w-full h-[75vh]">
-              <Image
-                src={filteredPhotos[activeImageIndex].src}
-                alt={filteredPhotos[activeImageIndex].alt[lang]}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-              />
-              <div
-                aria-live="polite"
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#3D2B1F]/80 backdrop-blur-sm px-5 py-2 rounded-full text-white text-xs sm:text-sm font-medium text-center max-w-[90%]"
-              >
-                {filteredPhotos[activeImageIndex].title[lang]} ({activeImageIndex + 1} / {filteredPhotos.length})
+            {/* Top Bar with Index and Close */}
+            <div className="w-full flex items-center justify-between max-w-7xl mx-auto z-20">
+              <div className="font-mono text-xs sm:text-sm text-white/70 tabular-nums">
+                <span className="text-white font-bold text-base sm:text-lg">
+                  {String(activeImageIndex + 1).padStart(2, '0')}
+                </span>{' '}
+                /{' '}
+                <span>{String(filteredPhotos.length).padStart(2, '0')}</span>
               </div>
+              <button
+                type="button"
+                onClick={closeLightbox}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-colors border border-white/10"
+                aria-label={t.closeLabel}
+              >
+                <span className="hidden sm:inline text-white/60 font-mono text-[11px]">ESC</span>
+                <X className="w-4 h-4" aria-hidden="true" />
+              </button>
             </div>
 
-            <button
-              type="button"
-              onClick={nextImage}
-              className="absolute right-4 sm:right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
-              aria-label={t.nextLabel}
-            >
-              <ChevronRight className="w-6 h-6" aria-hidden="true" />
-            </button>
+            {/* Center Stage with Previous/Next Controls */}
+            <div className="relative w-full max-w-6xl mx-auto flex-1 flex items-center justify-center my-2 sm:my-4">
+              <button
+                type="button"
+                onClick={prevImage}
+                className="absolute left-2 sm:left-4 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-black/40 hover:bg-black/60 border border-white/15 text-white flex items-center justify-center transition-colors backdrop-blur-xs"
+                aria-label={t.prevLabel}
+              >
+                <ChevronLeft className="w-6 h-6 -translate-x-[1px]" aria-hidden="true" />
+              </button>
+
+              <div className="relative w-full h-[62vh] sm:h-[70vh]">
+                <Image
+                  src={filteredPhotos[activeImageIndex].src}
+                  alt={filteredPhotos[activeImageIndex].alt[lang]}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={nextImage}
+                className="absolute right-2 sm:right-4 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-black/40 hover:bg-black/60 border border-white/15 text-white flex items-center justify-center transition-colors backdrop-blur-xs"
+                aria-label={t.nextLabel}
+              >
+                <ChevronRight className="w-6 h-6 translate-x-[1px]" aria-hidden="true" />
+              </button>
+            </div>
+
+            {/* Bottom Caption Strip */}
+            <div className="w-full max-w-3xl mx-auto z-20 text-center">
+              <div className="px-5 py-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-white inline-block max-w-full">
+                <p className="text-sm sm:text-base font-serif font-bold text-balance drop-shadow-xs">
+                  {filteredPhotos[activeImageIndex].title[lang]}
+                </p>
+                <p className="text-xs text-white/70 mt-0.5 text-pretty hidden sm:block">
+                  {filteredPhotos[activeImageIndex].alt[lang]}
+                </p>
+              </div>
+            </div>
           </div>
         )}
 
-        {/* Bottom CTA */}
-        <div className="bg-white rounded-3xl border border-zinc-200 p-8 sm:p-12 text-center shadow-sm">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-3">
-            {t.ctaTitle}
-          </h2>
-          <p className="text-zinc-600 text-sm sm:text-base max-w-xl mx-auto mb-8">
-            {t.ctaSubtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/house/reserve"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#5B7A3A] text-white font-medium text-sm hover:bg-[#4d6831] transition-colors shadow-md"
-            >
-              {t.ctaReserve}
-            </Link>
-            <Link
-              href="/house/contact"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-zinc-300 text-zinc-800 font-medium text-sm hover:bg-zinc-50 transition-colors"
-            >
-              {t.ctaContact}
-            </Link>
+        {/* Atmospheric Bottom CTA Banner */}
+        <div className="relative rounded-2xl overflow-hidden border border-zinc-900/10 shadow-xs">
+          <div className="absolute inset-0">
+            <Image
+              src="/Images/House/courtyard-pool-dusk-wide.jpg"
+              alt={t.title}
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </div>
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/60"
+            aria-hidden="true"
+          />
+          <div className="relative z-10 px-6 py-12 md:px-12 md:py-16 text-center max-w-2xl mx-auto text-white">
+            <h2 className="text-2xl sm:text-4xl font-serif font-bold text-white mb-3 text-balance drop-shadow-xs">
+              {t.ctaTitle}
+            </h2>
+            <p className="text-white/85 text-sm sm:text-base max-w-xl mx-auto mb-8 text-pretty drop-shadow-xs">
+              {t.ctaSubtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+              <Link
+                href="/house/reserve"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#5B7A3A] text-white font-semibold text-sm hover:bg-[#4d6831] active:scale-[0.98] transition-all shadow-xs"
+              >
+                <span>{t.ctaReserve}</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/house/contact"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-white/30 bg-white/10 backdrop-blur-xs text-white font-semibold text-sm hover:bg-white/20 active:scale-[0.98] transition-all"
+              >
+                <PhoneCall className="w-4 h-4" aria-hidden="true" />
+                <span>{t.ctaContact}</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

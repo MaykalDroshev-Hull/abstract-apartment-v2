@@ -18,7 +18,7 @@ export function ContactHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6 text-balance"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {t.contact.hero.title}
@@ -27,7 +27,7 @@ export function ContactHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 mb-8 max-w-2xl"
+              className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 mb-8 max-w-2xl text-pretty"
             >
               {t.contact.hero.description}
             </motion.p>
@@ -41,13 +41,13 @@ export function ContactHero() {
             >
               <Link
                 href="/apartments/reserve"
-                className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
+                className="px-6 py-2.5 rounded-xl bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center shadow-xs"
               >
                 {t.contact.hero.ctaPrimary}
               </Link>
               <Link
                 href="/apartments/gallery"
-                className="px-6 py-2 rounded-lg bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-900text-zinc-100 font-medium text-sm hover:bg-zinc-50hover:bg-zinc-700 transition-colors text-center"
+                className="px-6 py-2.5 rounded-xl bg-white border border-zinc-300 text-zinc-900 font-medium text-sm hover:bg-zinc-50 transition-colors text-center shadow-xs"
               >
                 {t.contact.hero.ctaSecondary}
               </Link>
@@ -63,11 +63,12 @@ export function ContactHero() {
           >
             <div className="relative w-full h-full">
               {/* Main Image - Apartment Exterior */}
-              <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-3xl overflow-hidden shadow-lg z-10">
+              <div className="absolute top-0 left-0 w-3/4 h-3/4 rounded-2xl overflow-hidden shadow-xs border border-zinc-200/80 z-10">
                 <Image
                   src="/Images/abstract Studio/abstract-studio (3).jpg"
                   alt="Exterior facade and balconies of Abstract Studio and Apartment in Paralia Ofriniou, Greece"
                   fill
+                  priority
                   className="object-cover"
                   sizes="(max-width: 1024px) 75vw, 50vw"
                 />

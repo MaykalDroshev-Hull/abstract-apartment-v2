@@ -224,117 +224,117 @@ export default function HouseFaqPage() {
   const factIcons = [Home, Users, JacuzziIcon, Dog];
 
   return (
-      <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
+    <main className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Header */}
             <div className="text-center mb-8 sm:mb-10">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+              <p className="text-xs font-bold tracking-widest uppercase text-[#5B7A3A] mb-3">
                 {t.eyebrow}
-              </span>
-                <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
-                  {t.title}
-                </h1>
-                  <p className="text-sm sm:text-base text-zinc-600">
-                    {t.subtitle}
-                  </p>
-                </div>
+              </p>
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3 text-balance">
+                {t.title}
+              </h1>
+              <p className="text-sm sm:text-base text-zinc-700 text-pretty max-w-xl mx-auto">
+                {t.subtitle}
+              </p>
+            </div>
 
-                {/* 4-Tile Visual Quick-Facts Bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-8">
-                  {t.quickFacts.map((fact, idx) => {
-                    const Icon = factIcons[idx] || Home;
+              {/* 4-Tile Visual Quick-Facts Bar */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-8">
+                {t.quickFacts.map((fact, idx) => {
+                  const Icon = factIcons[idx] || Home;
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-white/80 backdrop-blur-xs rounded-2xl border border-zinc-300/80 p-4 text-center shadow-xs flex flex-col items-center"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center mb-2">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <p className="text-2xl font-serif font-extrabold text-[#3D2B1F] leading-none mb-1 tabular-nums">
+                        {fact.val}
+                      </p>
+                      <p className="text-xs font-semibold text-zinc-700">{fact.label}</p>
+                    </div>
+                  );
+                })}
+              </div>
+
+                {/* Accordion FAQ Items */}
+                <div className="space-y-3 mb-12">
+                  {t.items.map((item, idx) => {
+                    const isOpen = openIndex === idx;
+                    const btnId = `house-faq-btn-${idx}`;
+                    const panelId = `house-faq-panel-${idx}`;
                     return (
                       <div
                         key={idx}
-                        className="bg-white rounded-2xl border border-zinc-200 p-4 text-center shadow-2xs flex flex-col items-center"
+                        className="bg-white/80 backdrop-blur-xs rounded-2xl border border-zinc-300/80 overflow-hidden shadow-xs transition-all"
                       >
-                        <div className="w-9 h-9 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center mb-2">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <p className="text-2xl font-serif font-extrabold text-[#3D2B1F] leading-none mb-1">
-                          {fact.val}
-                        </p>
-                        <p className="text-xs font-semibold text-zinc-600">{fact.label}</p>
+                        <button
+                          id={btnId}
+                          type="button"
+                          aria-expanded={isOpen}
+                          aria-controls={panelId}
+                          onClick={() => toggleFaq(idx)}
+                          className="w-full px-5 py-4 sm:px-6 sm:py-5 text-left flex items-center justify-between gap-4 hover:bg-zinc-50/60 transition-colors"
+                        >
+                          <span className="font-bold text-sm sm:text-base text-zinc-900 text-balance">
+                            {item.q}
+                          </span>
+                          <ChevronDown
+                            aria-hidden="true"
+                            className={`w-5 h-5 text-zinc-600 flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#5B7A3A]' : ''
+                              }`}
+                          />
+                        </button>
+                        {isOpen && (
+                          <div
+                            id={panelId}
+                            role="region"
+                            aria-labelledby={btnId}
+                            className="px-5 pb-5 pt-2 sm:px-6 text-sm text-zinc-700 leading-relaxed border-t border-zinc-200/80 text-pretty"
+                          >
+                            {item.a}
+                          </div>
+                        )}
                       </div>
                     );
                   })}
                 </div>
 
-                {/* Accordion FAQ Items */}
-                  <div className="space-y-3 mb-12">
-                    {t.items.map((item, idx) => {
-                      const isOpen = openIndex === idx;
-                      const btnId = `house-faq-btn-${idx}`;
-                      const panelId = `house-faq-panel-${idx}`;
-                      return (
-                        <div
-                          key={idx}
-                          className="bg-white rounded-2xl border border-zinc-200 overflow-hidden shadow-2xs transition-all"
-                        >
-                          <button
-                            id={btnId}
-                            type="button"
-                            aria-expanded={isOpen}
-                            aria-controls={panelId}
-                            onClick={() => toggleFaq(idx)}
-                            className="w-full px-5 py-4 sm:px-6 sm:py-5 text-left flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors"
-                          >
-                              <span className="font-bold text-sm sm:text-base text-zinc-900">
-                                {item.q}
-                              </span>
-                              <ChevronDown
-                                aria-hidden="true"
-                                className={`w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#5B7A3A]' : ''
-                                  }`}
-                              />
-                          </button>
-                          {isOpen && (
-                            <div
-                              id={panelId}
-                              role="region"
-                              aria-labelledby={btnId}
-                              className="px-5 pb-5 pt-2 sm:px-6 text-sm text-zinc-600 leading-relaxed border-t border-zinc-100"
-                            >
-                              {item.a}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Need Help Banner */}
-                      <div className="bg-white rounded-3xl border border-zinc-200 p-8 sm:p-10 text-center shadow-sm">
-                        <div
-                          className="w-11 h-11 rounded-full bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center mx-auto mb-3"
-                          aria-hidden="true"
-                        >
-                          <HelpCircle className="w-5 h-5" />
-                        </div>
-                          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-1.5">
-                            {t.needHelpTitle}
-                          </h2>
-                            <p className="text-zinc-600 text-sm max-w-md mx-auto mb-6">
-                              {t.needHelpText}
-                            </p>
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                              <a
-                                href="tel:+359878112454"
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-zinc-900 text-white font-medium text-sm hover:bg-zinc-800 transition-colors"
-                              >
-                                <PhoneCall className="w-4 h-4" aria-hidden="true" />
-                                <span>{t.callBtn}</span>
-                              </a>
-                              <Link
-                                href="/house/reserve"
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#5B7A3A] text-white font-medium text-sm hover:bg-[#4d6831] transition-colors shadow-md"
-                              >
-                                <span>{t.reserveBtn}</span>
-                                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                              </Link>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    );
+            {/* Need Help Banner */}
+            <div className="bg-white/80 backdrop-blur-xs rounded-2xl border border-zinc-300/80 p-8 sm:p-10 text-center shadow-xs">
+              <div
+                className="w-11 h-11 rounded-xl bg-[#5B7A3A]/10 text-[#5B7A3A] flex items-center justify-center mx-auto mb-3"
+                aria-hidden="true"
+              >
+                <HelpCircle className="w-5 h-5" />
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-1.5 text-balance">
+                {t.needHelpTitle}
+              </h2>
+              <p className="text-zinc-700 text-sm max-w-md mx-auto mb-6 text-pretty">
+                {t.needHelpText}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="tel:+359878112454"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-zinc-900 text-white font-medium text-sm hover:bg-zinc-800 transition-colors shadow-xs"
+                >
+                  <PhoneCall className="w-4 h-4" aria-hidden="true" />
+                  <span className="tabular-nums">{t.callBtn}</span>
+                </a>
+                <Link
+                  href="/house/reserve"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#5B7A3A] text-white font-medium text-sm hover:bg-[#4d6831] transition-colors shadow-xs"
+                >
+                  <span>{t.reserveBtn}</span>
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+        </div>
+    </main>
+  );
 }

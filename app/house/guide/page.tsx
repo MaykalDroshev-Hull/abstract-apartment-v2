@@ -723,7 +723,7 @@ export default function HouseGuidePage() {
   const content = {
     bg: {
       eyebrow: 'ИНТЕРАКТИВЕН ПЪТЕВОДИТЕЛ',
-      title: 'Забележителности край с. Голец',
+      title: 'Какво да посетите в района? Забележителности край с. Голец',
       subtitle: 'Водопади, екопътеки, язовири и история на минути от къща за гости „Абстракт“.',
       dialHeading: 'Филтър по разстояние с кола',
       dialAll: 'Всички разстояния',
@@ -765,14 +765,14 @@ export default function HouseGuidePage() {
       openAllMaps: 'Навигирай маршрута',
       clearAll: 'Изчисти всички',
       viewSpot: 'Виж детайли',
-      ctaTitle: 'Разходка през деня, горещо джакузи вечерта',
+      ctaTitle: 'Планирате ли разходка през деня и релакс в джакузи вечерта?',
       ctaSubtitle: 'Върнете се край камината, сауната и басейна в Къща за гости „Абстракт“.',
       ctaReserve: 'Резервирай почивка',
       ctaDetails: 'Разгледай къщата',
     },
     el: {
       eyebrow: 'ΔΙΑΔΡΑΣΤΙΚΟΣ ΟΔΗΓΟΣ ΠΕΡΙΟΧΗΣ',
-      title: 'Αξιοθέατα γύρω από το Γκόλετς',
+      title: 'Τι να επισκεφθείτε στην περιοχή; Αξιοθέατα γύρω από το Γκόλετς',
       subtitle: 'Καταρράκτες, οικολογικά μονοπάτια, λίμνες και ιστορία λίγα λεπτά από τον Ξενώνα Abstract.',
       dialHeading: 'Φίλτρο απόστασης οδήγησης',
       dialAll: 'Όλες οι αποστάσεις',
@@ -814,14 +814,14 @@ export default function HouseGuidePage() {
       openAllMaps: 'Άνοιγμα διαδρομής',
       clearAll: 'Καθαρισμός',
       viewSpot: 'Προβολή',
-      ctaTitle: 'Εξερεύνηση την ημέρα, ζεστό τζακούζι το βράδυ',
+      ctaTitle: 'Σχεδιάζετε εξορμήσεις την ημέρα και ζεστό τζακούζι το βράδυ;',
       ctaSubtitle: 'Χαλαρώστε δίπλα στο τζάκι, τη σάουνα και την πισίνα του Ξενώνα Abstract.',
       ctaReserve: 'Κράτηση',
       ctaDetails: 'Δείτε το σπίτι',
     },
     en: {
       eyebrow: 'INTERACTIVE REGIONAL GUIDE',
-      title: 'Landmarks Around Golets',
+      title: 'What to Explore Nearby? Landmarks Around Golets',
       subtitle: 'Waterfalls, eco-trails, fishing lakes, and medieval heritage minutes from Abstract Guest House.',
       dialHeading: 'Filter by Drive Time',
       dialAll: 'All Distances',
@@ -863,7 +863,7 @@ export default function HouseGuidePage() {
       openAllMaps: 'Open Full Route',
       clearAll: 'Clear All',
       viewSpot: 'View details',
-      ctaTitle: 'Daytime Adventures, Steaming Jacuzzi Nights',
+      ctaTitle: 'Planning daytime adventures and steaming jacuzzi nights?',
       ctaSubtitle: 'Return to crackling firewood, sauna warmth, and pure relaxation at Abstract Guest House.',
       ctaReserve: 'Book Your Stay',
       ctaDetails: 'View The House',
@@ -932,22 +932,22 @@ export default function HouseGuidePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+        {/* Header - Unslop: Crisp typography, text-balance, no decorative badge container */}
+        <header className="text-center max-w-2xl mx-auto mb-8">
+          <p className="text-xs font-bold tracking-widest text-[#5B7A3A] uppercase mb-2">
             {t.eyebrow}
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
+          </p>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-zinc-950 tracking-tight text-balance mb-3">
             {t.title}
           </h1>
-          <p className="text-sm sm:text-base text-zinc-600">
+          <p className="text-sm sm:text-base text-zinc-600 text-pretty max-w-xl mx-auto">
             {t.subtitle}
           </p>
-        </div>
+        </header>
 
-          {/* Desktop Filters (Always visible on lg screens) */}
+        {/* Desktop Filters (Always visible on lg screens) */}
         <div className="hidden lg:block">
           {/* Micro-interaction 1: Interactive Drive-Time Scrubber / Radius Dial */}
           <RadiusDial
@@ -963,7 +963,7 @@ export default function HouseGuidePage() {
             }}
           />
 
-          {/* Category Filter Pills with Smooth Animated Indicator */}
+          {/* Category Filter Pills */}
           <div
             role="group"
             aria-label={t.eyebrow}
@@ -976,13 +976,13 @@ export default function HouseGuidePage() {
                 aria-pressed={activeCategory === cat}
                 onClick={() => setActiveCategory(cat)}
                 className={[
-                  'inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer select-none',
+                  'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors cursor-pointer select-none',
                   activeCategory === cat
-                    ? 'bg-[#5B7A3A] text-white shadow-md'
-                    : 'bg-white text-zinc-700 hover:bg-zinc-50 border border-zinc-200',
+                    ? 'bg-[#5B7A3A] text-white'
+                    : 'bg-white text-zinc-700 hover:text-zinc-950 hover:bg-zinc-50 border border-zinc-200',
                 ].join(' ')}
               >
-                {cat !== 'all' && renderCategoryIcon(cat, 'w-3.5 h-3.5')}
+                {cat !== 'all' && renderCategoryIcon(cat, 'w-3.5 h-3.5 stroke-[1.75]')}
                 <span>{t.categories[cat]}</span>
               </button>
             ))}
@@ -1014,7 +1014,7 @@ export default function HouseGuidePage() {
           }}
         />
 
-        {/* Landmark Cards Grid with 3D Tilt, Sheen, and Shared Element Feel */}
+        {/* Landmark Cards Grid - Unslop: Clean editorial cards, pristine photos, no badge-stacking */}
         <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"
@@ -1022,44 +1022,33 @@ export default function HouseGuidePage() {
           <AnimatePresence>
             {filteredAttractions.map((item) => {
               const isSaved = savedIds.includes(item.id);
-              const isCopied = copiedCardId === item.id;
 
               return (
                 <motion.div
                   layout
                   key={item.id}
-                  initial={{ opacity: 0, scale: 0.94 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.94 }}
-                  transition={{ duration: 0.25 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {/* Micro-interaction 2: Tactile 3D Tilt Card with Sheen */}
                   <TiltCard
                     onClick={() => setSelectedItem(item)}
-                    className="group bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm hover:border-[#5B7A3A]/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full"
+                    className="group bg-white rounded-2xl border border-zinc-200 overflow-hidden hover:border-[#5B7A3A]/70 transition-colors flex flex-col justify-between h-full"
                   >
                     <div>
-                      {/* Image Header with Floating Controls */}
+                      {/* Photo Container - Clean and authentic, no artificial dark gradient overlays */}
                       <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-100">
                         <Image
                           src={item.imageSrc}
                           alt={item.imageAlt}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-108"
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
 
-                        {/* Category Badge Pill */}
-                        <div className="absolute top-3 left-3 z-10">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-[11px] font-bold text-[#5B7A3A] shadow-xs">
-                            {renderCategoryIcon(item.category, 'w-3 h-3')}
-                            <span>{t.categoryBadges[item.category]}</span>
-                          </span>
-                        </div>
-
-                        {/* Micro-interaction 3: Bookmark / Itinerary Toggle Button */}
-                        <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+                        {/* Top Right: Discreet Bookmark Control */}
+                        <div className="absolute top-2.5 right-2.5 z-10">
                           <button
                             type="button"
                             onClick={(e) => {
@@ -1068,80 +1057,53 @@ export default function HouseGuidePage() {
                             }}
                             aria-label={isSaved ? t.savedLabel : t.saveLabel}
                             className={[
-                              'w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md backdrop-blur-sm cursor-pointer',
+                              'w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer backdrop-blur-sm border',
                               isSaved
-                                ? 'bg-[#5B7A3A] text-white'
-                                : 'bg-white/90 hover:bg-white text-zinc-700 hover:text-[#5B7A3A]',
+                                ? 'bg-[#5B7A3A] text-white border-[#5B7A3A]'
+                                : 'bg-white/95 text-zinc-700 hover:text-[#5B7A3A] border-zinc-200/80',
                             ].join(' ')}
                           >
-                            <motion.div
-                              key={isSaved ? 'saved' : 'not'}
-                              initial={{ scale: 0.6 }}
-                              animate={{ scale: 1 }}
-                              transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-                            >
-                              <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-white' : ''}`} />
-                            </motion.div>
+                            <Bookmark className={`w-3.5 h-3.5 stroke-[1.75] ${isSaved ? 'fill-white' : ''}`} />
                           </button>
-
-                          {/* Micro-interaction 4: One-Click Quick Share / Copy Button */}
-                          <button
-                            type="button"
-                            onClick={(e) => copyLink(item, e)}
-                            aria-label={t.copyLinkLabel}
-                            className="w-8 h-8 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-zinc-700 hover:text-[#5B7A3A] transition-colors shadow-md backdrop-blur-sm cursor-pointer"
-                          >
-                            {isCopied ? (
-                              <Check className="w-3.5 h-3.5 text-[#5B7A3A]" />
-                            ) : (
-                              <Share2 className="w-3.5 h-3.5" />
-                            )}
-                          </button>
-                        </div>
-
-                        {/* Drive Time Pill at bottom of image */}
-                        <div className="absolute bottom-3 right-3 z-10">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-[11px] font-semibold text-white shadow-xs">
-                            <Clock className="w-3 h-3 text-[#A3C878]" />
-                            <span>{item.driveTime}</span>
-                          </span>
                         </div>
                       </div>
 
-                      {/* Card Content */}
-                      <div className="p-5">
-                        <div className="flex items-center gap-1 text-[11px] text-zinc-500 font-medium mb-1.5">
-                          <MapPin className="w-3 h-3 text-[#5B7A3A]" />
-                          <span>{item.distance}</span>
+                      {/* Card Content: Clear visual hierarchy & grouping by proximity */}
+                      <div className="p-4 sm:p-5">
+                        {/* Unified Metadata Row (Category • Drive Time • Distance) */}
+                        <div className="flex items-center gap-2 text-xs font-semibold text-zinc-600 mb-1.5 tabular-nums">
+                          <span className="text-[#5B7A3A] font-bold">
+                            {t.categoryBadges[item.category]}
+                          </span>
+                          <span>•</span>
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-zinc-600 stroke-[1.75]" />
+                            {item.driveTime}
+                          </span>
+                          <span>•</span>
+                          <span className="inline-flex items-center gap-1">
+                            <MapPin className="w-3 h-3 text-zinc-600 stroke-[1.75]" />
+                            {item.distance}
+                          </span>
                         </div>
 
-                        <h2 className="text-base sm:text-lg font-bold text-zinc-900 group-hover:text-[#5B7A3A] transition-colors leading-snug mb-1.5 line-clamp-1">
+                        {/* Headline with text-balance */}
+                        <h2 className="text-base sm:text-lg font-bold text-zinc-950 group-hover:text-[#5B7A3A] transition-colors leading-snug text-balance mb-1.5">
                           {item.title}
                         </h2>
 
-                        <p className="text-xs text-zinc-600 line-clamp-2 leading-relaxed mb-3.5">
+                        {/* Subtitle with text-pretty */}
+                        <p className="text-xs sm:text-sm text-zinc-600 text-pretty line-clamp-2 leading-relaxed">
                           {item.subtitle}
                         </p>
-
-                        {/* Preview Tags */}
-                        <div className="flex flex-wrap gap-1.5 mb-2">
-                          {item.highlights.slice(0, 2).map((hl, hIdx) => (
-                            <span
-                              key={hIdx}
-                              className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-[#F5F2ED] text-zinc-700 truncate max-w-full"
-                            >
-                              {hl}
-                            </span>
-                          ))}
-                        </div>
                       </div>
                     </div>
 
-                    {/* Bottom Action Hint */}
-                    <div className="p-5 pt-0">
-                      <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-bold text-[#5B7A3A] group-hover:text-[#4A642F] transition-colors">
+                    {/* Bottom Action Link - Grouped with white space instead of heavy border */}
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
+                      <div className="flex items-center justify-between text-xs font-semibold text-[#5B7A3A] group-hover:text-[#4A642F] transition-colors">
                         <span>{t.viewDetails}</span>
-                        <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-3.5 h-3.5 stroke-[1.75] transform group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
                   </TiltCard>
@@ -1152,28 +1114,28 @@ export default function HouseGuidePage() {
         </motion.div>
 
         {/* Bottom CTA Block */}
-        <div className="bg-[#5B7A3A] rounded-3xl p-8 sm:p-12 text-center text-white shadow-xl">
-          <h2 className="text-2xl sm:text-4xl font-serif font-bold mb-2">
+        <section className="bg-[#5B7A3A] rounded-3xl p-8 sm:p-12 text-center text-white" aria-label={t.ctaTitle}>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-balance mb-2">
             {t.ctaTitle}
           </h2>
-          <p className="text-white/90 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+          <p className="text-white/90 max-w-xl mx-auto mb-6 text-sm sm:text-base text-pretty">
             {t.ctaSubtitle}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/house/reserve"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 transition-colors shadow-md"
+              className="w-full sm:w-auto px-7 py-3 rounded-xl bg-white text-[#5B7A3A] font-semibold text-sm hover:bg-zinc-100 transition-colors"
             >
               {t.ctaReserve}
             </Link>
             <Link
               href="/house/details"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition-colors"
+              className="w-full sm:w-auto px-7 py-3 rounded-xl border border-white/40 text-white font-medium text-sm hover:bg-white/10 transition-colors"
             >
               {t.ctaDetails}
             </Link>
           </div>
-        </div>
+        </section>
       </div>
 
       {/* Micro-interaction 5: Expandable Modal with Integrated Bookmark & Copy */}
@@ -1182,9 +1144,6 @@ export default function HouseGuidePage() {
         onClose={() => setSelectedItem(null)}
         categoryLabel={selectedItem ? t.categoryBadges[selectedItem.category] : undefined}
         openInMapsLabel={t.openInMaps}
-        distanceLabel={t.distanceLabel}
-        driveTimeLabel={t.driveTimeLabel}
-        locationLabel={t.locationLabel}
         highlightsLabel={t.highlightsLabel}
         closeLabel={t.closeLabel}
         isSaved={selectedItem ? savedIds.includes(selectedItem.id) : false}
@@ -1218,6 +1177,6 @@ export default function HouseGuidePage() {
 
       {/* Micro-interaction 7: Snappy Toast Feedback */}
       <Toast message={toastMessage} />
-    </div>
+    </main>
   );
 }

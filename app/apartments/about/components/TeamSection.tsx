@@ -9,7 +9,7 @@ export function TeamSection() {
   const t = useTranslations();
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-whitebg-zinc-800/50">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Column - Content */}
@@ -23,12 +23,12 @@ export function TeamSection() {
               {t.about.team.eyebrow}
             </span>
             <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-zinc-900 mb-6 text-balance"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {t.about.team.title}
             </h2>
-            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-zinc-600text-zinc-400 mb-8">
+            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-zinc-600 mb-8 text-pretty">
               {t.about.team.paragraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
@@ -51,13 +51,13 @@ export function TeamSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="bg-whitebg-zinc-800 rounded-2xl p-6 border border-zinc-200border-zinc-700"
+                className="bg-white rounded-2xl p-6 border border-zinc-200"
               >
-                <h3 className="text-lg font-semibold text-zinc-900text-zinc-50 mb-1">
+                <h3 className="text-lg font-semibold text-zinc-900 mb-1">
                   {member.name}
                 </h3>
                 <p className="text-sm text-[#9D7F5F] mb-3">{member.role}</p>
-                <p className="text-sm text-zinc-600text-zinc-400 leading-relaxed">
+                <p className="text-sm text-zinc-600 leading-relaxed">
                   {member.bio}
                 </p>
               </motion.div>

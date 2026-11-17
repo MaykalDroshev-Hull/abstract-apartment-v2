@@ -79,21 +79,21 @@ export default function GalleryPage() {
   }, [sections]);
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED]bg-zinc-900">
+    <main className="min-h-screen bg-[#F5F2ED]">
       <div className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-12 sm:mb-16 lg:mb-20">
+          <header className="mb-12 sm:mb-16 lg:mb-20">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-8">
               {/* Left: Title and Description */}
               <div className="flex-1">
                 <h1
-                  className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-4 sm:mb-6"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-4 sm:mb-6 text-balance"
                   style={{ fontFamily: 'var(--font-serif)' }}
                 >
                   {t.gallery.title}
                 </h1>
-                <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 max-w-3xl">
+                <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-3xl text-pretty">
                   {t.gallery.description}
                 </p>
               </div>
@@ -102,125 +102,124 @@ export default function GalleryPage() {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:flex-shrink-0">
                 <Link
                   href="/apartments/reviews"
-                  className="px-6 py-2 rounded-lg bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-900text-zinc-100 font-medium text-sm hover:bg-zinc-50hover:bg-zinc-700 transition-colors text-center"
+                  className="px-6 py-2 rounded-xl bg-white border border-zinc-300 text-zinc-900 font-medium text-sm hover:bg-zinc-50 transition-colors text-center shadow-xs"
                 >
                   {t.header.exploreSections.guestExperience.items.find(item => item.href.endsWith('/reviews'))?.label || 'Reviews'}
                 </Link>
                 <Link
                   href="/apartments/contact"
-                  className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
+                  className="px-6 py-2 rounded-xl bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center shadow-xs"
                 >
                   {t.header.reserve || 'Book'}
                 </Link>
               </div>
             </div>
-          </div>
+          </header>
 
-          {/* Tabs Navigation */}
-          <nav aria-label="Gallery sections" className="sticky top-4 sm:top-6 z-40 mb-12 sm:mb-16">
-            <div className="bg-white/80bg-zinc-800/80 backdrop-blur-sm rounded-2xl border border-zinc-200border-zinc-700 p-2 sm:p-3 shadow-sm">
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-                {sections.map((section) => (
-                  <button
-                    key={section.id}
-                    type="button"
-                    aria-pressed={activeSection === section.id}
-                    onClick={() => scrollToSection(section.id)}
-                    className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${
-                      activeSection === section.id
-                        ? 'bg-zinc-900bg-zinc-100 text-whitetext-zinc-900'
-                        : 'text-zinc-600text-zinc-400 hover:text-zinc-900hover:text-zinc-200 hover:bg-zinc-100hover:bg-zinc-700'
-                    }`}
-                  >
-                    <span className="hidden sm:inline">{section.title}</span>
-                    <span className="sm:hidden">{section.titleMobile || section.title}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </nav>
-
-          {/* Gallery Sections */}
-          <div className="space-y-16 sm:space-y-20 lg:space-y-24">
-            {sections.map((section, sectionIndex) => (
-              <motion.section
-                key={section.id}
-                ref={(el) => {
-                  sectionRefs.current[section.id] = el as HTMLElement | null;
-                }}
-                id={section.id}
-                aria-labelledby={`heading-${section.id}`}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-100px' }}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
-              >
-                <h2
-                  id={`heading-${section.id}`}
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-900text-zinc-50 mb-8 sm:mb-10"
-                  style={{ fontFamily: 'var(--font-serif)' }}
-                >
-                  {section.title}
-                </h2>
-
-                {/* Image Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                  {section.images.map((image, imageIndex) => (
-                    <motion.div
-                      key={imageIndex}
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`View full size photo: ${image.alt}`}
-                      className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#9D7F5F]"
-                      onClick={() => openLightbox(section.id, imageIndex)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          openLightbox(section.id, imageIndex);
-                        }
-                      }}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={{
-                        hidden: { opacity: 0, scale: 0.95 },
-                        visible: { opacity: 1, scale: 1 },
-                      }}
-                      transition={{
-                        duration: 0.4,
-                        delay: (sectionIndex * 0.1) + (imageIndex * 0.05),
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                    </motion.div>
-                  ))}
+            {/* Tabs Navigation */}
+            <nav aria-label="Gallery sections" className="sticky top-4 sm:top-6 z-40 mb-12 sm:mb-16">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-zinc-200 p-2 sm:p-3 shadow-xs">
+                  <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                    {sections.map((section) => (
+                      <button
+                        key={section.id}
+                        type="button"
+                        aria-pressed={activeSection === section.id}
+                        onClick={() => scrollToSection(section.id)}
+                        className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-sm sm:text-base font-medium transition-all duration-300 ${activeSection === section.id
+                              ? 'bg-zinc-900 text-white shadow-xs'
+                              : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100'
+                          }`}
+                      >
+                        <span className="hidden sm:inline">{section.title}</span>
+                        <span className="sm:hidden">{section.titleMobile || section.title}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </motion.section>
-            ))}
+            </nav>
+
+            {/* Gallery Sections */}
+            <div className="space-y-16 sm:space-y-20 lg:space-y-24">
+              {sections.map((section, sectionIndex) => (
+                <motion.section
+                  key={section.id}
+                  ref={(el) => {
+                    sectionRefs.current[section.id] = el as HTMLElement | null;
+                  }}
+                  id={section.id}
+                  aria-labelledby={`heading-${section.id}`}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-100px' }}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+                >
+                  <h2
+                    id={`heading-${section.id}`}
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-900 mb-8 sm:mb-10 text-balance"
+                    style={{ fontFamily: 'var(--font-serif)' }}
+                  >
+                    {section.title}
+                  </h2>
+
+                  {/* Image Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                    {section.images.map((image, imageIndex) => (
+                      <motion.div
+                        key={imageIndex}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`View full size photo: ${image.alt}`}
+                        className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#9D7F5F]"
+                        onClick={() => openLightbox(section.id, imageIndex)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            openLightbox(section.id, imageIndex);
+                          }
+                        }}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={{
+                          hidden: { opacity: 0, scale: 0.95 },
+                          visible: { opacity: 1, scale: 1 },
+                        }}
+                        transition={{
+                          duration: 0.4,
+                          delay: (sectionIndex * 0.1) + (imageIndex * 0.05),
+                        }}
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
+                      >
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.section>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Lightbox */}
-      <Lightbox
-        open={lightboxOpen}
-        images={lightboxImages}
-        initialIndex={lightboxIndex}
-        onClose={() => setLightboxOpen(false)}
-      />
-    </div>
+        {/* Lightbox */}
+        <Lightbox
+          open={lightboxOpen}
+          images={lightboxImages}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxOpen(false)}
+        />
+      </main>
   );
 }
