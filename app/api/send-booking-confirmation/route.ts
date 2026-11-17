@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { requireAdminAuth } from '@/app/lib/adminAuth';
 
+// POST /api/send-booking-confirmation (Admin only)
 export async function POST(request: NextRequest) {
   try {
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
     const body = await request.json();
     const {
       bookingId,
@@ -22,8 +29,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    const emailAddress = process.env.NEXT_PUBLIC_EMAIL;
-    const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASS;
+    const emailAddress = process.env.EMAIL_USER || process.env.NEXT_PUBLIC_EMAIL;
+    const emailPassword = process.env.EMAIL_PASS || process.env.NEXT_PUBLIC_EMAIL_PASS;
 
     if (!emailAddress || !emailPassword) {
       console.error('Email credentials not configured');
@@ -56,11 +63,11 @@ export async function POST(request: NextRequest) {
     // Calculate nights
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
-    const nights = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24));
+    const nights = Math.max(1, Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 60 * 60 * 24)));
 
     const mailOptions = {
       from: `"${apartmentid === 3 ? 'Abstract Guest House' : 'Abstract Apartment'}" <${emailAddress}>`,
-      to: email,
+      to: String(email).trim().slice(0, 255),
       subject: apartmentid === 3 ? 'Потвърждение на Резервация - Къща за гости „Абстракт“' : 'Потвърждение на Резервация',
       text: `
 Вашата резервация е потвърдена!

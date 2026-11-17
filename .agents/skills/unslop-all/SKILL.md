@@ -13,27 +13,15 @@ This skill systematically audits and refactors every Next.js page in the project
 
 ### Step 1: Scan & Inventory
 Run the automated project scanner:
-```bash
-node scripts/unslop-scan.mjs
-```
-This generates the real-time inventory of all 25 routes, identifying which routes are already clean and which have active slop flags.
+- If `scripts/unslop-scan.mjs` exists in the workspace: `node scripts/unslop-scan.mjs`
+- Otherwise, run the bundled global scanner directly: `node ~/.gemini/config/skills/unslop-all/scripts/unslop-scan.mjs` (or copy it into `scripts/unslop-scan.mjs` in the project).
+This generates the real-time inventory of all routes in `app/`, identifying which routes are already clean and which have active slop flags.
 
 ### Step 2: Route Priority Queue
 Group and process pages in order of slop severity:
-1. **High Priority (Heavy Slop):**
-   - `app/house/rates/page.tsx`
-   - `app/house/about/page.tsx`
-   - `app/house/contact/page.tsx`
-   - `app/house/faq/page.tsx`
-   - `app/house/reviews/page.tsx`
-2. **Medium Priority (Targeted Polish):**
-   - `app/apartments/gallery/page.tsx`
-   - `app/apartments/reviews/page.tsx`
-   - `app/apartments/floor-plan/page.tsx`
-   - `app/house/guide/page.tsx`
-   - `app/house/reserve/page.tsx`
-3. **Low Priority / Verification (Clean Verification):**
-   - Remaining routes with minor typography / balance flags.
+1. **High Priority (Heavy Slop):** Pages with multiple pill badges, sterile white containers, and nested bento boxes.
+2. **Medium Priority (Targeted Polish):** Pages with missing tabular numerals, trailing punctuation, or harsh borders.
+3. **Low Priority / Verification:** Pages with minor typography / `text-balance` flags.
 
 ---
 
@@ -51,7 +39,7 @@ For each route in the queue, execute the unslop protocol:
    - *1. Spacing:* 4px rhythm, clean grouping, eliminate arbitrary offsets.
    - *2. Color:* Ditch stark `#FFFFFF` containers; blend warm `bg-white/70 backdrop-blur-xs` with `#F5F2ED` canvas.
    - *3. Icons:* Replace decorative `<Sparkles>` with purposeful semantic icons.
-   - *4. Copy:* Remove trailing periods from titles/labels; preserve multi-language support (`bg`, `el`, `en`).
+   - *4. Copy:* Remove trailing periods from titles/labels; preserve multi-language support where applicable.
    - *5. Type:* Apply `text-balance` to headlines, `text-pretty` to body text, and `tabular-nums` to numbers/metrics.
    - *6. Layout:* Eliminate "box-in-a-box" card nesting; compose full-bleed calm heroes.
    - *7. Details:* Mathematical radius nesting ($R_{inner} = R_{outer} - P$).
@@ -63,6 +51,6 @@ For each route in the queue, execute the unslop protocol:
 ### Step 4: Verification Gate
 After each page edit:
 1. Run `npx tsc --noEmit` to confirm zero TypeScript errors.
-2. Run `npm run build` to confirm all 42 static routes generate cleanly.
-3. Re-run `node scripts/unslop-scan.mjs` to verify the page status changed to `🟢 CLEAN`.
+2. Run production build (`npm run build`) to confirm all static routes generate cleanly.
+3. Re-run scanner (`node scripts/unslop-scan.mjs` or bundled global scanner) to verify all routes reach `🟢 CLEAN`.
 

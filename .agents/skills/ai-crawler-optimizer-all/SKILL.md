@@ -9,9 +9,8 @@ Orchestrates an automated Answer Engine Optimization (AEO) and Generative Engine
 ## Execution Protocol
 
 1. **Scan Inventory:**
-   ```bash
-   npm run ai:scan
-   ```
+   - If `scripts/ai-crawler-scan.mjs` exists in the workspace: `npm run ai:scan` (or `node scripts/ai-crawler-scan.mjs`).
+   - Otherwise, run the bundled global scanner directly: `node ~/.gemini/config/skills/ai-crawler-optimizer-all/scripts/ai-crawler-scan.mjs` (or copy it into `scripts/ai-crawler-scan.mjs`).
 2. **Batch Priority Pipeline:**
    - Routes missing natural-language question headings (`<h2>`/`<h3>` with `?`).
    - Routes missing immediate 40–60 word answer-first snippets.

@@ -1,10 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { getSupabaseAdminClient } from '@/app/lib/adminAuth';
 
 // GET /api/bookings/availability - Check date availability for multiple apartment IDs
 export async function GET(request: NextRequest) {
@@ -31,10 +26,7 @@ export async function GET(request: NextRequest) {
     // Parse apartment IDs (comma-separated string like "1,2")
     const apartmentIdArray = apartmentIds.split(',').map(id => parseInt(id.trim(), 10));
 
-    // Check for overlapping bookings
-    // A booking overlaps if:
-    // - CheckInDT <= checkOut AND CheckOutDT >= checkIn
-    // This covers all overlap cases: partial overlaps, full containment, etc.
+    const supabase = getSupabaseAdminClient();
     const { data: bookings, error } = await supabase
       .from('Booking')
       .select('apartmentid, CheckInDT, CheckOutDT')

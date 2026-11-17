@@ -1,8 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { checkRateLimit, createRateLimitResponse } from '@/app/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
+    // 1. Rate limiting: 5 email notifications per 10 minutes per IP
+    const rateLimit = await checkRateLimit(request, {
+      maxRequests: 5,
+      windowSeconds: 600,
+      keyPrefix: 'send_booking_email',
+    });
+
+    if (!rateLimit.success) {
+      return createRateLimitResponse(
+        rateLimit.reset,
+        'Too many booking notification requests. Please wait a few minutes before trying again.'
+      );
+    }
+
     const body = await request.json();
     const { 
       checkIn, 
@@ -25,8 +40,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    const emailAddress = process.env.NEXT_PUBLIC_EMAIL;
-    const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASS;
+    const emailAddress = process.env.EMAIL_USER || process.env.NEXT_PUBLIC_EMAIL;
+    const emailPassword = process.env.EMAIL_PASS || process.env.NEXT_PUBLIC_EMAIL_PASS;
 
     if (!emailAddress || !emailPassword) {
       console.error('Email credentials not configured');
@@ -54,7 +69,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Calculate remaining balance
-    const remainingBalance = fullPrice - paidPrice;
+    const remainingBalance = (Number(fullPrice) || 0) - (Number(paidPrice) || 0);
+
+    const safeFirstName = String(firstName).trim().slice(0, 100);
+    const safeLastName = String(lastName).trim().slice(0, 100);
+    const safeTelephone = String(telephone).trim().slice(0, 50);
+    const safeEmail = email ? String(email).trim().slice(0, 255) : 'Не е предоставен';
+    const safeComments = comments ? String(comments).slice(0, 2000) : '';
 
     const mailOptions = {
       from: `"Booking Form" <${emailAddress}>`,
@@ -63,9 +84,9 @@ export async function POST(request: NextRequest) {
       text: `
 Нова Заявка е получена:
 
-Имена: ${firstName} ${lastName}
-Email: ${email || 'Не е предоставен'}
-Телефон: ${telephone}
+Имена: ${safeFirstName} ${safeLastName}
+Email: ${safeEmail}
+Телефон: ${safeTelephone}
 Тип: ${villaName}
 Настаняване: ${checkIn}
 Отдаване: ${checkOut}
@@ -75,15 +96,15 @@ ${villaType === 'both' ? `Цена Апартамент: €${apartmentPrice || 
 Пълна Сума: €${fullPrice}
 Платена Сума: €${paidPrice}
 Оставащ баланс: €${remainingBalance}
-${comments ? `Коментари: ${comments}` : ''}
+${safeComments ? `Коментари: ${safeComments}` : ''}
       `,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #9D7F5F;">Нова Заявка за Резервация</h2>
           <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Имена:</strong> ${firstName} ${lastName}</p>
-            <p><strong>Email:</strong> ${email || 'Не е предоставен'}</p>
-            <p><strong>Телефон:</strong> ${telephone}</p>
+            <p><strong>Имена:</strong> ${safeFirstName} ${safeLastName}</p>
+            <p><strong>Email:</strong> ${safeEmail}</p>
+            <p><strong>Телефон:</strong> ${safeTelephone}</p>
             <p><strong>Тип:</strong> ${villaName}</p>
             <p><strong>Настаняване:</strong> ${checkIn}</p>
             <p><strong>Отдаване:</strong> ${checkOut}</p>
@@ -96,7 +117,7 @@ ${comments ? `Коментари: ${comments}` : ''}
             <p><strong>Пълна Сума:</strong> €${fullPrice}</p>
             <p><strong>Платена Сума:</strong> €${paidPrice}</p>
             <p><strong>Оставащ баланс:</strong> €${remainingBalance}</p>
-            ${comments ? `<p><strong>Коментари:</strong> ${comments}</p>` : ''}
+            ${safeComments ? `<p><strong>Коментари:</strong> ${safeComments}</p>` : ''}
           </div>
         </div>
       `,

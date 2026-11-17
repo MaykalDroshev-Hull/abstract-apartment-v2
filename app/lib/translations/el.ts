@@ -342,7 +342,7 @@ export const el: Translations = {
             {
               from: 'Από τη Σόφια',
               distance: '~300 χλμ',
-              duration: '4–5 ώρες',
+              duration: '3–3,5 ώρες',
             },
             {
               from: 'Από το Πλόβντιβ',

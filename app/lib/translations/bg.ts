@@ -342,7 +342,7 @@ export const bg: Translations = {
             {
               from: 'От София',
               distance: '~300 км',
-              duration: '4–5 часа',
+              duration: '3-3.30 часа',
             },
             {
               from: 'От Пловдив',

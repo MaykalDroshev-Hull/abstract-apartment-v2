@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdminClient, requireAdminAuth } from '@/app/lib/adminAuth';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
+// GET /api/statistics - Fetch financial and booking statistics (Admin only)
 export async function GET(request: NextRequest) {
   try {
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
+    const supabase = getSupabaseAdminClient();
+
     // Fetch all bookings (using PaidPrice as revenue)
     const { data: bookings, error: bookingsError } = await supabase
       .from('Booking')
@@ -27,7 +30,7 @@ export async function GET(request: NextRequest) {
     }
 
     const apartmentMap = new Map(
-      apartments.map((a) => [a.apartmentid, a.cleaning_price_per_hour])
+      (apartments || []).map((a) => [a.apartmentid, a.cleaning_price_per_hour])
     );
 
     // Fetch manual expenses
@@ -41,8 +44,8 @@ export async function GET(request: NextRequest) {
 
     const stats = {
       allTime: { revenue: 0, expenses: 0, profit: 0 },
-      byYear: {} as Record<string, { revenue: 0, expenses: 0, profit: 0 }>,
-      byMonth: {} as Record<string, { revenue: 0, expenses: 0, profit: 0 }>,
+      byYear: {} as Record<string, { revenue: number; expenses: number; profit: number }>,
+      byMonth: {} as Record<string, { revenue: number; expenses: number; profit: number }>,
     };
 
     const addToStats = (
@@ -56,8 +59,7 @@ export async function GET(request: NextRequest) {
     };
 
     // Process bookings
-    bookings.forEach((b) => {
-      // Only process confirmed bookings (or all? Usually revenue is confirmed, but we'll include all to be safe or only confirmed. Let's include confirmed or with PaidPrice > 0)
+    (bookings || []).forEach((b) => {
       if (!b.PaidPrice && !b.cleaning_hours) return;
       
       const rev = b.PaidPrice || 0;
@@ -81,12 +83,11 @@ export async function GET(request: NextRequest) {
     });
 
     // Process manual expenses
-    manualExpenses.forEach((e) => {
+    (manualExpenses || []).forEach((e) => {
       const exp = e.price || 0;
       const rev = 0;
 
       const year = e.year.toString();
-      // Use expense month if provided, else fall back to created_at
       let monthStr = '';
       if (e.month) {
         monthStr = e.month.toString().padStart(2, '0');

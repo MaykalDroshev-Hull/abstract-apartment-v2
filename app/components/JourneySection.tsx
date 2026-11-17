@@ -30,7 +30,7 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
       routes: [
         {
           city: t.home.journey.details?.byCar?.routes?.[0]?.from || 'От София',
-          time: t.home.journey.details?.byCar?.routes?.[0]?.duration || '4–5 часа',
+          time: t.home.journey.details?.byCar?.routes?.[0]?.duration || '3-3.30 часа',
           dist: t.home.journey.details?.byCar?.routes?.[0]?.distance || '~300 км',
           route: 'А25 / Е79 през Кулата–Промахонас → Серес → Паралия Офринио',
         },
@@ -80,7 +80,7 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
       routes: [
         {
           city: t.home.journey.details?.byCar?.routes?.[0]?.from || 'Από Σόφια',
-          time: t.home.journey.details?.byCar?.routes?.[0]?.duration || '4–5 ώρες',
+          time: t.home.journey.details?.byCar?.routes?.[0]?.duration || '3–3,5 ώρες',
           dist: t.home.journey.details?.byCar?.routes?.[0]?.distance || '~300 χλμ',
           route: 'Αυτοκινητόδρομος Α25 μέσω Προμαχώνα → Σέρρες → Παραλία Οφρυνίου',
         },
@@ -130,7 +130,7 @@ export function JourneySection({ title, intro, sectionTitle, showHeader = true }
       routes: [
         {
           city: t.home.journey.details?.byCar?.routes?.[0]?.from || 'From Sofia',
-          time: t.home.journey.details?.byCar?.routes?.[0]?.duration || '4–5 hours',
+          time: t.home.journey.details?.byCar?.routes?.[0]?.duration || '3–3.5 hours',
           dist: t.home.journey.details?.byCar?.routes?.[0]?.distance || '~300 km',
           route: 'A25 / E79 via Kulata–Promachonas → Serres → Paralia Ofriniou',
         },

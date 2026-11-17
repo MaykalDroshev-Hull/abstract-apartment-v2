@@ -342,7 +342,7 @@ export const en: Translations = {
             {
               from: 'From Sofia',
               distance: '~300 km',
-              duration: '4–5 hours',
+              duration: '3–3.5 hours',
             },
             {
               from: 'From Plovdiv',

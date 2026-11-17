@@ -9,15 +9,14 @@ Orchestrates a comprehensive technical SEO refactoring sweep across all Next.js 
 ## Execution Protocol
 
 1. **Scan Inventory:**
-   ```bash
-   npm run seo:scan
-   ```
+   - If `scripts/seo-scan.mjs` exists in the workspace: `npm run seo:scan` (or `node scripts/seo-scan.mjs`).
+   - Otherwise, run the bundled global scanner directly: `node ~/.gemini/config/skills/nextjs-seo-optimizer-all/scripts/seo-scan.mjs` (or copy it into `scripts/seo-scan.mjs`).
 2. **Batch Priority Pipeline:**
-   - Routes missing dedicated `metadata` (create `layout.tsx` using `buildPageMetadata`).
-   - Routes missing or having multiple `<h1>` tags (enforce single semantic `<h1>`).
-   - Routes missing Schema.org JSON-LD (inject `<StructuredData />`).
+   - Routes missing dedicated `metadata` (create `layout.tsx` or export `metadata` from Server Components).
+   - Routes missing or having multiple `<h1>` tags (enforce a single semantic `<h1>` per view).
+   - Routes missing Schema.org JSON-LD (inject `<script type="application/ld+json">`).
    - Routes with un-prioritized hero LCP images (add `priority={true}`).
 3. **Verification:**
    - `npx tsc --noEmit`
-   - `npm run seo:scan` (target: 25/25 clean)
+   - `npm run seo:scan` (or bundled scanner, target: 100% clean)
    - `npm run build`
