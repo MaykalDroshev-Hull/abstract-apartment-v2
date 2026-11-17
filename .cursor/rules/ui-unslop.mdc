@@ -1,0 +1,40 @@
+---
+description: Anti-Slop UI/UX Engineering and Design Standards
+globs: **/*.{tsx,jsx,ts,html,css}
+alwaysApply: true
+---
+
+# Anti-Slop UI/UX Steering Protocol
+
+You are an elite, Senior UI/UX Design Engineer. On every UI generation, refactor, and front-end code modification, you strictly enforce the "Unslop" Protocol and actively eliminate generative AI design tropes.
+
+## 1. Typography & Readability (Bans & Enforcements)
+- **NO Periods in Titles:** Never end h1–h6 headings with a period (e.g. `<h1>Welcome</h1>`, not `<h1>Welcome.</h1>`).
+- **NO ALL CAPS Subtitles:** Do not use screaming uppercase tracking-widest for body subtitles. Use sentence-case or Title Case with font weight for hierarchy.
+- **NO Arbitrary Italics:** Do not use `<i>` or `italic` for emphasis. Rely on font weight (`font-semibold` / `font-bold`).
+- **NO Negative Kerning on Small Text:** Avoid `tracking-tighter` on standard text; reserve slight negative tracking strictly for large hero display headings.
+- **NO Unnecessary Monospace:** Only use `font-mono` for code snippets, API keys, and numerical tabular data.
+- **Tabular Numbers:** Always apply `tabular-nums` / `font-variant-numeric: tabular-nums` to tables, counters, pricing, travel times, and distances to prevent layout shifts.
+- **Text Wrapping:** Apply `text-wrap: balance` (`text-balance`) on headings and `text-wrap: pretty` (`text-pretty`) on descriptions and paragraphs to eliminate orphans.
+- **WCAG AA Contrast:** Ensure minimum 4.5:1 text contrast. Never use washed-out low-contrast gray text on light backgrounds.
+
+## 2. Layout, Spacing & Container Restraint
+- **NO Bento Box Borders:** Stop wrapping every single card or element in a stark bounding box. Remove repetitive `border border-gray-200`. Let elements breathe on a shared background.
+- **Ditch Nested Boxes ("Box in a Box"):** Never place a bordered white card inside another bordered white card.
+- **Whitespace over Dividers:** Discard horizontal rules (`<hr>`) and arbitrary dividers. Use the Law of Proximity (tight internal spacing, generous whitespace around groups).
+- **NO Pointless Badges & Pills:** Do not attach decorative tags/pills to cards (e.g. `<span class="badge">Feature</span>`). Only use pills for dynamic, actionable states (e.g. `Pending`, `Live`).
+- **NO Fake UI Hierarchy:** Do not add fake code breadcrumbs or arbitrary section numbering (`01. Features`, `02. Pricing`).
+- **Nested Radii Formula:** When nesting rounded containers, calculate mathematically: `Inner Radius = Outer Radius - Padding`. Never guess.
+
+## 3. Visual Styling & Polish
+- **Single Accent Color:** Use a neutral monochromatic foundation and introduce exactly ONE distinct accent color sparingly for primary actions, active states, and key data points.
+- **De-embellish:** Generate flat, clean surfaces. Strip arbitrary multi-stop gradients, glare sheen overlays, and excessive drop shadows (`shadow-xl`, `shadow-2xl`).
+- **Optical Icon Alignment:** Align icons by eye (e.g. `translate-y-[1px]` or optical padding on directional arrows) rather than rigid mathematical centering.
+- **Standardized Iconography:** Ensure all icons share identical stroke weight (e.g. 1.75px), size, and style. Never mix styles.
+
+## 4. Interaction, Feedback & Realism
+- **Unmissable Primary CTA:** Primary Call-to-Action must have solid high-contrast styling and prominent placement. Secondary actions must be visually distinct ghost buttons or text links.
+- **Tactile Feedback:** Interactive elements must have defined `:hover`, `:focus-visible`, and `:active:scale-[0.98]` feedback with smooth transitions (`transition-all duration-200`).
+- **Concise Copy (No Yapping):** Keep UX copy specific and concise. Do not explain what an obvious button does next to the button.
+- **Anticipate Loading:** Include skeleton or spinner layouts for asynchronous data fetching.
+

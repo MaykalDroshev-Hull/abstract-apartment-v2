@@ -342,7 +342,7 @@ export const en: Translations = {
             {
               from: 'From Sofia',
               distance: '~300 km',
-              duration: '4–5 hours',
+              duration: '3–3.5 hours',
             },
             {
               from: 'From Plovdiv',
@@ -718,7 +718,7 @@ export const en: Translations = {
     },
     story: {
       eyebrow: 'OUR STORY',
-      title: 'A stay shaped by comfort and the sea',
+      title: 'What Is the Story Behind Our Seaside Retreat?',
       paragraphs: [
         'Abstract Apartments were created with the idea of calm, comfortable seaside living. Every detail has been thoughtfully considered to provide practicality and ease in a peaceful setting.',
         'Located in Paralia Ofriniou, the apartments offer easy access to the beach and local tavernas while maintaining the tranquility of a quiet neighborhood. The focus is on cleanliness, convenience, and attentive service that makes your stay easy and enjoyable.',
@@ -749,7 +749,7 @@ export const en: Translations = {
     ],
     team: {
       eyebrow: 'MEET YOUR HOSTS',
-      title: 'The people behind Abstract Apartments',
+      title: 'Who Are Your Hosts? The People Behind Abstract Apartments',
       paragraphs: [
         'We are a local team dedicated to ensuring a pleasant and hassle-free stay. We are ready to answer questions, share local tips, and make your stay as comfortable as possible.',
         'Our goal is for you to feel welcome and supported from the moment you arrive until you depart.',
@@ -1525,7 +1525,7 @@ export const en: Translations = {
     },
     amenities: {
       intro: {
-        title: 'Your Private Mountain Sanctuary',
+        title: 'What Spa Amenities and Wellness Does the House Offer? Private Mountain Sanctuary',
         subtitle: 'Authentic Bulgarian charm, complete wellness luxury',
         paragraphs: [
           'Guest House Abstract is designed for seamless gatherings, celebrations, and complete relaxation. Indulge in our year-round outdoor hot jacuzzi, infrared sauna, and heated outdoor pool, or gather by the crackling fireplace in the traditional tavern.',

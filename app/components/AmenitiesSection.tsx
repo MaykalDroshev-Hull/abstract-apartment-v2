@@ -16,7 +16,6 @@ import {
   Flame,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
 
 interface AmenityItem {
   icon: React.ComponentType<{ className?: string }>;
@@ -72,48 +71,6 @@ function AmenityCard({ amenity, index }: { amenity: AmenityItem; index: number }
           {amenity.description}
         </p>
       )}
-    </motion.div>
-  );
-}
-
-function VideoPlaceholder({ videoUrl, label }: { videoUrl?: string; label: string }) {
-  return (
-    <motion.div
-      className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden group cursor-pointer"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0 },
-      }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-    >
-      {/* Background - using a gradient or image */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-700 to-zinc-900">
-        {/* Optional: Add a background image here if available */}
-      </div>
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
-
-      {/* Label - Top Left */}
-      <div className="absolute top-6 left-6 sm:top-8 sm:left-8 z-10">
-        <p className="text-sm sm:text-base font-medium text-white/90 uppercase tracking-wider">
-          {label}
-        </p>
-      </div>
-
-      {/* Center Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <motion.div
-          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:bg-white transition-colors duration-300"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Play className="w-8 h-8 sm:w-10 sm:h-10 text-zinc-900 ml-1" fill="currentColor" />
-        </motion.div>
-      </div>
     </motion.div>
   );
 }
@@ -185,19 +142,13 @@ export function AmenitiesSection() {
         </div>
 
         {/* Amenities Grid */}
-        <div className="mb-16 sm:mb-20 lg:mb-24">
+        <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 sm:gap-14 lg:gap-16">
             {amenities.map((amenity, index) => (
               <AmenityCard key={index} amenity={amenity} index={index} />
             ))}
           </div>
         </div>
-
-        {/* Video Placeholder */}
-        <VideoPlaceholder
-          videoUrl={t.home.amenities.video?.url}
-          label={t.home.amenities.video?.label || 'Video Tour'}
-        />
       </div>
     </section>
   );

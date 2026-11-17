@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdminClient } from '@/app/lib/adminAuth';
 import { format, parseISO, addDays, isBefore } from 'date-fns';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
 
 // GET /api/bookings/dates - Get all booked dates for calendar display
 // Query params: unitType=apartment|studio|both (optional, defaults to both)
@@ -27,6 +22,7 @@ export async function GET(request: NextRequest) {
       apartmentIds = [1, 2];
     }
 
+    const supabase = getSupabaseAdminClient();
     const { data, error } = await supabase
       .from('Booking')
       .select('CheckInDT, CheckOutDT, apartmentid')

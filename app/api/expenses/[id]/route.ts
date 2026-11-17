@@ -1,17 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdminClient, requireAdminAuth } from '@/app/lib/adminAuth';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
+// DELETE /api/expenses/[id] - Delete expense (Admin only)
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
     const { id } = await params;
+    if (!id) {
+      return NextResponse.json({ error: 'Expense ID is required' }, { status: 400 });
+    }
+
+    const supabase = getSupabaseAdminClient();
     const { error } = await supabase
       .from('expenses')
       .delete()
@@ -28,17 +34,34 @@ export async function DELETE(
   }
 }
 
+// PUT /api/expenses/[id] - Update expense (Admin only)
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
     const { id } = await params;
+    if (!id) {
+      return NextResponse.json({ error: 'Expense ID is required' }, { status: 400 });
+    }
+
     const { name, month, year, price } = await request.json();
 
+    const updateData: Record<string, any> = {};
+    if (name !== undefined) updateData.name = String(name).trim().slice(0, 200);
+    if (month !== undefined) updateData.month = month ? String(month).trim().slice(0, 50) : null;
+    if (year !== undefined) updateData.year = Number(year);
+    if (price !== undefined) updateData.price = Number(price);
+
+    const supabase = getSupabaseAdminClient();
     const { error } = await supabase
       .from('expenses')
-      .update({ name, month: month || null, year, price })
+      .update(updateData)
       .eq('id', id);
 
     if (error) {

@@ -21,7 +21,7 @@ export default function HouseReviewsPage() {
   const content = {
     bg: {
       eyebrow: 'ОТЗИВИ И ВПЕЧАТЛЕНИЯ',
-      title: 'Какво споделят нашите гости',
+      title: 'Какво споделят нашите гости? Отзиви за Къща за гости „Абстракт“',
       subtitle: 'Проверени отзиви от семейства и компании, наели Къща за гости „Абстракт“.',
       ratingScore: '5.0',
       ratingOutOf: 'от 5.0 звезди',
@@ -92,7 +92,7 @@ export default function HouseReviewsPage() {
     },
     el: {
       eyebrow: 'ΚΡΙΤΙΚΕΣ ΕΠΙΣΚΕΠΤΩΝ',
-      title: 'Τι λένε οι επισκέπτες μας',
+      title: 'Τι μοιράζονται οι επισκέπτες μας; Κριτικές για τον Ξενώνα Abstract',
       subtitle: 'Επαληθευμένες εμπειρίες από παρέες και οικογένειες στον Ξενώνα Abstract.',
       ratingScore: '5.0',
       ratingOutOf: 'από 5.0 αστέρια',
@@ -163,7 +163,7 @@ export default function HouseReviewsPage() {
     },
     en: {
       eyebrow: 'GUEST REVIEWS',
-      title: 'What Our Guests Say',
+      title: 'What Do Our Guests Say? Verified Reviews for Abstract Guest House',
       subtitle: 'Verified stays from families and groups of friends at Abstract Guest House.',
       ratingScore: '5.0',
       ratingOutOf: 'out of 5.0 stars',
@@ -237,143 +237,145 @@ export default function HouseReviewsPage() {
   const t = content[language as keyof typeof content] || content.en;
 
   return (
-      <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-            <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
-                {t.eyebrow}
-              </span>
-                <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
-                  {t.title}
-                </h1>
-                  <p className="text-sm sm:text-base text-zinc-600">
-                    {t.subtitle}
-                  </p>
-                </div>
+    <main className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <header className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <p className="text-xs font-bold tracking-widest uppercase text-[#5B7A3A] mb-3">
+            {t.eyebrow}
+          </p>
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3 text-balance">
+            {t.title}
+          </h1>
+          <p className="text-sm sm:text-base text-zinc-700 text-pretty max-w-xl mx-auto">
+            {t.subtitle}
+          </p>
+        </header>
 
-                  {/* Rating Summary Card with Visual Score Bars */}
-                  <div className="bg-white rounded-3xl border border-zinc-200 p-7 sm:p-10 shadow-sm mb-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                        {/* Big Score */}
-                        <div className="lg:col-span-4 text-center lg:text-left border-b lg:border-b-0 lg:border-r border-zinc-100 pb-6 lg:pb-0 lg:pr-8">
-                          <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
-                            <span className="text-5xl sm:text-6xl font-serif font-extrabold text-[#5B7A3A]">
-                              {t.ratingScore}
-                            </span>
-                            <div className="space-y-1">
-                                <div
-                                  role="img"
-                                  aria-label={t.formatStarsAria(t.ratingScore)}
-                                  className="flex items-center gap-1 text-amber-500"
-                                >
-                                  {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="w-5 h-5 fill-current" aria-hidden="true" />
-                                  ))}
-                                </div>
-                                <p className="text-xs font-semibold text-zinc-400">{t.ratingOutOf}</p>
-                              </div>
-                            </div>
-                            <p className="text-xs font-medium text-zinc-500">{t.basedOn}</p>
-                          </div>
+        {/* Rating Summary Card with Visual Score Bars */}
+        <section aria-label={t.eyebrow} className="bg-white/80 backdrop-blur-xs rounded-2xl border border-zinc-300/80 p-6 sm:p-8 shadow-xs mb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Big Score */}
+                  <div className="lg:col-span-4 text-center lg:text-left border-b lg:border-b-0 lg:border-r border-zinc-200/80 pb-6 lg:pb-0 lg:pr-8">
+                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                      <span className="text-5xl sm:text-6xl font-serif font-extrabold text-[#5B7A3A] tabular-nums">
+                        {t.ratingScore}
+                      </span>
+                      <div className="space-y-1">
+                        <div
+                          role="img"
+                          aria-label={t.formatStarsAria(t.ratingScore)}
+                          className="flex items-center gap-1 text-amber-500"
+                        >
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-5 h-5 fill-current" aria-hidden="true" />
+                          ))}
+                        </div>
+                        <p className="text-xs font-semibold text-zinc-600">{t.ratingOutOf}</p>
+                      </div>
+                    </div>
+                    <p className="text-xs font-medium text-zinc-700">{t.basedOn}</p>
+                  </div>
 
-                            {/* Category Score Bars */}
-                            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                              {t.categories.map((cat, idx) => (
-                                <div key={idx} className="p-4 rounded-2xl bg-[#F9F7F7] border border-zinc-100">
-                                      <div className="flex items-center justify-between mb-2">
-                                        <p className="text-xs font-bold text-zinc-800">{cat.label}</p>
-                                        <div className="flex items-center gap-1.5">
-                                          <span className="text-sm font-extrabold text-[#5B7A3A]">{cat.score}</span>
-                                          <div
-                                            role="img"
-                                            aria-label={t.formatStarsAria(cat.score)}
-                                            className="flex gap-0.5 text-amber-500"
-                                          >
-                                            {[...Array(5)].map((_, i) => (
-                                              <Star key={i} className="w-3 h-3 fill-current" aria-hidden="true" />
-                                            ))}
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div className="w-full h-1.5 rounded-full bg-zinc-200 overflow-hidden" aria-hidden="true">
-                                        <div className="w-full h-full rounded-full bg-[#5B7A3A]" />
-                                      </div>
+            {/* Category Score Bars */ }
+                          < div className = "lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5" >
+                          {
+                            t.categories.map((cat, idx) => (
+                              <div key={idx} className="p-4 rounded-xl bg-white border border-zinc-200/80 shadow-2xs">
+                                <div className="flex items-center justify-between mb-2">
+                                  <p className="text-xs font-bold text-zinc-800">{cat.label}</p>
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="text-sm font-extrabold text-[#5B7A3A] tabular-nums">{cat.score}</span>
+                                    <div
+                                      role="img"
+                                      aria-label={t.formatStarsAria(cat.score)}
+                                      className="flex gap-0.5 text-amber-500"
+                                    >
+                                      {[...Array(5)].map((_, i) => (
+                                        <Star key={i} className="w-3 h-3 fill-current" aria-hidden="true" />
+                                      ))}
                                     </div>
-              ))}
                                   </div>
                                 </div>
+                                <div className="w-full h-1.5 rounded-full bg-zinc-200 overflow-hidden" aria-hidden="true">
+                                  <div className="w-full h-full rounded-full bg-[#5B7A3A]" />
+                                </div>
+                              </div>
+                            ))
+                          }
+                  </div>
+                </div>
+              </section>
+
+              {/* Scannable Review Cards */}
+              <section aria-label={t.title} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+                {t.reviews.map((rev) => (
+                  <article
+              key={rev.id}
+              className="bg-white/80 backdrop-blur-xs rounded-2xl border border-zinc-300/80 p-6 sm:p-7 shadow-xs flex flex-col justify-between hover:border-[#5B7A3A]/40 transition-colors"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div
+                    role="img"
+                    aria-label={t.formatStarsAria(rev.rating)}
+                    className="flex items-center gap-1 text-amber-500"
+                  >
+                    {[...Array(rev.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" aria-hidden="true" />
+                    ))}
+                  </div>
+                  <Quote className="w-5 h-5 text-zinc-300" aria-hidden="true" />
+                </div>
+
+                <h2 className="text-base font-serif font-bold text-[#3D2B1F] mb-2 text-balance">
+                  {rev.headline}
+                </h2>
+
+                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed mb-5 text-pretty">
+                  {rev.text}
+                </p>
+              </div>
+
+                      <div className="pt-3.5 border-t border-zinc-200/80 flex items-center justify-between gap-2">
+                        <div>
+                          <p className="font-bold text-xs sm:text-sm text-zinc-900">{rev.author}</p>
+                          <p className="text-xs text-zinc-600 tabular-nums">
+                            {rev.location} • {rev.date}
+                          </p>
+                        </div>
+                        <span className="text-xs font-semibold text-[#5B7A3A] bg-[#5B7A3A]/10 px-2.5 py-1 rounded-md whitespace-nowrap">
+                          {rev.stayType}
+                        </span>
+                      </div>
+                    </article>
+                  ))}
+              </section>
+
+          {/* Bottom CTA */}
+          <section aria-label={t.ctaTitle} className="bg-[#5B7A3A] rounded-2xl p-8 sm:p-10 text-center text-white shadow-md relative overflow-hidden">
+            <h2 className="text-2xl sm:text-4xl font-serif font-bold mb-2 text-balance">
+              {t.ctaTitle}
+            </h2>
+            <p className="text-white/90 max-w-xl mx-auto mb-6 text-sm sm:text-base text-pretty">
+              {t.ctaSubtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/house/reserve"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 transition-colors shadow-xs"
+              >
+                {t.ctaReserve}
+              </Link>
+              <Link
+                href="/house/contact"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition-colors shadow-xs"
+              >
+                {t.ctaContact}
+              </Link>
+            </div>
+          </section>
         </div>
-
-                              {/* Scannable Review Cards */}
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-                                {t.reviews.map((rev) => (
-                                  <article
-                                    key={rev.id}
-                                    className="bg-white rounded-3xl border border-zinc-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between hover:border-[#5B7A3A]/40 transition-colors"
-                                  >
-                                    <div>
-                                          <div className="flex items-center justify-between mb-3">
-                                            <div
-                                              role="img"
-                                              aria-label={t.formatStarsAria(rev.rating)}
-                                              className="flex items-center gap-1 text-amber-500"
-                                            >
-                                              {[...Array(rev.rating)].map((_, i) => (
-                                                <Star key={i} className="w-4 h-4 fill-current" aria-hidden="true" />
-                                              ))}
-                                            </div>
-                                            <Quote className="w-5 h-5 text-zinc-200" aria-hidden="true" />
-                                          </div>
-
-                                            <h2 className="text-base font-serif font-bold text-[#3D2B1F] mb-2">
-                                              {rev.headline}
-                                            </h2>
-
-                                            <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-5">
-                                              {rev.text}
-                                            </p>
-                                        </div>
-
-                                            <div className="pt-3.5 border-t border-zinc-100 flex items-center justify-between gap-2">
-                                              <div>
-                                                <p className="font-bold text-xs sm:text-sm text-zinc-900">{rev.author}</p>
-                                                <p className="text-[11px] text-zinc-400">
-                                                  {rev.location} • {rev.date}
-                                                </p>
-                                              </div>
-                                                <span className="text-[11px] font-semibold text-[#5B7A3A] bg-[#5B7A3A]/10 px-2.5 py-1 rounded-full whitespace-nowrap">
-                                                  {rev.stayType}
-                                            </span>
-                                          </div>
-                                        </article>
-          ))}
-                                      </div>
-
-                                      {/* Bottom CTA */}
-                                          <div className="bg-[#5B7A3A] rounded-3xl p-8 sm:p-10 text-center text-white shadow-xl">
-                                            <h2 className="text-2xl sm:text-4xl font-serif font-bold mb-2">
-                                              {t.ctaTitle}
-                                            </h2>
-                                              <p className="text-white/90 max-w-xl mx-auto mb-6 text-sm sm:text-base">
-                                                {t.ctaSubtitle}
-                                              </p>
-                                              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                                <Link
-                                                  href="/house/reserve"
-                                                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 transition-colors shadow-md"
-                                                >
-                                                  {t.ctaReserve}
-                                                </Link>
-                                                <Link
-                                                  href="/house/contact"
-                                                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition-colors"
-                                                >
-                                                  {t.ctaContact}
-                                                </Link>
-                                              </div>
-                                          </div>
-                                      </div>
-                                    </div>
-                                    );
+      </main>
+  );
 }

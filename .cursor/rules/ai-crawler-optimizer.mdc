@@ -1,0 +1,19 @@
+---
+description: AI Crawler & AEO/GEO optimization rule for ChatGPT, Perplexity, and Gemini (Single-page & -all sweep)
+globs: ["app/**/page.tsx", "app/**/layout.tsx"]
+alwaysApply: false
+---
+# AI Crawler Optimizer (AEO / GEO)
+
+When asked to "optimize for AI search", "improve Perplexity visibility", "optimize for ChatGPT", or "run ai crawler optimizer -all":
+
+## 1. Scanner Commands
+- Run `npm run ai:scan` (or `node scripts/ai-crawler-scan.mjs`) to audit all public routes for AEO readiness.
+
+## 2. Core AEO Requirements
+- **Question-Led Headings:** Formulate key `<h2>`/`<h3>` headings as conversational user questions (`?`).
+- **Answer-First Formatting:** Deliver a concise, direct 40–60 word answer snippet immediately below the heading.
+- **High-Extraction Structures:** Convert dense continuous paragraphs into lists (`<ul>`, `<ol>`), tables, or spec strips.
+- **Semantic Containers:** Wrap content in semantic `<main>`, `<section>`, and `<article>` tags.
+- **AI Metadata:** Ensure routes inherit `ai:entity`, `ai:booking-url`, and `aiSummary` tags.
+- **Verification:** Always verify with `npx tsc --noEmit` and `npm run ai:scan`.

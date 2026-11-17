@@ -16,7 +16,7 @@ export default function GettingHerePage() {
 
   return (
     <div className="min-h-screen bg-[#F5F2ED]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <GettingHereHero
           caption={t.gettingHere.hero.caption}
@@ -27,24 +27,19 @@ export default function GettingHerePage() {
           images={heroImages}
         />
 
-        {/* Directions Section */}
-        <div className="mb-8">
-          <JourneySection
-            showHeader={false}
-            sectionTitle={t.gettingHere.sectionTitle}
-          />
-        </div>
+        {/* Directions & Travel Times Section */}
+        <JourneySection
+          showHeader={false}
+          sectionTitle={t.gettingHere.sectionTitle}
+        />
 
-        {/* Helper Note */}
-        <div className="mb-12">
-          <div className="bg-white rounded-2xl border border-zinc-200 p-6 md:p-8">
-            <p className="text-sm text-zinc-600 leading-relaxed">
-              {t.gettingHere.helperNote}
-            </p>
-          </div>
+        {/* Helper Note: Clean typography, no arbitrary white bounding box */}
+        <div className="pb-16 sm:pb-20 text-center max-w-2xl mx-auto px-4">
+          <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed text-pretty">
+            {t.gettingHere.helperNote}
+          </p>
         </div>
       </div>
     </div>
   );
 }
-

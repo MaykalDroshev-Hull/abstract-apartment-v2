@@ -63,7 +63,7 @@ function DetailsPageContent() {
   ].filter(Boolean);
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED] py-8 md:py-12">
+    <main className="min-h-screen bg-[#F5F2ED] py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <DetailsHero
@@ -75,19 +75,19 @@ function DetailsPageContent() {
         />
 
         {/* General Description */}
-        <div className="max-w-3xl mb-12">
-          <h2 className="text-2xl font-serif text-zinc-900 mb-4">
-            {t.details.general.welcome}
-          </h2>
-          <div className="space-y-4 text-zinc-700 leading-relaxed">
-            {t.details.general.paragraphs.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
-        </div>
+        <section className="max-w-3xl mb-12" aria-labelledby="general-desc-heading">
+            <h2 id="general-desc-heading" className="text-2xl font-serif text-zinc-900 mb-4 text-balance">
+              {t.details.general.welcome}
+            </h2>
+            <div className="space-y-4 text-zinc-700 leading-relaxed">
+              {t.details.general.paragraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+        </section>
 
         {/* Tabs Section */}
-        <div className="bg-white rounded-2xl border border-zinc-200 p-6 md:p-8">
+        <section className="bg-white rounded-2xl border border-zinc-200 p-6 md:p-8" aria-label="Unit Details">
           <DetailsTabs
             tabs={units.map(u => ({ key: u.key, label: u.tabLabel }))}
             activeTab={activeTab}
@@ -103,7 +103,7 @@ function DetailsPageContent() {
               roomsTitle={activeTab === 'apartment' ? t.details.apartment.roomsTitle : t.details.studio.roomsTitle}
               amenitiesTitle={activeTab === 'apartment' ? t.details.apartment.amenitiesTitle : t.details.studio.amenitiesTitle}
             />
-            
+
             {/* Studio Note */}
             {activeTab === 'studio' && t.details.studio.note && (
               <div className="mt-8 p-4 bg-zinc-50 rounded-lg border border-zinc-200">
@@ -111,9 +111,9 @@ function DetailsPageContent() {
               </div>
             )}
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -6,6 +6,10 @@ import {
   MapPin,
   ExternalLink,
   Navigation,
+  Compass,
+  ShieldCheck,
+  Store,
+  Car,
 } from 'lucide-react';
 
 export default function HouseGettingHerePage() {
@@ -13,34 +17,31 @@ export default function HouseGettingHerePage() {
 
   const content = {
     bg: {
-      eyebrow: 'УПЪТВАНЕ И ЛОКАЦИЯ',
+      eyebrow: 'Упътване и локация',
       title: 'Как да стигнете до с. Голец',
-      subtitle: 'Спокойно предбалканско село в Област Ловеч с асфалтов достъп през всички сезони.',
-      routesTitle: 'Време с автомобил',
+      subtitle: 'Спокойно предбалканско село в Област Ловеч с целогодишен асфалтов достъп за всеки автомобил.',
+      routesTitle: 'Колко време отнема с автомобил? Основни маршрути',
       routes: [
         {
           city: 'От София',
           time: '1 ч. 40 мин',
           dist: '130 км',
           route: 'АМ „Хемус“ → Ябланица / Ловеч → с. Голец',
-          badge: 'Магистрален маршрут',
         },
         {
           city: 'От Ловеч и Троян',
           time: '23 мин',
           dist: '25 км',
           route: 'Директен поддържан междуселищен път',
-          badge: 'Близки градове',
         },
         {
           city: 'От Пловдив',
           time: '2 ч. 30 мин',
           dist: '160 км',
           route: 'През Троянския проход или АМ „Тракия“',
-          badge: 'Панорамен маршрут',
         },
       ],
-      accessTitle: 'Път и зимен достъп',
+      accessTitle: 'Какъв е пътят и достъпът през зимата?',
       accessItems: [
         {
           metric: '100%',
@@ -74,34 +75,31 @@ export default function HouseGettingHerePage() {
       ctaGuide: 'Забележителности наоколо',
     },
     el: {
-      eyebrow: 'ΟΔΗΓΙΕΣ & ΤΟΠΟΘΕΣΙΑ',
+      eyebrow: 'Οδηγίες & Τοποθεσία',
       title: 'Πώς να φτάσετε στο Γκόλετς',
-      subtitle: 'Ήσυχο χωριό στην Επαρχία Λόβετς με άμεση πρόσβαση από άσφαλτο όλο τον χρόνο.',
-      routesTitle: 'Χρόνος οδήγησης',
+      subtitle: 'Ήσυχο χωριό στην Επαρχία Λόβετς με άμεση πρόσβαση από άσφαλτο όλο τον χρόνο για κάθε τύπο αυτοκινήτου.',
+      routesTitle: 'Πόση ώρα διαρκεί η διαδρομή με αυτοκίνητο; Κύριες διαδρομές',
       routes: [
         {
           city: 'Από Σόφια',
           time: '1 ώρα 40λ',
           dist: '130 χλμ',
           route: 'Αυτοκινητόδρομος Χέμους → Λόβετς → Γκόλετς',
-          badge: 'Γρηγορότερη διαδρομή',
         },
         {
           city: 'Από Λόβετς & Τρογιάν',
           time: '23 λεπτά',
           dist: '25 χλμ',
           route: 'Άμεσος ασφαλτοστρωμένος επαρχιακός δρόμος',
-          badge: 'Κοντινές πόλεις',
         },
         {
           city: 'Από Φιλιππούπολη',
           time: '2 ώρες 30λ',
           dist: '160 χλμ',
           route: 'Μέσω Κάρλοβο & περάσματος Τρογιάν',
-          badge: 'Γραφική διαδρομή',
         },
       ],
-      accessTitle: 'Δρόμος & χειμερινή πρόσβαση',
+      accessTitle: 'Ποια είναι η κατάσταση του δρόμου και η πρόσβαση τον χειμώνα;',
       accessItems: [
         {
           metric: '100%',
@@ -135,34 +133,31 @@ export default function HouseGettingHerePage() {
       ctaGuide: 'Αξιοθέατα περιοχής',
     },
     en: {
-      eyebrow: 'DIRECTIONS & LOCATION',
+      eyebrow: 'Directions & Location',
       title: 'Getting to Golets Village',
-      subtitle: 'Peaceful Pre-Balkan village in Lovech Province with 100% paved road access all year.',
-      routesTitle: 'Drive Times from Major Hubs',
+      subtitle: 'Peaceful Pre-Balkan village in Lovech Province with 100% paved road access for any vehicle all year round.',
+      routesTitle: 'How Long Does the Drive Take? Driving Times from Major Hubs',
       routes: [
         {
           city: 'From Sofia',
           time: '1h 40m',
           dist: '130 km',
           route: 'A2 Hemus Motorway → Yablanitsa / Lovech → Golets',
-          badge: 'Fastest Highway Route',
         },
         {
           city: 'From Lovech & Troyan',
           time: '23 min',
           dist: '25 km',
           route: 'Direct well-maintained regional asphalt road',
-          badge: 'Nearby Towns',
         },
         {
           city: 'From Plovdiv',
           time: '2h 30m',
           dist: '160 km',
           route: 'Via Troyan Pass (summer) or A1 motorway',
-          badge: 'Scenic Mountain Route',
         },
       ],
-      accessTitle: 'Road Quality & Winter Access',
+      accessTitle: 'What is the Road Quality and Winter Access Like?',
       accessItems: [
         {
           metric: '100%',
@@ -198,142 +193,166 @@ export default function HouseGettingHerePage() {
   };
 
   const t = content[language as keyof typeof content] || content.en;
+  const accessIcons = [Compass, ShieldCheck, Store, Car];
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED] py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#5B7A3A]/10 text-[#5B7A3A] mb-3">
+    <main className="min-h-screen bg-[#F5F2ED] py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header: Editorial, un-pill eyebrow, high-contrast typography */}
+        <header className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
+          <p className="text-xs font-bold tracking-widest uppercase text-[#5B7A3A] mb-3">
             {t.eyebrow}
-          </span>
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight mb-3">
+          </p>
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-zinc-900 tracking-tight text-balance mb-4">
             {t.title}
           </h1>
-          <p className="text-sm sm:text-base text-zinc-600">
+          <p className="text-base sm:text-lg text-zinc-700 leading-relaxed text-pretty">
             {t.subtitle}
           </p>
-        </div>
+        </header>
 
-        {/* Driving Route Section (Clean, borderless, zero white boxes) */}
-        <div className="max-w-5xl mx-auto mb-16 sm:mb-20">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 text-center mb-10">
+        {/* Driving Route Section */}
+        <section className="mb-20 sm:mb-24" aria-label={t.routesTitle}>
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 text-center text-balance mb-10 sm:mb-12">
             {t.routesTitle}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-x-8 lg:gap-x-12">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {t.routes.map((rt, idx) => (
               <div
                 key={idx}
-                className="text-center flex flex-col items-center"
+                className="group rounded-2xl border border-zinc-300/80 bg-white/40 p-6 sm:p-7 backdrop-blur-xs transition-colors duration-200 hover:border-[#5B7A3A]/60 hover:bg-white/70 flex flex-col justify-between"
               >
-                <h3 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight mb-2">
-                  {rt.city}
-                </h3>
+                <div>
+                  {/* City Origin Heading */}
+                  <h3 className="text-lg sm:text-xl font-bold text-zinc-900 tracking-tight text-balance mb-3">
+                    {rt.city}
+                  </h3>
 
-                <p
-                  className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-tight text-[#5B7A3A] leading-none uppercase my-1"
-                  style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
-                >
-                  {rt.time}
-                </p>
+                  {/* Drive Time + Distance (Clean, no background pills, tabular numbers) */}
+                  <div className="flex items-baseline justify-between gap-3 mb-4">
+                    <span className="text-3xl sm:text-4xl font-serif font-bold text-zinc-900 tracking-tight tabular-nums">
+                      {rt.time}
+                    </span>
+                    <span className="text-sm sm:text-base font-semibold text-zinc-700 tabular-nums">
+                      {rt.dist}
+                    </span>
+                  </div>
 
-                <div className="text-xs sm:text-sm font-semibold text-zinc-700 mt-2">
-                  {rt.dist}
+                  {/* Route with optical icon alignment (No background pill) */}
+                  <div className="flex items-start gap-2 text-xs sm:text-sm text-zinc-600 leading-snug">
+                    <Navigation
+                      className="w-4 h-4 text-[#5B7A3A] shrink-0 translate-y-[2px]"
+                      aria-hidden="true"
+                    />
+                    <span className="text-pretty">{rt.route}</span>
+                  </div>
                 </div>
-
-                <p className="flex items-center justify-center gap-1.5 text-xs text-zinc-500 leading-snug mt-1.5 max-w-[240px]">
-                  <Navigation className="w-3.5 h-3.5 text-[#5B7A3A] flex-shrink-0" aria-hidden="true" />
-                  <span>{rt.route}</span>
-                </p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Road Quality & Winter Access (Clean, borderless highlights strip) */}
-        <div className="max-w-6xl mx-auto mb-16 sm:mb-20">
-          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-10 text-center">
+        {/* Road Quality & Winter Access */}
+        <section className="mb-20 sm:mb-24" aria-label={t.accessTitle}>
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-zinc-900 mb-10 sm:mb-12 text-center text-balance">
             {t.accessTitle}
           </h2>
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 sm:gap-x-8">
-            {t.accessItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="text-center flex flex-col items-center"
-              >
-                <p
-                  className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold tracking-tight text-[#5B7A3A] leading-none"
-                  style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
+            {t.accessItems.map((item, idx) => {
+              const Icon = accessIcons[idx] || Compass;
+
+              return (
+                <div
+                  key={idx}
+                  className="flex flex-col items-center text-center px-2"
                 >
-                  {item.metric}
-                </p>
-                <h3 className="mt-3 text-sm sm:text-base font-bold text-zinc-900 tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-xs text-zinc-500 leading-snug max-w-[220px]">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+                  {/* Clean Icon with brand accent & optical alignment */}
+                  <div className="text-[#5B7A3A] mb-3">
+                    <Icon className="w-6 h-6 stroke-[1.75]" aria-hidden="true" />
+                  </div>
+
+                  {/* Metric */}
+                  <p className="text-3xl sm:text-4xl font-serif font-bold text-zinc-900 tracking-tight tabular-nums">
+                    {item.metric}
+                  </p>
+
+                  {/* Title */}
+                  <h3 className="mt-2 text-sm sm:text-base font-bold text-zinc-900 tracking-tight text-balance">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-1 text-xs sm:text-sm text-zinc-600 leading-relaxed text-pretty max-w-[210px]">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
-        </div>
+        </section>
 
-                                    {/* Location & Map Section */}
-                                      <div className="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm mb-12">
-                                        <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100">
-                                          <div>
-                                            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B7A3A] mb-1">
-                                              <MapPin className="w-4 h-4" aria-hidden="true" />
-                                              <span>{t.pinTitle}</span>
-                                            </div>
-                                            <p className="text-base font-semibold text-zinc-900">{t.address}</p>
-                                            <p className="text-xs text-zinc-500 mt-0.5">{t.pinSubtitle}</p>
-                                          </div>
-                                          <a
-                                            href="https://maps.app.goo.gl/2p3M23H97QCURvqN7"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#5B7A3A] text-white text-xs font-bold hover:bg-[#4d6831] transition-colors whitespace-nowrap self-start sm:self-auto shadow-md"
-                                          >
-                                            <span>{t.mapsBtn}</span>
-                                            <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                                          </a>
-                                        </div>
-                                        <div className="w-full h-80 sm:h-96 relative">
-                                          <iframe
-                                            src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46797.77660232497!2d24.5200!3d43.0800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a976f62bbfdd49%3A0xa00a014cd0ea340!2zNTAyNSDQk9C-0LvQtdGG!5e0!3m2!1s${t.mapLang}!2sbg!4v1700000000000!5m2!1s${t.mapLang}!2sbg`}
-                                            width="100%"
-                                            height="100%"
-                                            style={{ border: 0 }}
-                                            allowFullScreen
-                                            loading="lazy"
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            title={t.mapIframeTitle}
-                                          />
-                                        </div>
-                                      </div>
+        {/* Location & Map Section */}
+        <section className="rounded-2xl border border-zinc-300/80 bg-white/70 overflow-hidden backdrop-blur-xs mb-14 sm:mb-16" aria-label={t.pinTitle}>
+          <div className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-zinc-200/80">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#5B7A3A] mb-1">
+                <MapPin className="w-4 h-4 translate-y-[-0.5px]" aria-hidden="true" />
+                <span>{t.pinTitle}</span>
+              </div>
+              <p className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight text-balance">
+                {t.address}
+              </p>
+              <p className="text-xs sm:text-sm text-zinc-600 mt-1 text-pretty">
+                {t.pinSubtitle}
+              </p>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/2p3M23H97QCURvqN7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#5B7A3A] text-white text-xs sm:text-sm font-semibold hover:bg-[#4d6831] active:scale-[0.98] transition-all whitespace-nowrap self-start sm:self-auto"
+            >
+              <span>{t.mapsBtn}</span>
+              <ExternalLink className="w-4 h-4 translate-y-[-0.5px]" aria-hidden="true" />
+            </a>
+          </div>
+          <div className="w-full h-80 sm:h-96 relative">
+            <iframe
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46797.77660232497!2d24.5200!3d43.0800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a976f62bbfdd49%3A0xa00a014cd0ea340!2zNTAyNSDQk9C-0LvQtdGG!5e0!3m2!1s${t.mapLang}!2sbg!4v1700000000000!5m2!1s${t.mapLang}!2sbg`}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={t.mapIframeTitle}
+            />
+          </div>
+        </section>
 
-                                      {/* Bottom CTA */}
-                                          <div className="bg-[#5B7A3A] rounded-3xl p-8 sm:p-10 text-center text-white shadow-xl">
-                                            <h2 className="text-2xl sm:text-4xl font-serif font-bold mb-6">
-                                              {t.ctaTitle}
-                                            </h2>
-                                              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                                <Link
-                                                  href="/house/reserve"
-                                                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 transition-colors shadow-md"
-                                                >
-                                                  {t.ctaReserve}
-                                                </Link>
-                                                <Link
-                                                  href="/house/guide"
-                                                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition-colors"
-                                                >
-                                                  {t.ctaGuide}
-                                                </Link>
-                                              </div>
-                                            </div>
-                                          </div>
-                                      </div>
-                                      );
+        {/* Bottom CTA: High contrast, distinct primary CTA vs ghost action */}
+        <section className="bg-[#5B7A3A] rounded-2xl p-8 sm:p-12 text-center text-white" aria-label={t.ctaTitle}>
+          <h2 className="text-2xl sm:text-4xl font-serif font-bold text-balance mb-6">
+            {t.ctaTitle}
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/house/reserve"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white text-[#5B7A3A] font-bold text-sm hover:bg-zinc-100 active:scale-[0.98] transition-all"
+            >
+              {t.ctaReserve}
+            </Link>
+            <Link
+              href="/house/guide"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/40 text-white font-medium text-sm hover:bg-white/10 active:scale-[0.98] transition-all"
+            >
+              {t.ctaGuide}
+            </Link>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
 }

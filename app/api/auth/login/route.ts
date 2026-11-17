@@ -1,20 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import bcrypt from 'bcryptjs';
-import { serialize } from 'cookie';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import {
+  getSupabaseAdminClient,
+  createSignedAdminSessionToken,
+  createAdminSessionCookie,
+} from '@/app/lib/adminAuth';
+import { checkRateLimit, createRateLimitResponse } from '@/app/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
+    // 1. Rate limiting: 5 login attempts per 15 minutes per IP
+    const rateLimit = await checkRateLimit(request, {
+      maxRequests: 5,
+      windowSeconds: 900,
+      keyPrefix: 'auth_login',
+    });
+
+    if (!rateLimit.success) {
+      return createRateLimitResponse(
+        rateLimit.reset,
+        'Too many login attempts. Please try again in a few minutes.'
+      );
+    }
+
     const { username, password } = await request.json();
 
     if (!username || !password) {
       return NextResponse.json({ error: 'Username and password are required' }, { status: 400 });
     }
+
+    const supabase = getSupabaseAdminClient();
 
     // Fetch user from database
     const { data: user, error } = await supabase
@@ -28,28 +43,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    // Verify password
+    // Verify password with bcrypt
     const isValidPassword = await bcrypt.compare(password, user.password_hash);
     if (!isValidPassword) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    // Create session token (simple approach - in production, use JWT)
-    const sessionToken = Buffer.from(`${user.id}:${Date.now()}`).toString('base64');
-
-    // Set secure cookie
-    const cookie = serialize('admin_session', sessionToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 60 * 60 * 24, // 24 hours
-      path: '/',
-    });
+    // Create cryptographically signed HMAC-SHA256 session token
+    const sessionToken = createSignedAdminSessionToken(user.id);
+    const cookie = createAdminSessionCookie(sessionToken);
 
     const response = NextResponse.json({ success: true, message: 'Login successful' });
     response.headers.set('Set-Cookie', cookie);
     return response;
-
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });

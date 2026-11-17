@@ -1,24 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdminClient, requireAdminAuth } from '@/app/lib/adminAuth';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-// PUT /api/bookings/[id] - Update booking
+// PUT /api/bookings/[id] - Update booking (Admin only)
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-    try {
-    // Fix: Await params in Next.js 15+
+  try {
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
     const params = await context.params;
     const bookingId = params.id;
 
     if (!bookingId) {
       return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
     }
+
     const requestBody = await request.json();
     const { 
       newCheckInDT, 
@@ -34,7 +34,16 @@ export async function PUT(
       Email
     } = requestBody;
 
-    const updateData: any = { CheckInDT: newCheckInDT, CheckOutDT: newCheckOutDT, FullPrice, PaidPrice, Comments, cleaning_hours };
+    const supabase = getSupabaseAdminClient();
+
+    const updateData: Record<string, any> = {
+      CheckInDT: newCheckInDT,
+      CheckOutDT: newCheckOutDT,
+      FullPrice,
+      PaidPrice,
+      Comments,
+      cleaning_hours,
+    };
     if (apartmentid !== undefined) {
       updateData.apartmentid = apartmentid;
     }
@@ -46,11 +55,11 @@ export async function PUT(
       .single();
 
     if (fetchErr) {
-      return NextResponse.json({ error: fetchErr }, { status: 500 });
+      return NextResponse.json({ error: fetchErr.message }, { status: 500 });
     }
 
     if (booking?.CustomerID && (FirstName !== undefined || LastName !== undefined || Telephone !== undefined || Email !== undefined)) {
-      const customerUpdate: any = {};
+      const customerUpdate: Record<string, any> = {};
       if (FirstName !== undefined) customerUpdate.FirstName = FirstName;
       if (LastName !== undefined) customerUpdate.LastName = LastName;
       if (Telephone !== undefined) customerUpdate.Telephone = Telephone;
@@ -72,7 +81,7 @@ export async function PUT(
       .eq('BookingID', bookingId);
 
     if (error) {
-      return NextResponse.json({ error }, { status: 500 });
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });
@@ -82,15 +91,25 @@ export async function PUT(
   }
 }
 
-// DELETE /api/bookings/[id] - Delete booking
+// DELETE /api/bookings/[id] - Delete booking (Admin only)
 export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    // Fix: Await params in Next.js 15+
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
     const params = await context.params;
     const bookingId = params.id;
+
+    if (!bookingId) {
+      return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
+    }
+
+    const supabase = getSupabaseAdminClient();
 
     // First, get the customer ID associated with this booking
     const { data: booking, error: fetchErr } = await supabase
@@ -100,7 +119,7 @@ export async function DELETE(
       .single();
 
     if (fetchErr) {
-      return NextResponse.json({ error: fetchErr }, { status: 500 });
+      return NextResponse.json({ error: fetchErr.message }, { status: 500 });
     }
 
     // Delete the booking
@@ -110,17 +129,19 @@ export async function DELETE(
       .eq('BookingID', bookingId);
 
     if (deleteBookingErr) {
-      return NextResponse.json({ error: deleteBookingErr }, { status: 500 });
+      return NextResponse.json({ error: deleteBookingErr.message }, { status: 500 });
     }
 
     // Delete the customer
-    const { error: deleteCustomerErr } = await supabase
-      .from('Customer')
-      .delete()
-      .eq('CustomerID', booking.CustomerID);
+    if (booking?.CustomerID) {
+      const { error: deleteCustomerErr } = await supabase
+        .from('Customer')
+        .delete()
+        .eq('CustomerID', booking.CustomerID);
 
-    if (deleteCustomerErr) {
-      return NextResponse.json({ error: deleteCustomerErr }, { status: 500 });
+      if (deleteCustomerErr) {
+        console.warn('Customer delete notice:', deleteCustomerErr);
+      }
     }
 
     return NextResponse.json({ success: true });

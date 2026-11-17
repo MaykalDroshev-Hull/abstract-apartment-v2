@@ -1,23 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { getSupabaseAdminClient, requireAdminAuth } from '@/app/lib/adminAuth';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-// PATCH /api/bookings/[id]/confirm - Confirm booking and send email
+// PATCH /api/bookings/[id]/confirm - Confirm booking and send email (Admin only)
 export async function PATCH(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const auth = await requireAdminAuth(request);
+    if (!auth.authorized) {
+      return auth.response;
+    }
+
     const params = await context.params;
     const bookingId = params.id;
 
     if (!bookingId) {
       return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
     }
+
+    const supabase = getSupabaseAdminClient();
 
     // First, fetch the booking with customer details
     const { data: booking, error: fetchErr } = await supabase
@@ -57,7 +59,7 @@ export async function PATCH(
       .eq('BookingID', bookingId);
 
     if (updateErr) {
-      return NextResponse.json({ error: updateErr }, { status: 500 });
+      return NextResponse.json({ error: updateErr.message }, { status: 500 });
     }
 
     // Send confirmation email to customer
@@ -66,7 +68,10 @@ export async function PATCH(
       try {
         const emailResponse = await fetch(`${request.nextUrl.origin}/api/send-booking-confirmation`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            cookie: request.headers.get('cookie') || '',
+          },
           body: JSON.stringify({
             bookingId: booking.BookingID,
             checkIn: booking.CheckInDT,
@@ -83,12 +88,10 @@ export async function PATCH(
         });
 
         if (!emailResponse.ok) {
-          console.error('Failed to send confirmation email');
-          // Don't fail the confirmation if email fails
+          console.error('Failed to send confirmation email, status:', emailResponse.status);
         }
       } catch (emailError) {
         console.error('Error sending confirmation email:', emailError);
-        // Don't fail the confirmation if email fails
       }
     }
 

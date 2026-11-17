@@ -1,0 +1,40 @@
+---
+description: Automated Project-Wide Unslop Sweep Command
+globs: **/*.{tsx,jsx,ts}
+alwaysApply: false
+---
+
+# Command: /unslop-all
+
+When the user asks to run `/unslop-all` or wants to unslop every page on the project:
+
+1. **Run Project Scan:**
+   Run `npm run unslop:scan` (or `node scripts/unslop-scan.mjs`) to assess current slop counts across all 25 Next.js routes.
+
+2. **Iterate Route by Route:**
+   Prioritize the most heavily affected routes:
+   - `app/house/rates/page.tsx`
+   - `app/house/about/page.tsx`
+   - `app/house/contact/page.tsx`
+   - `app/house/faq/page.tsx`
+   - `app/house/reviews/page.tsx`
+   - `app/apartments/gallery/page.tsx`
+   - `app/apartments/reviews/page.tsx`
+   - `app/apartments/floor-plan/page.tsx`
+   - Remaining pages.
+
+3. **Execute 9 Passes Per Page:**
+   - 1. Spacing: 4px grid.
+   - 2. Color: Ditch harsh white box containers (`bg-white rounded-3xl border border-zinc-200`); harmonize surfaces with warm `#F5F2ED` linen canvas (`bg-white/70 backdrop-blur-xs border border-zinc-300/80 rounded-2xl`).
+   - 3. Icons: Eliminate `<Sparkles>` and arbitrary tropes.
+   - 4. Copy: Remove periods from titles/headers.
+   - 5. Type: Enforce `text-balance` on headings, `text-pretty` on descriptions, `tabular-nums` on numbers.
+   - 6. Layout: Eradicate "box-in-a-box" nested gray boxes.
+   - 7. Details: Nested mathematical radius ($R_{inner} = R_{outer} - P$).
+   - 8. Visuals: Rich property photography with calm gradient scrims.
+   - 9. Motion: Calm transitions (`scale-[1.02]`).
+
+4. **Verify:**
+   - `npx tsc --noEmit`
+   - `npm run build` (confirm 42/42 static routes)
+

@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "unslop:scan": "node scripts/unslop-scan.mjs",
+    "seo:scan": "node scripts/seo-scan.mjs",
+    "ai:scan": "node scripts/ai-crawler-scan.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.90.1",

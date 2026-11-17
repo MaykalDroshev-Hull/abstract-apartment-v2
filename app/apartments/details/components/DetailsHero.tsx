@@ -62,11 +62,12 @@ export function DetailsHero({ eyebrow, title, subtitle, highlights, images }: De
           <div className="relative w-full h-full">
             {/* Tall image behind */}
             {images[0] && (
-              <div className="absolute left-0 top-0 w-2/3 h-3/4 rounded-2xl overflow-hidden z-10">
+              <div className="absolute left-0 top-0 w-2/3 h-3/4 rounded-2xl overflow-hidden z-10 border border-zinc-200/80 shadow-xs">
                 <Image
                   src={images[0]}
                   alt="Bright open-plan living and dining room at Abstract Apartment in Paralia Ofriniou, Greece"
                   fill
+                  priority
                   className="object-cover"
                 />
               </div>

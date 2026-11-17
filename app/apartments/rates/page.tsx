@@ -7,7 +7,7 @@ import { PoliciesFaq } from '@/app/components/PoliciesFaq';
 
 export default function RatesPage() {
   return (
-    <div className="min-h-screen bg-[#F5F2ED]bg-zinc-900">
+    <div className="min-h-screen bg-[#F5F2ED]">
       <RatesHero />
       <div className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

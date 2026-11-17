@@ -8,33 +8,33 @@ export default function FloorPlanPage() {
   const t = useTranslations();
 
   return (
-    <div className="min-h-screen bg-[#F5F2ED]bg-zinc-900">
+    <main className="min-h-screen bg-[#F5F2ED]">
       <div className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
+          <header className="mb-12 sm:mb-16 lg:mb-20 text-center">
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-zinc-900 mb-6 text-balance"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {t.floorPlan.title}
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-3xl mx-auto text-pretty">
               {t.floorPlan.description}
             </p>
-          </div>
+          </header>
 
           {/* Floor Plans Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
+          <section aria-label="Floor Plans" className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
             {/* Abstract Apartment Floor Plan */}
             <div className="flex flex-col">
               <h2
-                className="text-2xl sm:text-3xl font-bold text-zinc-900text-zinc-50 mb-6"
+                className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-6 text-balance"
                 style={{ fontFamily: 'var(--font-serif)' }}
               >
                 {t.floorPlan.apartment.title}
               </h2>
-              <div className="relative w-full aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-100bg-zinc-800 border border-zinc-200border-zinc-700">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-white/80 backdrop-blur-xs border border-zinc-300/80 shadow-xs">
                 {t.floorPlan.apartment.image ? (
                   <Image
                     src={t.floorPlan.apartment.image}
@@ -46,10 +46,10 @@ export default function FloorPlanPage() {
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <p className="text-zinc-400text-zinc-500 text-sm sm:text-base mb-2">
+                      <p className="text-zinc-600 text-sm sm:text-base mb-2">
                         {t.floorPlan.placeholder}
                       </p>
-                      <p className="text-zinc-500text-zinc-600 text-xs sm:text-sm">
+                      <p className="text-zinc-800 font-semibold text-xs sm:text-sm">
                         {t.floorPlan.apartment.title}
                       </p>
                     </div>
@@ -61,12 +61,12 @@ export default function FloorPlanPage() {
             {/* Abstract Studio Floor Plan */}
             <div className="flex flex-col">
               <h2
-                className="text-2xl sm:text-3xl font-bold text-zinc-900text-zinc-50 mb-6"
+                className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-6 text-balance"
                 style={{ fontFamily: 'var(--font-serif)' }}
               >
                 {t.floorPlan.studio.title}
               </h2>
-              <div className="relative w-full aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-100bg-zinc-800 border border-zinc-200border-zinc-700">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-white/80 backdrop-blur-xs border border-zinc-300/80 shadow-xs">
                 {t.floorPlan.studio.image ? (
                   <Image
                     src={t.floorPlan.studio.image}
@@ -78,10 +78,10 @@ export default function FloorPlanPage() {
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <p className="text-zinc-400text-zinc-500 text-sm sm:text-base mb-2">
+                      <p className="text-zinc-600 text-sm sm:text-base mb-2">
                         {t.floorPlan.placeholder}
                       </p>
-                      <p className="text-zinc-500text-zinc-600 text-xs sm:text-sm">
+                      <p className="text-zinc-800 font-semibold text-xs sm:text-sm">
                         {t.floorPlan.studio.title}
                       </p>
                     </div>
@@ -89,36 +89,36 @@ export default function FloorPlanPage() {
                 )}
               </div>
             </div>
-          </div>
+          </section>
 
           {/* CTA Section */}
-          <div className="mt-12 sm:mt-16 lg:mt-20 text-center">
+          <section aria-label={t.floorPlan.cta.title} className="mt-12 sm:mt-16 lg:mt-20 text-center">
             <h2
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-zinc-900text-zinc-50 mb-4"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-zinc-900 mb-4 text-balance"
               style={{ fontFamily: 'var(--font-serif)' }}
             >
               {t.floorPlan.cta.title}
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600text-zinc-400 mb-8 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-zinc-600 mb-8 max-w-3xl mx-auto text-pretty">
               {t.floorPlan.cta.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/apartments/reserve"
-                className="px-6 py-2 rounded-lg bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center"
+                className="px-6 py-2.5 rounded-xl bg-[#9D7F5F] text-white font-medium text-sm hover:bg-[#8B6F47] transition-colors text-center shadow-xs"
               >
                 {t.header.reserve}
               </Link>
               <Link
                 href="/apartments/gallery"
-                className="px-6 py-2 rounded-lg bg-whitebg-zinc-800 border border-zinc-300border-zinc-700 text-zinc-900text-zinc-100 font-medium text-sm hover:bg-zinc-50hover:bg-zinc-700 transition-colors text-center"
+                className="px-6 py-2.5 rounded-xl bg-white border border-zinc-300 text-zinc-900 font-medium text-sm hover:bg-zinc-50 transition-colors text-center shadow-xs"
               >
                 {t.gallery.title}
               </Link>
             </div>
-          </div>
+          </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -1,0 +1,19 @@
+---
+description: Technical SEO optimization rule for Next.js App Router (Single-page & -all sweep)
+globs: ["app/**/page.tsx", "app/**/layout.tsx", "app/lib/seo.ts"]
+alwaysApply: false
+---
+# Next.js Technical SEO Optimizer
+
+When asked to "optimize for SEO", "fix meta tags", "add structured data", or "run seo optimizer -all":
+
+## 1. Scanner Commands
+- Run `npm run seo:scan` (or `node scripts/seo-scan.mjs`) to audit all 25 routes.
+
+## 2. Core SEO Requirements
+- **Single `<h1>`:** Exactly one semantic `<h1>` tag per page.
+- **Dedicated Metadata:** Every route has dedicated metadata or an adjacent `layout.tsx` exporting metadata via `buildPageMetadata` from `@/app/lib/seo`.
+- **JSON-LD Structured Data:** Ensure Schema.org structured data (`<StructuredData data={[...]} />`) is present.
+- **Image Attributes:** All `<Image>` components have descriptive `alt` text; above-the-fold hero images include `priority={true}`.
+- **Open Graph:** Define `ogImage`, `ogAlt`, and `siteName`.
+- **Verification:** Always verify with `npx tsc --noEmit` and `npm run seo:scan`.

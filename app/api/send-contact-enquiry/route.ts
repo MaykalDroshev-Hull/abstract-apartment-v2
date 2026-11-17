@@ -1,8 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { checkRateLimit, createRateLimitResponse } from '@/app/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
+    // 1. Rate limiting: 5 contact enquiries per 10 minutes per IP
+    const rateLimit = await checkRateLimit(request, {
+      maxRequests: 5,
+      windowSeconds: 600,
+      keyPrefix: 'send_contact_enquiry',
+    });
+
+    if (!rateLimit.success) {
+      return createRateLimitResponse(
+        rateLimit.reset,
+        'Too many contact requests. Please wait a few minutes before trying again.'
+      );
+    }
+
     const body = await request.json();
     const { 
       name, 
@@ -16,8 +31,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    const emailAddress = process.env.NEXT_PUBLIC_EMAIL;
-    const emailPassword = process.env.NEXT_PUBLIC_EMAIL_PASS;
+    const emailAddress = process.env.EMAIL_USER || process.env.NEXT_PUBLIC_EMAIL;
+    const emailPassword = process.env.EMAIL_PASS || process.env.NEXT_PUBLIC_EMAIL_PASS;
 
     if (!emailAddress || !emailPassword) {
       console.error('Email credentials not configured');
@@ -32,31 +47,38 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    const safeName = String(name).trim().slice(0, 100);
+    const safeEmail = String(email).trim().slice(0, 255);
+    const safePhone = phone ? String(phone).trim().slice(0, 50) : 'Not provided';
+    const safeSubject = subject ? String(subject).trim().slice(0, 150) : 'Question';
+    const safeMessage = String(message).slice(0, 3000);
+
     const mailOptions = {
       from: `"Contact Form" <${emailAddress}>`,
       to: emailAddress,
-      subject: `Contact Enquiry: ${subject || 'Question'}`,
+      replyTo: safeEmail,
+      subject: `Contact Enquiry: ${safeSubject}`,
       text: `
 New Contact Enquiry:
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone || 'Not provided'}
-Subject: ${subject || 'Question'}
+Name: ${safeName}
+Email: ${safeEmail}
+Phone: ${safePhone}
+Subject: ${safeSubject}
 
 Message:
-${message}
+${safeMessage}
       `,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #9D7F5F;">New Contact Enquiry</h2>
           <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-            <p><strong>Subject:</strong> ${subject || 'Question'}</p>
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> ${safeEmail}</p>
+            <p><strong>Phone:</strong> ${safePhone}</p>
+            <p><strong>Subject:</strong> ${safeSubject}</p>
             <p><strong>Message:</strong></p>
-            <p style="white-space: pre-wrap; background-color: white; padding: 15px; border-radius: 4px;">${message}</p>
+            <p style="white-space: pre-wrap; background-color: white; padding: 15px; border-radius: 4px;">${safeMessage}</p>
           </div>
         </div>
       `,
